@@ -18,9 +18,21 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-            app:title="@string/messages_header">
+            app:title="@string/messages_header"
 
-        <EditTextPreference
+    >
+
+        <SwitchPreferenceCompat
+                app:key="sync"
+                app:title="관심있는 공연 알림"/>
+        <SwitchPreferenceCompat
+                app:key="sync"
+                app:title="당첨 결과 알림"/>
+        <SwitchPreferenceCompat
+                app:key="sync"
+                app:title="이벤트 및 마케팅 활용 동의"/>
+
+        <!--<EditTextPreference
                 app:key="signature"
                 app:title="@string/signature_title"
                 app:useSimpleSummaryProvider="true"/>
@@ -31,24 +43,32 @@
                 app:entries="@array/reply_entries"
                 app:entryValues="@array/reply_values"
                 app:defaultValue="reply"
-                app:useSimpleSummaryProvider="true"/>
+                app:useSimpleSummaryProvider="true"/>-->
 
     </PreferenceCategory>
 
     <PreferenceCategory
-            app:title="@string/sync_header">
+            app:title="프로필 및 계정">
 
-        <SwitchPreferenceCompat
-                app:key="sync"
-                app:title="@string/sync_title"/>
+        <Preference
+                app:key="user_name"
+                app:title="민정"
+        />
 
-        <SwitchPreferenceCompat
-                app:key="attachment"
-                app:title="@string/attachment_title"
-                app:summaryOn="@string/attachment_summary_on"
-                app:summaryOff="@string/attachment_summary_off"
-                app:dependency="sync"/>
+        <Preference
+                app:key="logout"
+                app:title="연결된 계정"
+                app:summary="카카오"
+        />
 
+
+        <Preference
+                app:key="logout"
+                app:title="로그아웃"
+        />
+        <Preference
+                app:key="signout"
+                app:title="회원탈퇴"
+        />
     </PreferenceCategory>
-
 </androidx.preference.PreferenceScreen>
