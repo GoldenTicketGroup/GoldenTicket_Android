@@ -1,9 +1,11 @@
-package com.example.goldenticket
+package com.example.goldenticket.Adapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.goldenticket.R
+import com.example.goldenticket.Fragment.TutorialSliderFragment
 
 class TutorialSliderAdapter(fm:FragmentManager?, val number:Int): FragmentStatePagerAdapter(fm!!) {
     override fun getItem(p0: Int): Fragment {
