@@ -1,12 +1,23 @@
 package com.example.goldenticket
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -38,10 +49,20 @@ class SignUpActivity : AppCompatActivity() {
             val signup_phone: String = et_signupactivity_phone.text.toString()
 
             //true인 경우 서버에 회원정보를 저장한다.
-            isUserInfoValid(signup_u_name,signup_phone,signup_u_email, signup_u_pw, signup_u_pw2)
+            if(isUserInfoValid(signup_u_name,signup_phone,signup_u_email, signup_u_pw, signup_u_pw2)){
+                // TODO : 서버와의 연결
+                postSignupResponse(signup_u_email, signup_u_pw, signup_u_name,signup_phone)
+            }
 
 
         }
+
+        //뒤로가기 이미지를 입력하였을 때 로그인 창으로 넘어감
+        iv_signactivity_back.setOnClickListener {
+            startActivity<LoginActivity>()
+            finish()
+        }
+
 
         //이메일로 로그인 버튼을 눌렀을 때 로그인 화면으로 넘어감
         tv_signactivity_login.setOnClickListener {
@@ -127,6 +148,45 @@ class SignUpActivity : AppCompatActivity() {
         val matcher: Matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr)
         return matcher.find()
     }
+
+    //서버에 회원 가입 정보를 저장한다.
+    /*private fun postSignupResponse(u_id: String, u_pw: String, u_name: String , u_phone: String) {
+
+        //id,password,name 데이터를 받아서 JSON 객체로 만든다.
+        var jsonObject = JSONObject()
+        jsonObject.put("id", u_id)
+        jsonObject.put("password", u_pw)
+        jsonObject.put("name", u_name)
+        jsonObject.put("phone", u_phone)
+
+        //gsonObject는 body로 들어간다.
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postSignupResponse: Call<PostSignupResponse> =
+            networkService.postSignupResponse("application/json", gsonObject)
+        postSignupResponse.enqueue(object : Callback<PostSignupResponse> {
+            override fun onFailure(call: Call<PostSignupResponse>, t: Throwable) {
+                Log.e("Login failed", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostSignupResponse>, response: Response<PostSignupResponse>) {
+                if (response.isSuccessful) {
+                    toast(response.body()!!.message)
+                    if (response.body()!!.status == 201) {
+                        //Resquest Signup
+                        val simpleDateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+                        val e_time = simpleDateFormat.format(Date())
+
+                        val intent = Intent()
+                        intent.putExtra("end_time", e_time)
+                        setResult(Activity.RESULT_OK, intent)
+
+                        finish()
+                    }
+                }
+            }
+
+        })
+    }*/
 
 
 }

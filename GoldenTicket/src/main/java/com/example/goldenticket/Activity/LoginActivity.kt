@@ -1,10 +1,10 @@
-package com.example.goldenticket
+package com.example.goldenticket.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -52,4 +52,36 @@ class LoginActivity : AppCompatActivity() {
             else v.setBackgroundResource(R.drawable.underline_white)
         }
     }
+
+    //서버와 로그인하기
+    /*fun postLoginResponse(u_id: String, u_pw: String) {
+
+        //id,password를 받아서 JSON객체로 만든다.
+        var jsonObject = JSONObject()
+        jsonObject.put("id", u_id)
+        jsonObject.put("password", u_pw)
+
+        //networkService를 통해 실제로 통신을 요청
+        //application/x-www-form-urlencoded 는 해더로 전송된다.
+        //gsonObject 는 body로 전송된다.
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postLoginResponse: Call<PostLoginResponse> =
+            networkService.postLoginResponse("application/json", gsonObject)
+
+        postLoginResponse.enqueue(object : Callback<PostLoginResponse> {
+            override fun onFailure(call: Call<PostLoginResponse>, t: Throwable) {
+                Log.e("login failed",t.toString())
+            }
+
+            override fun onResponse(call: Call<PostLoginResponse>, response: Response<PostLoginResponse>) {
+                if(response.isSuccessful){
+                    if(response.body()!!.status == 201){
+                        //Request Login
+                        SharedPreferenceController.setUserToken(applicationContext, response.body()!!.data!!)
+                        finish()
+                    }
+                }
+            }
+        })
+    }*/
 }
