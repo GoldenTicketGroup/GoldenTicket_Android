@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
             val login_u_id = et_loginactivity_id.text.toString()
             val login_u_pw: String = et_loginactivity_pw.text.toString()
 
+
             //아이디와 패스워드에 데이터가 있는지 검색하고
             //있으면 서버에게 전달하여 로그인 요청
             //if (isValid(login_u_id, login_u_pw)) postLoginResponse(login_u_id, login_u_pw)
