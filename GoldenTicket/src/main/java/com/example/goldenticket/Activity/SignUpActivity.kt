@@ -40,7 +40,7 @@ class SignUpActivity : AppCompatActivity() {
             //true인 경우 서버에 회원정보를 저장한다.
             if(isUserInfoValid(signup_u_name,signup_phone,signup_u_email, signup_u_pw, signup_u_pw2)){
                 // TODO : 서버와의 연결
-                postSignupResponse(signup_u_email, signup_u_pw, signup_u_name,signup_phone)
+                //postSignupResponse(signup_u_email, signup_u_pw, signup_u_name,signup_phone)
             }
 
 
