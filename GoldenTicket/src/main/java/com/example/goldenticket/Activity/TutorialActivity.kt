@@ -1,7 +1,9 @@
-package com.example.goldenticket
+package com.example.goldenticket.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.goldenticket.R
+import com.example.goldenticket.Adapter.TutorialSliderAdapter
 import kotlinx.android.synthetic.main.activity_tutorial.*
 import org.jetbrains.anko.startActivity
 
