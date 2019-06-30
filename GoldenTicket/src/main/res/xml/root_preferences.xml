@@ -19,18 +19,21 @@
 
     <PreferenceCategory
             app:title="@string/messages_header"
-
+            app:iconSpaceReserved="false"
     >
 
         <SwitchPreferenceCompat
                 app:key="sync"
-                app:title="관심있는 공연 알림"/>
+                app:title="관심있는 공연 알림"
+                app:iconSpaceReserved="false"/>
         <SwitchPreferenceCompat
                 app:key="sync"
-                app:title="당첨 결과 알림"/>
+                app:title="당첨 결과 알림"
+                app:iconSpaceReserved="false"/>
         <SwitchPreferenceCompat
                 app:key="sync"
-                app:title="이벤트 및 마케팅 활용 동의"/>
+                app:title="이벤트 및 마케팅 활용 동의"
+                app:iconSpaceReserved="false"/>
 
         <!--<EditTextPreference
                 app:key="signature"
@@ -48,27 +51,32 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-            app:title="프로필 및 계정">
+            app:title="프로필 및 계정"
+            app:iconSpaceReserved="false">
 
         <Preference
                 app:key="user_name"
                 app:title="민정"
+                app:iconSpaceReserved="false"
         />
 
         <Preference
                 app:key="logout"
                 app:title="연결된 계정"
                 app:summary="카카오"
+                app:iconSpaceReserved="false"
         />
 
 
         <Preference
                 app:key="logout"
                 app:title="로그아웃"
+                app:iconSpaceReserved="false"
         />
         <Preference
                 app:key="signout"
                 app:title="회원탈퇴"
+                app:iconSpaceReserved="false"
         />
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>
