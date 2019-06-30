@@ -1,17 +1,11 @@
-package com.example.goldenticket
+package com.example.goldenticket.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import org.jetbrains.anko.startActivity
 import android.view.WindowManager
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.goldenticket.R
 
 
 class SplashActivity : AppCompatActivity() {
