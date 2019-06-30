@@ -1,7 +1,8 @@
-package com.example.goldenticket
+package com.example.goldenticket.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.goldenticket.R
 
 class MainActivity : AppCompatActivity() {
 
