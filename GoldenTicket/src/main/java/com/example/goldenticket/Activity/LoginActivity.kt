@@ -13,6 +13,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //data 밑줄 활성화
         isDataVaild()
 
         //로그인 버튼을 눌렀을 때 이벤트
@@ -23,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
 
             //아이디와 패스워드에 데이터가 있는지 검색하고
             //있으면 서버에게 전달하여 로그인 요청
-            //if (isValid(login_u_id, login_u_pw)) postLoginResponse(login_u_id, login_u_pw)
+            /*if (isValid(login_u_id, login_u_pw)) postLoginResponse(login_u_id, login_u_pw)*/
         }
 
         //회원 가입 버튼을 눌렀을 때 이벤트
@@ -54,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    //서버와 로그인하기
+    //서버에 로그인 요청
     /*fun postLoginResponse(u_id: String, u_pw: String) {
 
         //id,password를 받아서 JSON객체로 만든다.
