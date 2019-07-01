@@ -2,31 +2,45 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.example.goldenticket">
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
+
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activity.UserUpdateActivity"/>
+        <activity android:name=".Activity.MonthContentsActivity"
+                  android:theme="@style/ContentsActivityTheme">
+        </activity>
+        <activity android:name=".Activity.NoticeActivity"/>
+        <activity android:name=".Activity.MyLotteryActivity"/>
+        <activity android:name=".Activity.QuestionActivity"/>
+        <activity android:name=".Activity.StageInfoActivity"/>
+        <activity
+                android:name=".Activity.KeepActivity"
+                android:theme="@style/KeepActivityTheme">
+        </activity>
         <activity
                 android:name=".Activity.SettingsActivity"
                 android:label="@string/title_activity_settings">
         </activity>
         <activity android:name=".Activity.TutorialActivity">
-        </activity>
-        <activity
-                android:name=".Activity.SignUpActivity"
-                android:windowSoftInputMode="adjustResize"
-                android:theme="@style/SignUpTheme"
-        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".Activity.SignUpActivity"
+                android:theme="@style/SignUpTheme"
+                android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
                 android:name=".Activity.LoginActivity"

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:gravity="center_vertical"
+                android:background="#00FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_back"/>
+
+    <TextView
+            android:text="관심있는 공연"
+            android:id="@+id/title"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_toRightOf="@id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+</RelativeLayout>
+

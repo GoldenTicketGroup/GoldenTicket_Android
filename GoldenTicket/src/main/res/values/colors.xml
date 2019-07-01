@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#FFB30F</color>
@@ -8,4 +8,8 @@
     <color name="colorPrimaryDarkYellow">#FFB30F</color>
     <color name="colorGray">#CFCFCF</color>
     <color name="transparent">#00000000</color>
+    <color name="font_general">#1f1f1f</color>
+    <color name="font_detail">#262626</color>
+    <color name="actionbar_transparent_dark">#aa000000</color>
+    <color name="colorYellow">#FBF695</color>
 </resources>
