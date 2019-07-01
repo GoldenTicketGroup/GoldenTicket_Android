@@ -5,19 +5,96 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
+        tools:context=".Activity.MainActivity"
         android:id="@+id/dl">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ScrollView
+            android:id="@+id/sv_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <include
-            layout="@layout/toolbar_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+            <FrameLayout android:layout_width="match_parent" android:layout_height="460dp">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="420dp"
+                        android:background="@drawable/back_img_main">
+                </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                            android:id="@+id/iv_main_side"
+                            android:layout_width="29dp"
+                            android:layout_height="27dp"
+                            android:src="@drawable/bt_hamberger_main"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="30dp"/>
+
+                    <ImageView
+                            android:id="@+id/iv_main_ticket"
+                            android:layout_width="36dp"
+                            android:layout_height="33dp"
+                            android:src="@drawable/bt_ticktet_main"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginRight="12dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="28dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:orientation="vertical"
+                        android:layout_marginTop="67dp">
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="31dp">
+                        <TextView
+                                android:id="@+id/tv_main_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/notosans_bold"
+                                android:textSize="24sp"
+                                android:textColor="#2e2e2e"
+                                android:text="민정"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:fontFamily="@font/notosans_medium"
+                                android:textSize="23sp"
+                                android:textColor="#262626"
+                                android:text="님"/>
+                    </LinearLayout>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="31dp"
+                            android:layout_marginTop="0.4dp"
+                            android:fontFamily="@font/notosans_medium"
+                            android:textSize="23sp"
+                            android:textColor="#262626"
+                            android:text="오늘 저녁, 이런 공연 어때요?"/>
+                </LinearLayout>
+
+                <com.github.rubensousa.gravitysnaphelper.OrientationAwareRecyclerView
+                        android:id="@+id/rv_product"
+                        android:layout_marginTop="138dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                </com.github.rubensousa.gravitysnaphelper.OrientationAwareRecyclerView>
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 
     <include layout="@layout/activity_drawer"/>
 

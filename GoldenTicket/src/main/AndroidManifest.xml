@@ -9,13 +9,20 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.NoticeActivity"/>
+        <activity android:name=".Activity.MyLotteryActivity"/>
+        <activity android:name=".Activity.KeepActivity"/>
+        <activity android:name=".Activity.SettingActivity"/>
+        <activity android:name=".Activity.QuestionActivity"/>
+        <activity android:name=".Activity.StageInfoActivity"/>
+        <activity android:name=".Activity.UserUpdateActivity"/>
     </application>
 
 </manifest>
