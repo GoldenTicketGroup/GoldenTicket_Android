@@ -29,9 +29,10 @@
                 android:layout_marginTop="32dp"
                 android:textSize="17sp"
                 android:textColor="#000000"
+                android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:text="제목"
-                />
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.appcompat.widget.Toolbar>
