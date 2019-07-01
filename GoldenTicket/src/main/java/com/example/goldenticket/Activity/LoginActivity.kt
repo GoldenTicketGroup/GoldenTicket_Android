@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
         //회원 가입 버튼을 눌렀을 때 이벤트
         tv_loginactivity_signup.setOnClickListener {
             startActivity<SignUpActivity>()
+
         }
     }
 
