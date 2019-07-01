@@ -69,6 +69,7 @@
             android:layout_width="311dp"
             android:layout_height="449dp">
         <RelativeLayout
+                android:id="@+id/rl_win"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:background="@drawable/top_border">
@@ -94,6 +95,7 @@
                     android:text="6"/>
         </RelativeLayout>
         <RelativeLayout
+                android:id="@+id/rl_like"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:background="@drawable/top_border">
@@ -121,6 +123,7 @@
                 android:layout_height="22dp"
                 android:background="#EAEAEA"/>
         <RelativeLayout
+                android:id="@+id/rl_notice"
                 android:layout_width="match_parent"
                 android:layout_height="54dp">
             <TextView
@@ -143,6 +146,7 @@
                     android:background="@drawable/icon_next"/>
         </RelativeLayout>
         <RelativeLayout
+                android:id="@+id/rl_settings"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:background="@drawable/top_border">
@@ -166,6 +170,7 @@
                     android:background="@drawable/icon_next"/>
         </RelativeLayout>
         <RelativeLayout
+                android:id="@+id/rl_FAQ"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:background="@drawable/top_border">
@@ -189,6 +194,7 @@
                     android:background="@drawable/icon_next"/>
         </RelativeLayout>
         <RelativeLayout
+                android:id="@+id/rl_version"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:background="@drawable/bottom_top_border">
