@@ -45,23 +45,23 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, UserUpdateActivity::class.java)
             startActivity(intent)
         }
-        tv_win_num.setOnClickListener {
+        rl_win.setOnClickListener {
             val intent = Intent(this, MyLotteryActivity::class.java)
             startActivity(intent)
         }
-        iv_next_like.setOnClickListener {
+        rl_like.setOnClickListener {
             val intent = Intent(this, KeepActivity::class.java)
             startActivity(intent)
         }
-        iv_next_notice.setOnClickListener {
+        rl_notice.setOnClickListener {
             val intent = Intent(this, NoticeActivity::class.java)
             startActivity(intent)
         }
-        iv_next_settings.setOnClickListener {
+        rl_settings.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
-        iv_next_FAQ.setOnClickListener {
+        rl_FAQ.setOnClickListener {
             val intent = Intent(this, QuestionActivity::class.java)
             startActivity(intent)
         }
