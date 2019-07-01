@@ -12,12 +12,28 @@
             tools:context=".ContentActivity"
             android:orientation="vertical">
 
-        <ImageView
-                android:id="@+id/ivMonthContentsImg"
-                android:layout_width="match_parent"
-                android:layout_height="395dp"
-                android:src="@drawable/test"
-                android:scaleType="fitXY"/>
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/ivMonthContentsImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="395dp"
+                    android:src="@drawable/test"
+                    android:scaleType="fitXY"/>
+
+            <ImageButton
+                    android:id="@+id/ibtnContentsFinish"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:background="@drawable/bt_contets_float"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="17dp"
+                    android:layout_marginTop="31dp"/>
+
+        </RelativeLayout>
+
 
         <TextView
                 android:id="@+id/tvMonthContentsTitle"
