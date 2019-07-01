@@ -41,7 +41,7 @@
         <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true">s
+                android:layout_centerInParent="true">
             <TextView
                     android:id="@+id/tv_stageinfo_dialog_time"
                     android:layout_width="wrap_content"
