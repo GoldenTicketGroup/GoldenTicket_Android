@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ContentActivity"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/ivMonthContentsImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="395dp"
+                    android:src="@drawable/test"
+                    android:scaleType="fitXY"/>
+
+            <ImageButton
+                    android:id="@+id/ibtnContentsFinish"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:background="@drawable/bt_contets_float"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="17dp"
+                    android:layout_marginTop="31dp"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+                android:id="@+id/tvMonthContentsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="19dp"
+                android:textSize="25sp"
+                android:textColor="#262626"
+                android:lineSpacingExtra="9sp"
+                tools:text="6월 연휴 뭐 할지 못 정했다면,\n공연장 나들이 어때요?"
+        />
+
+        <TextView
+                android:id="@+id/tvMonthContentsContent"
+                android:layout_width="314dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="23dp"
+                android:textSize="15sp"
+                android:textColor="#262626"
+                android:lineSpacingExtra="10sp"
+                tools:text="공휴일 많았던 가정의 달, 5월이 끝나간다고 아쉬워하지 마세요. 6월에도 현충일을 끼고 ‘징검다리 연휴’가 있으니까요. 짧은 연휴지만 알차게 보내고 싶다면 공연장 나들이는 어떨까요? 6월에 보기 좋은 6편의 공연을 소개합니다."
+        />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMonthContents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:nestedScrollingEnabled="false">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

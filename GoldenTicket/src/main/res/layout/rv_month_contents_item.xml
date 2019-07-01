@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="41dp"
+        android:layout_gravity="center_horizontal">
+
+    <TextView
+            android:id="@+id/tvContentsItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:textSize="17sp"
+            android:textColor="#2e2e2e"
+            android:lineSpacingExtra="5sp"
+            android:text="볼거리 많은 대극장 뮤지컬"
+            android:layout_gravity="center_horizontal"
+    />
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp">
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                android:layout_gravity="bottom|center"
+                android:src="@color/colorYellow"
+        />
+        <TextView
+                android:id="@+id/tvContentsShowName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="20sp"
+                android:textColor="#262626"
+                android:text="안나 카레니나"
+        />
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            cardview:cardCornerRadius="32dp"
+            android:layout_gravity="center_horizontal"
+    >
+
+        <ImageView
+                android:id="@+id/ivMonthContentsShowImage"
+                android:layout_width="315dp"
+                android:layout_height="225dp"
+                android:src="@drawable/test"
+                android:scaleType="fitXY"
+        />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+            android:id="@+id/tvMonthContentsContent"
+            android:layout_width="313dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:lineHeight="27sp"
+            android:lineSpacingExtra="13sp"
+            android:text="지난 2018년 국내 첫선을 보였던 뮤지컬 &lt;안나 카레니나&gt;가 돌아왔습니다. 톨스토이의 동명 소설을 원작으로 한 러시아 뮤지컬인데요. 사랑 없는 결혼생활을 이어나던 귀부인 안나가 젊고 매력적인 장교 브론스키와 사랑에 빠지면서 일어나는 일을 그렸습니다. LED 스크린을 활용한 연출과 화려한 조명, 스케이트 장면을 비롯한 격정적인 안무 등, 기존 브로드웨이 뮤지컬과는 다른 러시아 뮤지컬만의 독특한 매력을 느껴보고 싶은분께 추천합니다."
+    />
+
+    <Button
+            android:id="@+id/ibtnGoShowInfo"
+            android:layout_width="277dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/month_contents_button"
+            android:text="공연정보 보러가기"
+            android:textSize="15sp"
+            android:textColor="#262626"
+            android:layout_gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+
+</LinearLayout>
