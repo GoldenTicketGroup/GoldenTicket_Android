@@ -12,4 +12,5 @@
     <color name="font_detail">#262626</color>
     <color name="actionbar_transparent_dark">#aa000000</color>
     <color name="colorYellow">#FBF695</color>
+    <color name="colorCoral">#fda47a</color>
 </resources>
