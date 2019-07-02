@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center">
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_gravity="bottom|center"
+                    android:src="@color/colorYellow"
+            />
+            <TextView
+                    android:id="@+id/tvShowName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="20sp"
+                    android:textColor="#262626"
+                    tools:text="옥탑방 고양이"
+            />
+        </FrameLayout>
+
+
+
+        <TextView
+                android:id="@+id/tvCheckText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#717171"
+                android:lineSpacingExtra="4sp"
+                android:layout_marginTop="6dp"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:text="당첨 확인까지"
+        />
+        <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textColor="#fda47a"
+                android:lineSpacingExtra="11sp"
+                android:text="00 : 04 : 59"
+                android:layout_gravity="center"
+        />
+    </LinearLayout>
+
+</LinearLayout>
