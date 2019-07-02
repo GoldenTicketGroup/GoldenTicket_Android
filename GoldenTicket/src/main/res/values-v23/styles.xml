@@ -19,7 +19,7 @@
     </style>
 
 
-    <style name="KeepActivityTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="ActivityThemeWhite" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#ffffff</item>
         <item name="colorAccent">@color/colorAccent</item>
