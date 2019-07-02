@@ -12,7 +12,7 @@
         <ImageView
                 android:id="@+id/iv_lotteryconfirm_bg"
                 android:layout_width="288dp"
-                android:layout_height="176dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_centerVertical="true"
                 android:layout_alignStart="@+id/iv_lotteryconfirm_poster"

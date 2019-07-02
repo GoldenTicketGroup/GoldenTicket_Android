@@ -13,17 +13,20 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activity.LotteryConfirmPaymentActivity">
+        </activity>
+        <activity android:name=".Activity.LotteryConfirmDetailActivity">
+        </activity>
         <activity android:name=".Activity.MyLotteryActivity">
+        </activity>
+        <activity android:name=".Activity.SearchActivity">
+        </activity>
+        <activity android:name=".Activity.LotteryConfirmActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".Activity.SearchActivity">
-
-        </activity>
-        <activity android:name=".Activity.LotteryConfirmActivity">
         </activity>
         <activity android:name=".Activity.UserUpdateActivity"/>
         <activity

@@ -8,5 +8,6 @@ data class LotteryConfirmData (
     var stageinfo_title: String,
     var stageinfo_detail: String,
     var stageinfo_location: String,
-    var stageinfo_time: String
+    var stageinfo_time: String,
+    var stageinfo_payment_status: Int
 )
