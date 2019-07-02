@@ -13,12 +13,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.LotteryConfirmActivity">
+        <activity android:name=".Activity.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".Activity.LotteryConfirmActivity">
+
         </activity>
         <activity android:name=".Activity.UserUpdateActivity"/>
         <activity
@@ -38,7 +41,6 @@
                 android:label="@string/title_activity_settings">
         </activity>
         <activity android:name=".Activity.TutorialActivity">
-
         </activity>
         <activity
                 android:name=".Activity.SignUpActivity"
