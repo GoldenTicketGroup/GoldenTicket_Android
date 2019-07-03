@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 import kotlinx.android.synthetic.main.activity_stage_info.*
 import kotlinx.android.synthetic.main.fragment_stage_info_entry_dialog.*
+import kotlinx.android.synthetic.main.toolbar_stage_info.*
 
 class StageInfoActivity : AppCompatActivity() {
 
