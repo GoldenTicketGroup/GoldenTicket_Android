@@ -5,14 +5,33 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activity.LotteryNoticeActivity"
-        android:background="#FFFFFF">
+        tools:context=".Activity.LotteryNoticeActivity">
+
+    <RelativeLayout
+            android:id="@+id/rl_tb_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="20dp"
+
+    >
+        <ImageButton
+                android:id="@+id/ibtn_lottery_notice_close"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="39dp"
+                android:src="@drawable/bt_close"
+                android:background="@android:color/transparent"/>
+    </RelativeLayout>
 
     <TextView
             android:id="@+id/tvWait"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_tb_back"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:textSize="23sp"

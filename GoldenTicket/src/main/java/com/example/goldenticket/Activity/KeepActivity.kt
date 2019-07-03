@@ -14,6 +14,7 @@ import com.example.goldenticket.R
 import com.example.goldenticket.etc.RecyclerViewDecoration
 import kotlinx.android.synthetic.main.activity_keep.*
 import kotlinx.android.synthetic.main.activity_keep.view.*
+import kotlinx.android.synthetic.main.toolbar_drawer.*
 import java.lang.Boolean
 
 class KeepActivity : AppCompatActivity() {
@@ -24,6 +25,9 @@ class KeepActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keep)
+
+
+        tb_title.text = "관심있는 공연"
 
         var dataList: ArrayList<KeepStageData> = ArrayList()
         dataList.add(
@@ -45,26 +49,26 @@ class KeepActivity : AppCompatActivity() {
         rvKeepStage.setHasFixedSize(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): kotlin.Boolean {
-        val actionBar = supportActionBar
-
-        actionBar!!.setDisplayShowCustomEnabled(true)
-        actionBar.setDisplayHomeAsUpEnabled(false) // 액션바 아이콘을 업 네비게이션 형태로 표시
-        actionBar.setDisplayShowTitleEnabled(false) // 액션바에 표시되는 제목의 표시유무 설정
-        actionBar.setDisplayShowHomeEnabled(false) // 홈 아이콘 숨김처리
-        actionBar.elevation="0".toFloat()
-
-
-        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val actionbar = inflater.inflate(R.layout.keep_custom_actionbar, null)
-
-        actionBar.setCustomView(actionbar)
-
-        //액션바 양쪽 공백 없애기
-        val parent = actionbar.getParent() as androidx.appcompat.widget.Toolbar
-        parent.setContentInsetsAbsolute(0, 0)
-
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): kotlin.Boolean {
+//        val actionBar = supportActionBar
+//
+//        actionBar!!.setDisplayShowCustomEnabled(true)
+//        actionBar.setDisplayHomeAsUpEnabled(false) // 액션바 아이콘을 업 네비게이션 형태로 표시
+//        actionBar.setDisplayShowTitleEnabled(false) // 액션바에 표시되는 제목의 표시유무 설정
+//        actionBar.setDisplayShowHomeEnabled(false) // 홈 아이콘 숨김처리
+//        actionBar.elevation="0".toFloat()
+//
+//
+//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        val actionbar = inflater.inflate(R.layout.keep_custom_actionbar, null)
+//
+//        actionBar.setCustomView(actionbar)
+//
+//        //액션바 양쪽 공백 없애기
+//        val parent = actionbar.getParent() as androidx.appcompat.widget.Toolbar
+//        parent.setContentInsetsAbsolute(0, 0)
+//
+//        return true
+//    }
 
 }
