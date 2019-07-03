@@ -191,7 +191,7 @@
                         android:textColor="@color/actionbar_transparent_dark"
                         android:fontFamily="@font/notosans_medium"/>
                 <TextView
-                        android:id="@+id/tv_stageinfo_place"
+                        android:id="@+id/tv_stageinfo_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7.5dp"
