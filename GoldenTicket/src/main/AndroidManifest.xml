@@ -13,13 +13,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".Activity.LotteryNoticeActivity">
-
-
         </activity>
-        <activity
-                android:name=".Activity.LotteryCompleteActivity">
 
+        <activity android:name=".Activity.SearchResultActivity">
+        </activity>
+   
+        <activity android:name=".Activity.LotteryCompleteActivity">
         </activity>
         <activity android:name=".Activity.LotteryConfirmPaymentActivity">
         </activity>
