@@ -21,6 +21,9 @@ class LoginActivity : AppCompatActivity() {
             val login_u_id = et_loginactivity_id.text.toString()
             val login_u_pw: String = et_loginactivity_pw.text.toString()
 
+            //서버와 연결하면 삭제될 코드
+            startActivity<MainActivity>()
+            finish()
 
             //아이디와 패스워드에 데이터가 있는지 검색하고
             //있으면 서버에게 전달하여 로그인 요청

@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.example.goldenticket.Data.LotteryConfirmData
+import com.example.goldenticket.Data.LotteryConfirmVPData
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.vp_lottery_confirm.view.*
 
-class LotteryConfirmAdapter(var inflater: LayoutInflater, val dataList: ArrayList<LotteryConfirmData>) : PagerAdapter(){
+class LotteryConfirmAdapter(var inflater: LayoutInflater, val dataList: ArrayList<LotteryConfirmVPData>) : PagerAdapter(){
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
           var view: View? = null
