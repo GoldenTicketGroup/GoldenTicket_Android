@@ -13,14 +13,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.LotteryNoticeActivity"
-                  android:theme="@style/ActivityThemeWhite">
+        <activity android:name=".Activity.LotteryNoticeActivity">
 
 
         </activity>
         <activity
-                android:name=".Activity.LotteryCompleteActivity"
-                android:theme="@style/ActivityThemeWhite">
+                android:name=".Activity.LotteryCompleteActivity">
 
         </activity>
         <activity android:name=".Activity.LotteryConfirmPaymentActivity">
@@ -28,6 +26,7 @@
         <activity android:name=".Activity.LotteryConfirmDetailActivity">
         </activity>
         <activity android:name=".Activity.MyLotteryActivity">
+
         </activity>
         <activity android:name=".Activity.SearchActivity">
         </activity>
@@ -38,13 +37,13 @@
         <activity android:name=".Activity.MonthContentsActivity"
                   android:theme="@style/ContentsActivityTheme">
 
+
         </activity>
         <activity android:name=".Activity.NoticeActivity"/>
         <activity android:name=".Activity.QuestionActivity"/>
         <activity android:name=".Activity.StageInfoActivity"/>
-        <activity
-                android:name=".Activity.KeepActivity"
-                android:theme="@style/ActivityThemeWhite">
+        <activity android:name=".Activity.KeepActivity">
+
         </activity>
         <activity
                 android:name=".Activity.SettingsActivity"
@@ -71,6 +70,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
     </application>
 
