@@ -51,7 +51,7 @@ class NoticeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Notice
                 expandState.put(position, false)
             }
         })
-        holder.btn.setOnClickListener(View.OnClickListener {
+        holder.container.setOnClickListener(View.OnClickListener {
             onClickButton(holder.expandableLayout)
         })
     }

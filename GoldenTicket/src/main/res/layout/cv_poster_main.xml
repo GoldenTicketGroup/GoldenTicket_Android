@@ -3,75 +3,79 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="231dp"
-        android:layout_height="308dp"
+        android:layout_width="220dp"
+        android:layout_height="297dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="6dp"
-        android:layout_marginBottom="6dp"
-        android:id="@+id/cv_main_poster"
-        android:layout_marginLeft="20dp"
-        tools:context=".Activity.MainActivity">
+        android:id="@+id/cv_main_poster">
 
         <ImageView
-                android:id="@+id/iv_main_poster"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/poster_main_cats_noround"
-        />
+            android:id="@+id/iv_main_poster"
+            android:layout_width="231dp"
+            android:layout_height="308dp"
+            android:src="@drawable/poster_main_cats_noround"
+            />
+
         <TextView
-                android:id="@+id/tv_rv_item_name"
+            android:id="@+id/tv_rv_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="213dp"
+            android:fontFamily="@font/notosans_medium"
+            android:shadowColor="#29000000"
+            android:shadowDy="3"
+            android:shadowRadius="6"
+            android:text="캣츠"
+            android:textColor="#ffffff"
+            android:textSize="21sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="243dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="9dp"
+                android:layout_height="13dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/icon_location_main" />
+
+            <TextView
+                android:id="@+id/tv_rv_item_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="231dp"
-                android:layout_marginLeft="18dp"
-                android:shadowColor="#29000000"
-                android:shadowDy="3"
-                android:shadowRadius="6"
-                android:fontFamily="@font/notosans_medium"
-                android:textSize="21sp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/notosans_light"
+                android:text="혜화 소극장"
                 android:textColor="#ffffff"
-                android:text="캣츠"/>
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="260dp">
-            <ImageView
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="9dp"
-                    android:layout_height="13dp"
-                    android:src="@drawable/icon_location_main"/>
-            <TextView
-                    android:id="@+id/tv_rv_item_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:fontFamily="@font/notosans_light"
-                    android:textSize="11sp"
-                    android:textColor="#ffffff"
-                    android:text="혜화 소극장"/>
+                android:textSize="11sp" />
         </LinearLayout>
+
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="275dp">
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="258dp"
+            android:orientation="horizontal">
+
             <ImageView
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/icon_time_main"/>
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/icon_time_main" />
+
             <TextView
-                    android:id="@+id/tv_rv_item_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:fontFamily="@font/notosans_light"
-                    android:textSize="11sp"
-                    android:textColor="#ffffff"
-                    android:text="17:00 ~ 19:00"/>
+                android:id="@+id/tv_rv_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:fontFamily="@font/notosans_light"
+                android:text="17:00 ~ 19:00"
+                android:textColor="#ffffff"
+                android:textSize="11sp" />
         </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
