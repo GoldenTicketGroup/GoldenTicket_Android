@@ -13,8 +13,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.LotteryNoticeActivity"
-                  android:theme="@style/ActivityThemeWhite">
+        <activity android:name=".Activity.SearchResultActivity">
+        </activity>
+        <activity
+                android:name=".Activity.LotteryNoticeActivity"
+                android:theme="@style/ActivityThemeWhite">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -24,7 +27,6 @@
         <activity
                 android:name=".Activity.LotteryCompleteActivity"
                 android:theme="@style/ActivityThemeWhite">
-
         </activity>
         <activity android:name=".Activity.LotteryConfirmPaymentActivity">
         </activity>
