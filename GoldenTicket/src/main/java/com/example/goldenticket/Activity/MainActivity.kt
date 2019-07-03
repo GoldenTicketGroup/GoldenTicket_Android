@@ -16,10 +16,7 @@ import com.example.goldenticket.Adapter.LotteryConfirmAdapter
 import com.example.goldenticket.Adapter.MainContentsAdapter
 import com.example.goldenticket.Adapter.MonthContentsRVAdapter
 import com.example.goldenticket.Adapter.ShowMainRecyclerViewAdapter
-import com.example.goldenticket.Data.LotteryConfirmData
-import com.example.goldenticket.Data.MainContentsData
-import com.example.goldenticket.Data.MonthContentsData
-import com.example.goldenticket.Data.ShowData
+import com.example.goldenticket.Data.*
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -59,16 +56,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureLotteryConfirmVP(){
-        var lotteryConfirmDataList = ArrayList<LotteryConfirmData>() // TODO: 서버에게 받을 응모한 공연 데이터 리스트
+        var lotteryConfirmDataList = ArrayList<LotteryConfirmVPData>() // TODO: 서버에게 받을 응모한 공연 데이터 리스트
         lotteryConfirmDataList.add(
-            LotteryConfirmData(
+            LotteryConfirmVPData(
                 "골든 티켓 만세", "11 : 11 : 11")
         )
         lotteryConfirmDataList.add(
-            LotteryConfirmData(
+            LotteryConfirmVPData(
                 "귀여운 골티", "22 : 22 : 22"))
         lotteryConfirmDataList.add(
-            LotteryConfirmData(
+            LotteryConfirmVPData(
                 "만만세 골티", "22 : 22 : 22"))
         btnVisibilityCheck(vpLotteryConfirm.currentItem,lotteryConfirmDataList)
 
@@ -102,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         rvContents.setHasFixedSize(true)
     }
 
-    private fun btnVisibilityCheck(position: Int, dataList: ArrayList<LotteryConfirmData>){ // TODO: 당첨확인 버튼 유무 체크
+    private fun btnVisibilityCheck(position: Int, dataList: ArrayList<LotteryConfirmVPData>){ // TODO: 당첨확인 버튼 유무 체크
         if (position==dataList.size-1) {
             ibtnNextRight.visibility= View.INVISIBLE
             ibtnNextLeft.visibility= View.VISIBLE
