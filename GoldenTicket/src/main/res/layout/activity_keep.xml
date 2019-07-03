@@ -6,9 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".Activity.KeepActivity"
-        android:background="#ffffff"
         android:orientation="vertical"
 >
+
+    <include layout="@layout/toolbar_drawer"
+    android:id="@+id/tb_keep"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvKeepStage"
