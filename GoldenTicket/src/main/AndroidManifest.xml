@@ -35,7 +35,7 @@
         </activity>
         <activity
                 android:name=".Activity.SignUpActivity"
-                android:theme="@style/SignUpTheme"
+                android:theme="@style/StatusYellowTheme"
                 android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
@@ -50,11 +50,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
