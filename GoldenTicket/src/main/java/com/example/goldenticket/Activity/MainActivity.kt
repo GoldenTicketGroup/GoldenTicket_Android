@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import androidx.annotation.Keep
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -16,19 +18,20 @@ import com.example.goldenticket.Data.*
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.startActivity
+import android.R.attr.top
+import android.graphics.Rect
+import kotlinx.android.synthetic.main.toolbar_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    val data = arrayListOf<ShowData>(
-        ShowData(1, "캣츠", "혜화 소극장", "17:00 ~ 19:00"),
-        ShowData(2, "뮤지컬 벤허", "혜화 소극장", "17:00 ~ 19:00"),
-        ShowData(3, "마틸다", "혜화 소극장", "17:00 ~ 19:00")
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        /** 상단 공연 포스터 리사이클러뷰 부분 **/
+        configureShowRV()
 
         /** 당첨확인 뷰페이저 부분 **/
         configureLotteryConfirmVP()
@@ -36,18 +39,28 @@ class MainActivity : AppCompatActivity() {
         /** 하단 월별 콘텐츠 리사이클러뷰 부분 **/
         configureMainContentsRV()
 
-
-        rv_product.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, false)
-        rv_product.adapter = ShowMainRecyclerViewAdapter(this, data)
-        LinearSnapHelper().attachToRecyclerView(rv_product)
-
         iv_main_side.setOnClickListener {
             dl.openDrawer(ll_drawer)
         }
         iv_drawer_close.setOnClickListener {
             dl.closeDrawers()
         }
+
+        /** 드로워 부분 **/
        drawerSelected()
+    }
+
+    private fun configureShowRV(){
+        val data = arrayListOf<ShowData>(
+                ShowData(1, "캣츠", "혜화 소극장", "17:00 ~ 19:00"),
+                ShowData(2, "뮤지컬 벤허", "혜화 소극장", "17:00 ~ 19:00"),
+                ShowData(3, "마틸다", "혜화 소극장", "17:00 ~ 19:00")
+        )
+
+        rv_product.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, false)
+        rv_product.adapter = ShowMainRecyclerViewAdapter(this, data)
+        LinearSnapHelper().attachToRecyclerView(rv_product)
+        rv_product.addItemDecoration(MarginItemDecoration(110, 90))
     }
 
     private fun configureLotteryConfirmVP(){
@@ -111,28 +124,35 @@ class MainActivity : AppCompatActivity() {
 
     private fun drawerSelected() {
         ll_user_update.setOnClickListener {
-            val intent = Intent(this, UserUpdateActivity::class.java)
-            startActivity(intent)
+            startActivity<UserUpdateActivity>()
         }
         rl_win.setOnClickListener {
-            val intent = Intent(this, MyLotteryActivity::class.java)
-            startActivity(intent)
+            startActivity<MyLotteryActivity>()
         }
         rl_like.setOnClickListener {
-            val intent = Intent(this, KeepActivity::class.java)
-            startActivity(intent)
+            startActivity<KeepActivity>()
         }
         rl_notice.setOnClickListener {
-            val intent = Intent(this, NoticeActivity::class.java)
-            startActivity(intent)
+            startActivity<NoticeActivity>()
         }
         rl_settings.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
+            startActivity<SettingsActivity>()
         }
         rl_FAQ.setOnClickListener {
-            val intent = Intent(this, QuestionActivity::class.java)
-            startActivity(intent)
+            startActivity<QuestionActivity>()
         }
     }
+
+    /*리사이클러뷰 간격*/
+    class MarginItemDecoration(private val first_space: Int, private val space: Int): androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(outRect: Rect, view: View, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
+            with(outRect) {
+                if (parent.getChildAdapterPosition(view) == 0) {
+                left = first_space
+                }
+                right = space
+            }
+        }
+    }
+
 }

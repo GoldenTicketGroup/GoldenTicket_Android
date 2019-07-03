@@ -44,11 +44,7 @@
         <activity android:name=".Activity.QuestionActivity"/>
 
         <activity android:name=".Activity.StageInfoActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
 
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
         </activity>
         <activity
                 android:name=".Activity.KeepActivity">
@@ -59,6 +55,11 @@
                 android:label="@string/title_activity_settings">
         </activity>
         <activity android:name=".Activity.TutorialActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
 
         </activity>
         <activity
