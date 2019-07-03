@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activity.LotteryNoticeActivity">
+
+    <RelativeLayout
+            android:id="@+id/rl_tb_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="20dp"
+
+    >
+        <ImageButton
+                android:id="@+id/ibtn_lottery_notice_close"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="39dp"
+                android:src="@drawable/bt_close"
+                android:background="@android:color/transparent"/>
+    </RelativeLayout>
+
+    <TextView
+            android:id="@+id/tvWait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/rl_tb_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="#fda47a"
+            android:lineSpacingExtra="9sp"
+            android:text="잠깐!"/>
+
+    <TextView
+            android:id="@+id/tvNoticeTitleFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWait"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp"
+            android:textColor="#262626"
+            android:lineSpacingExtra="9sp"
+            android:gravity="center_horizontal"
+            android:text="골든티켓은 무작위 추첨으로"/>
+
+    <TextView
+            android:id="@+id/tvNoticeTitleSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNoticeTitleFirst"
+            android:layout_marginTop="5dp"
+            android:textSize="13sp"
+            android:textColor="#262626"
+            android:lineSpacingExtra="9sp"
+            android:gravity="center_horizontal"
+            android:text="티켓을 판매합니다."/>
+
+
+
+    <ImageView
+            android:id="@+id/ivNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="37dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvNoticeTitleSecond"
+            android:src="@drawable/character_wait"/>
+
+    <FrameLayout
+            android:id="@+id/flNotice"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivNotice"
+            android:layout_marginTop="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="center">
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_gravity="bottom|center"
+                android:src="@color/colorYellow"
+        />
+        <TextView
+                android:id="@+id/tvNoticeFirst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="15sp"
+                android:textColor="#262626"
+                android:lineSpacingExtra="9sp"
+                android:text="당첨 후 결제가 이루어지지 않으면"
+        />
+    </FrameLayout>
+
+    <FrameLayout
+            android:id="@+id/flNoticeSecond"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/flNotice"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="center">
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_gravity="bottom|center"
+                android:src="@color/colorYellow"
+        />
+        <TextView
+                android:id="@+id/tvNoticeSecond"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="15sp"
+                android:textColor="#262626"
+                android:lineSpacingExtra="9sp"
+                android:text="노쇼로 간주되어 패널티가 적용되오니"
+        />
+    </FrameLayout>
+
+    <TextView
+            android:id="@+id/tvNoticeThird"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/flNoticeSecond"
+            android:layout_marginTop="5dp"
+            android:text="신중하게 응모해주세요!"
+            android:textSize="15sp"
+            android:textColor="#262626"
+            android:lineSpacingExtra="9sp"/>
+
+
+    <Button
+            android:id="@+id/btnGoLottery"
+            android:layout_width="277dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNoticeThird"
+            android:background="@drawable/month_contents_button"
+            android:text="응모하기"
+            android:textSize="15sp"
+            android:textColor="#262626"
+            android:layout_gravity="center"
+            style="?android:attr/borderlessButtonStyle"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

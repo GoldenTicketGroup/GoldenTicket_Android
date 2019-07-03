@@ -6,14 +6,25 @@
         android:layout_width="220dp"
         android:layout_height="297dp"
         app:cardCornerRadius="10dp"
+        app:cardElevation="6dp"
+        app:cardPreventCornerOverlap="false"
+        android:layout_marginBottom="6dp"
         android:id="@+id/cv_main_poster">
 
         <ImageView
             android:id="@+id/iv_main_poster"
-            android:layout_width="231dp"
-            android:layout_height="308dp"
-            android:src="@drawable/poster_main_cats_noround"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/poster_benhur_info"
+        />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="bottom"
+            android:background="@drawable/style_main_poster_bg"/>
 
         <TextView
             android:id="@+id/tv_rv_item_name"

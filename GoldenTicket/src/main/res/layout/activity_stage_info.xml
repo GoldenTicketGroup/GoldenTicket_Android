@@ -30,26 +30,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                    <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="26dp"
-                            android:layout_marginTop="8dp">
-                        <ImageButton
-                                android:id="@+id/ibtn_stageinfo_pre"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="7dp"
-                                android:background="@android:color/transparent"
-                                android:src="@drawable/bt_back"/>
-                        <ImageButton
-                                android:id="@+id/ibtn_stageinfo_like"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="17dp"
-                                android:background="@android:color/transparent"
-                                android:src="@drawable/bt_like_info"/>
-                    </RelativeLayout>
+                    <include
+                        layout="@layout/toolbar_stage_info"/>
 
                     <ImageView
                             android:id="@+id/iv_stageinfo_poster"
@@ -191,7 +173,7 @@
                         android:textColor="@color/actionbar_transparent_dark"
                         android:fontFamily="@font/notosans_medium"/>
                 <TextView
-                        android:id="@+id/tv_stageinfo_place"
+                        android:id="@+id/tv_stageinfo_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7.5dp"

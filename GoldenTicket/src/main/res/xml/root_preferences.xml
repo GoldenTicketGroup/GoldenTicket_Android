@@ -23,30 +23,17 @@
     >
 
         <SwitchPreferenceCompat
-                app:key="sync"
+                app:key="pref_keep"
                 app:title="관심있는 공연 알림"
                 app:iconSpaceReserved="false"/>
         <SwitchPreferenceCompat
-                app:key="sync"
+                app:key="pref_lottery"
                 app:title="당첨 결과 알림"
                 app:iconSpaceReserved="false"/>
         <SwitchPreferenceCompat
-                app:key="sync"
+                app:key="pref_marketing"
                 app:title="이벤트 및 마케팅 활용 동의"
                 app:iconSpaceReserved="false"/>
-
-        <!--<EditTextPreference
-                app:key="signature"
-                app:title="@string/signature_title"
-                app:useSimpleSummaryProvider="true"/>
-
-        <ListPreference
-                app:key="reply"
-                app:title="@string/reply_title"
-                app:entries="@array/reply_entries"
-                app:entryValues="@array/reply_values"
-                app:defaultValue="reply"
-                app:useSimpleSummaryProvider="true"/>-->
 
     </PreferenceCategory>
 
@@ -55,13 +42,13 @@
             app:iconSpaceReserved="false">
 
         <Preference
-                app:key="user_name"
+                app:key="pref_user_name"
                 app:title="민정"
                 app:iconSpaceReserved="false"
         />
 
         <Preference
-                app:key="logout"
+                app:key="pref_account"
                 app:title="연결된 계정"
                 app:summary="카카오"
                 app:iconSpaceReserved="false"
@@ -69,12 +56,12 @@
 
 
         <Preference
-                app:key="logout"
+                app:key="pref_logout"
                 app:title="로그아웃"
                 app:iconSpaceReserved="false"
         />
         <Preference
-                app:key="signout"
+                app:key="pref_withdrawal"
                 app:title="회원탈퇴"
                 app:iconSpaceReserved="false"
         />

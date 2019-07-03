@@ -1,10 +1,14 @@
 package com.example.goldenticket.Activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import com.example.goldenticket.R
+import com.example.goldenticket.etc.statusBarHeight
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.toolbar_drawer.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import java.util.regex.Matcher
@@ -21,6 +25,7 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
 
         //포커스가 되거나 문자가 있을 때 밑줄이 활성화
         isDataVaild()

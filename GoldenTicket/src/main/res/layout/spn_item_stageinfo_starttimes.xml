@@ -9,4 +9,5 @@
         android:textSize="14sp"
         android:textColor="@color/font_detail"
         android:fontFamily="@font/notosans_light"
+        android:lineSpacingExtra="10dp"
         style="?android:attr/spinnerItemStyle"/>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Activity.SearchActivity">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageButton
+                android:id="@+id/ibtn_search_pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bt_back"/>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/style_search_searchbar_bg"
+                android:elevation="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+            <EditText
+                    android:id="@+id/et_search_searchbar"
+                    android:layout_width="289dp"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:hint="어떤 공연을 찾고 계신가요?"
+                    android:textSize="13sp"
+                    android:textColorHint="#fda47a"
+                    android:paddingStart="14dp"
+                    android:textColor="#676767"
+                    android:fontFamily="@font/notosans_medium"/>
+            <ImageButton
+                    android:id="@+id/ibtn_search_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/et_search_searchbar"
+                    android:layout_marginRight="18dp"
+                    android:src="@drawable/icon_search"
+                    android:background="@android:color/transparent" android:layout_marginEnd="20dp"/>
+        </RelativeLayout>
+        <TextView
+                android:id="@+id/tv_search_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:text="취소"
+                android:textSize="12sp"
+                android:textColor="#6e6e6e"
+                android:fontFamily="@font/notosans_light"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="추천 검색어"
+                android:textSize="17sp"
+                android:textColor="#414141"
+                android:fontFamily="@font/notosans_medium"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="30dp">
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search_tags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+</LinearLayout>
