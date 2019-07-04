@@ -18,6 +18,7 @@
         </activity>
 
         <activity android:name=".Activity.SearchResultActivity">
+
         </activity>
    
         <activity android:name=".Activity.LotteryCompleteActivity">
@@ -30,6 +31,11 @@
 
         </activity>
         <activity android:name=".Activity.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
         </activity>
@@ -44,11 +50,7 @@
         <activity android:name=".Activity.QuestionActivity"/>
 
         <activity android:name=".Activity.StageInfoActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
 
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
         </activity>
         <activity
                 android:name=".Activity.KeepActivity">
