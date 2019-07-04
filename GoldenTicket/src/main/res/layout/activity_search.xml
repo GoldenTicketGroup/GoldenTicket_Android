@@ -78,44 +78,14 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="30dp">
-    <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-        <TextView
-                android:id="@+id/tv_search_fir_tag"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search_tags"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:text="    공포    "
-                android:textSize="15sp"
-                android:textColor="#6e6e6e"
-                android:fontFamily="@font/notosans_light"
-                android:gravity="center"
-                android:background="@drawable/style_search_tags_bg"/>
-        <TextView
-                android:id="@+id/tv_search_sec_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginLeft="13dp"
-                android:layout_toRightOf="@+id/tv_search_fir_tag"
-                android:text="    블루스퀘어    "
-                android:textSize="15sp"
-                android:textColor="#6e6e6e"
-                android:fontFamily="@font/notosans_light"
-                android:gravity="center"
-                android:background="@drawable/style_search_tags_bg"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginLeft="13dp"
-                android:layout_toRightOf="@+id/tv_search_sec_tag"
-                android:text="    세종문화회관    "
-                android:textSize="15sp"
-                android:textColor="#6e6e6e"
-                android:fontFamily="@font/notosans_light"
-                android:gravity="center"
-                android:background="@drawable/style_search_tags_bg"/>
-    </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 </LinearLayout>
