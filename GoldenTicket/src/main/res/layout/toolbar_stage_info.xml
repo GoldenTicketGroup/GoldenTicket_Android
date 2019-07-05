@@ -2,7 +2,7 @@
 <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="26dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageButton
             android:id="@+id/ibtn_stageinfo_pre"
@@ -18,5 +18,5 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/bt_like_info"/>
+            android:src="@drawable/slt_stage_info_stage_like"/>
 </RelativeLayout>

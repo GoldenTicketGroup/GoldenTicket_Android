@@ -1,7 +1,10 @@
 package com.example.goldenticket.Activity
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
@@ -21,6 +24,20 @@ class StageInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /*if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = Color.TRANSPARENT
+        }*/
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setContentView(R.layout.activity_stage_info)
 
         iv_stageinfo_bg.setImageResource(R.drawable.poster_benhur_info)
@@ -61,7 +78,7 @@ class StageInfoActivity : AppCompatActivity() {
         btn_stageinfo_activate_dl.setOnClickListener {
 
             val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
-            behavior.setPeekHeight(1000)
+            behavior.setPeekHeight(1000) //정확한 height단위 전혀모르겠음, dp와 float라
 
             btn_stageinfo_activate_dl.visibility = View.GONE
             btn_stageinfo_inactivate_dl.visibility = View.VISIBLE

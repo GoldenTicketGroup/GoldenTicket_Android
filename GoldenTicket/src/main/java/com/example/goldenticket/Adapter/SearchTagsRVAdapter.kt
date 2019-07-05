@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import com.example.goldenticket.R
 
@@ -19,6 +20,7 @@ class SearchTagsRVAdapter(val ctx: Context, val dataList: ArrayList<String>): Re
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.tv_search_tag.text = dataList[position]
+        holder.tv_search_tag.marginBottom
         holder.tv_search_tag.setOnClickListener {
             var keyword = holder.tv_search_tag.text
             //keyword로 검색, 결과값 SearchResultActivity로 전달

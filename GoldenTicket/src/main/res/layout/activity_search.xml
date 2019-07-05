@@ -38,15 +38,18 @@
                     android:textColorHint="#fda47a"
                     android:paddingStart="14dp"
                     android:textColor="#676767"
-                    android:fontFamily="@font/notosans_medium"/>
+                    android:fontFamily="@font/notosans_medium"
+                    android:singleLine = "true"/>
             <ImageButton
                     android:id="@+id/ibtn_search_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/et_search_searchbar"
                     android:layout_marginRight="18dp"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/icon_search"
-                    android:background="@android:color/transparent" android:layout_marginEnd="20dp"/>
+                    android:background="@android:color/transparent"
+                    android:layout_marginEnd="20dp"/>
         </RelativeLayout>
         <TextView
                 android:id="@+id/tv_search_cancel"
@@ -75,17 +78,182 @@
                 android:fontFamily="@font/notosans_medium"/>
     </RelativeLayout>
 
-    <RelativeLayout
+    <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="30dp">
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_search_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:nestedScrollingEnabled="false">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>-->
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30dp">
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+            <TextView
+                    android:id="@+id/tv_search_tag1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="판타지"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            <TextView
+                    android:id="@+id/tv_search_tag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="로맨"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            <TextView
+                    android:id="@+id/tv_search_tag3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="창작뮤지컬"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            </LinearLayout>
+        </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="11dp">
+        <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                    android:id="@+id/tv_search_tag4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="코미디"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            <TextView
+                    android:id="@+id/tv_search_tag5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="대학로"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            <TextView
+                    android:id="@+id/tv_search_tag6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="라이선스"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            <TextView
+                    android:id="@+id/tv_search_tag7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="블루스퀘어"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="11dp">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+            <TextView
+                    android:id="@+id/tv_search_tag8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="관객참여형"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            <TextView
+                    android:id="@+id/tv_search_tag9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="내한공연"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+            <TextView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/tv_search_tag0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="세종문화회관"
+                    android:textSize="15sp"
+                    android:textColor="#6e6e6e"
+                    android:fontFamily="@font/notosans_light"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/style_search_tags_bg"/>
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
