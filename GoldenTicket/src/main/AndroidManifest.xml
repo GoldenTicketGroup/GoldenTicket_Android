@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+            android:name=".Network.ApplicationController"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -18,8 +19,9 @@
         </activity>
 
         <activity android:name=".Activity.SearchResultActivity">
+
         </activity>
-   
+
         <activity android:name=".Activity.LotteryCompleteActivity">
         </activity>
         <activity android:name=".Activity.LotteryConfirmPaymentActivity">
@@ -30,6 +32,7 @@
 
         </activity>
         <activity android:name=".Activity.SearchActivity">
+
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
         </activity>
@@ -77,6 +80,11 @@
         </activity>
         <activity android:name=".Activity.MainActivity"
                   android:theme="@style/StatusYellowTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
