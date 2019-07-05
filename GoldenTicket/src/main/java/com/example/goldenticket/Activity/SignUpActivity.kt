@@ -1,16 +1,27 @@
 package com.example.goldenticket.Activity
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.example.goldenticket.R
 import com.example.goldenticket.etc.statusBarHeight
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -143,8 +154,8 @@ class SignUpActivity : AppCompatActivity() {
         return matcher.find()
     }
 
-    //서버에 회원 가입 정보를 저장한다.
-    /*private fun postSignupResponse(u_id: String, u_pw: String, u_name: String , u_phone: String) {
+    /*//서버에 회원 가입 정보를 저장한다.
+    private fun postSignupResponse(u_id: String, u_pw: String, u_name: String , u_phone: String) {
 
         //id,password,name 데이터를 받아서 JSON 객체로 만든다.
         var jsonObject = JSONObject()
