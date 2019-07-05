@@ -14,7 +14,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="124dp"
+                android:layout_marginBottom="100dp"
                 android:orientation="vertical">
             <FrameLayout
                     android:layout_width="match_parent"
@@ -214,6 +214,12 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <!--공연정보 이미지들 어떻게 받을지,,몇개로..?-->
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_stageinfo_imgs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

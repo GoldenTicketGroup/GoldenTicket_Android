@@ -24,6 +24,7 @@ class StageInfoActorsRVAdapter(val ctx: Context, val dataList: ArrayList<StageIn
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        //로딩 느려질 시, var options: RequestOptions = RequestOptions().placeholder(R.drawable.placeholder), .apply(options), 이미지 바꾸기
         Glide.with(ctx)
             .load(dataList[position].actor_img_url)
             .into(holder.actor_img_url)

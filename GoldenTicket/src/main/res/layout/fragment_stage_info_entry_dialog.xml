@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/style_stage_info_dialog"
-        android:elevation="100dp"
+        android:elevation="30dp"
         app:behavior_hideable="true"
         app:layout_behavior="@string/bottom_sheet_behavior">
     <RelativeLayout
@@ -58,7 +58,9 @@
                     android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@id/tv_stageinfo_dialog_time"
                     android:paddingLeft="10dp"
-                    android:background="@drawable/style_stage_info_spinner">
+                    android:background="@drawable/style_stage_info_spinner"
+                    android:spinnerMode="dropdown"
+                    android:overlapAnchor="false">
             </Spinner>
             <ImageView
                     android:layout_width="wrap_content"
