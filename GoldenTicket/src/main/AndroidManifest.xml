@@ -80,9 +80,6 @@
         </activity>
         <activity android:name=".Activity.MainActivity"
                   android:theme="@style/StatusYellowTheme">
-
-
-
         </activity>
     </application>
 
