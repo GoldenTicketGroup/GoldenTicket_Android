@@ -36,7 +36,9 @@
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
         </activity>
-        <activity android:name=".Activity.UserUpdateActivity"/>
+        <activity android:name=".Activity.UserUpdateActivity">
+
+        </activity>
 
         <activity android:name=".Activity.MonthContentsActivity"
                   android:theme="@style/ContentsActivityTheme">
@@ -58,11 +60,7 @@
                 android:label="@string/title_activity_settings">
         </activity>
         <activity android:name=".Activity.TutorialActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
 
         </activity>
         <activity
@@ -74,6 +72,7 @@
         <activity
                 android:name=".Activity.LoginActivity"
                 android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity android:name=".Activity.SplashActivity">
 
