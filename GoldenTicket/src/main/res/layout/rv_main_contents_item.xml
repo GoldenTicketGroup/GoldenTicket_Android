@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:cardview="http://schemas.android.com/apk/res-auto"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         cardview:cardElevation="6dp"
@@ -11,14 +11,13 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
+        android:id="@+id/cvCard"
 >
 
     <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-
         <LinearLayout
                 android:layout_width="121dp"
                 android:layout_height="128dp"
@@ -26,7 +25,6 @@
                 android:paddingLeft="20dp"
                 android:gravity="center_vertical"
         >
-
             <TextView
                     android:id="@+id/tvTitle"
                     android:background="@drawable/main_contents_title_border"
@@ -39,31 +37,27 @@
 
             <TextView
                     android:id="@+id/tvComment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="87dp"
+                    android:layout_height="62dp"
                     android:layout_marginTop="11dp"
+                    android:layout_marginRight="14dp"
                     android:textSize="16sp"
                     android:textColor="#262626"
                     android:lineSpacingExtra="4sp"
                     android:text="7월 연휴,\n공연장 나들이\n어때요?"/>
-
         </LinearLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-
         >
-
             <ImageView
                     android:id="@+id/ivContents"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/test"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/poster_main_benhur"
                     android:scaleType="fitXY"
             />
-
-
         </LinearLayout>
 
     </LinearLayout>

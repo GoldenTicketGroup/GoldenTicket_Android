@@ -24,7 +24,7 @@ class TutorialActivity : AppCompatActivity() {
 
         //SKIP text 누르면 화면으로 넘어감
         tv_tutorial_skip.setOnClickListener {
-            startActivity<MainActivity>()
+            startActivity<LoginActivity>()
         }
 
         //슬라이더 이미지가 바뀌었을 때 이벤트
@@ -51,7 +51,7 @@ class TutorialActivity : AppCompatActivity() {
         //시작 버튼을 누르면 mainactivity로 간다.
         btn_tutorial_next.setOnClickListener {
             if (btn_tutorial_next.text.toString() == "시작") {
-                startActivity<MainActivity>()
+                startActivity<LoginActivity>()
             } else {
                 vp_tutorial_slider.setCurrentItem(getItem(+1), true)
             }
@@ -60,15 +60,6 @@ class TutorialActivity : AppCompatActivity() {
             }
         }
     }
-
-    /*fun changeButtonText() {
-        when(vp_tutorial_slider.currentItem){
-            0 -> btn_tutorial_next.text = "다음"
-            1 -> btn_tutorial_next.text = "다음"
-            2 -> btn_tutorial_next.text = "시작"
-        }
-    }*/
-
 
     private fun getItem(i: Int): Int {
         return vp_tutorial_slider.currentItem + i

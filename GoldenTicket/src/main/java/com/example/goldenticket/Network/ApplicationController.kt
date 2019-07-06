@@ -6,13 +6,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApplicationController : Application(){
 
-//manifests에 name속성 설정하기
+    //manifests에 name속성 설정하기
     //통신하고자 하는 API 서버의 기본 주소
     private val baseURL ="http://13.209.208.24:3000/"
     lateinit var networkService: NetworkService
 
     companion object{
-        lateinit var instance:ApplicationController
+        lateinit var instance: ApplicationController
     }
 
     override fun onCreate() {

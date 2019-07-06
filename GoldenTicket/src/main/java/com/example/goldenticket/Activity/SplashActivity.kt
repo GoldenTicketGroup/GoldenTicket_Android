@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import org.jetbrains.anko.startActivity
 import android.view.WindowManager
+import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.R
 
 
@@ -30,16 +31,16 @@ class SplashActivity : AppCompatActivity() {
     //토큰을 받아와서 아이디가 있는지 확인
     //저장된 아이디가 있으면 메인화면으로 없으면 로그인 화면으로 넘어간다.
     internal val startConfirmUser: Runnable = Runnable {
-        startActivity<LoginActivity>()
-        finish()
+        if(SharedPreferenceController.getUserInfo(this)!!.isEmpty()){
+            startActivity<TutorialActivity>()
+            finish()
+        }else {
+            startActivity<MainActivity>()
+            finish()
+        }
     }
-
 
     override fun onBackPressed() {
         //초반 플래시 화면에서 넘어갈때 뒤로가기 버튼 못누르게 함
     }
-
-
-
-
 }

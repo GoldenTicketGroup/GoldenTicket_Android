@@ -3,26 +3,31 @@ package com.example.goldenticket.DB
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.service.autofill.UserData
 
 object SharedPreferenceController {
 
     val MY_ACCOUNT = "unique_string"
 
-    //키(u_id) 값(time)을 입력한다.
-    fun setUserToken(ctx: Context, time: String) {
+    //유저 정보를 저장한다.
+    fun setUserInfo(ctx: Context, userData: com.example.goldenticket.Data.UserData) {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preference.edit()
-        editor.putString("u_token", time)
+        editor.putString("u_name", userData.name)
+        editor.putString("u_id", userData.id)
+        editor.putString("u_email", userData.email)
+        editor.putString("u_token", userData.token)
+        editor.putString("u_phone",userData.phone)
         editor.apply()
     }
 
-    //키(u_id) 값(time)을 가져온다.
-    fun getUserToken(ctx: Context): String? {
+    //유저 정보를 보내준다.
+    fun getUserInfo(ctx: Context): String? {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        return preference.getString("u_token", "")
+        return preference.getString("u_name","")
     }
 
-    //키(u_id) 값(time)을 삭제한다.
+    //유저 정보를 해제한다. (로그아웃)
     fun clearUserToken(ctx: Context) {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preference.edit()
