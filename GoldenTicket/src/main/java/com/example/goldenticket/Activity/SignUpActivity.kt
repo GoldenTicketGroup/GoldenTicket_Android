@@ -1,16 +1,30 @@
 package com.example.goldenticket.Activity
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.NetworkService
+import com.example.goldenticket.Network.Post.PostSignupResponse
 import com.example.goldenticket.R
 import com.example.goldenticket.etc.statusBarHeight
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -21,6 +35,10 @@ class SignUpActivity : AppCompatActivity() {
         Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
     // 비밀번호 4자리 ~ 16자리까지 가능
     val VALID_PASSWOLD_REGEX_ALPHA_NUM: Pattern = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$")
+
+    val networkService : NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +62,8 @@ class SignUpActivity : AppCompatActivity() {
 
             //true인 경우 서버에 회원정보를 저장한다.
             if(isUserInfoValid(signup_u_name,signup_phone,signup_u_email, signup_u_pw, signup_u_pw2)){
-                // TODO : 서버와의 연결
-                //postSignupResponse(signup_u_email, signup_u_pw, signup_u_name,signup_phone)
+                //서버와의 연결
+                postSignupResponse(signup_u_email, signup_u_pw, signup_u_name,signup_phone)
             }
 
 
@@ -100,7 +118,6 @@ class SignUpActivity : AppCompatActivity() {
             et_signupactivity_pw2.requestFocus()
         }
         else
-            toast("회원가입이 되었습니다.")
             return true
         return false
     }
@@ -144,11 +161,11 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     //서버에 회원 가입 정보를 저장한다.
-    /*private fun postSignupResponse(u_id: String, u_pw: String, u_name: String , u_phone: String) {
+    private fun postSignupResponse(u_id: String, u_pw: String, u_name: String , u_phone: String) {
 
         //id,password,name 데이터를 받아서 JSON 객체로 만든다.
         var jsonObject = JSONObject()
-        jsonObject.put("id", u_id)
+        jsonObject.put("email", u_id)
         jsonObject.put("password", u_pw)
         jsonObject.put("name", u_name)
         jsonObject.put("phone", u_phone)
@@ -165,22 +182,16 @@ class SignUpActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostSignupResponse>, response: Response<PostSignupResponse>) {
                 if (response.isSuccessful) {
                     toast(response.body()!!.message)
-                    if (response.body()!!.status == 201) {
+                    if (response.body()!!.status == 200) {
                         //Resquest Signup
-                        val simpleDateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-                        val e_time = simpleDateFormat.format(Date())
-
-                        val intent = Intent()
-                        intent.putExtra("end_time", e_time)
-                        setResult(Activity.RESULT_OK, intent)
-
+                        startActivity<LoginActivity>()
                         finish()
                     }
                 }
             }
 
         })
-    }*/
+    }
 
 
 }
