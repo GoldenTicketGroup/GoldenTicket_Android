@@ -12,6 +12,7 @@ import android.view.ViewGroup
 
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
+import kotlinx.android.synthetic.main.fragment_lottery_second_timer.*
 import java.util.*
 
 class LotterySecondTimerFragment : Fragment() {
@@ -32,7 +33,7 @@ class LotterySecondTimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lottery_first_timer, container, false)
+        return inflater.inflate(R.layout.fragment_lottery_second_timer, container, false)
     }
 
     //첫 번째 파라미터 남은 시간, 두 번째 파라미터 카운트 다운이 되는 시간간격
@@ -73,7 +74,7 @@ class LotterySecondTimerFragment : Fragment() {
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
         }
 
-        tv_first_timer.text = timeLeftFormatted
+        tv_second_timer.text = timeLeftFormatted
     }
 
     override fun onStop() {
