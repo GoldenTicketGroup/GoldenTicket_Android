@@ -125,8 +125,6 @@ class MainActivity : AppCompatActivity() {
                         rvContents.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL,false)
                         rvContents.setHasFixedSize(true)
 
-                        Log.d("TEST",cardListDataList.toString())
-                        Log.d("TEST",cardListDataList.get(0).category)
                     }
                 }
             }
