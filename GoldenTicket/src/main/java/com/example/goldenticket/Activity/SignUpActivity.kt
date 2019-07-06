@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import androidx.core.content.ContextCompat.startActivity
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.PostSignupResponse
@@ -36,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
     // 비밀번호 4자리 ~ 16자리까지 가능
     val VALID_PASSWOLD_REGEX_ALPHA_NUM: Pattern = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$")
 
-    val networkService : NetworkService by lazy {
+    val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
 
@@ -57,13 +58,13 @@ class SignUpActivity : AppCompatActivity() {
             val signup_u_email: String = et_signupactivity_email.text.toString()
             val signup_u_pw: String = et_signupactivity_pw.text.toString()
             val signup_u_pw2: String = et_signupactivity_pw2.text.toString()
-            val signup_u_name:String = et_signupactivity_name.text.toString()
+            val signup_u_name: String = et_signupactivity_name.text.toString()
             val signup_phone: String = et_signupactivity_phone.text.toString()
 
             //true인 경우 서버에 회원정보를 저장한다.
-            if(isUserInfoValid(signup_u_name,signup_phone,signup_u_email, signup_u_pw, signup_u_pw2)){
+            if (isUserInfoValid(signup_u_name, signup_phone, signup_u_email, signup_u_pw, signup_u_pw2)) {
                 //서버와의 연결
-                postSignupResponse(signup_u_email, signup_u_pw, signup_u_name,signup_phone)
+                postSignupResponse(signup_u_email, signup_u_pw, signup_u_name, signup_phone)
             }
 
 
@@ -84,40 +85,38 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     //빈 문자열인지 확인 -> 형식이 맞는지 확인
-    private fun isUserInfoValid(u_name:String, u_phone:String, u_email: String, u_pw: String, u_pw2: String): Boolean {
+    private fun isUserInfoValid(
+        u_name: String,
+        u_phone: String,
+        u_email: String,
+        u_pw: String,
+        u_pw2: String
+    ): Boolean {
         if (u_name == "") {
             toast("이름을 입력하세요 .")
             et_signupactivity_name.requestFocus()
-        }
-        else if (u_email == "") {
+        } else if (u_email == "") {
             toast("이메일을 입력하세요 .")
             et_signupactivity_email.requestFocus()
-        }
-        else if (u_phone == "") {
+        } else if (u_phone == "") {
             toast("핸드폰을 입력하세요.")
             et_signupactivity_phone.requestFocus()
-        }
-        else if (u_pw == "") {
+        } else if (u_pw == "") {
             toast("비밀번호를 입력하세요.")
             et_signupactivity_pw.requestFocus()
-        }
-        else if (u_pw2 == "") {
+        } else if (u_pw2 == "") {
             toast("비밀번호 확인을 입력하세요.")
             et_signupactivity_pw2.requestFocus()
-        }
-        else if (!validateEmail(u_email)) {
+        } else if (!validateEmail(u_email)) {
             toast("이메일 형식이 아닙니다.")
             et_signupactivity_email.requestFocus()
-        }
-        else if (!validatePassword(u_pw)) {
+        } else if (!validatePassword(u_pw)) {
             toast("패스워드 형식이 아닙니다.")
             et_signupactivity_pw.requestFocus()
-        }
-        else if (u_pw != u_pw2) {
+        } else if (u_pw != u_pw2) {
             toast("두 패스워드가 다릅니다.")
             et_signupactivity_pw2.requestFocus()
-        }
-        else
+        } else
             return true
         return false
     }
@@ -160,8 +159,9 @@ class SignUpActivity : AppCompatActivity() {
         return matcher.find()
     }
 
+
     //서버에 회원 가입 정보를 저장한다.
-    private fun postSignupResponse(u_id: String, u_pw: String, u_name: String , u_phone: String) {
+    private fun postSignupResponse(u_id: String, u_pw: String, u_name: String, u_phone: String) {
 
         //id,password,name 데이터를 받아서 JSON 객체로 만든다.
         var jsonObject = JSONObject()
@@ -192,6 +192,4 @@ class SignUpActivity : AppCompatActivity() {
 
         })
     }
-
-
 }
