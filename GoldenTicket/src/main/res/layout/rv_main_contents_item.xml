@@ -39,9 +39,10 @@
 
             <TextView
                     android:id="@+id/tvComment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="87dp"
+                    android:layout_height="62dp"
                     android:layout_marginTop="11dp"
+                    android:layout_marginRight="14dp"
                     android:textSize="16sp"
                     android:textColor="#262626"
                     android:lineSpacingExtra="4sp"
