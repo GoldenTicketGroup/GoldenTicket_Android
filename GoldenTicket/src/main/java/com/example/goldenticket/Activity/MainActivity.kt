@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         btnVisibilityCheck(vpLotteryConfirm.currentItem,lotteryConfirmDataList)
 
-        var lotteryConfirmAdapter = LotteryConfirmAdapter(layoutInflater,lotteryConfirmDataList)
+        var lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager,2)
         vpLotteryConfirm.adapter = lotteryConfirmAdapter
 
         ibtnNextLeft.onClick {
