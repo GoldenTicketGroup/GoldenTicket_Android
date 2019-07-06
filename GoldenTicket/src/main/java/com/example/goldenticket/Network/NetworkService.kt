@@ -1,5 +1,6 @@
 package com.example.goldenticket.Network
 
+import com.example.goldenticket.Network.GET.GetMainPosterResponse
 import com.example.goldenticket.Network.Post.*
 import com.example.goldenticket.Network.Get.GetStageInfoResponse
 import com.example.goldenticket.Network.Post.GetCardDetailResponse
@@ -19,6 +20,11 @@ interface NetworkService {
         @Body body: JsonObject
     ): Call<PostLoginResponse>
 
+    //메인 뷰의 공연 리스트 조회
+    @GET("/show/home")
+    fun getMainPosterResponse(
+        @Header("Content-Type") content_type: String
+    ): Call<GetMainPosterResponse>
 
     // 메인 뷰의 카드 리스트 조회
     @GET("card")
