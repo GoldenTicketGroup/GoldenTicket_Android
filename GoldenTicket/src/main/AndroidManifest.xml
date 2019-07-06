@@ -39,8 +39,13 @@
         </activity>
         <activity android:name=".Activity.UserUpdateActivity"/>
 
-        <activity android:name=".Activity.MonthContentsActivity"
+        <activity android:name=".Activity.ContentActivity"
                   android:theme="@style/ContentsActivityTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
 
 
         </activity>
@@ -76,11 +81,7 @@
         </activity>
         <activity android:name=".Activity.MainActivity"
                   android:theme="@style/StatusYellowTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
