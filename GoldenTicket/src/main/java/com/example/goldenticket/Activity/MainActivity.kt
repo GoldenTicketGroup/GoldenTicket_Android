@@ -17,10 +17,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import android.graphics.Rect
+import android.os.Handler
 import android.util.Log
+import android.view.Gravity
+import android.view.animation.AccelerateInterpolator
+import androidx.annotation.NonNull
+import androidx.cardview.widget.CardView
+import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.GetCardListResponse
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import kotlinx.android.synthetic.main.activity_tutorial.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,6 +45,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val snapHelper = GravitySnapHelper(Gravity.START)
+        snapHelper.attachToRecyclerView(rv_product)
 
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
@@ -62,71 +73,136 @@ class MainActivity : AppCompatActivity() {
 
         /** 드로워 부분 **/
         drawerSelected()
+
+        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
+        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                if (position == 1) {
+                    ibtnNextRight.visibility = View.INVISIBLE
+                    ibtnNextLeft.visibility = View.VISIBLE
+                } else {
+                    ibtnNextRight.visibility = View.VISIBLE
+                    ibtnNextLeft.visibility = View.INVISIBLE
+                }
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+
+        })
     }
 
-    private fun configureShowRV(){
+    private fun configureShowRV() {
         val data = arrayListOf<ShowData>(
             ShowData(1, "캣츠", "혜화 소극장", "17:00 ~ 19:00"),
             ShowData(2, "뮤지컬 벤허", "혜화 소극장", "17:00 ~ 19:00"),
             ShowData(3, "마틸다", "혜화 소극장", "17:00 ~ 19:00")
         )
 
-        rv_product.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, false)
+        val linearLayoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL, false
+        )
+        rv_product.setHasFixedSize(true)
+        rv_product.layoutManager = linearLayoutManager
         rv_product.adapter = ShowMainRecyclerViewAdapter(this, data)
-        LinearSnapHelper().attachToRecyclerView(rv_product)
         rv_product.addItemDecoration(MarginItemDecoration(110, 90))
+
+        val snapHelper = GravitySnapHelper(Gravity.START)
+        snapHelper.attachToRecyclerView(rv_product)
+
+        //recyclerView의 초기 상태를 설정한다.
+        val handler = Handler()
+        handler.postDelayed({
+            val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
+
+            val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
+            eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator()).start()
+        }, 1000)
+
+        //스크롤이 되었을 때 아이템의 크기가 변화된다.
+        rv_product.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    //스크롤을 하지 않은 상태
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        val view: View? = snapHelper.findSnapView(linearLayoutManager)
+                        val pos = linearLayoutManager.getPosition(view!!)
+
+                        val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
+
+                        val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
+                        eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
+                            .setInterpolator(AccelerateInterpolator())
+                            .start()
+
+                        //스크롤 중인 상태
+                    } else {
+
+                        val view = snapHelper.findSnapView(linearLayoutManager)
+                        val pos = linearLayoutManager.getPosition(view!!)
+
+                        val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
+
+                        val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
+                        eventparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350)
+                            .setInterpolator(AccelerateInterpolator()).start()
+
+                    }
+                }
+            })
     }
 
-    private fun configureLotteryConfirmVP(){
-        var lotteryConfirmDataList = ArrayList<LotteryConfirmVPData>() // TODO: 서버에게 받을 응모한 공연 데이터 리스트
-        lotteryConfirmDataList.add(
-            LotteryConfirmVPData(
-                "골든 티켓 만세", "11 : 11 : 11")
-        )
-        lotteryConfirmDataList.add(
-            LotteryConfirmVPData(
-                "귀여운 골티", "22 : 22 : 22"))
 
+    private fun configureLotteryConfirmVP() {
 
-        btnVisibilityCheck(vpLotteryConfirm.currentItem,lotteryConfirmDataList)
+        btnVisibilityCheck(vpLotteryConfirm.currentItem)
 
-        var lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager,2)
+        var lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, 2)
         vpLotteryConfirm.adapter = lotteryConfirmAdapter
 
         ibtnNextLeft.onClick {
             var position = vpLotteryConfirm.currentItem
-            vpLotteryConfirm.setCurrentItem(position-1,true)
-            btnVisibilityCheck(vpLotteryConfirm.currentItem,lotteryConfirmDataList)
+            vpLotteryConfirm.setCurrentItem(position - 1, true)
+            btnVisibilityCheck(vpLotteryConfirm.currentItem)
         }
         ibtnNextRight.onClick {
             var position = vpLotteryConfirm.currentItem
-            vpLotteryConfirm.setCurrentItem(position+1,true)
-            btnVisibilityCheck(vpLotteryConfirm.currentItem,lotteryConfirmDataList)
+            vpLotteryConfirm.setCurrentItem(position + 1, true)
+            btnVisibilityCheck(vpLotteryConfirm.currentItem)
         }
     }
-    private fun configureMainContentsRV(){
+
+    private fun configureMainContentsRV() {
 
         lateinit var cardListAdapter: CardListAdapter
 
 
         val getCardList = networkService.getCardList("application/json")
-        getCardList.enqueue(object : Callback<GetCardListResponse>{
+        getCardList.enqueue(object : Callback<GetCardListResponse> {
             override fun onFailure(call: Call<GetCardListResponse>, t: Throwable) {
-                Log.e("Get Card List Failed: ",t.toString())
+                Log.e("Get Card List Failed: ", t.toString())
             }
 
             override fun onResponse(call: Call<GetCardListResponse>, response: Response<GetCardListResponse>) {
-                if(response.isSuccessful){
-                    if(response.body()!!.status == 200){
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
                         var cardListDataList: ArrayList<CardListData> = response.body()!!.data!!
 
                         cardListAdapter = CardListAdapter(applicationContext, cardListDataList)
                         rvContents.adapter = cardListAdapter
-                        rvContents.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL,false)
+                        rvContents.layoutManager =
+                            LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
                         rvContents.setHasFixedSize(true)
 
-                        Log.d("TEST",cardListDataList.toString())
-                        Log.d("TEST",cardListDataList.get(0).category)
+                        Log.d("TEST", cardListDataList.toString())
+                        Log.d("TEST", cardListDataList.get(0).category)
                     }
                 }
             }
@@ -136,18 +212,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun btnVisibilityCheck(position: Int, dataList: ArrayList<LotteryConfirmVPData>){ // TODO: 당첨확인 버튼 유무 체크
-        if (position==dataList.size-1) {
-            ibtnNextRight.visibility= View.INVISIBLE
-            ibtnNextLeft.visibility= View.VISIBLE
-        }
-        else if (position==0){
-            ibtnNextLeft.visibility= View.INVISIBLE
-            ibtnNextRight.visibility= View.VISIBLE
-        }
-        else{
-            ibtnNextLeft.visibility= View.VISIBLE
-            ibtnNextRight.visibility= View.VISIBLE
+    private fun btnVisibilityCheck(position: Int) { // TODO: 당첨확인 버튼 유무 체크
+        if (position == 0) {
+            ibtnNextRight.visibility = View.VISIBLE
+            ibtnNextLeft.visibility = View.INVISIBLE
+        } else if (position == 1) {
+            ibtnNextRight.visibility = View.INVISIBLE
+            ibtnNextLeft.visibility = View.VISIBLE
         }
     }
 
@@ -173,8 +244,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     /*리사이클러뷰 간격*/
-    class MarginItemDecoration(private val first_space: Int, private val space: Int): androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, view: View, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
+    class MarginItemDecoration(
+        private
+        val first_space: Int, private val space: Int
+    ) :
+        androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: androidx.recyclerview.widget.RecyclerView,
+            state: androidx.recyclerview.widget.RecyclerView.State
+        ) {
             with(outRect) {
                 if (parent.getChildAdapterPosition(view) == 0) {
                     left = first_space
@@ -183,5 +263,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }
