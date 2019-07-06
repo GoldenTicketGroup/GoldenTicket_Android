@@ -48,6 +48,6 @@ class KeepActivity : AppCompatActivity() {
         rvKeepStage.addItemDecoration(RecyclerViewDecoration())
         rvKeepStage.setHasFixedSize(true)
     }
-    
+
 
 }
