@@ -17,14 +17,14 @@
                 android:layout_height="wrap_content">
 
             <ImageView
-                    android:id="@+id/ivMonthContentsImg"
+                    android:id="@+id/ivCardImage"
                     android:layout_width="match_parent"
                     android:layout_height="395dp"
                     android:src="@drawable/test"
                     android:scaleType="fitXY"/>
 
             <ImageButton
-                    android:id="@+id/ibtnContentsFinish"
+                    android:id="@+id/ibtnCardFinish"
                     android:layout_width="31dp"
                     android:layout_height="31dp"
                     android:background="@drawable/bt_contets_float"
@@ -36,7 +36,7 @@
 
 
         <TextView
-                android:id="@+id/tvMonthContentsTitle"
+                android:id="@+id/tvCardTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -48,7 +48,7 @@
         />
 
         <TextView
-                android:id="@+id/tvMonthContentsContent"
+                android:id="@+id/tvCardContent"
                 android:layout_width="314dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -61,7 +61,7 @@
         />
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMonthContents"
+                android:id="@+id/rvContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
