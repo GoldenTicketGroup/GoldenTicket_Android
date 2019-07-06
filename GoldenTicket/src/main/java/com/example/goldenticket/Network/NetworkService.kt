@@ -18,7 +18,6 @@ interface NetworkService {
         @Body body: JsonObject
     ): Call<PostLoginResponse>
 
-<<<<<<< HEAD
     //회원가입 api
     @POST("/auth/signup")
     fun postSignupResponse(
@@ -27,7 +26,6 @@ interface NetworkService {
     ): Call<PostSignupResponse>
 
 
-=======
 
     // 메인 뷰의 카드 리스트 조회
     @GET("card")
@@ -50,5 +48,4 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("id") card_id: Int
     ): Call<GetContentDetailResponse>
->>>>>>> fba1b596dad9e3a98a8698783bfa621bc04d212d
 }
