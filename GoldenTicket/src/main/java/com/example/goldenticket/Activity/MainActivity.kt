@@ -8,29 +8,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.goldenticket.*
-import com.example.goldenticket.Adapter.MainContentsAdapter
+import com.example.goldenticket.Adapter.LotteryConfirmAdapter
+import com.example.goldenticket.Adapter.CardListAdapter
 import com.example.goldenticket.Adapter.ShowMainRecyclerViewAdapter
 import com.example.goldenticket.Data.*
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import android.graphics.Rect
 import android.util.Log
-import com.example.goldenticket.Adapter.LotteryConfirmAdapter
-import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.GET.GetMainPosterResponse
 import com.example.goldenticket.Network.NetworkService
+import com.example.goldenticket.Network.Post.GetCardListResponse
 import kotlinx.android.synthetic.main.toolbar_main.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
 
-    val networkService : NetworkService by lazy {
+    val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
 
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         //val u_name = SharedPreferenceController.getUserName(this)
         //tv_main_name.setText(u_name)
@@ -50,6 +52,11 @@ class MainActivity : AppCompatActivity() {
 
         /** 당첨확인 뷰페이저 부분 **/
         configureLotteryConfirmVP()
+
+        /** 하단 검색 창 클릭 부분 **/
+        tvSearch.onClick {
+            startActivity<SearchActivity>()
+        }
 
         /** 하단 월별 콘텐츠 리사이클러뷰 부분 **/
         configureMainContentsRV()
@@ -87,9 +94,8 @@ class MainActivity : AppCompatActivity() {
         lotteryConfirmDataList.add(
             LotteryConfirmVPData(
                 "귀여운 골티", "22 : 22 : 22"))
-        lotteryConfirmDataList.add(
-            LotteryConfirmVPData(
-                "만만세 골티", "22 : 22 : 22"))
+
+
         btnVisibilityCheck(vpLotteryConfirm.currentItem,lotteryConfirmDataList)
 
         var lotteryConfirmAdapter = LotteryConfirmAdapter(layoutInflater,lotteryConfirmDataList)
@@ -107,19 +113,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun configureMainContentsRV(){
-        var mainContentsDataList: ArrayList<MainContentsData> = ArrayList() // TODO: 서버에게 받을 월별 콘텐츠 리스트
-        mainContentsDataList.add(
-            MainContentsData(
-                "이번 달 공연", "7월 연휴,\n공연장 나들이\n어때요?"))
-        mainContentsDataList.add(
-            MainContentsData(
-                "이번 달 뮤지컬", "7월 추천,\n시원한\n뮤지컬!"))
+
+        lateinit var cardListAdapter: CardListAdapter
 
 
-        var mainContentsAdapter = MainContentsAdapter(this, mainContentsDataList)
-        rvContents.adapter = mainContentsAdapter
-        rvContents.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
-        rvContents.setHasFixedSize(true)
+        val getCardList = networkService.getCardList("application/json")
+        getCardList.enqueue(object : Callback<GetCardListResponse>{
+            override fun onFailure(call: Call<GetCardListResponse>, t: Throwable) {
+                Log.e("Get Card List Failed: ",t.toString())
+            }
+
+            override fun onResponse(call: Call<GetCardListResponse>, response: Response<GetCardListResponse>) {
+                if(response.isSuccessful){
+                    if(response.body()!!.status == 200){
+                        var cardListDataList: ArrayList<CardListData> = response.body()!!.data!!
+
+                        cardListAdapter = CardListAdapter(applicationContext, cardListDataList)
+                        rvContents.adapter = cardListAdapter
+                        rvContents.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL,false)
+                        rvContents.setHasFixedSize(true)
+
+                    }
+                }
+            }
+
+        })
+
+
     }
 
     private fun btnVisibilityCheck(position: Int, dataList: ArrayList<LotteryConfirmVPData>){ // TODO: 당첨확인 버튼 유무 체크
