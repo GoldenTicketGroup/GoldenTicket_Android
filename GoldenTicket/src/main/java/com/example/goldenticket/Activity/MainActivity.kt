@@ -1,34 +1,49 @@
 package com.example.goldenticket.Activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import androidx.annotation.Keep
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.goldenticket.*
-import com.example.goldenticket.Adapter.LotteryConfirmAdapter
 import com.example.goldenticket.Adapter.MainContentsAdapter
 import com.example.goldenticket.Adapter.ShowMainRecyclerViewAdapter
 import com.example.goldenticket.Data.*
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
-import android.R.attr.top
 import android.graphics.Rect
+import android.util.Log
+import com.example.goldenticket.Adapter.LotteryConfirmAdapter
+import com.example.goldenticket.DB.SharedPreferenceController
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.GET.GetMainPosterResponse
+import com.example.goldenticket.Network.NetworkService
 import kotlinx.android.synthetic.main.toolbar_main.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
+import retrofit2.Call
+import retrofit2.Response
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
+    val networkService : NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
+    lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        
+        //val u_name = SharedPreferenceController.getUserName(this)
+        //tv_main_name.setText(u_name)
+        //tv_profile_name.setText(u_name)
+
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
         configureShowRV()
@@ -51,16 +66,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureShowRV(){
-        val data = arrayListOf<ShowData>(
-                ShowData(1, "캣츠", "혜화 소극장", "17:00 ~ 19:00"),
-                ShowData(2, "뮤지컬 벤허", "혜화 소극장", "17:00 ~ 19:00"),
-                ShowData(3, "마틸다", "혜화 소극장", "17:00 ~ 19:00")
-        )
+        var ShowDataList: ArrayList<ShowData> = ArrayList()
 
+        showMainRecyclerViewAdapter = ShowMainRecyclerViewAdapter(this, ShowDataList)
         rv_product.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, false)
-        rv_product.adapter = ShowMainRecyclerViewAdapter(this, data)
+        rv_product.adapter = showMainRecyclerViewAdapter
         LinearSnapHelper().attachToRecyclerView(rv_product)
         rv_product.addItemDecoration(MarginItemDecoration(110, 90))
+
+        getMainPosterResponse()
+
     }
 
     private fun configureLotteryConfirmVP(){
@@ -153,6 +168,35 @@ class MainActivity : AppCompatActivity() {
                 right = space
             }
         }
+    }
+
+    private fun getMainPosterResponse(){
+        val getMainPosterResponse = networkService.getMainPosterResponse(
+            "application/json")
+        getMainPosterResponse.enqueue(object: retrofit2.Callback<GetMainPosterResponse> {
+            override fun onFailure(call: Call<GetMainPosterResponse>, t: Throwable) {
+                Log.e("Main Poster List Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetMainPosterResponse>, response: Response<GetMainPosterResponse>) {
+                if(response.isSuccessful){
+                    if(response.body()!!.status == 200){
+                        val tmp: ArrayList<ShowData> = response.body()!!.data!!
+                        showMainRecyclerViewAdapter.dataList = tmp
+                        showMainRecyclerViewAdapter.notifyDataSetChanged()
+
+                        if(tmp.isEmpty()) {
+                            rv_product.visibility = View.GONE
+                            empty_view.visibility = View.VISIBLE
+                        }
+                        else {
+                            rv_product.visibility = View.VISIBLE
+                            empty_view.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+        })
     }
 
 }
