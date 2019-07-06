@@ -12,6 +12,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
+            android:usesCleartextTraffic="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
 
@@ -42,8 +43,6 @@
 
         <activity android:name=".Activity.ContentActivity"
                   android:theme="@style/ContentsActivityTheme">
-
-
 
         </activity>
         <activity android:name=".Activity.NoticeActivity"/>
@@ -84,6 +83,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
 
         </activity>
     </application>

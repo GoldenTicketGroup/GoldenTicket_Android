@@ -6,5 +6,5 @@ data class GetCardDetailResponse (
     var status: Int,
     var success: Boolean,
     var message: String,
-    var data: ArrayList<CardDetailData>
+    var data: CardDetailData
 )

@@ -18,6 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <LinearLayout
+                    android:focusableInTouchMode="true"
                     android:orientation="vertical"
                     android:layout_width="match_parent" android:layout_height="match_parent">
                 <FrameLayout
@@ -97,6 +98,38 @@
                             android:layout_height="wrap_content"
                     >
                     </androidx.recyclerview.widget.RecyclerView>
+                            android:layout_marginTop="123dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                    <FrameLayout
+                            android:id="@+id/empty_view"
+                            android:layout_marginTop="123dp"
+                            android:layout_marginLeft="48dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
+                        <ImageView
+                                android:id="@+id/empty_image"
+                                android:layout_marginLeft="55dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/sppechbubble_main"/>
+                        <ImageView
+                                android:id="@+id/empty_image_2"
+                                android:layout_marginTop="105dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/character_catching_main"/>
+                        <TextView
+                                android:id="@+id/empty_text"
+                                android:layout_marginLeft="101dp"
+                                android:layout_marginTop="42dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="오늘 올라온 공연이 없어요"
+                                android:textColor="@color/white"/>
+                    </FrameLayout>
                 </FrameLayout>
 
                 <LinearLayout

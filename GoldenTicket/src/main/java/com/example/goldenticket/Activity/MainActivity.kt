@@ -1,5 +1,6 @@
 package com.example.goldenticket.Activity
 
+import android.animation.TimeInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -25,6 +26,7 @@ import androidx.annotation.NonNull
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.GET.GetMainPosterResponse
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.GetCardListResponse
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
@@ -42,12 +44,19 @@ class MainActivity : AppCompatActivity() {
         ApplicationController.instance.networkService
     }
 
+    lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_product)
+
+
+        //val u_name = SharedPreferenceController.getUserName(this)
+        //tv_main_name.setText(u_name)
+        //tv_profile_name.setText(u_name)
 
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
@@ -97,23 +106,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureShowRV() {
-        val data = arrayListOf<ShowData>(
-            ShowData(1, "캣츠", "혜화 소극장", "17:00 ~ 19:00"),
-            ShowData(2, "뮤지컬 벤허", "혜화 소극장", "17:00 ~ 19:00"),
-            ShowData(3, "마틸다", "혜화 소극장", "17:00 ~ 19:00")
-        )
+
+        var ShowDataList: ArrayList<ShowData> = ArrayList()
+        showMainRecyclerViewAdapter = ShowMainRecyclerViewAdapter(this, ShowDataList)
 
         val linearLayoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.HORIZONTAL, false
         )
+        rv_product.adapter = showMainRecyclerViewAdapter
         rv_product.setHasFixedSize(true)
         rv_product.layoutManager = linearLayoutManager
-        rv_product.adapter = ShowMainRecyclerViewAdapter(this, data)
         rv_product.addItemDecoration(MarginItemDecoration(110, 90))
 
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_product)
+
+        getMainPosterResponse()
 
         //recyclerView의 초기 상태를 설정한다.
         val handler = Handler()
@@ -139,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
                         val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
                         eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
-                            .setInterpolator(AccelerateInterpolator())
+                            .setInterpolator(AccelerateInterpolator() as TimeInterpolator?)
                             .start()
 
                         //스크롤 중인 상태
@@ -157,7 +166,10 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             })
+
+
     }
+
 
 
     private fun configureLotteryConfirmVP() {
@@ -200,6 +212,7 @@ class MainActivity : AppCompatActivity() {
                         rvContents.layoutManager =
                             LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
                         rvContents.setHasFixedSize(true)
+
 
                         Log.d("TEST", cardListDataList.toString())
                         Log.d("TEST", cardListDataList.get(0).category)
@@ -263,4 +276,33 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-}
+
+    private fun getMainPosterResponse(){
+        val getMainPosterResponse = networkService.getMainPosterResponse(
+            "application/json")
+        getMainPosterResponse.enqueue(object: retrofit2.Callback<GetMainPosterResponse> {
+            override fun onFailure(call: Call<GetMainPosterResponse>, t: Throwable) {
+                Log.e("Main Poster List Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetMainPosterResponse>, response: Response<GetMainPosterResponse>) {
+                if(response.isSuccessful){
+                    if(response.body()!!.status == 200){
+                        val tmp: ArrayList<ShowData> = response.body()!!.data!!
+                        showMainRecyclerViewAdapter.dataList = tmp
+                        showMainRecyclerViewAdapter.notifyDataSetChanged()
+
+                        if(tmp.isEmpty()) {
+                            rv_product.visibility = View.GONE
+                            empty_view.visibility = View.VISIBLE
+                        }
+                        else {
+                            rv_product.visibility = View.VISIBLE
+                            empty_view.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+        })
+    }}
+

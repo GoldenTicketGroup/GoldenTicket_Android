@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/poster_benhur_info"
         />
 
         <ImageView
@@ -33,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="213dp"
+            android:layout_marginTop="216dp"
             android:fontFamily="@font/notosans_medium"
             android:shadowColor="#29000000"
             android:shadowDy="3"
@@ -45,7 +44,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="15dp"
-            android:layout_marginTop="243dp"
+            android:layout_marginTop="246dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -69,7 +68,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="15dp"
-            android:layout_marginTop="258dp"
+            android:layout_marginTop="261dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -88,6 +87,23 @@
                 android:text="17:00 ~ 19:00"
                 android:textColor="#ffffff"
                 android:textSize="11sp" />
+
+            <ImageView
+                    android:id="@+id/iv_slash_main"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="1dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/slash_main"/>
+
+            <TextView
+                    android:id="@+id/tv_rv_item_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_light"
+                    android:textColor="#ffffff"
+                    android:textSize="11sp" />
         </LinearLayout>
 
 
