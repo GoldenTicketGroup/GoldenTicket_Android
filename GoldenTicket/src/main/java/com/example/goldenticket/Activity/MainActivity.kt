@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         //val u_name = SharedPreferenceController.getUserName(this)
         //tv_main_name.setText(u_name)
         //tv_profile_name.setText(u_name)
