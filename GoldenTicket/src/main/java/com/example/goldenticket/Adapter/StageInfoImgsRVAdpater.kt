@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.Request
+import com.bumptech.glide.request.RequestOptions
+import com.example.goldenticket.Data.StageInfoImgsData
 import com.example.goldenticket.R
 
-class StageInfoImgsRVAdpater(val ctx: Context, val dataList: ArrayList<String>): RecyclerView.Adapter<StageInfoImgsRVAdpater.Holder>() {
+class StageInfoImgsRVAdpater(val ctx: Context, var dataList: ArrayList<StageInfoImgsData>): RecyclerView.Adapter<StageInfoImgsRVAdpater.Holder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_stageinfo_imgs, viewGroup, false)
         return Holder(view)
@@ -19,7 +22,8 @@ class StageInfoImgsRVAdpater(val ctx: Context, val dataList: ArrayList<String>):
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         Glide.with(ctx)
-            .load(dataList[position])
+            .load(dataList[position].image_url)
+            .apply(RequestOptions.centerCropTransform())
             .into(holder.info_img_url)
     }
 
