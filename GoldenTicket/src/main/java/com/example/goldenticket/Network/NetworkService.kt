@@ -1,5 +1,6 @@
 package com.example.goldenticket.Network
 
+import com.example.goldenticket.Network.Get.GetStageInfoResponse
 import com.example.goldenticket.Network.Post.GetCardDetailResponse
 import com.example.goldenticket.Network.Post.GetCardListResponse
 import com.example.goldenticket.Network.Post.GetContentDetailResponse
@@ -39,4 +40,14 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("id") card_id: Int
     ): Call<GetContentDetailResponse>
+
+    //공연 상세
+    @GET("/show/detail/{id}")
+    fun getStageInfoResponse(
+        @Header("Content-Type") content_type: String,
+        @Path("id") show_idx: Int
+    ): Call<GetStageInfoResponse>
+
+    //공연 상세 좋아효
+    //@POST
 }
