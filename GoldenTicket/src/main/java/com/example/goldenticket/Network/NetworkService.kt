@@ -1,9 +1,6 @@
 package com.example.goldenticket.Network
 
-import com.example.goldenticket.Network.Post.GetCardDetailResponse
-import com.example.goldenticket.Network.Post.GetCardListResponse
-import com.example.goldenticket.Network.Post.GetContentDetailResponse
-import com.example.goldenticket.Network.Post.PostLoginResponse
+import com.example.goldenticket.Network.Post.*
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -26,10 +23,10 @@ interface NetworkService {
 
 
     // 카드 상세 조회 (RV 아닌 부분)
-    @GET("card")
+    @GET("card/{id}")
     fun getCardDetail(
         @Header("Content-Type") content_type: String,
-        @Header("id") card_id: Int
+        @Path("id") card_id: Int
     ): Call<GetCardDetailResponse>
 
 
@@ -39,4 +36,22 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("id") card_id: Int
     ): Call<GetContentDetailResponse>
+
+
+    // 좋아요
+    @POST("show/like")
+    fun postShowLike(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String,
+        @Body() body:JsonObject
+    ): Call<PostShowLikeResponse>
+
+
+    // 좋아요 취소
+    @DELETE("show/like")
+    fun deleteShowLike(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String,
+        @Body() body:JsonObject
+    ): Call<DeleteShowLikeResponse>
 }
