@@ -14,7 +14,7 @@
                 android:layout_width="76dp"
                 android:layout_height="76dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/img_casting_01"/>
+                android:background="@drawable/img_casting_01"/>
         <!--이미지뷰 스타일 동그랗게, -->
     </RelativeLayout>
     <RelativeLayout
