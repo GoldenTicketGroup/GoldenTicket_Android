@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".Fragment.LotteryFirstTimerFragment"
+             android:gravity="center"
+              android:orientation="vertical"
 >
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+            android:id="@+id/tv_first_timer_title"
+            android:text="옥탑방 고양이"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:layout_above="@+id/tv_first_timer_text"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <TextView
+            android:id="@+id/tv_first_timer_text"
+            android:text="당첨 확인까지"
+            android:textSize="10sp"
+            android:textColor="#707070"
+            android:layout_above="@+id/tv_first_timer"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+    <TextView
             android:id="@+id/tv_first_timer"
             android:gravity="center"
             android:textSize="30sp"
-            android:textColor="#000"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:textColor="#FF9800"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
             android:text="00:00"/>
 
-</FrameLayout>
+</LinearLayout>
