@@ -59,12 +59,14 @@ interface NetworkService {
 
 
     // 좋아요 취소
-    @DELETE("show/like")
+    @HTTP(method = "DELETE", path = "/api/analysis_delete", hasBody = true)
     fun deleteShowLike(
         @Header("Content-Type") content_type: String,
         @Header("token") user_token: String,
         @Body() body:JsonObject
     ): Call<DeleteShowLikeResponse>
+//    @DELETE("show/like")
+
 
     //공연 상세
     @GET("/show/detail/{id}")
