@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_month_contents.*
 import kotlinx.android.synthetic.main.rv_month_contents_item.*
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,11 +46,13 @@ class ContentActivity : AppCompatActivity() {
             )
         }
 
-
-
+        /** 카드 취소 버튼  **/
+        ibtnCardFinish.onClick {
+            finish()
+        }
 
         /** 카드 상세 조회 (맨 위 RV 아닌 부분) **/
-        val getCardDetail = networkService.getCardDetail("application/json",1)
+        val getCardDetail = networkService.getCardDetail("application/json",intent.getIntExtra("idx", 2))
         getCardDetail.enqueue(object: Callback<GetCardDetailResponse>{
             override fun onFailure(call: Call<GetCardDetailResponse>, t: Throwable) {
                 Log.e("Get CardDetail Failed: ",t.toString())
@@ -59,11 +62,11 @@ class ContentActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     if(response.body()!!.status == 200){
                         Glide.with(applicationContext)
-                            .load(response.body()!!.data!!.get(0).imageUrl)
+                            .load(response.body()!!.data!!.imageUrl)
                             .into(ivCardImage)
 
-                        tvCardTitle.text = response.body()!!.data!!.get(0).title
-                        tvCardContent.text = response.body()!!.data!!.get(0).content
+                        tvCardTitle.text = response.body()!!.data!!.title
+                        tvCardContent.text = response.body()!!.data!!.content
                     }
                 }
             }
@@ -73,7 +76,7 @@ class ContentActivity : AppCompatActivity() {
         /** 콘텐츠 상세 조회 (RV 부분) **/
         var contentDetailDataList: ArrayList<ContentDetailData> = ArrayList()
 
-        val getContentDetail = networkService.getContentDetail("application/json",1)
+        val getContentDetail = networkService.getContentDetail("application/json",intent.getIntExtra("idx", 2))
         getContentDetail.enqueue(object: Callback<GetContentDetailResponse>{
             override fun onFailure(call: Call<GetContentDetailResponse>, t: Throwable) {
                 Log.e("Get ContentDetail Fail:",t.toString())
