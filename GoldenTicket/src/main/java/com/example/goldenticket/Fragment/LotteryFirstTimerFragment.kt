@@ -26,23 +26,10 @@ class LotteryFirstTimerFragment : Fragment() {
     var mTimeLeftInMillis = mStartTimeInMillis
     var mEndTime: Long = 0
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        Log.d(
-            "onAttach",
-            "mStartTimeInMillis    " + mStartTimeInMillis + "   mTimeLeftInMillis    " + mTimeLeftInMillis + "   mEndTime   " + mEndTime
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.
         startTimer()
-        Log.d(
-            "onCreate",
-            "mStartTimeInMillis    " + mStartTimeInMillis + "   mTimeLeftInMillis    " + mTimeLeftInMillis + "   mEndTime   " + mEndTime
-        )
     }
 
     override fun onCreateView(
@@ -54,6 +41,8 @@ class LotteryFirstTimerFragment : Fragment() {
 
     }
 
+    //화면이 다시 돌아왔을 때 남은 시간와 타이머 상태를 가져온다.
+    //타이머 텍스트와 버튼 상태를 다시 설정한다.
     override fun onStart() {
         super.onStart()
 
@@ -61,34 +50,10 @@ class LotteryFirstTimerFragment : Fragment() {
 
         mStartTimeInMillis = prefs.getLong("startTimeInMillis", 600000)
         mTimeLeftInMillis = prefs.getLong("millisLeft", mStartTimeInMillis)
-        //mTimerRunning = prefs.getBoolean("timerRunning", false)
         mEndTime = prefs.getLong("endTime", 0)
         mTimeLeftInMillis = mEndTime - System.currentTimeMillis()
         updateCountDownText()
         startTimer()
-        Log.d(
-            "onStart",
-            "mStartTimeInMillis    " + mStartTimeInMillis + "   mTimeLeftInMillis    " + mTimeLeftInMillis + "   mEndTime    " + mEndTime
-        )
-        /*if(mTimerRunning){
-            mEndTime = prefs.getLong("endTime", 0)
-            mTimeLeftInMillis = mEndTime - System.currentTimeMillis()
-            if(mTimeLeftInMillis < 0){
-                mTimeLeftInMillis = 0
-                mTimerRunning = false
-                updateCountDownText()
-            }else{
-                startTimer()
-            }
-        }*/
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(
-            "onPause",
-            "mStartTimeInMillis    " + mStartTimeInMillis + "  mTimeLeftInMillis    " + mTimeLeftInMillis + "   mEndTime     " + mEndTime
-        )
     }
 
     override fun onStop() {
@@ -98,31 +63,13 @@ class LotteryFirstTimerFragment : Fragment() {
 
         editor.putLong("startTimeInMillis", mStartTimeInMillis)
         editor.putLong("millisLeft", mTimeLeftInMillis)
-        //editor.putBoolean("timerRunning",mTimerRunning)
         editor.putLong("endTime", mEndTime)
 
         editor.apply()
 
         mCountDownTimer?.cancel()
-        Log.d(
-            "onStop",
-            "mStartTimeInMillis    " + mStartTimeInMillis + "   mTimeLeftInMillis    " + mTimeLeftInMillis + "   mEndTime" + mEndTime
-        )
+
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d(
-            "onDestroyView",
-            "mStartTimeInMillis    " + mStartTimeInMillis + "   mTimeLeftInMillis    " + mTimeLeftInMillis + " mEndTime " + mEndTime
-        )
-    }
-
-
-
-    //화면이 다시 돌아왔을 때 남은 시간와 타이머 상태를 가져온다.
-    //타이머 텍스트와 버튼 상태를 다시 설정한다.
-
 
     //첫 번째 파라미터 남은 시간, 두 번째 파라미터 카운트 다운이 되는 시간간격
     //시간 간격 만큼 onFinish, onTick 이 실행이 된다.
@@ -135,7 +82,6 @@ class LotteryFirstTimerFragment : Fragment() {
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
                 tv_first_timer.text = "당첨 확인을 해주세요"
-                // mTimerRunning = false
             }
 
             override fun onTick(p0: Long) {
@@ -143,7 +89,6 @@ class LotteryFirstTimerFragment : Fragment() {
                 updateCountDownText()
             }
         }.start()
-        //mTimerRunning = true
     }
 
     //남은 시간을 화면에 출력한다.
