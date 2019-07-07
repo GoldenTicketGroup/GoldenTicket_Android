@@ -45,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
         //회원 가입 버튼을 눌렀을 때 이벤트
         tv_loginactivity_signup.setOnClickListener {
             startActivity<SignUpActivity>()
-
         }
     }
 
@@ -89,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
         postLoginResponse.enqueue(object : Callback<PostLoginResponse> {
             override fun onFailure(call: Call<PostLoginResponse>, t: Throwable) {
                 Log.e("login failed",t.toString())
+                toast("아이디와 비밀번호를 확인해 주세요")
             }
 
             override fun onResponse(call: Call<PostLoginResponse>, response: Response<PostLoginResponse>) {
