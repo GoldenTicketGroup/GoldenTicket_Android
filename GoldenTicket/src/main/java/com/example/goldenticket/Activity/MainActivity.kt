@@ -236,7 +236,7 @@ class MainActivity : AppCompatActivity() {
             startActivity<UserUpdateActivity>()
         }
         rl_win.setOnClickListener {
-            startActivity<MyLotteryActivity>()
+            startActivity<LotteryConfirmActivity>()
         }
         rl_like.setOnClickListener {
             startActivity<KeepActivity>()

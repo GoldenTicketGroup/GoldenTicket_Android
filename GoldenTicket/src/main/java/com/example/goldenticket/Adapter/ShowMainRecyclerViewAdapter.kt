@@ -30,11 +30,7 @@ class ShowMainRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Show
             .into(holder.poster)
         holder.show_name.text = dataList[position].name
         holder.location.text = dataList[position].location
-        holder.time.text = dataList[position].running_time[0]
-
-        if (dataList[position].running_time.size > 1) {
-            holder.time2.text = " / " + dataList[position].running_time[1]
-        }
+        holder.time.text = dataList[position].running_time
 
         holder.container.setOnClickListener {
 
@@ -49,6 +45,5 @@ class ShowMainRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Show
         var show_name = itemView.findViewById(R.id.tv_rv_item_name) as TextView
         var location = itemView.findViewById(R.id.tv_rv_item_location) as TextView
         var time = itemView.findViewById(R.id.tv_rv_item_time) as TextView
-        var time2 = itemView.findViewById(R.id.tv_rv_item_time2) as TextView
     }
 }
