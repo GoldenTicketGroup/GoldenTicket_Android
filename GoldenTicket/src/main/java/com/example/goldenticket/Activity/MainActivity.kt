@@ -4,9 +4,7 @@ import android.animation.TimeInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.goldenticket.*
 import com.example.goldenticket.Adapter.LotteryConfirmAdapter
@@ -22,15 +20,13 @@ import android.os.Handler
 import android.util.Log
 import android.view.Gravity
 import android.view.animation.AccelerateInterpolator
-import androidx.annotation.NonNull
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.Network.ApplicationController
-import com.example.goldenticket.Network.GET.GetMainPosterResponse
+import com.example.goldenticket.Network.Get.GetMainPosterResponse
 import com.example.goldenticket.Network.NetworkService
-import com.example.goldenticket.Network.Post.GetCardListResponse
+import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
-import kotlinx.android.synthetic.main.activity_tutorial.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import retrofit2.Call
 import retrofit2.Callback

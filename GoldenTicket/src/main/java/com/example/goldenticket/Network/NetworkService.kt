@@ -1,11 +1,8 @@
 package com.example.goldenticket.Network
 
-import com.example.goldenticket.Network.GET.GetMainPosterResponse
+import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
+import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
-import com.example.goldenticket.Network.Get.GetStageInfoResponse
-import com.example.goldenticket.Network.Post.GetCardDetailResponse
-import com.example.goldenticket.Network.Post.GetCardListResponse
-import com.example.goldenticket.Network.Post.GetContentDetailResponse
 import com.example.goldenticket.Network.Post.PostLoginResponse
 import com.example.goldenticket.Network.Post.PostSignupResponse
 import com.google.gson.JsonObject
