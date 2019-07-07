@@ -21,11 +21,13 @@ import android.util.Log
 import android.view.Gravity
 import android.view.animation.AccelerateInterpolator
 import androidx.cardview.widget.CardView
+import androidx.core.view.ViewCompat.animate
 import androidx.viewpager.widget.ViewPager
+import com.example.goldenticket.DB.SharedPreferenceController.getUserName
 import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.example.goldenticket.Network.Get.GetMainPosterResponse
 import com.example.goldenticket.Network.NetworkService
-import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import kotlinx.android.synthetic.main.toolbar_main.*
 import retrofit2.Call
@@ -50,9 +52,9 @@ class MainActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(rv_product)
 
 
-        //val u_name = SharedPreferenceController.getUserName(this)
-        //tv_main_name.setText(u_name)
-        //tv_profile_name.setText(u_name)
+        val u_name = getUserName(this)
+        tv_main_name.text = u_name
+        tv_profile_name.text = u_name
 
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
@@ -126,9 +128,9 @@ class MainActivity : AppCompatActivity() {
             val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
 
             val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
-            eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator()).start()
+            eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
+                .start()
         }, 1000)
-
         //스크롤이 되었을 때 아이템의 크기가 변화된다.
         rv_product.addOnScrollListener(
             object : RecyclerView.OnScrollListener() {
@@ -201,7 +203,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<GetCardListResponse>, response: Response<GetCardListResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        var cardListDataList: ArrayList<CardListData> = response.body()!!.data!!
+                        var cardListDataList: ArrayList<CardListData> = response.body()!!.data
 
                         cardListAdapter = CardListAdapter(applicationContext, cardListDataList)
                         rvContents.adapter = cardListAdapter
