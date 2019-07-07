@@ -15,6 +15,7 @@ import android.widget.TextView
 
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
+import kotlinx.android.synthetic.main.fragment_lottery_second_timer.*
 import java.util.*
 
 class LotteryFirstTimerFragment : Fragment() {
@@ -27,6 +28,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
         Log.d(
             "onAttach",
             "mStartTimeInMillis    " + mStartTimeInMillis + "   mTimeLeftInMillis    " + mTimeLeftInMillis + "   mEndTime   " + mEndTime
@@ -71,7 +73,6 @@ class LotteryFirstTimerFragment : Fragment() {
         /*if(mTimerRunning){
             mEndTime = prefs.getLong("endTime", 0)
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis()
-
             if(mTimeLeftInMillis < 0){
                 mTimeLeftInMillis = 0
                 mTimerRunning = false
@@ -149,12 +150,11 @@ class LotteryFirstTimerFragment : Fragment() {
     private fun updateCountDownText() {
 
 
-
         var hours = (mTimeLeftInMillis / 1000) / 3600
         var minutes = ((mTimeLeftInMillis / 1000) % 3600) / 60
         var seconds = (mTimeLeftInMillis / 1000) % 60
 
-        var timeLeftFormatted : String = "00:00"
+        var timeLeftFormatted: String = "00:00"
 
         //60분이 넘으면 시간 까지 아니면 분, 초만 나온다.
         if (hours > 0) {
@@ -163,6 +163,6 @@ class LotteryFirstTimerFragment : Fragment() {
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
         }
 
-        tv_first_timer.text = timeLeftFormatted
+        tv_first_timer?.let{tv_first_timer.text = timeLeftFormatted}
     }
 }

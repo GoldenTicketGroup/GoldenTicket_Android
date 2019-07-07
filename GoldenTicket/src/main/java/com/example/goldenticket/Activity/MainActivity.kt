@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         rv_product.adapter = showMainRecyclerViewAdapter
         rv_product.setHasFixedSize(true)
         rv_product.layoutManager = linearLayoutManager
-        rv_product.addItemDecoration(MarginItemDecoration(110, 90))
+        rv_product.addItemDecoration(MarginItemDecoration(50, 50))
 
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_product)
