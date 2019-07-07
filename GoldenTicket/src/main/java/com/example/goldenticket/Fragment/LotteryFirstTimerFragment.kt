@@ -26,7 +26,6 @@ class LotteryFirstTimerFragment : Fragment() {
     var mTimeLeftInMillis = mStartTimeInMillis
     var mEndTime: Long = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.

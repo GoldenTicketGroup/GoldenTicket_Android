@@ -1,4 +1,4 @@
-package com.example.goldenticket.Network.Post
+package com.example.goldenticket.Network.Get
 
 import com.example.goldenticket.Data.CardDetailData
 
