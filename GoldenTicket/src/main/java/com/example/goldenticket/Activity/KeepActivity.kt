@@ -1,37 +1,16 @@
 package com.example.goldenticket.Activity
 
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MotionEvent
-import android.widget.Toolbar
-import androidx.core.view.get
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.goldenticket.Adapter.KeepStageRVAdapter
 import com.example.goldenticket.Data.KeepStageData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
-import com.example.goldenticket.Network.Post.DeleteShowLikeResponse
-import com.example.goldenticket.Network.Post.PostShowLikeResponse
-import com.example.goldenticket.R
 import com.example.goldenticket.etc.RecyclerViewDecoration
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_keep.*
-import kotlinx.android.synthetic.main.activity_keep.view.*
-import kotlinx.android.synthetic.main.activity_month_contents.*
-import kotlinx.android.synthetic.main.rv_keep_item.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.Boolean
 
 

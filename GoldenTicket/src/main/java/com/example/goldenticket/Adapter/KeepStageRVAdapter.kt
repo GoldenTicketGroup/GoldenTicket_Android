@@ -12,18 +12,15 @@ import com.bumptech.glide.Glide
 import com.example.goldenticket.Data.KeepStageData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
-import com.example.goldenticket.Network.Post.DeleteShowLikeResponse
+import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
 import com.example.goldenticket.Network.Post.PostShowLikeResponse
 import com.example.goldenticket.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.rv_keep_item.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.widget.TextView
-
 
 
 class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData>): RecyclerView.Adapter<KeepStageRVAdapter.Holder>() {
