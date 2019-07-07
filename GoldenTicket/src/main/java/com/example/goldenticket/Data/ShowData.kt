@@ -5,6 +5,5 @@ data class ShowData(
     var image_url: String,
     var name: String,
     var location: String,
-    var running_time: ArrayList<String>
+    var running_time: String
 )
-

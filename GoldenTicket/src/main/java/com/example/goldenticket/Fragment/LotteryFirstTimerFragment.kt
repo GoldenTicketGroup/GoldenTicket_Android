@@ -81,7 +81,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
-                tv_first_timer.text = "당첨 확인을 해주세요"
+                tv_first_timer?.let{tv_first_timer.text = "당첨 확인을 해주세요"}
             }
 
             override fun onTick(p0: Long) {
