@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.activity_my_lottery_payment.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
+import org.jetbrains.anko.startActivity
 
 class MyLotteryPaymentActivity : AppCompatActivity() {
 
@@ -17,11 +18,11 @@ class MyLotteryPaymentActivity : AppCompatActivity() {
 
         tb_title.text = "당첨 티켓"
         iv_back.setOnClickListener {
-            finish()
+            startActivity<MainActivity>()
         }
 
         btn_mylottery_payment_submit.setOnClickListener {
-            finish()
+            startActivity<MainActivity>()
         }
     }
 }
