@@ -30,11 +30,7 @@ class ShowMainRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Show
             .into(holder.poster)
         holder.show_name.text = dataList[position].name
         holder.location.text = dataList[position].location
-        holder.time.text = dataList[position].running_time[0]
-
-        if (dataList[position].running_time.size > 1) {
-            holder.time2.text = " / " + dataList[position].running_time[1]
-        }
+        holder.time.text = dataList[position].running_time
 
         holder.container.setOnClickListener {
 
