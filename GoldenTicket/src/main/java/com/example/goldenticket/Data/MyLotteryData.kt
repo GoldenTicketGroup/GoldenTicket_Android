@@ -1,5 +1,5 @@
 package com.example.goldenticket.Data
-data class LotteryConfirmData (
+data class MyLotteryData (
     var stageinfo_poster: String,
     var stageinfo_date: String,
     var stageinfo_title: String,

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import com.example.goldenticket.Data.LotteryConfirmData
 import com.example.goldenticket.Data.LotteryConfirmVPData
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.vp_lottery_confirm.view.*

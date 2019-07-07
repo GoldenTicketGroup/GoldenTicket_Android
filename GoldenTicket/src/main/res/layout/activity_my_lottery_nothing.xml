@@ -6,13 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Activity.LotteryConfirmActivity">
+        tools:context=".Activity.MyLotteryNothingActivity">
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <ImageButton
-                android:id="@+id/ibtn_lotteryconfirm_close"
+                android:id="@+id/ibtn_mylottery_nothing_close"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginTop="13dp"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
         <TextView
-                android:id="@+id/tv_lotteryconfirm_title"
+                android:id="@+id/tv_mylottery_nothing_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp">
         <ImageView
-                android:id="@+id/iv_lotteryconfirm_character"
+                android:id="@+id/iv_mylottery_nothing_character"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -52,32 +52,20 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
-                android:id="@+id/tv_lotteryconfirm_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="37dp"
-                android:layout_centerHorizontal="true"
-                android:text="매일매일 새로운 행운의 기회가\n쏟아지고 있어요!"
-                android:textAlignment="center"
-                android:textSize="12sp"
-                android:textColor="@color/font_detail"
-                android:lineSpacingExtra="5dp"
-                android:fontFamily="@font/notosans_light"/>
-        <TextView
-                android:id="@+id/tv_lotteryconfirm_congrate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="19dp"
-                android:layout_centerHorizontal="true"
-                android:visibility="invisible"
-                android:text="축하합니다!"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/colorCoral"
-                android:lineSpacingExtra="5dp"
-                android:fontFamily="@font/notosans_light"/>
+    <TextView
+            android:id="@+id/tv_mylottery_nothing_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:layout_centerHorizontal="true"
+            android:text="매일매일 새로운 행운의 기회가\n쏟아지고 있어요!"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="@color/font_detail"
+            android:lineSpacingExtra="5dp"
+            android:fontFamily="@font/notosans_light"/>
     </RelativeLayout>
+
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,7 +78,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorYellow" />
         <TextView
-                android:id="@+id/tv_lotteryconfirm_highlight"
+                android:id="@+id/tv_mylottery_nothing_highlight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -108,20 +96,7 @@
             android:layout_marginBottom="40dp"
             android:layout_marginTop="65dp">
         <Button
-                android:id="@+id/btn_lotteryconfirm_stagelike"
-                android:layout_width="263.5dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="10dp"
-                android:layout_above="@+id/btn_lotteryconfirm_stagelist"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/style_lotteryconfirm_btn_grey"
-                android:text="관심있는 공연으로 추가하기"
-                android:textSize="15sp"
-                android:textColor="@color/font_detail"
-                android:fontFamily="@font/notosans_medium"
-                style="@style/Base.Widget.AppCompat.Button.Borderless" />
-        <Button
-                android:id="@+id/btn_lotteryconfirm_stagelist"
+                android:id="@+id/btn_mylottery_nothing_stagelist"
                 android:layout_width="263.5dp"
                 android:layout_height="35dp"
                 android:layout_alignParentBottom="true"

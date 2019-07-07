@@ -8,10 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.goldenticket.Data.LotteryConfirmData
+import com.example.goldenticket.Data.MyLotteryData
 import com.example.goldenticket.R
 
-class LotteryConfirmRVAdapter(val ctx: Context, val dataList: ArrayList<LotteryConfirmData>): RecyclerView.Adapter<LotteryConfirmRVAdapter.Holder>() {
+class LotteryConfirmRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotteryData>): RecyclerView.Adapter<LotteryConfirmRVAdapter.Holder>() {
 
     interface ItemClick
     {

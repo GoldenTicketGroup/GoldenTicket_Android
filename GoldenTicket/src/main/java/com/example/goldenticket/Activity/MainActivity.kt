@@ -38,6 +38,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /** 상단 티켓 아이콘 **/
+        iv_main_ticket.onClick {
+            // status: 1 = 응모 전, 2 = 결제 전, 3 = 결제 완료
+            var status = 1
+            when(status) {
+                1 -> {
+                    startActivity<MyLotteryNothingActivity>()
+                }
+                2 -> {
+                    startActivity<MyLotteryPaymentActivity>()
+                }
+                3 -> {
+                    startActivity<MyLotteryDetailActivity>()
+                }
+            }
+        }
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
         configureShowRV()
