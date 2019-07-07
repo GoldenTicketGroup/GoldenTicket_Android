@@ -35,7 +35,6 @@ class LotterySecondTimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lottery_second_timer, container, false)
-
     }
     //화면이 다시 돌아왔을 때 남은 시간와 타이머 상태를 가져온다.
     //타이머 텍스트와 버튼 상태를 다시 설정한다.
@@ -50,8 +49,8 @@ class LotterySecondTimerFragment : Fragment() {
         mTimeLeftInMillis = mEndTime - System.currentTimeMillis()
         updateCountDownText()
         startTimer()
-    }
 
+    }
 
     override fun onStop() {
         super.onStop()
@@ -61,7 +60,6 @@ class LotterySecondTimerFragment : Fragment() {
         editor.putLong("startTimeInMillis", mStartTimeInMillis)
         editor.putLong("millisLeft", mTimeLeftInMillis)
         editor.putLong("endTime", mEndTime)
-
         editor.apply()
 
         mCountDownTimer?.cancel()
@@ -89,7 +87,6 @@ class LotterySecondTimerFragment : Fragment() {
 
     //남은 시간을 화면에 출력한다.
     private fun updateCountDownText() {
-
 
         var hours = (mTimeLeftInMillis / 1000) / 3600
         var minutes = ((mTimeLeftInMillis / 1000) % 3600) / 60

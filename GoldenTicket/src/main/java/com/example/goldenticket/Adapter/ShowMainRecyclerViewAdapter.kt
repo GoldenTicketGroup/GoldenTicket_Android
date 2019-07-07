@@ -45,6 +45,5 @@ class ShowMainRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Show
         var show_name = itemView.findViewById(R.id.tv_rv_item_name) as TextView
         var location = itemView.findViewById(R.id.tv_rv_item_location) as TextView
         var time = itemView.findViewById(R.id.tv_rv_item_time) as TextView
-        var time2 = itemView.findViewById(R.id.tv_rv_item_time2) as TextView
     }
 }

@@ -9,7 +9,7 @@
         android:background="@drawable/imgback_splash">
     <ImageView
             android:id="@+id/iv_splash"
-            android:src="@drawable/character_splash"
+            android:src="@drawable/splash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

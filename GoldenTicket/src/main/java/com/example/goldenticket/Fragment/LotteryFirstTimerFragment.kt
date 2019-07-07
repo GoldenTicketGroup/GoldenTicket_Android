@@ -64,7 +64,6 @@ class LotteryFirstTimerFragment : Fragment() {
         editor.putLong("startTimeInMillis", mStartTimeInMillis)
         editor.putLong("millisLeft", mTimeLeftInMillis)
         editor.putLong("endTime", mEndTime)
-
         editor.apply()
 
         mCountDownTimer?.cancel()

@@ -88,22 +88,6 @@
                 android:textColor="#ffffff"
                 android:textSize="11sp" />
 
-            <ImageView
-                    android:id="@+id/iv_slash_main"
-                    android:visibility="gone"
-                    android:layout_marginHorizontal="1dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/slash_main"/>
-
-            <TextView
-                    android:id="@+id/tv_rv_item_time2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_light"
-                    android:textColor="#ffffff"
-                    android:textSize="11sp" />
         </LinearLayout>
 
 

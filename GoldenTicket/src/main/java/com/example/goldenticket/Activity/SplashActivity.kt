@@ -22,7 +22,11 @@ class SplashActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splash)
 
-        Glide.with(this).load(R.drawable.splash).into(iv_splash)
+
+        Glide.with(this)
+            .load(R.drawable.splash)
+            .into(iv_splash)
+
     }
 
     override fun onStart() {
