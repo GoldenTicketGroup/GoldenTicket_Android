@@ -2,6 +2,7 @@ package com.example.goldenticket.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.goldenticket.DB.SharedPreferenceController.getUserEmail
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
@@ -12,10 +13,24 @@ import org.jetbrains.anko.toast
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import android.widget.TextView
-
+import com.example.goldenticket.DB.SharedPreferenceController
+import com.example.goldenticket.DB.SharedPreferenceController.getUserToken
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.NetworkService
+import com.example.goldenticket.Network.Put.PutUserResponse
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class UserUpdateActivity : AppCompatActivity() {
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     //이메일 형식 정규화
     val VALID_EMAIL_ADDRESS_REGEX: Pattern =
@@ -43,15 +58,12 @@ class UserUpdateActivity : AppCompatActivity() {
 
 
             //서버에게 요청
-            /* if (isValid(update_u_name, update_u_email,update_u_phone))
-                 putUserResponse(update_u_name, update_u_email,update_u_phone)*/
+            if (isValid(update_u_name, update_u_email, update_u_phone))
+                putUserResponse(update_u_name, update_u_email, update_u_phone)
         }
         et_userupdate_name.setText(getUserName(this), TextView.BufferType.EDITABLE)
         et_userupdate_phone.setText(getUserPhone(this), TextView.BufferType.EDITABLE)
         et_userupdate_email.setText(getUserEmail(this), TextView.BufferType.EDITABLE)
-        /*et_userupdate_name.text = getUserName(this) as Editable
-        et_userupdate_phone.text = getUserPhone(this) as Editable
-        et_userupdate_email.text = getUserEmail(this) as Editable*/
     }
 
     //이메일 형식인지 유효성 검사
@@ -93,7 +105,7 @@ class UserUpdateActivity : AppCompatActivity() {
     }
 
     //서버에 사용자 업데이트 요청
-    /*fun putUserResponse(u_name: String, u_email: String, u_phone:String) {
+    fun putUserResponse(u_name: String, u_email: String, u_phone: String) {
 
         //id,password를 받아서 JSON객체로 만든다.
         var jsonObject = JSONObject()
@@ -101,27 +113,29 @@ class UserUpdateActivity : AppCompatActivity() {
         jsonObject.put("email", u_email)
         jsonObject.put("phone", u_phone)
 
+        var token = getUserToken(this)
+
         //networkService를 통해 실제로 통신을 요청
         //application/x-www-form-urlencoded 는 해더로 전송된다.
         //gsonObject 는 body로 전송된다.
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val putUserResponse: Call<PutUserResponse> =
-            networkService.putUserResponse("application/json", gsonObject)
+            networkService.putUserResponse("application/json", token, gsonObject)
 
         putUserResponse.enqueue(object : Callback<PutUserResponse> {
             override fun onFailure(call: Call<PutUserResponse>, t: Throwable) {
-                Log.e("update user failed",t.toString())
+                Log.e("update user failed", t.toString())
             }
 
             override fun onResponse(call: Call<PutUserResponse>, response: Response<PutUserResponse>) {
-                if(response.isSuccessful){
-                    if(response.body()!!.status == 201){
-                        //Request Login
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        //Request UserUpdate
                         SharedPreferenceController.setUserInfo(applicationContext, response.body()!!.data!!)
-                        finish()
+                        toast("수정이 되었습니다.")
                     }
                 }
             }
         })
-    }*/
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.goldenticket.Fragment
 
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -10,15 +9,32 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.TextView
+import com.example.goldenticket.Data.LotteryListData
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.Get.GetLotteryListResponse
+import com.example.goldenticket.Network.NetworkService
 
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
-import kotlinx.android.synthetic.main.fragment_lottery_second_timer.*
+import retrofit2.Call
+import retrofit2.Response
+import java.text.DateFormat
 import java.util.*
 
 class LotteryFirstTimerFragment : Fragment() {
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
+    lateinit var start_time: String
+
+
+    val nowSeconds: Long
+        get() = Calendar.getInstance().timeInMillis / 1000
+
 
     var mStartTimeInMillis: Long = 60000 * 10 //10분으로 설정
     var mCountDownTimer: CountDownTimer? = null
@@ -75,12 +91,14 @@ class LotteryFirstTimerFragment : Fragment() {
     //카운트 다운 실행 중 일때 남은 시간을 화면에 보여주어야 한다.
     //카운트 다운이 완료가 되었을 때 버튼의 상태가 바껴야 한다.
     private fun startTimer() {
+        getMainLotteryListResponse()
+
         //현재 시간(초)에 남은 시간을 더한다.
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
 
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
-                tv_first_timer?.let{tv_first_timer.text = "당첨 확인을 해주세요"}
+                tv_first_timer?.let{tv_first_timer.text = "당첨 확인"}
             }
 
             override fun onTick(p0: Long) {
@@ -108,5 +126,28 @@ class LotteryFirstTimerFragment : Fragment() {
         }
 
         tv_first_timer?.let{tv_first_timer.text = timeLeftFormatted}
+    }
+
+    private fun getMainLotteryListResponse(){
+        val getMainLotteryListResponse = networkService.getLotteryListResponse(
+            "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
+        getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
+            override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
+                Log.e("Lottery List Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetLotteryListResponse>, response: Response<GetLotteryListResponse>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        Log.e("Lottery List", "##################333")
+                        val tmp: ArrayList<LotteryListData> = response.body()!!.data
+                        if (tmp != null) {
+                            tv_first_timer_title.text = response.body()!!.data.get(0).name
+                            start_time = response.body()!!.data.get(0).start_time
+                        }
+                    }
+                }
+            }
+        })
     }
 }

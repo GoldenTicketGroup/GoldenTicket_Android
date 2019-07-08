@@ -1,6 +1,7 @@
 package com.example.goldenticket.Network
 
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
+import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
 import com.example.goldenticket.Network.Get.GetMyLotteryDetailResponse
@@ -10,6 +11,7 @@ import com.example.goldenticket.Network.Get.GetCardDetailResponse
 import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.example.goldenticket.Network.Post.PostLoginResponse
 import com.example.goldenticket.Network.Post.PostSignupResponse
+import com.example.goldenticket.Network.Put.PutUserResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -83,6 +85,22 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Path("id") show_idx: Int
     ): Call<GetStageInfoResponse>
+
+    //공연 상세 좋아효
+    //@POST
+
+    //회원정보 수정
+    @PUT("/auth/user")
+    fun putUserResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: JsonObject
+    ): Call<PutUserResponse>
+    @GET("/lottery")
+    fun getLotteryListResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String
+    ): Call<GetLotteryListResponse>
 
     //공연내역 리스트 조회
     @GET("/ticket")

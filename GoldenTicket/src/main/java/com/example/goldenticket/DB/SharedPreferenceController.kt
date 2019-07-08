@@ -32,9 +32,9 @@ object SharedPreferenceController {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         return preference.getString("u_email","")
     }
-    fun getUserToken(ctx: Context): String? {
+    fun getUserToken(ctx: Context): String {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        return preference.getString("u_token","")
+        return preference.getString("u_token","")!!
     }
     fun getUserPhone(ctx: Context): String? {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
