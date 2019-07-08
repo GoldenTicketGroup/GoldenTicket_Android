@@ -15,7 +15,12 @@
             android:usesCleartextTraffic="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".Activity.MyLotteryDetailActivity">
+        </activity>
+        <activity android:name=".Activity.MyLotteryPaymentActivity">
+        </activity>
+        <activity android:name=".Activity.MyLotteryNothingActivity">
+        </activity>
         <activity android:name=".Activity.LotteryNoticeActivity">
         </activity>
 
@@ -25,10 +30,6 @@
 
         <activity android:name=".Activity.LotteryCompleteActivity">
         </activity>
-        <activity android:name=".Activity.LotteryConfirmPaymentActivity">
-        </activity>
-        <activity android:name=".Activity.LotteryConfirmDetailActivity">
-        </activity>
         <activity android:name=".Activity.MyLotteryActivity">
 
         </activity>
@@ -37,13 +38,10 @@
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
         </activity>
-        <activity android:name=".Activity.UserUpdateActivity">
-
-        </activity>
+        <activity android:name=".Activity.UserUpdateActivity"/>
 
         <activity android:name=".Activity.ContentActivity"
                   android:theme="@style/ContentsActivityTheme">
-
         </activity>
         <activity android:name=".Activity.NoticeActivity"/>
         <activity android:name=".Activity.QuestionActivity"/>
@@ -51,9 +49,12 @@
         <activity android:name=".Activity.StageInfoActivity">
 
         </activity>
-        <activity
-                android:name=".Activity.KeepActivity">
+        <activity android:name=".Activity.KeepActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".Activity.SettingsActivity"
@@ -71,18 +72,12 @@
         <activity
                 android:name=".Activity.LoginActivity"
                 android:windowSoftInputMode="adjustResize">
-
         </activity>
         <activity android:name=".Activity.SplashActivity">
 
         </activity>
         <activity android:name=".Activity.MainActivity"
                   android:theme="@style/StatusYellowTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
 
         </activity>
     </application>

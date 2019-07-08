@@ -31,8 +31,8 @@ class CardListAdapter(val ctx: Context, val dataList: ArrayList<CardListData>): 
             .load(dataList[position].imageUrl)
             .into(holder.img)
 
-        holder.title.text = dataList[position].category
-        holder.comment.text = dataList[position].title
+        holder.title.text = dataList[position].title
+        holder.category.text = dataList[position].category
 
         holder.cv.setOnClickListener {
             ctx.startActivity<ContentActivity>(
@@ -45,7 +45,7 @@ class CardListAdapter(val ctx: Context, val dataList: ArrayList<CardListData>): 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
         var cv = itemView.findViewById(R.id.cvCard) as CardView
         var title  = itemView.findViewById(R.id.tvTitle) as TextView
-        var comment  = itemView.findViewById(R.id.tvComment) as TextView
-        var img = itemView.findViewById(R.id.ivContents) as ImageView
+        var category  = itemView.findViewById(R.id.tvCategory) as TextView
+        var img = itemView.findViewById(R.id.ivCard) as ImageView
     }
 }
