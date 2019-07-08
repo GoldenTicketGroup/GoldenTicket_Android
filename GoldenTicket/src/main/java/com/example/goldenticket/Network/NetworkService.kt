@@ -8,7 +8,6 @@ import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.Get.GetStageInfoResponse
 import com.example.goldenticket.Network.Get.GetCardDetailResponse
 import com.example.goldenticket.Network.Get.GetCardListResponse
-import com.example.goldenticket.Network.Get.GetContentDetailResponse
 import com.example.goldenticket.Network.Post.PostLoginResponse
 import com.example.goldenticket.Network.Post.PostSignupResponse
 import com.google.gson.JsonObject
@@ -70,13 +69,12 @@ interface NetworkService {
 
 
     // 좋아요 취소
-    @HTTP(method = "DELETE", path = "/api/analysis_delete", hasBody = true)
+    @HTTP(method = "DELETE", path = "show/like", hasBody = true)
     fun deleteShowLike(
         @Header("Content-Type") content_type: String,
         @Header("token") user_token: String,
         @Body() body:JsonObject
     ): Call<DeleteShowLikeResponse>
-//    @DELETE("show/like")
 
 
     //공연 상세
