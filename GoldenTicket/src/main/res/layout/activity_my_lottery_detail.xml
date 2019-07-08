@@ -6,24 +6,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Activity.LotteryConfirmDetailActivity">
+        tools:context=".Activity.MyLotteryDetailActivity">
 
     <include layout="@layout/toolbar_drawer"
              android:id="@+id/tb_mylottery_detail"/>
 
-    <ImageView
-            android:id="@+id/iv_mylottery_detail_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/cv_mylottery_detail_poster"
+            android:layout_width="277.6dp"
+            android:layout_height="361.5dp"
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/tb_mylottery_detail"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/tb_mylottery_detail"
-            android:background="@drawable/poster_ticket_benhur" />
+            app:cardCornerRadius="10dp">
+        <ImageView
+                android:id="@+id/iv_mylottery_poster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/poster_benhur_info"
+                android:layout_alignStart="@+id/cv_mylottery_poster"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/style_mylottery_detail_ticket"/>
+    </androidx.cardview.widget.CardView>
 
     <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/iv_mylottery_detail_poster">
+            android:layout_below="@+id/cv_mylottery_detail_poster">
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -120,6 +134,7 @@
                     android:layout_marginRight="31dp"
                     android:layout_marginTop="26dp">
                 <TextView
+                        android:id="@+id/tv_mylottery_detail_seat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="객석 1층 15열 6번"
@@ -127,6 +142,7 @@
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/notosans_medium"/>
                 <ImageView
+                        android:id="@+id/iv_mylottery_detail_qrcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

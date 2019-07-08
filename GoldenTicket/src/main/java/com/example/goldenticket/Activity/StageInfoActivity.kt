@@ -32,8 +32,6 @@ import retrofit2.Response
 
 class StageInfoActivity : AppCompatActivity(){
 
-    val jsonObject = JSONObject()
-
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
@@ -195,15 +193,13 @@ class StageInfoActivity : AppCompatActivity(){
                 val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
                 behavior.setPeekHeight(0)
             }
-
-
         }
 
     }
 
     private fun getStageInfoResponse() {
         val show_idx: Int = 20
-        val getStageInfoResponse = networkService.getStageInfoResponse("application/json", 20)
+        val getStageInfoResponse = networkService.getStageInfoResponse("application/json", show_idx)
         getStageInfoResponse.enqueue(object: Callback<GetStageInfoResponse> {
 
             override fun onFailure(call: Call<GetStageInfoResponse>, t: Throwable) {
@@ -226,6 +222,7 @@ class StageInfoActivity : AppCompatActivity(){
                         tv_stageinfo_title.text = response.body()!!.data.name
                         tv_stageinfo_costprice.text = response.body()!!.data.original_price + "원"
                         tv_stageinfo_saleprice.text = response.body()!!.data.discount_price + "원"
+
                         //schedule 객체 안에, start, end, draw-available property로 처리
                         tv_stageinfo_location.text = response.body()!!.data.location
 
@@ -235,7 +232,8 @@ class StageInfoActivity : AppCompatActivity(){
                         Log.e("StageInfoActivity::", "getStageInfoResponse::imgs:: " + imgs.toString())
 
                         setRecyclerView()
-                        setBottomSheet(1) //status draw-available로 받아서 처리
+                        //0: 응모 불가, 1: 응모 가능
+                        setBottomSheet(response.body()!!.data.draw_available) //status draw-available로 받아서 처리
                         setSpinner()
                     }
                     else {
