@@ -9,22 +9,22 @@
         tools:context=".Activity.LotteryConfirmDetailActivity">
 
     <include layout="@layout/toolbar_drawer"
-             android:id="@+id/tb_lotteryconfirmdetail"/>
+             android:id="@+id/tb_mylottery_payment"/>
 
     <RelativeLayout
-            android:id="@+id/rl_lotteryconfirmpayment_top"
+            android:id="@+id/rl_mylottery_payment_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tb_lotteryconfirmdetail">
+            android:layout_below="@+id/tb_mylottery_payment">
         <ImageView
-                android:id="@+id/iv_lotteryconfirmpayment_poster"
+                android:id="@+id/iv_mylottery_payment_poster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/img_ticket_body" />
         <TextView
-                android:id="@+id/tv_lotteryconfirmpayment_title"
+                android:id="@+id/tv_mylottery_payment_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -39,9 +39,9 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="35.3dp"
                 android:layout_marginRight="34.5dp"
-                android:layout_below="@+id/tv_lotteryconfirmpayment_title"
-                android:layout_alignStart="@+id/iv_lotteryconfirmpayment_poster"
-                android:layout_alignEnd="@+id/iv_lotteryconfirmpayment_poster">
+                android:layout_below="@+id/tv_mylottery_payment_title"
+                android:layout_alignStart="@+id/iv_mylottery_payment_poster"
+                android:layout_alignEnd="@+id/iv_mylottery_payment_poster">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                     android:textColor="@color/font_detail"
                     android:fontFamily="@font/notosans_medium"/>
             <TextView
-                    android:id="@+id/tv_lotteryconfirmpayment_price"
+                    android:id="@+id/tv_mylottery_payment_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6.3dp"
@@ -131,9 +131,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/rl_lotteryconfirmpayment_top">
+            android:layout_below="@id/rl_mylottery_payment_top">
         <ImageView
-                android:id="@+id/iv_lotteryconfirmpayment_ticket"
+                android:id="@+id/iv_mylottery_payment_ticket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp">
             <LinearLayout
-                    android:id="@+id/ll_lotteryconfirmpayment_bold"
+                    android:id="@+id/ll_mylottery_payment_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true">
@@ -173,7 +173,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll_lotteryconfirmpayment_bold"
+                    android:layout_below="@+id/ll_mylottery_payment_bold"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="8dp"
                     android:lineSpacingExtra="8dp"
@@ -186,7 +186,7 @@
     </RelativeLayout>
 
     <Button
-            android:id="@+id/btn_lotteryconfirmdetail_submit"
+            android:id="@+id/btn_mylottery_payment_submit"
             android:layout_width="277.5dp"
             android:layout_height="35dp"
             android:layout_marginBottom="21dp"

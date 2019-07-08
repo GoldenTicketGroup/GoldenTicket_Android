@@ -27,6 +27,7 @@ class LotteryConfirmAdapter(fm : FragmentManager, private val num_fragment:Int) 
     }
 
 
+
     override fun getItem(p0: Int): Fragment {
         return when(p0) {
             0 -> getLotteryFirstTimerFragment()
@@ -67,4 +68,3 @@ class LotteryConfirmAdapter(fm : FragmentManager, private val num_fragment:Int) 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
     }*/
-

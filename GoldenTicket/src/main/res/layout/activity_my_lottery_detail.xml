@@ -6,24 +6,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Activity.LotteryConfirmDetailActivity">
+        tools:context=".Activity.MyLotteryDetailActivity">
 
     <include layout="@layout/toolbar_drawer"
-             android:id="@+id/tb_lotteryconfirmdetail"/>
+             android:id="@+id/tb_mylottery_detail"/>
 
-    <ImageView
-            android:id="@+id/iv_lotteryconfirmdetail_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+            android:id="@+id/cv_mylottery_detail_poster"
+            android:layout_width="277.6dp"
+            android:layout_height="361.5dp"
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/tb_mylottery_detail"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/tb_lotteryconfirmdetail"
-            android:background="@drawable/poster_ticket_benhur" />
+            app:cardCornerRadius="10dp">
+        <ImageView
+                android:id="@+id/iv_mylottery_detail_poster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/poster_benhur_info"
+                android:layout_alignStart="@+id/cv_mylottery_poster"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/style_mylottery_detail_ticket"/>
+    </androidx.cardview.widget.CardView>
 
     <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/iv_lotteryconfirmdetail_poster">
+            android:layout_below="@+id/cv_mylottery_detail_poster">
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,7 +53,7 @@
                     android:layout_marginTop="26dp"
                     android:layout_centerVertical="true">
                 <TextView
-                        android:id="@+id/tv_lotteryconfirmdetail_date"
+                        android:id="@+id/tv_mylottery_detail_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2019년 6월 15일"
@@ -48,7 +61,7 @@
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/notosans_light"/>
                 <TextView
-                        android:id="@+id/tv_lotteryconfirmdetail_title"
+                        android:id="@+id/tv_mylottery_detail_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="뮤지컬 벤허"
@@ -56,7 +69,7 @@
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/notosans_medium"/>
                 <TextView
-                        android:id="@+id/tv_lotteryconfirmdetail_detail"
+                        android:id="@+id/tv_mylottery_detail_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="13dp"
@@ -78,7 +91,7 @@
                                 android:src="@drawable/icon_location_coral"/>
                     </RelativeLayout>
                     <TextView
-                            android:id="@+id/tv_lotteryconfirmdetail_location"
+                            android:id="@+id/tv_mylottery_detail_location"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="7dp"
@@ -101,7 +114,7 @@
                                 android:src="@drawable/icon_time_coral"/>
                     </RelativeLayout>
                     <TextView
-                            android:id="@+id/tv_lotteryconfirmdetail_time"
+                            android:id="@+id/tv_mylottery_detail_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
@@ -120,6 +133,7 @@
                     android:layout_marginRight="31dp"
                     android:layout_marginTop="26dp">
                 <TextView
+                        android:id="@+id/tv_mylottery_detail_seat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="객석 1층 15열 6번"
@@ -127,6 +141,7 @@
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/notosans_medium"/>
                 <ImageView
+                        android:id="@+id/iv_mylottery_detail_qrcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -136,7 +151,7 @@
     </FrameLayout>
 
     <Button
-            android:id="@+id/btn_lotteryconfirmdetail_submit"
+            android:id="@+id/btn_mylottery_detail_submit"
             android:layout_width="277.5dp"
             android:layout_height="35dp"
             android:layout_marginBottom="21dp"

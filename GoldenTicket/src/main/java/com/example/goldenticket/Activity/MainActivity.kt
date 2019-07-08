@@ -48,6 +48,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /** 상단 티켓 아이콘 **/
+        iv_main_ticket.onClick {
+            // status: 1 = 응모 전, 2 = 결제 전, 3 = 결제 완료
+            var status = 1
+            when(status) {
+                1 -> {
+                    startActivity<MyLotteryNothingActivity>()
+                }
+                2 -> {
+                    startActivity<MyLotteryPaymentActivity>()
+                }
+                3 -> {
+                    startActivity<MyLotteryDetailActivity>()
+                }
+            }
+        }
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_product)
 
@@ -168,8 +184,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
     private fun configureLotteryConfirmVP() {
 
         btnVisibilityCheck(vpLotteryConfirm.currentItem)
@@ -188,8 +202,7 @@ class MainActivity : AppCompatActivity() {
             btnVisibilityCheck(vpLotteryConfirm.currentItem)
         }
     }
-
-    private fun configureMainContentsRV() {
+    private fun configureMainContentsRV(){
 
         lateinit var cardListAdapter: CardListAdapter
 
@@ -238,7 +251,7 @@ class MainActivity : AppCompatActivity() {
             startActivity<UserUpdateActivity>()
         }
         rl_win.setOnClickListener {
-            startActivity<LotteryConfirmActivity>()
+            startActivity<MyLotteryActivity>()
         }
         rl_like.setOnClickListener {
             startActivity<KeepActivity>()

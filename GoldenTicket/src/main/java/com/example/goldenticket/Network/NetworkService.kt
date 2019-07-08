@@ -3,6 +3,12 @@ package com.example.goldenticket.Network
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
 import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
+import com.example.goldenticket.Network.Get.GetMyLotteryDetailResponse
+import com.example.goldenticket.Network.Get.GetMyLotteryResponse
+import com.example.goldenticket.Network.Get.GetStageInfoResponse
+import com.example.goldenticket.Network.Get.GetCardDetailResponse
+import com.example.goldenticket.Network.Get.GetCardListResponse
+import com.example.goldenticket.Network.Get.GetContentDetailResponse
 import com.example.goldenticket.Network.Post.PostLoginResponse
 import com.example.goldenticket.Network.Post.PostSignupResponse
 import com.google.gson.JsonObject
@@ -80,6 +86,18 @@ interface NetworkService {
         @Path("id") show_idx: Int
     ): Call<GetStageInfoResponse>
 
-    //공연 상세 좋아효
-    //@POST
+    //공연내역 리스트 조회
+    @GET("/ticket")
+    fun getMyLotteryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
+    ): Call<GetMyLotteryResponse>
+
+    //공연내역 상세 조회
+    @GET("/ticket/{id}")
+    fun getMyLotteryDetailResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("id") ticket_idx: Int
+    ): Call<GetMyLotteryDetailResponse>
 }

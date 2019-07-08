@@ -9,6 +9,7 @@ class ApplicationController : Application(){
     //manifests에 name속성 설정하기
     //통신하고자 하는 API 서버의 기본 주소
     private val baseURL ="https://goldenticket.ga"
+
     lateinit var networkService: NetworkService
 
     companion object{
