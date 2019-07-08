@@ -110,8 +110,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             <TextView
@@ -119,12 +119,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_marginHorizontal="6dp"
-                    android:text="로맨"
+                    android:text="로맨스"
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             <TextView
@@ -136,8 +136,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             </LinearLayout>
@@ -145,7 +145,6 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="11dp">
         <LinearLayout
                 android:layout_width="wrap_content"
@@ -160,8 +159,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             <TextView
@@ -173,8 +172,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             <TextView
@@ -186,8 +185,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             <TextView
@@ -199,8 +198,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
         </LinearLayout>
@@ -223,8 +222,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             <TextView
@@ -236,8 +235,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
             <TextView
@@ -250,8 +249,8 @@
                     android:textSize="15sp"
                     android:textColor="#6e6e6e"
                     android:fontFamily="@font/notosans_light"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:gravity="center"
                     android:background="@drawable/style_search_tags_bg"/>
         </LinearLayout>

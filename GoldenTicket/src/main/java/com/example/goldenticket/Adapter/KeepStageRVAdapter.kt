@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.goldenticket.Activity.StageInfoActivity
 import com.example.goldenticket.Data.KeepStageData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
@@ -22,6 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+import org.jetbrains.anko.startActivity
 
 class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData>): RecyclerView.Adapter<KeepStageRVAdapter.Holder>() {
     val networkService: NetworkService by lazy {
@@ -29,7 +31,11 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): Holder {
-        val view: View = LayoutInflater.from(ctx).inflate(com.example.goldenticket.R.layout.rv_keep_item,viewGroup,false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_keep_item,viewGroup,false)
+        view.setOnClickListener {
+            //해당 포지션의 show_idx를 stageinfo의 path variable로 전달
+            view.context.startActivity<StageInfoActivity>("idx" to 20) //TODO: idx 서버에서 받아서 수정
+        }
         return Holder(view)
     }
 
@@ -39,7 +45,7 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         Glide.with(ctx)
-            .load(com.example.goldenticket.R.drawable.test)
+            .load(R.drawable.test)
             .into(holder.img_thumbnail)
         holder.btn_like.isSelected = true
 
@@ -111,8 +117,6 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
             }
         }
     }
-
-
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
         var img_thumbnail = itemView.findViewById(com.example.goldenticket.R.id.ivKeepStage) as ImageView
