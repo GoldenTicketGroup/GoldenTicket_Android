@@ -32,6 +32,13 @@ interface NetworkService {
     ): Call<PostSignupResponse>
 
 
+    //관심있는 공연 조회
+    @GET("/show/heart")
+    fun getKeepShow(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String
+    ): Call<GetKeepShowResponse>
+
     //메인 뷰의 공연 리스트 조회
     @GET("/show/home")
     fun getMainPosterResponse(
