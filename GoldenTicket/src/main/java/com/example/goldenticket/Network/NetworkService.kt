@@ -1,6 +1,7 @@
 package com.example.goldenticket.Network
 
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
+import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
 import com.example.goldenticket.Network.Post.PostLoginResponse
@@ -83,4 +84,10 @@ interface NetworkService {
 
     //공연 상세 좋아효
     //@POST
+
+    @GET("/lottery")
+    fun getLotteryListResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String
+    ): Call<GetLotteryListResponse>
 }

@@ -124,13 +124,14 @@ class MainActivity : AppCompatActivity() {
 
         //recyclerView의 초기 상태를 설정한다.
         val handler = Handler()
-        handler.postDelayed({
+        rv_product.findViewHolderForAdapterPosition(0)?.let{handler.postDelayed({
             val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
 
             val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
             eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
                 .start()
-        }, 1000)
+        }, 1000)}
+
         //스크롤이 되었을 때 아이템의 크기가 변화된다.
         rv_product.addOnScrollListener(
             object : RecyclerView.OnScrollListener() {
@@ -302,5 +303,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }}
+    }
+}
 
