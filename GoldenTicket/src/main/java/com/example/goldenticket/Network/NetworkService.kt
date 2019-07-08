@@ -5,6 +5,7 @@ import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
 import com.example.goldenticket.Network.Post.PostLoginResponse
 import com.example.goldenticket.Network.Post.PostSignupResponse
+import com.example.goldenticket.Network.Put.PutUserResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -83,4 +84,12 @@ interface NetworkService {
 
     //공연 상세 좋아효
     //@POST
+
+    //회원정보 수정
+    @PUT("/auth/user")
+    fun putUserResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: JsonObject
+    ): Call<PutUserResponse>
 }
