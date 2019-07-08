@@ -9,9 +9,9 @@
         android:layout_gravity="center_horizontal">
 
     <TextView
-            android:id="@+id/tvContentItemTitle"
+            android:id="@+id/tvContentItemSubTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_marginBottom="1dp"
             android:textSize="17sp"
             android:textColor="#2e2e2e"
@@ -32,9 +32,9 @@
                 android:src="@color/colorYellow"
         />
         <TextView
-                android:id="@+id/tvContentShowName"
+                android:id="@+id/tvContentItemTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textSize="20sp"
@@ -51,7 +51,7 @@
     >
 
         <ImageView
-                android:id="@+id/ivContentShowImage"
+                android:id="@+id/ivContentItemImage"
                 android:layout_width="315dp"
                 android:layout_height="225dp"
                 android:src="@drawable/test"
@@ -60,7 +60,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-            android:id="@+id/tvContentContent"
+            android:id="@+id/tvContentItemContent"
             android:layout_width="313dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

@@ -48,6 +48,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /** 상단 티켓 아이콘 **/
+        iv_main_ticket.onClick {
+            // status: 1 = 응모 전, 2 = 결제 전, 3 = 결제 완료
+            var status = 1
+            when(status) {
+                1 -> {
+                    startActivity<MyLotteryNothingActivity>()
+                }
+                2 -> {
+                    startActivity<MyLotteryPaymentActivity>()
+                }
+                3 -> {
+                    startActivity<MyLotteryDetailActivity>()
+                }
+            }
+        }
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_product)
 
@@ -124,13 +140,14 @@ class MainActivity : AppCompatActivity() {
 
         //recyclerView의 초기 상태를 설정한다.
         val handler = Handler()
-        handler.postDelayed({
+        rv_product.findViewHolderForAdapterPosition(0)?.let{handler.postDelayed({
             val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
 
             val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
             eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
                 .start()
-        }, 1000)
+        }, 1000)}
+
         //스크롤이 되었을 때 아이템의 크기가 변화된다.
         rv_product.addOnScrollListener(
             object : RecyclerView.OnScrollListener() {
@@ -168,8 +185,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
     private fun configureLotteryConfirmVP() {
 
         btnVisibilityCheck(vpLotteryConfirm.currentItem)
@@ -188,8 +203,7 @@ class MainActivity : AppCompatActivity() {
             btnVisibilityCheck(vpLotteryConfirm.currentItem)
         }
     }
-
-    private fun configureMainContentsRV() {
+    private fun configureMainContentsRV(){
 
         lateinit var cardListAdapter: CardListAdapter
 
@@ -238,7 +252,7 @@ class MainActivity : AppCompatActivity() {
             startActivity<UserUpdateActivity>()
         }
         rl_win.setOnClickListener {
-            startActivity<LotteryConfirmActivity>()
+            startActivity<MyLotteryActivity>()
         }
         rl_like.setOnClickListener {
             startActivity<KeepActivity>()
@@ -302,5 +316,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }}
+    }
+}
 
