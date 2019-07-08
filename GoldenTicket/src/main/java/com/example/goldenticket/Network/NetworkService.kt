@@ -4,6 +4,11 @@ import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
+import com.example.goldenticket.Network.Get.GetMyLotteryDetailResponse
+import com.example.goldenticket.Network.Get.GetMyLotteryResponse
+import com.example.goldenticket.Network.Get.GetStageInfoResponse
+import com.example.goldenticket.Network.Get.GetCardDetailResponse
+import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.example.goldenticket.Network.Post.PostLoginResponse
 import com.example.goldenticket.Network.Post.PostSignupResponse
 import com.google.gson.JsonObject
@@ -27,6 +32,13 @@ interface NetworkService {
     ): Call<PostSignupResponse>
 
 
+    //관심있는 공연 조회
+    @GET("/show/heart")
+    fun getKeepShow(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String
+    ): Call<GetKeepShowResponse>
+
     //메인 뷰의 공연 리스트 조회
     @GET("/show/home")
     fun getMainPosterResponse(
@@ -48,14 +60,6 @@ interface NetworkService {
     ): Call<GetCardDetailResponse>
 
 
-    // 콘텐츠 상세 조회 (RV 부분)
-    @GET("show/content")
-    fun getContentDetail(
-        @Header("Content-Type") content_type: String,
-        @Header("id") card_id: Int
-    ): Call<GetContentDetailResponse>
-
-
     // 좋아요
     @POST("show/like")
     fun postShowLike(
@@ -66,13 +70,12 @@ interface NetworkService {
 
 
     // 좋아요 취소
-    @HTTP(method = "DELETE", path = "/api/analysis_delete", hasBody = true)
+    @HTTP(method = "DELETE", path = "show/like", hasBody = true)
     fun deleteShowLike(
         @Header("Content-Type") content_type: String,
         @Header("token") user_token: String,
         @Body() body:JsonObject
     ): Call<DeleteShowLikeResponse>
-//    @DELETE("show/like")
 
 
     //공연 상세
@@ -82,12 +85,24 @@ interface NetworkService {
         @Path("id") show_idx: Int
     ): Call<GetStageInfoResponse>
 
-    //공연 상세 좋아효
-    //@POST
-
     @GET("/lottery")
     fun getLotteryListResponse(
         @Header("Content-Type") content_type: String,
         @Header("token") user_token: String
     ): Call<GetLotteryListResponse>
+  
+    //공연내역 리스트 조회
+    @GET("/ticket")
+    fun getMyLotteryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
+    ): Call<GetMyLotteryResponse>
+
+    //공연내역 상세 조회
+    @GET("/ticket/{id}")
+    fun getMyLotteryDetailResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("id") ticket_idx: Int
+    ): Call<GetMyLotteryDetailResponse>
 }
