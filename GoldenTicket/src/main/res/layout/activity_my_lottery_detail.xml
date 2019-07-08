@@ -6,37 +6,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#ffffff"
         tools:context=".Activity.MyLotteryDetailActivity">
 
     <include layout="@layout/toolbar_drawer"
              android:id="@+id/tb_mylottery_detail"/>
 
-    <androidx.cardview.widget.CardView
-            android:id="@+id/cv_mylottery_detail_poster"
-            android:layout_width="277.6dp"
-            android:layout_height="361.5dp"
-            android:layout_marginTop="14dp"
+    <RelativeLayout
+            android:id="@+id/rl_mylottery_detail_poster"
+            android:layout_width="match_parent"
+            android:layout_height="365dp"
             android:layout_below="@+id/tb_mylottery_detail"
-            android:layout_centerHorizontal="true"
-            app:cardCornerRadius="10dp">
-        <ImageView
-                android:id="@+id/iv_mylottery_detail_poster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/poster_benhur_info"
-                android:layout_alignStart="@+id/cv_mylottery_poster"/>
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/style_mylottery_detail_ticket"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_centerHorizontal="true">
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cv_mylottery_detail_poster"
+                android:layout_width="280dp"
+                android:layout_height="365dp"
+                android:layout_marginVertical="6dp"
+                android:layout_centerInParent="true"
+                app:cardCornerRadius="10dp"
+                android:background="#00ffffff"
+                android:foreground="@drawable/style_mylottery_detail_ticket">
+            <ImageView
+                    android:id="@+id/iv_mylottery_detail_poster"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/poster_benhur_info"
+                    android:layout_alignStart="@+id/cv_mylottery_detail_poster"/>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
     <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/cv_mylottery_detail_poster">
+            android:layout_below="@+id/rl_mylottery_detail_poster">
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2019년 6월 15일"
-                        android:textSize="13sp"
+                        android:textSize="11sp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/notosans_light"/>
                 <TextView
@@ -65,14 +72,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="뮤지컬 벤허"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/notosans_medium"/>
                 <TextView
                         android:id="@+id/tv_mylottery_detail_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
+                        android:layout_marginTop="11dp"
                         android:text="일반 R 20,000원"
                         android:textSize="12sp"
                         android:textColor="@android:color/black"
@@ -94,9 +101,9 @@
                             android:id="@+id/tv_mylottery_detail_location"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="7dp"
+                            android:layout_marginLeft="5dp"
                             android:text="블루스퀘어"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textColor="@android:color/black"
                             android:fontFamily="@font/notosans_light"/>
                 </LinearLayout>
@@ -117,9 +124,9 @@
                             android:id="@+id/tv_mylottery_detail_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="7dp"
+                            android:layout_marginLeft="5dp"
                             android:text="17:00~19:00"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textColor="@android:color/black"
                             android:fontFamily="@font/notosans_light"/>
                 </LinearLayout>
@@ -142,8 +149,8 @@
                         android:fontFamily="@font/notosans_medium"/>
                 <ImageView
                         android:id="@+id/iv_mylottery_detail_qrcode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="92.8dp"
+                        android:layout_height="91.5dp"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/img_qr_code"/>
             </LinearLayout>

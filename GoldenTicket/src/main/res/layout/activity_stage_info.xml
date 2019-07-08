@@ -117,7 +117,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="9dp"
-                        android:text="일시"
+                        android:text="기간"
                         android:textSize="15sp"
                         android:textColor="@color/font_detail"
                         android:fontFamily="@font/notosans_medium"/>
