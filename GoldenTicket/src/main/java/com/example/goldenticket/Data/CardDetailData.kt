@@ -1,9 +1,10 @@
 package com.example.goldenticket.Data
 
 data class CardDetailData (
-    var cardIdx : Int,
+    var card_idx : Int,
     var imageUrl : String,
-    var content : String,
+    var card_content : String,
     var title : String,
-    var category : String
+    var category : String,
+    var content : ArrayList<ContentDetailData>
 )
