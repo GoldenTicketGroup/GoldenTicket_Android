@@ -50,11 +50,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         /** 상단 티켓 아이콘 **/
         iv_main_ticket.onClick {
             // status: 1 = 응모 전, 2 = 결제 전, 3 = 결제 완료
             var status = 1
-            when(status) {
+            when (status) {
                 1 -> {
                     startActivity<MyLotteryNothingActivity>()
                 }
@@ -127,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         tv_profile_name.text = u_name
 
 
-        }
+    }
 
 
     private fun configureShowRV() {
@@ -144,6 +145,8 @@ class MainActivity : AppCompatActivity() {
         rv_product.layoutManager = linearLayoutManager
         rv_product.addItemDecoration(MarginItemDecoration(50, 50))
 
+        getMainPosterResponse()
+
         //recyclerView의 초기 상태를 설정한다.
         //jetpack KTX
         val handler = Handler()
@@ -155,48 +158,47 @@ class MainActivity : AppCompatActivity() {
                 eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
                     .start()
             }, 1000)
-
-            val snapHelper = GravitySnapHelper(Gravity.START)
-            snapHelper.attachToRecyclerView(rv_product)
-
-            getMainPosterResponse()
-
-            //스크롤이 되었을 때 아이템의 크기가 변화된다.
-            rv_product.addOnScrollListener(
-                object : RecyclerView.OnScrollListener() {
-                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                        super.onScrollStateChanged(recyclerView, newState)
-
-                        //스크롤을 하지 않은 상태
-                        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                            val view: View? = snapHelper.findSnapView(linearLayoutManager)
-                            val pos = linearLayoutManager.getPosition(view!!)
-
-                            val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
-
-                            val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
-                            eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
-                                .setInterpolator(AccelerateInterpolator() as TimeInterpolator?)
-                                .start()
-
-                            //스크롤 중인 상태
-                        } else {
-
-                            val view = snapHelper.findSnapView(linearLayoutManager)
-                            val pos = linearLayoutManager.getPosition(view!!)
-
-                            val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
-
-                            val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
-                            eventparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350)
-                                .setInterpolator(AccelerateInterpolator()).start()
-
-                        }
-                    }
-                })
-
         }
+        val snapHelper = GravitySnapHelper(Gravity.START)
+        snapHelper.attachToRecyclerView(rv_product)
+
+
+        //스크롤이 되었을 때 아이템의 크기가 변화된다.
+        rv_product.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    //스크롤을 하지 않은 상태
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        val view: View? = snapHelper.findSnapView(linearLayoutManager)
+                        val pos = linearLayoutManager.getPosition(view!!)
+
+                        val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
+
+                        val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
+                        eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
+                            .setInterpolator(AccelerateInterpolator() as TimeInterpolator?)
+                            .start()
+
+                        //스크롤 중인 상태
+                    } else {
+
+                        val view = snapHelper.findSnapView(linearLayoutManager)
+                        val pos = linearLayoutManager.getPosition(view!!)
+
+                        val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
+
+                        val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
+                        eventparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350)
+                            .setInterpolator(AccelerateInterpolator()).start()
+
+                    }
+                }
+            })
+
     }
+
     private fun configureLotteryConfirmVP() {
 
         btnVisibilityCheck(vpLotteryConfirm.currentItem)
@@ -215,7 +217,8 @@ class MainActivity : AppCompatActivity() {
             btnVisibilityCheck(vpLotteryConfirm.currentItem)
         }
     }
-    private fun configureMainContentsRV(){
+
+    private fun configureMainContentsRV() {
 
         lateinit var cardListAdapter: CardListAdapter
 
