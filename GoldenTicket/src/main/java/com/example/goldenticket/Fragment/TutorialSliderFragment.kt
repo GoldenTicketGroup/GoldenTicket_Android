@@ -18,7 +18,6 @@ class TutorialSliderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tutorial_slider, container, false)
     }
 
@@ -27,8 +26,6 @@ class TutorialSliderFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val tutirial_img:Int = arguments!!.getInt("tutorial_img")
-        //val color: Int = arguments!!.getInt("background_color")
-        //img_fragment_slider_main.setBackgroundColor(color)
         Glide.with(this)
             .load(tutirial_img)
             .into(iv_tutorial_slider)

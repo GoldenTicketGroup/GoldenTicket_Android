@@ -1,8 +1,9 @@
 package com.example.goldenticket.Data
 
 data class ShowData(
-    //var img_url: String,
-    var show_id: Int,
-    var title: String,
+    var show_idx: Int,
+    var image_url: String,
+    var name: String,
     var location: String,
-    var time: String)
+    var running_time: String
+)

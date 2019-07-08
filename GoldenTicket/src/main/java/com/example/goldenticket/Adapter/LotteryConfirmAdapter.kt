@@ -1,17 +1,51 @@
 package com.example.goldenticket.Adapter
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.viewpager.widget.PagerAdapter
-import com.example.goldenticket.Data.LotteryConfirmData
-import com.example.goldenticket.Data.LotteryConfirmVPData
-import com.example.goldenticket.R
-import kotlinx.android.synthetic.main.vp_lottery_confirm.view.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.goldenticket.Fragment.LotteryFirstTimerFragment
+import com.example.goldenticket.Fragment.LotterySecondTimerFragment
 
-class LotteryConfirmAdapter(var inflater: LayoutInflater, val dataList: ArrayList<LotteryConfirmVPData>) : PagerAdapter(){
+class LotteryConfirmAdapter(fm : FragmentManager, private val num_fragment:Int) : FragmentStatePagerAdapter(fm){
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+    //Singleton Design Pattern: 기존에 생성되었던 객체를 재사용
+    companion object{
+        private var lotteryFirstTimerFragment : LotteryFirstTimerFragment? = null
+        private var lotterySecondTimerFragment : LotterySecondTimerFragment? = null
+    }
+
+    @Synchronized
+    fun getLotteryFirstTimerFragment(): LotteryFirstTimerFragment {
+        if (lotteryFirstTimerFragment == null) lotteryFirstTimerFragment = LotteryFirstTimerFragment()
+        return lotteryFirstTimerFragment!!
+    }
+
+    @Synchronized
+    fun getLotterySecondTimerFragment(): LotterySecondTimerFragment {
+        if (lotterySecondTimerFragment == null) lotterySecondTimerFragment = LotterySecondTimerFragment()
+        return lotterySecondTimerFragment!!
+    }
+
+
+    override fun getItem(p0: Int): Fragment {
+        return when(p0) {
+            0 -> getLotteryFirstTimerFragment()
+            1 -> getLotterySecondTimerFragment()
+            else -> null
+        }!!
+    }
+
+    override fun getCount(): Int {
+        return num_fragment
+    }
+}
+
+
+
+
+
+
+    /*override fun instantiateItem(container: ViewGroup, position: Int): Any {
         var view: View? = null
         view = inflater.inflate(R.layout.vp_lottery_confirm, null)
         view!!.tvShowName.text = dataList[position].title // TODO: 서버에서 받은 텍스트로 바꾸기
@@ -32,6 +66,5 @@ class LotteryConfirmAdapter(var inflater: LayoutInflater, val dataList: ArrayLis
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
-    }
+    }*/
 
-}
