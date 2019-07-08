@@ -9,7 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.goldenticket.Data.KeepStageData
+import com.example.goldenticket.Data.KeepShowData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
@@ -23,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData>): RecyclerView.Adapter<KeepStageRVAdapter.Holder>() {
+class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepShowData>): RecyclerView.Adapter<KeepStageRVAdapter.Holder>() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
@@ -39,7 +39,7 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         Glide.with(ctx)
-            .load(com.example.goldenticket.R.drawable.test)
+            .load(dataList[position].image_url)
             .into(holder.img_thumbnail)
         holder.btn_like.isSelected = true
 
