@@ -6,7 +6,9 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import kotlinx.android.synthetic.main.toolbar_drawer.*
 import androidx.preference.SwitchPreferenceCompat
+import com.example.goldenticket.DB.SharedPreferenceController.clearUserToken
 import org.jetbrains.anko.support.v4.alert
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class SettingsActivity : AppCompatActivity() {
@@ -77,7 +79,9 @@ class SettingsActivity : AppCompatActivity() {
             logoutPreferences!!.setOnPreferenceClickListener {
                 alert(title = "로그아웃", message = "로그아웃을 하시겠습니까?"){
                     positiveButton("Yes"){
+                        clearUserToken(ctx)
                         toast("로그아웃을 하였습니다.")
+                        startActivity<LoginActivity>()
                     }
                     negativeButton("No"){
                         toast("로그아웃을 취소하였습니다.")

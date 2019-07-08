@@ -1,17 +1,19 @@
 package com.example.goldenticket.Activity
 
-import android.opengl.ETC1.isValid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.goldenticket.R
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
+import com.example.goldenticket.DB.SharedPreferenceController.getUserEmail
+import com.example.goldenticket.DB.SharedPreferenceController.getUserName
+import com.example.goldenticket.DB.SharedPreferenceController.getUserPhone
 import kotlinx.android.synthetic.main.activity_user_update.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
 import org.jetbrains.anko.toast
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+import android.widget.TextView
+
+
 
 class UserUpdateActivity : AppCompatActivity() {
 
@@ -21,7 +23,7 @@ class UserUpdateActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_update)
+        setContentView(com.example.goldenticket.R.layout.activity_user_update)
 
         //data 밑줄 활성화
         isDataVaild()
@@ -44,6 +46,12 @@ class UserUpdateActivity : AppCompatActivity() {
             /* if (isValid(update_u_name, update_u_email,update_u_phone))
                  putUserResponse(update_u_name, update_u_email,update_u_phone)*/
         }
+        et_userupdate_name.setText(getUserName(this), TextView.BufferType.EDITABLE)
+        et_userupdate_phone.setText(getUserPhone(this), TextView.BufferType.EDITABLE)
+        et_userupdate_email.setText(getUserEmail(this), TextView.BufferType.EDITABLE)
+        /*et_userupdate_name.text = getUserName(this) as Editable
+        et_userupdate_phone.text = getUserPhone(this) as Editable
+        et_userupdate_email.text = getUserEmail(this) as Editable*/
     }
 
     //이메일 형식인지 유효성 검사
@@ -54,16 +62,16 @@ class UserUpdateActivity : AppCompatActivity() {
 
     private fun isDataVaild() {
         et_userupdate_name.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus || et_userupdate_name.text.toString() != "") v.setBackgroundResource(R.drawable.underline_yellow)
-            else v.setBackgroundResource(R.drawable.underline_white)
+            if (hasFocus || et_userupdate_name.text.toString() != "") v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_yellow)
+            else v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_white)
         }
         et_userupdate_email.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus || et_userupdate_email.text.toString() != "") v.setBackgroundResource(R.drawable.underline_yellow)
-            else v.setBackgroundResource(R.drawable.underline_white)
+            if (hasFocus || et_userupdate_email.text.toString() != "") v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_yellow)
+            else v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_white)
         }
         et_userupdate_phone.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus || et_userupdate_phone.text.toString() != "") v.setBackgroundResource(R.drawable.underline_yellow)
-            else v.setBackgroundResource(R.drawable.underline_white)
+            if (hasFocus || et_userupdate_phone.text.toString() != "") v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_yellow)
+            else v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_white)
         }
     }
 

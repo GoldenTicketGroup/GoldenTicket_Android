@@ -13,7 +13,6 @@ import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.PostSignupResponse
 import com.example.goldenticket.R
-import com.example.goldenticket.etc.statusBarHeight
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_up.*

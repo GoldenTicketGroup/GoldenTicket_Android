@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import org.jetbrains.anko.startActivity
 import android.view.WindowManager
+import com.bumptech.glide.Glide
 import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.R
+import kotlinx.android.synthetic.main.activity_splash.*
 
 
 class SplashActivity : AppCompatActivity() {
@@ -19,19 +21,25 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_splash)
+
+
+        Glide.with(this)
+            .load(R.drawable.splash)
+            .into(iv_splash)
+
     }
 
     override fun onStart() {
         super.onStart()
 
         val mHandler = Handler()
-        mHandler.postDelayed(startConfirmUser, 1200)
+        mHandler.postDelayed(startConfirmUser, 2010)
     }
 
     //토큰을 받아와서 아이디가 있는지 확인
     //저장된 아이디가 있으면 메인화면으로 없으면 로그인 화면으로 넘어간다.
     internal val startConfirmUser: Runnable = Runnable {
-        if(SharedPreferenceController.getUserInfo(this)!!.isEmpty()){
+        if(SharedPreferenceController.getUserToken(this)!!.isEmpty()){
             startActivity<TutorialActivity>()
             finish()
         }else {
