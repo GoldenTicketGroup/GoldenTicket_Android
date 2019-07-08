@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.goldenticket.Data.MyLotteryData
 import com.example.goldenticket.R
 
-class LotteryConfirmRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotteryData>): RecyclerView.Adapter<LotteryConfirmRVAdapter.Holder>() {
+class MyLotteryRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotteryData>): RecyclerView.Adapter<MyLotteryRVAdapter.Holder>() {
 
     interface ItemClick
     {
@@ -20,7 +20,7 @@ class LotteryConfirmRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotter
     var itemClick: ItemClick? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
-        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_lotteryconfirm, viewGroup, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_mylottery, viewGroup, false)
         return Holder(view)
     }
 
@@ -28,13 +28,13 @@ class LotteryConfirmRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotter
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         Glide.with(ctx)
-            .load(dataList[position].stageinfo_poster)
+            .load(dataList[position].image_url)
             .into(holder.stageinfo_poster_url)
-        holder.stageinfo_date.text = dataList[position].stageinfo_date
-        holder.stageinfo_title.text = dataList[position].stageinfo_title
-        holder.stageinfo_detail.text = dataList[position].stageinfo_detail
-        holder.stageinfo_location.text = dataList[position].stageinfo_location
-        holder.stageinfo_time.text = dataList[position].stageinfo_time
+        holder.stageinfo_date.text = dataList[position].date
+        holder.stageinfo_title.text = dataList[position].name
+        holder.stageinfo_detail.text = dataList[position].seatName
+        holder.stageinfo_location.text = dataList[position].location
+        holder.stageinfo_time.text = dataList[position].running_time
 
         if(itemClick != null)
         {
