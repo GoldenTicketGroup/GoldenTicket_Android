@@ -20,7 +20,7 @@
         />
         <TextView
                 android:id="@+id/tv_second_timer_title"
-                android:text="벤허"
+                android:text="sdgsdg"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textSize="20sp"

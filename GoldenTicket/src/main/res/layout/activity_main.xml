@@ -120,7 +120,7 @@
                                 android:layout_marginTop="105dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/character_catching_main"/>
+                                android:src="@drawable/catching"/>
                         <TextView
                                 android:id="@+id/empty_text"
                                 android:layout_marginLeft="101dp"

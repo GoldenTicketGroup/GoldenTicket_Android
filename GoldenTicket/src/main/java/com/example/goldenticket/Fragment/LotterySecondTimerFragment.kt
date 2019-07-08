@@ -10,13 +10,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.goldenticket.Data.LotteryListData
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.Get.GetLotteryListResponse
+import com.example.goldenticket.Network.NetworkService
 
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
 import kotlinx.android.synthetic.main.fragment_lottery_second_timer.*
+import retrofit2.Call
+import retrofit2.Response
 import java.util.*
 
 class LotterySecondTimerFragment : Fragment() {
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     var mStartTimeInMillis: Long = 60000 * 61 //10분으로 설정
     var mCountDownTimer: CountDownTimer? = null
@@ -70,6 +80,7 @@ class LotterySecondTimerFragment : Fragment() {
     //카운트 다운 실행 중 일때 남은 시간을 화면에 보여주어야 한다.
     //카운트 다운이 완료가 되었을 때 버튼의 상태가 바껴야 한다.
     private fun startTimer() {
+        getMainLotteryListResponse()
         //현재 시간(초)에 남은 시간을 더한다.
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
 
@@ -102,5 +113,28 @@ class LotterySecondTimerFragment : Fragment() {
         }
 
         tv_second_timer?.let{tv_second_timer.text = timeLeftFormatted}
+    }
+
+
+    private fun getMainLotteryListResponse(){
+        val getMainLotteryListResponse = networkService.getLotteryListResponse(
+            "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
+        getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
+            override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
+                Log.e("Lottery List Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetLotteryListResponse>, response: Response<GetLotteryListResponse>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        Log.d("Lottery List", "#######################3")
+                        val tmp: ArrayList<LotteryListData> = response.body()!!.data
+                        if (tmp != null) {
+                            tv_second_timer_title.text = response.body()!!.data.get(1).name
+                        }
+                    }
+                }
+            }
+        })
     }
 }

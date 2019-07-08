@@ -1,6 +1,7 @@
 package com.example.goldenticket.Network
 
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
+import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
 import com.example.goldenticket.Network.Get.GetMyLotteryDetailResponse
@@ -95,6 +96,12 @@ interface NetworkService {
         @Header("token") token: String,
         @Body body: JsonObject
     ): Call<PutUserResponse>
+    @GET("/lottery")
+    fun getLotteryListResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String
+    ): Call<GetLotteryListResponse>
+
     //공연내역 리스트 조회
     @GET("/ticket")
     fun getMyLotteryResponse(

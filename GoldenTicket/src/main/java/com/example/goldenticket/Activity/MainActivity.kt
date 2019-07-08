@@ -147,55 +147,55 @@ class MainActivity : AppCompatActivity() {
         //recyclerView의 초기 상태를 설정한다.
         //jetpack KTX
         val handler = Handler()
-        handler.postDelayed({
-            val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
+        rv_product.findViewHolderForAdapterPosition(0)?.let {
+            handler.postDelayed({
+                val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
 
-            val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
-            eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
-                .start()
-        }, 1000)
+                val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
+                eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
+                    .start()
+            }, 1000)
 
-        val snapHelper = GravitySnapHelper(Gravity.START)
-        snapHelper.attachToRecyclerView(rv_product)
+            val snapHelper = GravitySnapHelper(Gravity.START)
+            snapHelper.attachToRecyclerView(rv_product)
 
-        getMainPosterResponse()
+            getMainPosterResponse()
 
+            //스크롤이 되었을 때 아이템의 크기가 변화된다.
+            rv_product.addOnScrollListener(
+                object : RecyclerView.OnScrollListener() {
+                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                        super.onScrollStateChanged(recyclerView, newState)
 
-        //스크롤이 되었을 때 아이템의 크기가 변화된다.
-        rv_product.addOnScrollListener(
-            object : RecyclerView.OnScrollListener() {
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
+                        //스크롤을 하지 않은 상태
+                        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                            val view: View? = snapHelper.findSnapView(linearLayoutManager)
+                            val pos = linearLayoutManager.getPosition(view!!)
 
-                    //스크롤을 하지 않은 상태
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        val view: View? = snapHelper.findSnapView(linearLayoutManager)
-                        val pos = linearLayoutManager.getPosition(view!!)
+                            val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
 
-                        val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
+                            val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
+                            eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
+                                .setInterpolator(AccelerateInterpolator() as TimeInterpolator?)
+                                .start()
 
-                        val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
-                        eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
-                            .setInterpolator(AccelerateInterpolator() as TimeInterpolator?)
-                            .start()
+                            //스크롤 중인 상태
+                        } else {
 
-                        //스크롤 중인 상태
-                    } else {
+                            val view = snapHelper.findSnapView(linearLayoutManager)
+                            val pos = linearLayoutManager.getPosition(view!!)
 
-                        val view = snapHelper.findSnapView(linearLayoutManager)
-                        val pos = linearLayoutManager.getPosition(view!!)
+                            val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
 
-                        val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
+                            val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
+                            eventparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350)
+                                .setInterpolator(AccelerateInterpolator()).start()
 
-                        val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
-                        eventparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350)
-                            .setInterpolator(AccelerateInterpolator()).start()
-
+                        }
                     }
-                }
-            })
+                })
 
-
+        }
     }
     private fun configureLotteryConfirmVP() {
 
