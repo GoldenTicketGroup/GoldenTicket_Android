@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -10,30 +10,39 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
         <ImageView
-                android:id="@+id/iv_lotteryconfirm_bg"
+                android:id="@+id/iv_mylottery_bg"
                 android:layout_width="288dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_centerVertical="true"
-                android:layout_alignStart="@+id/iv_lotteryconfirm_poster"
+                android:layout_alignStart="@+id/cv_mylottery_poster"
                 android:src="@drawable/img_ticket_prizelist"/>
 
-        <ImageView
-                android:id="@+id/iv_lotteryconfirm_poster"
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cv_mylottery_poster"
                 android:layout_width="144dp"
                 android:layout_height="186dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/poster_benhur_info"/>
+                app:cardCornerRadius="10dp">
+            <ImageView
+                    android:id="@+id/iv_mylottery_poster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/poster_benhur_info"
+                    android:layout_alignStart="@+id/cv_mylottery_poster"/>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/iv_lotteryconfirm_poster"
+                android:layout_toRightOf="@+id/cv_mylottery_poster"
                 android:layout_marginLeft="26dp">
             <TextView
-                    android:id="@+id/tv_lotteryconfirm_date"
+                    android:id="@+id/tv_mylottery_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2019년 6월 15일"
@@ -41,7 +50,7 @@
                     android:textColor="@android:color/black"
                     android:fontFamily="@font/notosans_light"/>
             <TextView
-                    android:id="@+id/tv_lotteryconfirm_title"
+                    android:id="@+id/tv_mylottery_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="뮤지컬 벤허"
@@ -49,7 +58,7 @@
                     android:textColor="@android:color/black"
                     android:fontFamily="@font/notosans_medium"/>
             <TextView
-                    android:id="@+id/tv_lotteryconfirm_detail"
+                    android:id="@+id/tv_mylottery_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
@@ -71,7 +80,7 @@
                             android:src="@drawable/icon_location_coral"/>
                 </RelativeLayout>
                 <TextView
-                        android:id="@+id/tv_lotteryconfirm_location"
+                        android:id="@+id/tv_mylottery_location"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="7dp"
@@ -94,7 +103,7 @@
                             android:src="@drawable/icon_time_coral"/>
                 </RelativeLayout>
                 <TextView
-                        android:id="@+id/tv_lotteryconfirm_time"
+                        android:id="@+id/tv_mylottery_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"

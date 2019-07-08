@@ -8,12 +8,179 @@
         android:orientation="vertical"
         tools:context=".Activity.LotteryConfirmActivity">
 
-    <include layout="@layout/toolbar_drawer"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_lotteryconfirm"
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+        <ImageButton
+                android:id="@+id/ibtn_lotteryconfirm_close"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="25dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/bt_close"
+                android:background="@android:color/transparent"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+        <TextView
+                android:id="@+id/tv_lotteryconfirm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="아쉽지만 당첨되지\n않았어요"
+                android:textAlignment="center"
+                android:textSize="23sp"
+                android:textColor="@color/colorCoral"
+                android:fontFamily="@font/notosans_bold"/>
+    </RelativeLayout>
 
-    </androidx.recyclerview.widget.RecyclerView>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp">
+        <ImageView
+                android:id="@+id/iv_lotteryconfirm_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/character_fail"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/rl_lotteryconfirm_suggested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+        <TextView
+                android:id="@+id/tv_lotteryconfirm_congrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:layout_centerHorizontal="true"
+                android:text="축하합니다!"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="@color/colorCoral"
+                android:lineSpacingExtra="5dp"
+                android:fontFamily="@font/notosans_light"/>
+
+        <RelativeLayout
+                android:id="@+id/tv_lotteryconfirm_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9dp"
+                android:layout_below="@+id/tv_lotteryconfirm_congrate">
+            <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/colorYellow" />
+            <TextView
+                    android:id="@+id/tv_lotteryconfirm_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="결제는 30분 안에 진행해주세요"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/font_detail"
+                    android:fontFamily="@font/notosans_light"
+                    android:background="@android:color/transparent"/>
+        </RelativeLayout>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv_lotteryconfirm_pay"
+                android:text="30분이 지나면 자동 취소됩니다"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textColor="@color/font_detail"
+                android:fontFamily="@font/notosans_light"
+                android:background="@android:color/transparent"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/rl_lotteryconfirm_unsuggested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+        <TextView
+                android:id="@+id/tv_lotteryconfirm_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="37dp"
+                android:layout_centerHorizontal="true"
+                android:text="걱정하지 마세요. 매일매일 새로운\n골든티켓에 응모할 수 있습니다."
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textColor="@color/font_detail"
+                android:lineSpacingExtra="5dp"
+                android:fontFamily="@font/notosans_light"/>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv_lotteryconfirm_content">
+            <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/colorYellow" />
+            <TextView
+                    android:id="@+id/tv_lotteryconfirm_highlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="보고싶은 공연의 알림을 설정해두세요."
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/font_detail"
+                    android:fontFamily="@font/notosans_light"
+                    android:background="@android:color/transparent"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="65dp">
+        <Button
+                android:id="@+id/btn_lotteryconfirm_stagelike"
+                android:layout_width="277.5dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="10dp"
+                android:layout_above="@+id/btn_lotteryconfirm_stagelist"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/style_lotteryconfirm_btn_grey"
+                android:text="관심있는 공연으로 추가하기"
+                android:textSize="15sp"
+                android:textColor="@color/font_detail"
+                android:textAlignment="center"
+                android:fontFamily="@font/notosans_medium"
+                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+        <Button
+                android:id="@+id/btn_lotteryconfirm_stagelist"
+                android:layout_width="277.5dp"
+                android:layout_height="35dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/style_search_tags_bg"
+                android:text="다른 공연 찾아보기"
+                android:textSize="15sp"
+                android:textColor="@color/font_detail"
+                android:fontFamily="@font/notosans_medium"
+                android:textAlignment="center"
+                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+    </RelativeLayout>
 </LinearLayout>
