@@ -9,8 +9,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.goldenticket.Data.KeepShowData
 import com.example.goldenticket.Activity.StageInfoActivity
-import com.example.goldenticket.Data.KeepStageData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
@@ -25,17 +25,14 @@ import retrofit2.Response
 
 import org.jetbrains.anko.startActivity
 
-class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData>): RecyclerView.Adapter<KeepStageRVAdapter.Holder>() {
+class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepShowData>): RecyclerView.Adapter<KeepStageRVAdapter.Holder>() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_keep_item,viewGroup,false)
-        view.setOnClickListener {
-            //해당 포지션의 show_idx를 stageinfo의 path variable로 전달
-            view.context.startActivity<StageInfoActivity>("idx" to 20) //TODO: idx 서버에서 받아서 수정
-        }
+
         return Holder(view)
     }
 
@@ -44,27 +41,28 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+        holder.img_thumbnail.setOnClickListener {
+            //해당 포지션의 show_idx를 stageinfo의 path variable로 전달
+            ctx.startActivity<StageInfoActivity>("idx" to dataList[position].show_idx)
+        }
+
         Glide.with(ctx)
-            .load(R.drawable.test)
+            .load(dataList[position].image_url)
             .into(holder.img_thumbnail)
+
         holder.btn_like.isSelected = true
-
-
         holder.btn_like.setOnClickListener {
 
             /** 좋아요 취소 **/
             if(holder.btn_like.isSelected){
 
-                // TODO: 통신완료 후에 바꾸는걸로 수정해야함
-                holder.btn_like.setBackgroundResource(R.drawable.icon_like_nofill)
-                holder.btn_like.isSelected = false
-
                 var jsonObject = JSONObject()
-                jsonObject.put("showIdx","1") // TODO: 인덱스 값 수정해야함
+                jsonObject.put("show_idx",dataList[position].show_idx)
                 val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
                 // TODO: user token 쉐어드에서 가져와야함
-                val deleteShowLike = networkService.deleteShowLike("application/json","adjlafkjad", gsonObject)
+                val deleteShowLike = networkService.deleteShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
                 deleteShowLike.enqueue(object: Callback<DeleteShowLikeResponse> {
                     override fun onFailure(call: Call<DeleteShowLikeResponse>, t: Throwable) {
                         Log.e("Delete ShowLike Failed:",t.toString())
@@ -75,9 +73,11 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
                         response: Response<DeleteShowLikeResponse>
                     ) {
                         if(response.isSuccessful){
+                            Log.d("TEST",response.body()!!.toString())
                             if(response.body()!!.status == 200){
-                                // 통신 완료된 후 no fill like로 변경
-//                                holder.btn_like.isSelected = !holder.btn_like.isSelected
+
+                                holder.btn_like.setBackgroundResource(R.drawable.icon_like_nofill)
+                                holder.btn_like.isSelected = false
                             }
                         }
                     }
@@ -86,16 +86,13 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
             }
             /** 좋아요 **/
             else{
-                // TODO: 통신완료 후에 바꾸는걸로 수정해야함
-                holder.btn_like.setBackgroundResource(R.drawable.icon_like_fill)
-                holder.btn_like.isSelected = true
 
                 var jsonObject = JSONObject()
-                jsonObject.put("showIdx","1") // TODO: 인덱스 값 수정해야함
+                jsonObject.put("show_idx",dataList[position].show_idx)
                 val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
                 // TODO: user token 쉐어드에서 가져와야함
-                val postShowLike = networkService.postShowLike("application/json","adjlafkjad", gsonObject)
+                val postShowLike = networkService.postShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
                 postShowLike.enqueue(object: Callback<PostShowLikeResponse> {
                     override fun onFailure(call: Call<PostShowLikeResponse>, t: Throwable) {
                         Log.e("Delete ShowLike Failed:",t.toString())
@@ -107,8 +104,10 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepStageData
                     ) {
                         if(response.isSuccessful){
                             if(response.body()!!.status == 200){
-                                // 통신 완료된 후 fill like로 변경
-//                                holder.btn_like.isSelected = !holder.btn_like.isSelected
+                                Log.d("TEST",response.body()!!.toString())
+
+                                holder.btn_like.setBackgroundResource(R.drawable.icon_like_fill)
+                                holder.btn_like.isSelected = true
                             }
                         }
                     }

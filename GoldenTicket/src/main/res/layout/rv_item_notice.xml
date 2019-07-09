@@ -30,7 +30,7 @@
                     android:id="@+id/txt_rv_item_notice_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="날짜"
+                    android:text=" "
                     android:textSize="15sp"
                     android:textColor="#8e8e93"/>
         </LinearLayout>
@@ -65,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="36dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="17dp"
                 android:layout_marginBottom="27dp"
                 android:text="내용"

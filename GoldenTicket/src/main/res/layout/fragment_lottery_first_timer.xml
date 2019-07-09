@@ -6,6 +6,7 @@
               tools:context=".Fragment.LotteryFirstTimerFragment"
               android:gravity="center"
               android:orientation="vertical"
+              android:id="@+id/ll_fragment_lottery_first"
 >
 
     <!-- TODO: Update blank fragment layout -->
@@ -22,7 +23,7 @@
         />
         <TextView
                 android:id="@+id/tv_first_timer_title"
-                android:text="옥탑방 고양이"
+                android:text="옥탑방 "
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textSize="20sp"

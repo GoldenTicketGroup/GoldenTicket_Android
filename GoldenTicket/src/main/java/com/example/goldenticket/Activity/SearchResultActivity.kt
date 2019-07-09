@@ -3,10 +3,7 @@ package com.example.goldenticket.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.goldenticket.Adapter.KeepStageRVAdapter
 import com.example.goldenticket.Adapter.SearchResultRVAdapter
 import com.example.goldenticket.Data.KeepStageData
 import com.example.goldenticket.Network.ApplicationController

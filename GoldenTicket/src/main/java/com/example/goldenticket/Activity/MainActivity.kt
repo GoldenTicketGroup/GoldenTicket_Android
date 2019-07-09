@@ -1,6 +1,8 @@
 package com.example.goldenticket.Activity
 
 import android.animation.TimeInterpolator
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -19,16 +21,24 @@ import android.graphics.Rect
 import android.os.Handler
 import android.util.Log
 import android.view.Gravity
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.os.postDelayed
 import androidx.core.view.ViewCompat.animate
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetCardListResponse
+import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.Get.GetMainPosterResponse
 import com.example.goldenticket.Network.NetworkService
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
+import kotlinx.android.synthetic.main.activity_my_lottery_nothing.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,16 +53,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
+    var temp_num_fragment: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         /** 상단 티켓 아이콘 **/
         iv_main_ticket.onClick {
             // status: 1 = 응모 전, 2 = 결제 전, 3 = 결제 완료
             var status = 1
-            when(status) {
+            when (status) {
                 1 -> {
                     startActivity<MyLotteryNothingActivity>()
                 }
@@ -71,7 +83,6 @@ class MainActivity : AppCompatActivity() {
         val u_name = getUserName(this)
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
-
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
         configureShowRV()
@@ -119,6 +130,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    override fun onStart() {
+        super.onStart()
+        val u_name = getUserName(this)
+        tv_main_name.text = u_name
+        tv_profile_name.text = u_name
+
+
+    }
+
+
     private fun configureShowRV() {
 
         var ShowDataList: ArrayList<ShowData> = ArrayList()
@@ -133,20 +154,24 @@ class MainActivity : AppCompatActivity() {
         rv_product.layoutManager = linearLayoutManager
         rv_product.addItemDecoration(MarginItemDecoration(50, 50))
 
-        val snapHelper = GravitySnapHelper(Gravity.START)
-        snapHelper.attachToRecyclerView(rv_product)
-
         getMainPosterResponse()
 
         //recyclerView의 초기 상태를 설정한다.
+        //jetpack KTX
         val handler = Handler()
-        handler.postDelayed({
-            val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
+        rv_product.findViewHolderForAdapterPosition(0)?.let {
+            handler.postDelayed({
+                val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
 
-            val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
-            eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
-                .start()
-        }, 1000)
+                val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
+                eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
+                    .start()
+            }, 1000)
+        }
+        val snapHelper = GravitySnapHelper(Gravity.START)
+        snapHelper.attachToRecyclerView(rv_product)
+
+
         //스크롤이 되었을 때 아이템의 크기가 변화된다.
         rv_product.addOnScrollListener(
             object : RecyclerView.OnScrollListener() {
@@ -181,15 +206,44 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-
     }
 
     private fun configureLotteryConfirmVP() {
 
+        var lotteryConfirmDataList: ArrayList<LotteryListData> = ArrayList()
+        var lotteryConfirmAdapter: LotteryConfirmAdapter
+
         btnVisibilityCheck(vpLotteryConfirm.currentItem)
 
-        var lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, 2)
-        vpLotteryConfirm.adapter = lotteryConfirmAdapter
+        val getMainLotteryListResponse = networkService.getLotteryListResponse(
+            "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
+        getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
+            override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
+                Log.e("Lottery List Fail", t.toString())
+                temp_num_fragment = 0
+            }
+
+            override fun onResponse(call: Call<GetLotteryListResponse>, response: Response<GetLotteryListResponse>) {
+                Log.e("Lottery List Fail", response.body()!!.message)
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+//                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
+                        temp_num_fragment = 2
+                        if(temp_num_fragment == 0){
+                            vpLotteryConfirm.visibility = INVISIBLE
+                            tvLotteryNothing.visibility = VISIBLE
+                        }
+
+                        lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
+                        vpLotteryConfirm.adapter = lotteryConfirmAdapter
+                    }
+                }
+
+            }
+        })
+
+//        var lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
+//        vpLotteryConfirm.adapter = lotteryConfirmAdapter
 
         ibtnNextLeft.onClick {
             var position = vpLotteryConfirm.currentItem
@@ -202,7 +256,8 @@ class MainActivity : AppCompatActivity() {
             btnVisibilityCheck(vpLotteryConfirm.currentItem)
         }
     }
-    private fun configureMainContentsRV(){
+
+    private fun configureMainContentsRV() {
 
         lateinit var cardListAdapter: CardListAdapter
 
@@ -238,8 +293,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun btnVisibilityCheck(position: Int) { // TODO: 당첨확인 버튼 유무 체크
         if (position == 0) {
-            ibtnNextRight.visibility = View.VISIBLE
-            ibtnNextLeft.visibility = View.INVISIBLE
+            if(temp_num_fragment == 1 || temp_num_fragment == 0){
+                //position이 0이고 데이터가 하나일때, 데이터가 하나도 없을 때 화살표 버튼이 둘다 뜨면 안됨
+                ibtnNextRight.visibility = View.INVISIBLE
+                ibtnNextLeft.visibility = View.INVISIBLE
+            }else{
+                ibtnNextRight.visibility = View.VISIBLE
+                ibtnNextLeft.visibility = View.INVISIBLE
+            }
         } else if (position == 1) {
             ibtnNextRight.visibility = View.INVISIBLE
             ibtnNextLeft.visibility = View.VISIBLE
@@ -288,26 +349,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getMainPosterResponse(){
+    private fun getMainPosterResponse() {
         val getMainPosterResponse = networkService.getMainPosterResponse(
-            "application/json")
-        getMainPosterResponse.enqueue(object: retrofit2.Callback<GetMainPosterResponse> {
+            "application/json"
+        )
+        getMainPosterResponse.enqueue(object : retrofit2.Callback<GetMainPosterResponse> {
             override fun onFailure(call: Call<GetMainPosterResponse>, t: Throwable) {
                 Log.e("Main Poster List Fail", t.toString())
             }
 
             override fun onResponse(call: Call<GetMainPosterResponse>, response: Response<GetMainPosterResponse>) {
-                if(response.isSuccessful){
-                    if(response.body()!!.status == 200){
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
                         val tmp: ArrayList<ShowData> = response.body()!!.data!!
                         showMainRecyclerViewAdapter.dataList = tmp
                         showMainRecyclerViewAdapter.notifyDataSetChanged()
 
-                        if(tmp.isEmpty()) {
+                        if (tmp.isEmpty()) {
                             rv_product.visibility = View.GONE
                             empty_view.visibility = View.VISIBLE
-                        }
-                        else {
+                        } else {
                             rv_product.visibility = View.VISIBLE
                             empty_view.visibility = View.GONE
                         }
@@ -315,5 +376,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }}
+    }
+}
 

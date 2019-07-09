@@ -1,26 +1,49 @@
 package com.example.goldenticket.Fragment
 
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.icu.util.UniversalTimeScale.toLong
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.TextView
+import com.example.goldenticket.Data.LotteryListData
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.Get.GetLotteryListResponse
+import com.example.goldenticket.Network.NetworkService
 
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
-import kotlinx.android.synthetic.main.fragment_lottery_second_timer.*
+import retrofit2.Call
+import retrofit2.Response
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
+
+
+
 
 class LotteryFirstTimerFragment : Fragment() {
 
-    var mStartTimeInMillis: Long = 60000 * 10 //10분으로 설정
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
+    lateinit var start_time: String
+
+
+    var diff : String = ""
+    val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss a")
+    val now_time = System.currentTimeMillis()
+    var confirm_time_sdf: Long = 0
+
+    var mStartTimeInMillis: Long = 0 //10분으로 설정
     var mCountDownTimer: CountDownTimer? = null
     //var mTimerRunning: Boolean = false
     var mTimeLeftInMillis = mStartTimeInMillis
@@ -29,7 +52,8 @@ class LotteryFirstTimerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.
-        startTimer()
+        getMainLotteryListResponse()
+
     }
 
     override fun onCreateView(
@@ -37,7 +61,7 @@ class LotteryFirstTimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lottery_first_timer, container, false)
+        return inflater.inflate(com.example.goldenticket.R.layout.fragment_lottery_first_timer, container, false)
 
     }
 
@@ -46,10 +70,11 @@ class LotteryFirstTimerFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        var prefs: SharedPreferences = context!!.getSharedPreferences("aaa", MODE_PRIVATE)
+        var prefs: SharedPreferences = context!!.getSharedPreferences("GoldenTicket", MODE_PRIVATE)
 
-        mStartTimeInMillis = prefs.getLong("startTimeInMillis", 600000)
+        mStartTimeInMillis = prefs.getLong("startTimeInMillis",mStartTimeInMillis)
         mTimeLeftInMillis = prefs.getLong("millisLeft", mStartTimeInMillis)
+
         mEndTime = prefs.getLong("endTime", 0)
         mTimeLeftInMillis = mEndTime - System.currentTimeMillis()
         updateCountDownText()
@@ -58,11 +83,12 @@ class LotteryFirstTimerFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        var prefs: SharedPreferences = context!!.getSharedPreferences("aaa", MODE_PRIVATE)
+        var prefs: SharedPreferences = context!!.getSharedPreferences("GoldenTicket", MODE_PRIVATE)
         var editor = prefs.edit()
 
         editor.putLong("startTimeInMillis", mStartTimeInMillis)
         editor.putLong("millisLeft", mTimeLeftInMillis)
+
         editor.putLong("endTime", mEndTime)
         editor.apply()
 
@@ -75,12 +101,10 @@ class LotteryFirstTimerFragment : Fragment() {
     //카운트 다운 실행 중 일때 남은 시간을 화면에 보여주어야 한다.
     //카운트 다운이 완료가 되었을 때 버튼의 상태가 바껴야 한다.
     private fun startTimer() {
-        //현재 시간(초)에 남은 시간을 더한다.
-        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
 
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
-                tv_first_timer?.let{tv_first_timer.text = "당첨 확인을 해주세요"}
+                tv_first_timer?.let{tv_first_timer.text = "당첨 확인"}
             }
 
             override fun onTick(p0: Long) {
@@ -108,5 +132,46 @@ class LotteryFirstTimerFragment : Fragment() {
         }
 
         tv_first_timer?.let{tv_first_timer.text = timeLeftFormatted}
+    }
+
+    private fun getMainLotteryListResponse(){
+        val getMainLotteryListResponse = networkService.getLotteryListResponse(
+            "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
+        getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
+            override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
+                Log.e("Lottery List Fail", t.toString())
+                mStartTimeInMillis = 0
+            }
+
+            override fun onResponse(call: Call<GetLotteryListResponse>, response: Response<GetLotteryListResponse>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        if (response.body()!!.data.size != 0) {
+                            tv_first_timer_title.text = response.body()!!.data.get(0).name
+                            start_time = response.body()!!.data.get(0).start_time
+
+                            confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
+                            Log.d("TIME 0", sdf.parse(start_time).toString())
+
+                            mStartTimeInMillis = confirm_time_sdf - now_time
+                            mTimeLeftInMillis = mStartTimeInMillis
+
+                            mEndTime = System.currentTimeMillis() + mTimeLeftInMillis //현재 시간(초)에 남은 시간을 더한다.
+
+                            var prefs: SharedPreferences = context!!.getSharedPreferences("GoldenTicket", MODE_PRIVATE)
+                            var editor = prefs.edit()
+
+                            editor.putLong("startTimeInMillis", mStartTimeInMillis)
+                            editor.putLong("millisLeft", mTimeLeftInMillis)
+
+                            editor.putLong("endTime", mEndTime)
+                            editor.apply()
+
+                            startTimer()
+                        }
+                    }
+                }
+            }
+        })
     }
 }
