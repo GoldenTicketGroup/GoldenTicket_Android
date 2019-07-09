@@ -22,7 +22,7 @@
                     android:id="@+id/txt_rv_item_notice_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_bold"
+                    android:fontFamily="@font/notosans_medium"
                     android:text="제목"
                     android:textSize="15sp"
                     android:textColor="#000000"/>
