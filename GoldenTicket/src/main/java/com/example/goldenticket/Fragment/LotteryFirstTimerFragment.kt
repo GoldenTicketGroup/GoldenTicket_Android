@@ -39,7 +39,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
 
     var diff : String = ""
-    val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss a")
+    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a")
     val now_time = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
 
@@ -152,7 +152,6 @@ class LotteryFirstTimerFragment : Fragment() {
                             start_time = response.body()!!.data.get(0).start_time + "m"
 
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
-                            Log.d("TIME 0", sdf.parse(start_time).toString())
 
                             mStartTimeInMillis = confirm_time_sdf - now_time
                             mTimeLeftInMillis = mStartTimeInMillis
