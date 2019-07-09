@@ -1,6 +1,7 @@
 package com.example.goldenticket.Activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +23,9 @@ class LotteryNoticeActivity : AppCompatActivity() {
             .into(ivNotice)
 
         btnGoLottery.setOnClickListener {
-            startActivity<LotteryCompleteActivity>()
+            val intent = Intent(this, LotteryCompleteActivity::class.java)
+            intent.putExtra("schedule_idx", intent.getIntExtra("schedule_idx", -1))
+            startActivity(intent)
         }
     }
 

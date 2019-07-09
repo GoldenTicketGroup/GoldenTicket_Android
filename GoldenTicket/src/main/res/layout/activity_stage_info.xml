@@ -209,7 +209,6 @@
                     android:scrollbars="horizontal">
             </androidx.recyclerview.widget.RecyclerView>
 
-            <!--공연정보 이미지들 어떻게 받을지,,몇개로..?-->
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_stageinfo_imgs"
                     android:layout_width="match_parent"
