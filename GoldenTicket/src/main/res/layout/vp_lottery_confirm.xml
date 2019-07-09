@@ -26,6 +26,7 @@
                     android:id="@+id/tvShowName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_light"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textSize="20sp"
@@ -42,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="11sp"
                 android:textColor="#717171"
+                android:fontFamily="@font/notosans_light"
                 android:lineSpacingExtra="4sp"
                 android:layout_marginTop="6dp"
                 android:layout_gravity="center"
@@ -56,6 +58,7 @@
                 android:textColor="#fda47a"
                 android:lineSpacingExtra="11sp"
                 android:text="00: 04 : 59"
+                android:fontFamily="@font/notosans_light"
                 android:layout_gravity="center"
         />
     </LinearLayout>

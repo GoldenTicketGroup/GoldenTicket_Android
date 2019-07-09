@@ -4,7 +4,7 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp">
+        android:layout_marginHorizontal="12dp">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="카이"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 android:textColor="@color/font_detail"
                 android:fontFamily="@font/notosans_medium"/>
     </RelativeLayout>
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="유다 벤허"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 android:textColor="@color/font_detail"
                 android:fontFamily="@font/notosans_medium"/>
     </RelativeLayout>

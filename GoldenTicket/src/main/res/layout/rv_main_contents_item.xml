@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:cardview="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_gravity="center_horizontal"
-        cardview:cardElevation="6dp"
-        cardview:cardCornerRadius="10dp"
+        android:background="@drawable/bg_white_round"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="12dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -29,6 +30,7 @@
                     android:id="@+id/tvCategory"
                     android:background="@drawable/main_contents_title_border"
                     android:text="이번 달 공연"
+                    android:fontFamily="@font/notosans_light"
                     android:textSize="12sp"
                     android:textColor="#fda47a"
                     android:lineSpacingExtra="5sp"
@@ -41,6 +43,7 @@
                     android:layout_height="62dp"
                     android:layout_marginTop="11dp"
                     android:layout_marginRight="14dp"
+                    android:fontFamily="@font/notosans_light"
                     android:textSize="16sp"
                     android:textColor="#262626"
                     android:lineSpacingExtra="4sp"
@@ -50,6 +53,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
+                android:background="@drawable/bg_white_round"
         >
             <ImageView
                     android:id="@+id/ivCard"
@@ -57,6 +61,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/poster_main_benhur"
                     android:scaleType="fitXY"
+
             />
         </LinearLayout>
 
