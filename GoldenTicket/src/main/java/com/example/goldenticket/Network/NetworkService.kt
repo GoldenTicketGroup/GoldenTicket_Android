@@ -116,4 +116,26 @@ interface NetworkService {
         @Header("token") token: String,
         @Path("id") ticket_idx: Int
     ): Call<GetMyLotteryDetailResponse>
+
+    //검색(텍스트)
+    @POST("/search/text")
+    fun postSearchResponse(
+        @Header("Content-Type") content_type: String,
+        @Body body: JsonObject
+    ): Call<PostSearchResponse>
+
+    //검색(추천검색어)
+    @POST("/search")
+    fun postSearchTagResponse(
+        @Header("Content-Type") content_type: String,
+        @Body body: JsonObject
+    ): Call<PostSearchResponse>
+
+    //응모
+    @POST("/lottery")
+    fun postLotteryResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: JsonObject
+    ): Call<PostLotteryResponse>
 }

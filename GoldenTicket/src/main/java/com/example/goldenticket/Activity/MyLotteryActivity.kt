@@ -27,8 +27,6 @@ class MyLotteryActivity : AppCompatActivity() {
 
     //메인 메뉴에서 "당첨내역" 탭 onclick시, 당첨내역 리사이클러뷰 화면
 
-    val jsonObject = JSONObject()
-
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
