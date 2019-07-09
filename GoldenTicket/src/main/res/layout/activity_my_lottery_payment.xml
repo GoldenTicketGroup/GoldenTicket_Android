@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Activity.LotteryConfirmDetailActivity">
+        tools:context=".Activity.MyLotteryActivity">
 
     <include layout="@layout/toolbar_drawer"
              android:id="@+id/tb_mylottery_payment"/>
