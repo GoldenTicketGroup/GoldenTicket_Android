@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.goldenticket.Adapter.SearchResultRVAdapter
-import com.example.goldenticket.Data.KeepStageData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.PostSearchResponse

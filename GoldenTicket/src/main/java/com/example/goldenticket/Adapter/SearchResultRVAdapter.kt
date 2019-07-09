@@ -10,7 +10,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.goldenticket.Activity.StageInfoActivity
-import com.example.goldenticket.Data.KeepStageData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
