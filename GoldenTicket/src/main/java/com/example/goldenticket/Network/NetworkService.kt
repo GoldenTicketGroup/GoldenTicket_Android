@@ -53,14 +53,6 @@ interface NetworkService {
     ): Call<GetCardDetailResponse>
 
 
-    // 콘텐츠 상세 조회 (RV 부분)
-    @GET("show/content")
-    fun getContentDetail(
-        @Header("Content-Type") content_type: String,
-        @Header("id") card_id: Int
-    ): Call<GetContentDetailResponse>
-
-
     // 좋아요
     @POST("show/like")
     fun postShowLike(
