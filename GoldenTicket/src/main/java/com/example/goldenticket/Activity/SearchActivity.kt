@@ -29,10 +29,9 @@ class SearchActivity : AppCompatActivity() {
             finish()
         }
         ibtn_search_submit.setOnClickListener() {
-            //1안
             val intent = Intent(this, SearchResultActivity::class.java)
             Log.e("SearchActivity::", "onClickListener::ibtn_search_submit::" + et_search_searchbar.text.toString())
-            intent.putExtra("search_tag", et_search_searchbar.text.toString())
+            intent.putExtra("search_text", et_search_searchbar.text.toString())
             startActivity(intent)
         }
         tv_search_cancel.setOnClickListener {
@@ -41,41 +40,54 @@ class SearchActivity : AppCompatActivity() {
 
         //clean-code,,,,,please,,
         tv_search_tag1.setOnClickListener {
-            //1안
             val intent = Intent(this, SearchResultActivity::class.java)
             intent.putExtra("search_tag", tv_search_tag1.text)
             startActivity(intent)
-            //2안 == 검색통신 여기서하고 putExtra(결과)
         }
         tv_search_tag2.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag2.text)
+            startActivity(intent)
         }
         tv_search_tag3.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag3.text)
+            startActivity(intent)
         }
         tv_search_tag4.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag4.text)
+            startActivity(intent)
         }
         tv_search_tag5.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag5.text)
+            startActivity(intent)
         }
         tv_search_tag6.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag6.text)
+            startActivity(intent)
         }
         tv_search_tag7.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag7.text)
+            startActivity(intent)
         }
         tv_search_tag8.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag8.text)
+            startActivity(intent)
         }
         tv_search_tag9.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag9.text)
+            startActivity(intent)
         }
         tv_search_tag0.setOnClickListener {
-
+            val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("search_tag", tv_search_tag0.text)
+            startActivity(intent)
         }
-
-        //추천 검색어 onclick 시, 검색기능 처리
-
     }
 }
