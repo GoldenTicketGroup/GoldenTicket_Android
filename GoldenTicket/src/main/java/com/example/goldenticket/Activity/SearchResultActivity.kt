@@ -42,10 +42,12 @@ class SearchResultActivity : AppCompatActivity() {
 
         if (intent.getStringExtra("search_text") != null) {
             et_searchresult_searchbar.setText(intent.getStringExtra("search_text"))
+            jsonObject.put("text", intent.getStringExtra("search_text"))
             postSearchResponse()
         }
         if (intent.getStringExtra("search_tag") != null) {
             et_searchresult_searchbar.setText(intent.getStringExtra("search_tag"))
+            jsonObject.put("keyword", intent.getStringExtra("search_tag"))
             postSearchTagResponse()
         }
     }

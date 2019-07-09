@@ -16,21 +16,26 @@ import com.example.goldenticket.Adapter.StageInfoImgsRVAdpater
 import com.example.goldenticket.Data.StageInfoActorsData
 import com.example.goldenticket.Data.StageInfoData
 import com.example.goldenticket.Data.StageInfoImgsData
+import com.example.goldenticket.Data.StageInfoSchedulesData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetStageInfoResponse
 import com.example.goldenticket.Network.NetworkService
-import com.example.goldenticket.R
+import com.example.goldenticket.Network.Post.PostLotteryResponse
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 
 import kotlinx.android.synthetic.main.activity_stage_info.*
 import kotlinx.android.synthetic.main.fragment_stage_info_entry_dialog.*
 import kotlinx.android.synthetic.main.toolbar_stage_info.*
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class StageInfoActivity : AppCompatActivity(){
+    val jsonObject = JSONObject()
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -41,6 +46,8 @@ class StageInfoActivity : AppCompatActivity(){
 
     var actors: ArrayList<StageInfoActorsData> = ArrayList()
     var imgs: ArrayList<StageInfoImgsData> = ArrayList()
+    var schedules: ArrayList<StageInfoSchedulesData> = ArrayList()
+    var times: MutableMap<String, Int> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +66,7 @@ class StageInfoActivity : AppCompatActivity(){
 
         // Action Bar Custom
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        setContentView(R.layout.activity_stage_info)
+        setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
         getStageInfoResponse()
 
@@ -109,6 +116,7 @@ class StageInfoActivity : AppCompatActivity(){
             rl_stageinfo_select_time_spinner.visibility = View.VISIBLE
             btn_stageinfo_entry.visibility = View.GONE
             btn_stageinfo_submit.visibility = View.VISIBLE
+
         }
         btn_stageinfo_submit.setOnClickListener {
             btn_stageinfo_activate_dl.visibility = View.VISIBLE
@@ -116,6 +124,9 @@ class StageInfoActivity : AppCompatActivity(){
             rl_stageinfo_select_time_spinner.visibility = View.GONE
             btn_stageinfo_entry.visibility = View.VISIBLE
             btn_stageinfo_submit.visibility = View.GONE
+
+            jsonObject.put("schedule_idx", times.get(spn_stageinfo_select_time.selectedItem.toString()))
+            postLotteryResponse()
         }
     }
 
@@ -164,20 +175,15 @@ class StageInfoActivity : AppCompatActivity(){
 
     }
 
-    private fun setSpinner() {
-        val stageStartTimes: ArrayList<String> = ArrayList()
+    private fun setSpinner(times: MutableMap<String, Int>) {
+        /*val stageStartTimes: ArrayList<String> = ArrayList()
         stageStartTimes.add("오후 4:00")
-        stageStartTimes.add("오후 5:00")
-
-        spn_stageinfo_select_time.adapter = ArrayAdapter(this, R.layout.spn_item_stageinfo_starttimes, stageStartTimes)
+        stageStartTimes.add("오후 5:00")*/
+        spn_stageinfo_select_time.adapter = ArrayAdapter(this, com.example.goldenticket.R.layout.spn_item_stageinfo_starttimes, times.keys.toTypedArray())
         spn_stageinfo_select_time.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+            override fun onNothingSelected(p0: AdapterView<*>?) { /*nothing*/ }
 
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
-            }
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) { /*nothing*/ }
         }
     }
 
@@ -194,7 +200,6 @@ class StageInfoActivity : AppCompatActivity(){
                 behavior.setPeekHeight(0)
             }
         }
-
     }
 
     private fun getStageInfoResponse() {
@@ -222,8 +227,7 @@ class StageInfoActivity : AppCompatActivity(){
                         tv_stageinfo_title.text = response.body()!!.data.name
                         tv_stageinfo_costprice.text = response.body()!!.data.original_price + "원"
                         tv_stageinfo_saleprice.text = response.body()!!.data.discount_price + "원"
-
-                        //schedule 객체 안에, start, end, draw-available property로 처리
+                        tv_stageinfo_date.text = response.body()!!.data.duration
                         tv_stageinfo_location.text = response.body()!!.data.location
 
                         actors = response.body()!!.data.artist
@@ -232,9 +236,18 @@ class StageInfoActivity : AppCompatActivity(){
                         Log.e("StageInfoActivity::", "getStageInfoResponse::imgs:: " + imgs.toString())
 
                         setRecyclerView()
+
                         //0: 응모 불가, 1: 응모 가능
-                        setBottomSheet(response.body()!!.data.draw_available) //status draw-available로 받아서 처리
-                        setSpinner()
+                        schedules = response.body()!!.data.schedule
+                        for (schedule in schedules) {
+                            if (schedule.draw_available == 1) {
+                                times.put(schedule.time, schedule.schedule_idx)
+                            }
+                        }
+                        if (times.size > 0) {
+                            setBottomSheet(1)
+                            setSpinner(times)
+                        }
                     }
                     else {
                         Glide.with(this@StageInfoActivity)
@@ -243,6 +256,29 @@ class StageInfoActivity : AppCompatActivity(){
                     }
                 } else {
                     Log.e("StageInfoActivity:: ", "getStageInfoResponse:: Fail")
+                }
+            }
+        })
+    }
+
+    private fun postLotteryResponse() {
+        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
+
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postLotteryResponse: Call<PostLotteryResponse> = networkService.postLotteryResponse("application/json", token, gsonObject)
+        postLotteryResponse.enqueue(object: Callback<PostLotteryResponse> {
+            override fun onFailure(call: Call<PostLotteryResponse>, t: Throwable) {
+                Log.e("StageInfoActivity::", "postLotteryResponse::Post_Lottery_Register_Fail")
+            }
+
+            override fun onResponse(call: Call<PostLotteryResponse>, response: Response<PostLotteryResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("StageInfoActivity::", "postLotteryResponse::onResponse::Success::" + response.body()!!.message)
+                    toast(response.body()!!.message)
+                }
+                else {
+                    Log.e("StageInfoActivity::", "postLotteryResponse::onResponse::Fail::" + response.body()!!.message)
+                    toast(response.body()!!.message)
                 }
             }
         })
