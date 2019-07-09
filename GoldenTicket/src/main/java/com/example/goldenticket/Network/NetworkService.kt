@@ -86,9 +86,6 @@ interface NetworkService {
         @Path("id") show_idx: Int
     ): Call<GetStageInfoResponse>
 
-    //공연 상세 좋아효
-    //@POST
-
     //회원정보 수정
     @PUT("/auth/user")
     fun putUserResponse(
