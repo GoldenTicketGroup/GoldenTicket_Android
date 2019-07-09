@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.example.goldenticket.Data.LotteryListData
 import com.example.goldenticket.Network.ApplicationController
@@ -35,9 +36,6 @@ class LotteryFirstTimerFragment : Fragment() {
     }
 
     lateinit var start_time: String
-
-    val nowSeconds: Long
-        get() = Calendar.getInstance().timeInMillis / 1000
 
 
     var diff : String = ""
@@ -176,5 +174,4 @@ class LotteryFirstTimerFragment : Fragment() {
             }
         })
     }
-
 }
