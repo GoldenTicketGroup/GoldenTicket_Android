@@ -58,7 +58,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
                 android:text="취소"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:textColor="#6e6e6e"
                 android:fontFamily="@font/notosans_light"/>
     </RelativeLayout>
