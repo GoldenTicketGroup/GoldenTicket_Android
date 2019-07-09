@@ -73,8 +73,9 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepShowData>
                         response: Response<DeleteShowLikeResponse>
                     ) {
                         if(response.isSuccessful){
-                            Log.d("TEST","성공")
+                            Log.d("TEST",response.body()!!.toString())
                             if(response.body()!!.status == 200){
+
                                 holder.btn_like.setBackgroundResource(R.drawable.icon_like_nofill)
                                 holder.btn_like.isSelected = false
                             }
@@ -103,6 +104,8 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepShowData>
                     ) {
                         if(response.isSuccessful){
                             if(response.body()!!.status == 200){
+                                Log.d("TEST",response.body()!!.toString())
+
                                 holder.btn_like.setBackgroundResource(R.drawable.icon_like_fill)
                                 holder.btn_like.isSelected = true
                             }

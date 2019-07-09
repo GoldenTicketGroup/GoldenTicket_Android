@@ -4,47 +4,109 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.goldenticket.Adapter.KeepStageRVAdapter
-import com.example.goldenticket.Data.KeepShowData
+import com.example.goldenticket.Adapter.SearchResultRVAdapter
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.NetworkService
+import com.example.goldenticket.Network.Post.PostSearchResponse
+import com.example.goldenticket.Network.Post.SearchData
 import com.example.goldenticket.R
 import com.example.goldenticket.etc.RecyclerViewDecoration
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_search_result.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.Boolean
 
 class SearchResultActivity : AppCompatActivity() {
+
+    val jsonObject = JSONObject()
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
+    var results: ArrayList<SearchData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
 
-//        var dataList: ArrayList<KeepShowData> = ArrayList()
-//        dataList.add(
-//            KeepShowData(
-//                "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjGkfDw4pHjAhUB5rwKHYekBmsQjRx6BAgBEAU&url=http%3A%2F%2Fhangangah.com%2F%25EA%25B0%2595%25EC%2595%2584%25EC%25A7%2580-%25EC%2583%2581%25EC%258B%259D-4%2F&psig=AOvVaw2DY9w_UJObZrGOAhL-ZsDf&ust=1562003555694345",
-//                Boolean.TRUE
-//            )
-//        )
-//        dataList.add(
-//            KeepShowData(
-//                "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwj7sZqL45HjAhUKVLwKHT6fBf4QjRx6BAgBEAU&url=https%3A%2F%2Fmypetlife.co.kr%2F10333%2F&psig=AOvVaw2DY9w_UJObZrGOAhL-ZsDf&ust=1562003555694345",
-//                Boolean.FALSE
-//            )
-//        )
-
-//        Log.e("SearchResultActivity::", "onCreate::" + intent.getStringExtra("search_tag"))
-//        et_searchresult_searchbar.setText(intent.getStringExtra("search_tag"))
-//
-//        rv_search_results.adapter = KeepStageRVAdapter(applicationContext, dataList)
-//        rv_search_results.layoutManager = GridLayoutManager(applicationContext, 2)
-//        rv_search_results.addItemDecoration(RecyclerViewDecoration())
-//        rv_search_results.setHasFixedSize(true)
-
         setOnClickListener()
+
+        if (intent.getStringExtra("search_text") != null) {
+            et_searchresult_searchbar.setText(intent.getStringExtra("search_text"))
+            jsonObject.put("text", intent.getStringExtra("search_text"))
+            postSearchResponse()
+        }
+        if (intent.getStringExtra("search_tag") != null) {
+            et_searchresult_searchbar.setText(intent.getStringExtra("search_tag"))
+            jsonObject.put("keyword", intent.getStringExtra("search_tag"))
+            postSearchTagResponse()
+        }
     }
 
     private fun setOnClickListener() {
         ibtn_searchresult_pre.setOnClickListener {
             finish()
         }
+    }
+
+    private fun setRecyclerView() {
+        rv_search_results.adapter = SearchResultRVAdapter(applicationContext, results)
+        rv_search_results.layoutManager = GridLayoutManager(applicationContext, 2)
+        rv_search_results.addItemDecoration(RecyclerViewDecoration())
+        rv_search_results.setHasFixedSize(true)
+    }
+
+    private fun postSearchResponse() {
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postSearchResponse: Call<PostSearchResponse>
+                = networkService.postSearchResponse("application/json", gsonObject)
+        postSearchResponse.enqueue(object: Callback<PostSearchResponse> {
+            override fun onFailure(call: Call<PostSearchResponse>, t: Throwable) {
+                Log.e("SearchResultActivity:: ", "postSearchResponse::List_Search_Result_Data_Fail")
+            }
+
+            override fun onResponse(call: Call<PostSearchResponse>, response: Response<PostSearchResponse>) {
+                if (response.isSuccessful) {
+                    var tempData: ArrayList<SearchData> = response.body()!!.data
+                    if (tempData != null) {
+                        Log.e("SearchResultActivity::", "postSearchResponse::onResponse::Success:: " + response.body()!!.message)
+                        results = response.body()!!.data
+                        setRecyclerView()
+                    }
+                }
+                else {
+                    Log.e("SearchResultActivity::", "postSearchResponse::onResponse::Fail:: " + response.body()!!.message)
+                }
+            }
+        })
+    }
+
+    private fun postSearchTagResponse() {
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+        val postSearchTagResponse: Call<PostSearchResponse> = networkService.postSearchTagResponse("application/json", gsonObject)
+        postSearchTagResponse.enqueue(object: Callback<PostSearchResponse> {
+            override fun onFailure(call: Call<PostSearchResponse>, t: Throwable) {
+                Log.e("SearchResultActivity:: ", "postSearchTagResponse::List_Search_Tag_Result_Data_Fail")
+            }
+
+            override fun onResponse(call: Call<PostSearchResponse>, response: Response<PostSearchResponse>) {
+                if (response.isSuccessful) {
+                    var tempData: ArrayList<SearchData> = response.body()!!.data
+                    if (tempData != null) {
+                        Log.e("SearchResultActivity::", "postSearchTagResponse::onResponse::Success::" + response.body()!!.message)
+                        results = response.body()!!.data
+                        setRecyclerView()
+                    }
+                }
+                else {
+                    Log.e("SearchResultActivity::", "postSearchTagResponse::onResponse::Fail:: " + response.body()!!.message)
+                }
+            }
+        })
     }
 }

@@ -25,7 +25,7 @@ class QuestionRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Ques
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
-        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_notice, viewGroup, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_question, viewGroup, false)
         return Holder(view)
     }
 
@@ -33,7 +33,6 @@ class QuestionRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Ques
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.title.text = dataList[position].title
-        holder.date.text = dataList[position].date
         holder.content.text = dataList[position].content
 
         holder.setIsRecyclable(false)
@@ -62,7 +61,7 @@ class QuestionRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Ques
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
         var container = itemView.findViewById(R.id.rl_rv_item_notice_container) as RelativeLayout
         var title = itemView.findViewById(R.id.txt_rv_item_notice_title) as TextView
-        var date = itemView.findViewById(R.id.txt_rv_item_notice_date) as TextView
+        //var date = itemView.findViewById(R.id.txt_rv_item_notice_date) as TextView
         var content = itemView.findViewById(R.id.txt_rv_item_notice_content) as TextView
         var btn = itemView.findViewById(R.id.img_rv_item_btn) as ImageView
         var expandableLayout = itemView.findViewById(R.id.expandable_ll) as ExpandableLinearLayout

@@ -18,16 +18,16 @@
             android:id="@+id/iv_drawer_close"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginLeft="272.3dp"
-            android:layout_marginRight="22.7dp"
-            android:layout_marginTop="39.4dp"
+            android:layout_marginLeft="272dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/bt_close"/>
         <ImageView
             android:id="@+id/iv_profile"
-            android:layout_width="68.8dp"
-            android:layout_height="86.6dp"
+            android:layout_width="69dp"
+            android:layout_height="87dp"
             android:layout_marginLeft="123dp"
-            android:layout_marginTop="9.8dp"
+            android:layout_marginTop="17dp"
             android:src="@drawable/img_profile"/>
 
         <FrameLayout
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="44.3dp"
+                android:layout_marginRight="44dp"
                 android:textSize="20sp"
                 android:textColor="#fad952"
                 android:text="6"/>
