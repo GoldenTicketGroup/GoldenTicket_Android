@@ -14,13 +14,12 @@ import kotlinx.android.synthetic.main.toolbar_drawer.*
 class QuestionActivity : AppCompatActivity() {
 
     val dataList = arrayListOf<QuestionData>(
-            QuestionData("하루에 응모 가능 개수가 정해져 있나요?", "2019-07-11", "hi"),
+            QuestionData("하루에 응모 가능 개수가 정해져 있나요?", "하루 최대 2개의 공연에 응모하실 수 있습니다."),
             QuestionData(
-                    "결제 완료 후 티켓 취소가 가능한가요?", "2019-07-08", "결제 완료 후 티켓 취소 및 변경은 불가합니다. \n" +
-                    "\n" +
-                    "감사합니다."
+                    "결제 완료 후 티켓 취소가 가능한가요?", "당첨자 선정은 랜덤 추첨을 통해 선정됩니다."
             ),
-            QuestionData("좌석은 어떻게 정해지나요?", "2019-07-08", "좌석은~")
+            QuestionData("좌석은 어떻게 정해지나요?", "좌석은 당첨 후 결제가 완료되었을 때 공연측으로부터 배정받게 됩니다.\n" +
+                    "특정 좌석을 미리 선택할 수 없습니다.")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
