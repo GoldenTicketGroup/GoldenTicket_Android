@@ -57,21 +57,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="141dp"
+            android:layout_marginLeft="138dp"
             android:layout_marginTop="4dp">
             <TextView
                 android:id="@+id/tv_user_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosans_medium"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:textColor="#989898"
                 android:text="정보수정"/>
             <ImageView
                 android:id="@+id/iv_next_user"
                 android:layout_width="4dp"
                 android:layout_height="7dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginLeft="4dp"
                 android:background="@drawable/icon_next"/>
         </LinearLayout>
@@ -228,6 +228,7 @@
                 android:layout_marginTop="21dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="40dp"
+                android:fontFamily="@font/notosans_medium"
                 android:text="1.0"
                 android:textSize="11sp"
                 android:textColor="#d6d6d6"/>

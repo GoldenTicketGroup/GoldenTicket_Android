@@ -104,6 +104,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
+                tv_first_timer_text.visibility = GONE
                 tv_first_timer?.let{tv_first_timer.text = "당첨 확인"}
             }
 
@@ -148,7 +149,7 @@ class LotteryFirstTimerFragment : Fragment() {
                     if (response.body()!!.status == 200) {
                         if (response.body()!!.data.size != 0) {
                             tv_first_timer_title.text = response.body()!!.data.get(0).name
-                            start_time = response.body()!!.data.get(0).start_time
+                            start_time = response.body()!!.data.get(0).start_time + "m"
 
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
                             Log.d("TIME 0", sdf.parse(start_time).toString())
