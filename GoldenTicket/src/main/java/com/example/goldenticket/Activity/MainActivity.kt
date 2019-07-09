@@ -58,12 +58,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dt = Date()
-        Log.d("DATE", dt.toString())
-
-        val full_sdf = SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a")
-        Log.d("DATE", full_sdf.format(dt).toString())
-
         //progressON("Loading...")
 
         /** 상단 티켓 아이콘 **/

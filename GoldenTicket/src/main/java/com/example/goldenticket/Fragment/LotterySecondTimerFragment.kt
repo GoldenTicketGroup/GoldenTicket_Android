@@ -39,7 +39,7 @@ class LotterySecondTimerFragment : Fragment() {
 
 
     var diff : String = ""
-    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a")
+    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH)
     val now_time = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
 
