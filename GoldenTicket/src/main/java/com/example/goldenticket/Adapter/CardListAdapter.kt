@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.goldenticket.Activity.ContentActivity
 import com.example.goldenticket.Data.CardListData
 import com.example.goldenticket.R
+import kotlinx.android.synthetic.main.rv_main_contents_item.view.*
 import org.jetbrains.anko.startActivity
 
 class CardListAdapter(val ctx: Context, val dataList: ArrayList<CardListData>): RecyclerView.Adapter<CardListAdapter.Holder>() {
@@ -43,7 +44,7 @@ class CardListAdapter(val ctx: Context, val dataList: ArrayList<CardListData>): 
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var cv = itemView.findViewById(R.id.cvCard) as CardView
+        var cv = itemView.cvCard
         var title  = itemView.findViewById(R.id.tvTitle) as TextView
         var category  = itemView.findViewById(R.id.tvCategory) as TextView
         var img = itemView.findViewById(R.id.ivCard) as ImageView

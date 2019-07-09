@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
         super.onStart()
 
         val mHandler = Handler()
-        mHandler.postDelayed(startConfirmUser, 2010)
+        mHandler.postDelayed(startConfirmUser, 2100)
     }
 
     //토큰을 받아와서 아이디가 있는지 확인
