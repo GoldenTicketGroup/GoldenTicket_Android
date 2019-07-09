@@ -18,6 +18,7 @@
         <activity android:name=".Activity.MyLotteryDetailActivity">
         </activity>
         <activity android:name=".Activity.MyLotteryPaymentActivity">
+
         </activity>
         <activity android:name=".Activity.MyLotteryNothingActivity">
         </activity>
@@ -79,6 +80,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
     </application>
 

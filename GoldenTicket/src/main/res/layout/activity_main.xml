@@ -156,7 +156,18 @@
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
                                 android:layout_toRightOf="@+id/ibtnNextLeft"
+                                android:visibility="visible"
                         />
+                        <TextView
+                                android:id="@+id/tvLotteryNothing"
+                                android:visibility="invisible"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:textColor="#969696"
+                                android:textAlignment="center"
+                                android:layout_centerInParent="true"
+                                android:text="응모한 내역이 없습니다"/>
                         <ImageButton
                                 android:id="@+id/ibtnNextRight"
                                 android:layout_width="wrap_content"
