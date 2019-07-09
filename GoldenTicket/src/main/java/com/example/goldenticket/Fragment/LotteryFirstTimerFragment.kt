@@ -17,6 +17,7 @@ import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.NetworkService
 
 import com.example.goldenticket.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
 import retrofit2.Call
 import retrofit2.Response
@@ -30,10 +31,6 @@ class LotteryFirstTimerFragment : Fragment() {
     }
 
     lateinit var start_time: String
-
-
-    val nowSeconds: Long
-        get() = Calendar.getInstance().timeInMillis / 1000
 
 
     var mStartTimeInMillis: Long = 60000 * 10 //10분으로 설정

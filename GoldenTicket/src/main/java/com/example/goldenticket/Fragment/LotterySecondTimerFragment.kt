@@ -130,7 +130,7 @@ class LotterySecondTimerFragment : Fragment() {
                         Log.d("Lottery List", "#######################3")
                         val tmp: ArrayList<LotteryListData> = response.body()!!.data
                         if (tmp != null) {
-                            tv_second_timer_title.text = response.body()!!.data.get(1).name
+                            //tv_second_timer_title.text = response.body()!!.data.get(1).name
                         }
                     }
                 }

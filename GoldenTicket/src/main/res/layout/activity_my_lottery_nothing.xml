@@ -43,10 +43,10 @@
             android:layout_marginTop="34dp">
         <ImageView
                 android:id="@+id/iv_mylottery_nothing_character"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="280dp"
+                android:layout_height="182dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/character_fail"/>
+                android:src="@drawable/catching"/>
     </RelativeLayout>
 
     <RelativeLayout

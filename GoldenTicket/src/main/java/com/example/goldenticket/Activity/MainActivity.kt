@@ -25,12 +25,14 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.os.postDelayed
 import androidx.core.view.ViewCompat.animate
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.example.goldenticket.Network.Get.GetMainPosterResponse
 import com.example.goldenticket.Network.NetworkService
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import kotlinx.android.synthetic.main.activity_my_lottery_nothing.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import retrofit2.Call
 import retrofit2.Callback
