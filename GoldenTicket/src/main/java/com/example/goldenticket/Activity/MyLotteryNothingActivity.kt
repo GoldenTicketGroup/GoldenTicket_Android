@@ -17,5 +17,8 @@ class MyLotteryNothingActivity : AppCompatActivity() {
         btn_mylottery_nothing_stagelist.setOnClickListener {
             startActivity<SearchActivity>()
         }
+        ibtn_mylottery_nothing_close.setOnClickListener {
+            finish()
+        }
     }
 }

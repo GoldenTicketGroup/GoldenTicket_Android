@@ -68,7 +68,7 @@
                 android:fontFamily="@font/notosans_light"/>
 
         <RelativeLayout
-                android:id="@+id/tv_lotteryconfirm_pay"
+                android:id="@+id/rl_lotteryconfirm_pay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/tv_lotteryconfirm_pay"
+                android:layout_below="@+id/rl_lotteryconfirm_pay"
                 android:text="30분이 지나면 자동 취소됩니다"
                 android:textAlignment="center"
                 android:textSize="12sp"
@@ -152,9 +152,9 @@
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:layout_marginTop="65dp">
+            android:layout_marginTop="60dp">
         <Button
                 android:id="@+id/btn_lotteryconfirm_stagelike"
                 android:layout_width="277.5dp"

@@ -2,11 +2,11 @@ package com.example.goldenticket.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.activity_lottery_confirm.*
-import org.jetbrains.anko.startActivity
+import kotlinx.android.synthetic.main.activity_user_update.view.*
+import org.jetbrains.anko.*
 
 class LotteryConfirmActivity : AppCompatActivity() {
 
@@ -27,7 +27,15 @@ class LotteryConfirmActivity : AppCompatActivity() {
             finish()
         }
         btn_lotteryconfirm_stagelike.setOnClickListener {
-            // DESIGN: PopUp Dialog
+            alert(title="관심있는 공연 추가", message="추가하시겠습니까?") {
+                positiveButton("Yes"){
+                    toast("관심있는 공연에 추가하였습니다.")
+                }
+                negativeButton("No"){
+                    toast("취소하였습니다.")
+                }
+            }.show()
+            true
         }
         btn_lotteryconfirm_stagelist.setOnClickListener {
             when (status) {

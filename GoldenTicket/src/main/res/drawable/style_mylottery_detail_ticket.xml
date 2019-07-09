@@ -14,22 +14,22 @@
             <solid android:color="#fff" />
             <size android:width="13dp"
                   android:height="13dp" />
-            <gradient
+            <!--<gradient
                     android:startColor="#FFFFFF"
                     android:endColor="#cdcdcd"
-                    android:angle="45"/>
+                    android:angle="45"/>-->
         </shape>
     </item>
     <item android:gravity="bottom|right">
         <shape android:shape="rectangle">
             <corners android:topLeftRadius="45dp"/>
             <solid android:color="#fff" />
-            <size android:width="13dp"
-                  android:height="13dp" />
-            <gradient
-                    android:startColor="#FFFFFF"
+            <size android:width="15dp"
+                  android:height="20dp" />
+            <!--<gradient
+                    android:startColor="#00FFFFFF"
                     android:endColor="#cdcdcd"
-                    android:angle="135"/>
+                    android:angle="135"/>-->
         </shape>
     </item>
 
