@@ -18,13 +18,14 @@ import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.NetworkService
 
-import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
 import retrofit2.Call
 import retrofit2.Response
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
+
 
 
 
@@ -39,10 +40,9 @@ class LotteryFirstTimerFragment : Fragment() {
 
 
     var diff : String = ""
-    val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss a")
-    val now_time = System.currentTimeMillis()
+    var sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss")
+    private val now_time:Long = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
-
     var mStartTimeInMillis: Long = 0 //10분으로 설정
     var mCountDownTimer: CountDownTimer? = null
     //var mTimerRunning: Boolean = false
@@ -53,6 +53,12 @@ class LotteryFirstTimerFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.
         getMainLotteryListResponse()
+
+        val dt = Date()
+        Log.d("DATE", dt.toString())
+
+        val full_sdf = SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a")
+        Log.d("DATE", full_sdf.format(dt).toString())
 
     }
 
@@ -123,6 +129,12 @@ class LotteryFirstTimerFragment : Fragment() {
         var seconds = (mTimeLeftInMillis / 1000) % 60
 
         var timeLeftFormatted: String = "00:00"
+       /* Log.d("         hour",""+hours)
+        Log.d("          minutes",""+minutes)*/
+       /* Log.d("         hour",""+hours)
+        Log.d("          minutes",""+minutes)
+        Log.d("         seconds",""+seconds)*/
+
 
         //60분이 넘으면 시간 까지 아니면 분, 초만 나온다.
         if (hours > 0) {
@@ -148,13 +160,24 @@ class LotteryFirstTimerFragment : Fragment() {
                     if (response.body()!!.status == 200) {
                         if (response.body()!!.data.size != 0) {
                             tv_first_timer_title.text = response.body()!!.data.get(0).name
-                            start_time = response.body()!!.data.get(0).start_time
+                            start_time = response.body()!!.data.get(0).start_time + "m"
 
+                            start_time ="07/09/2019 11:10:00"
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
+
+
+
+                            Log.d("@@@@TIME 0", start_time)
                             Log.d("TIME 0", sdf.parse(start_time).toString())
+                            Log.d("^^^^^^^^^ millis타입", confirm_time_sdf.toString())
+
+                            Log.d("######NOW TIME 0", now_time.toString())
 
                             mStartTimeInMillis = confirm_time_sdf - now_time
+
                             mTimeLeftInMillis = mStartTimeInMillis
+
+                            Log.d("&*&* mTimeLeftInMilli *", mTimeLeftInMillis.toString())
 
                             mEndTime = System.currentTimeMillis() + mTimeLeftInMillis //현재 시간(초)에 남은 시간을 더한다.
 

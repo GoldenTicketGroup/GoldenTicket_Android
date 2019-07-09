@@ -28,6 +28,7 @@
                 android:paddingRight="10dp"
                 android:textSize="20sp"
                 android:textColor="#262626"
+                android:gravity="center"
                 android:layout_above="@+id/tv_first_timer_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
