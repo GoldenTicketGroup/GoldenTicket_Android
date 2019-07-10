@@ -25,6 +25,7 @@ class TutorialActivity : AppCompatActivity() {
         //SKIP text 누르면 화면으로 넘어감
         tv_tutorial_skip.setOnClickListener {
             startActivity<LoginActivity>()
+            finish()
         }
 
         //슬라이더 이미지가 바뀌었을 때 이벤트
@@ -52,6 +53,7 @@ class TutorialActivity : AppCompatActivity() {
         btn_tutorial_next.setOnClickListener {
             if (btn_tutorial_next.text.toString() == "시작") {
                 startActivity<LoginActivity>()
+                finish()
             } else {
                 vp_tutorial_slider.setCurrentItem(getItem(+1), true)
             }
