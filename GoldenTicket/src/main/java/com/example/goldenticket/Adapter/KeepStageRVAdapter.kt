@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.goldenticket.Data.KeepShowData
 import com.example.goldenticket.Activity.StageInfoActivity
+import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
@@ -61,8 +62,7 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepShowData>
                 jsonObject.put("show_idx",dataList[position].show_idx)
                 val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-                // TODO: user token 쉐어드에서 가져와야함
-                val deleteShowLike = networkService.deleteShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
+                val deleteShowLike = networkService.deleteShowLike("application/json",SharedPreferenceController.getUserToken(ctx), gsonObject)
                 deleteShowLike.enqueue(object: Callback<DeleteShowLikeResponse> {
                     override fun onFailure(call: Call<DeleteShowLikeResponse>, t: Throwable) {
                         Log.e("Delete ShowLike Failed:",t.toString())
@@ -91,8 +91,7 @@ class KeepStageRVAdapter(val ctx: Context, val dataList: ArrayList<KeepShowData>
                 jsonObject.put("show_idx",dataList[position].show_idx)
                 val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-                // TODO: user token 쉐어드에서 가져와야함
-                val postShowLike = networkService.postShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
+                val postShowLike = networkService.postShowLike("application/json",SharedPreferenceController.getUserToken(ctx), gsonObject)
                 postShowLike.enqueue(object: Callback<PostShowLikeResponse> {
                     override fun onFailure(call: Call<PostShowLikeResponse>, t: Throwable) {
                         Log.e("Delete ShowLike Failed:",t.toString())

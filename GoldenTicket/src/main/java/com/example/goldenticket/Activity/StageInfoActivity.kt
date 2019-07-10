@@ -263,6 +263,8 @@ class StageInfoActivity : AppCompatActivity() {
                         tv_stageinfo_date.text = response.body()!!.data.duration
                         tv_stageinfo_location.text = response.body()!!.data.location
 
+                        ibtn_stageinfo_like.isSelected = if(response.body()!!.data.is_liked==1) true else false
+
                         actors = response.body()!!.data.artist
                         Log.e("StageInfoActivity::", "getStageInfoResponse::actors:: " + actors.toString())
                         imgs = response.body()!!.data.poster
