@@ -62,7 +62,7 @@
                 android:fontFamily="@font/notosans_light"
                 android:text="혜화 소극장"
                 android:textColor="#ffffff"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:fontFamily="@font/notosans_light"
                 android:text="17:00 ~ 19:00"
                 android:textColor="#ffffff"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 

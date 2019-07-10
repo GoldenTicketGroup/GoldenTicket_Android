@@ -39,7 +39,7 @@ class LotterySecondTimerFragment : Fragment() {
 
 
     var diff : String = ""
-    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a")
+    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH)
     val now_time = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
 
@@ -60,7 +60,7 @@ class LotterySecondTimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(com.example.goldenticket.R.layout.fragment_lottery_first_timer, container, false)
+        return inflater.inflate(com.example.goldenticket.R.layout.fragment_lottery_second_timer, container, false)
 
     }
 
@@ -103,8 +103,8 @@ class LotterySecondTimerFragment : Fragment() {
 
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
-                tv_first_timer_text.visibility = View.GONE
-                tv_first_timer?.let{tv_first_timer.text = "당첨 확인"}
+                tv_second_timer_text.visibility = View.GONE
+                tv_second_timer?.let{tv_second_timer.text = "당첨 확인"}
             }
 
             override fun onTick(p0: Long) {
@@ -131,7 +131,7 @@ class LotterySecondTimerFragment : Fragment() {
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
         }
 
-        tv_first_timer?.let{tv_first_timer.text = timeLeftFormatted}
+        tv_second_timer?.let{tv_second_timer.text = timeLeftFormatted}
     }
 
     private fun getMainLotteryListResponse(){
@@ -147,7 +147,7 @@ class LotterySecondTimerFragment : Fragment() {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
                         if (response.body()!!.data.size != 0) {
-                            tv_first_timer_title.text = response.body()!!.data.get(1).name
+                            tv_second_timer_title.text = response.body()!!.data.get(1).name
                             start_time = response.body()!!.data.get(1).start_time + "m"
 
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
@@ -158,9 +158,7 @@ class LotterySecondTimerFragment : Fragment() {
                             mEndTime = System.currentTimeMillis() + mTimeLeftInMillis //현재 시간(초)에 남은 시간을 더한다.
 
 
-                            var prefs: SharedPreferences = context!!.getSharedPreferences("GoldenTicketSecond",
-                                Context.MODE_PRIVATE
-                            )
+                            var prefs: SharedPreferences = context!!.getSharedPreferences("GoldenTicketSecond", Context.MODE_PRIVATE)
                             var editor = prefs.edit()
 
                             editor.putLong("startTimeInMillis", mStartTimeInMillis)

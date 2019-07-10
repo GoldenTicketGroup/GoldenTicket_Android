@@ -39,7 +39,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
 
     var diff : String = ""
-    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a")
+    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH)
     val now_time = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
 
@@ -127,9 +127,9 @@ class LotteryFirstTimerFragment : Fragment() {
 
         //60분이 넘으면 시간 까지 아니면 분, 초만 나온다.
         if (hours > 0) {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds)
+            timeLeftFormatted = String.format(Locale.getDefault(), "%d : %02d : %02d", hours, minutes, seconds)
         } else {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d : %02d", minutes, seconds)
         }
 
         tv_first_timer?.let{tv_first_timer.text = timeLeftFormatted}
@@ -152,7 +152,6 @@ class LotteryFirstTimerFragment : Fragment() {
                             start_time = response.body()!!.data.get(0).start_time + "m"
 
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
-                            Log.d("TIME 0", sdf.parse(start_time).toString())
 
                             mStartTimeInMillis = confirm_time_sdf - now_time
                             mTimeLeftInMillis = mStartTimeInMillis
