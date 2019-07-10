@@ -112,7 +112,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             <TextView
                     android:id="@+id/tv_search_tag2"
                     android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             <TextView
                     android:id="@+id/tv_search_tag3"
                     android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             </LinearLayout>
         </RelativeLayout>
     <RelativeLayout
@@ -161,7 +161,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             <TextView
                     android:id="@+id/tv_search_tag5"
                     android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             <TextView
                     android:id="@+id/tv_search_tag6"
                     android:layout_width="wrap_content"
@@ -187,7 +187,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             <TextView
                     android:id="@+id/tv_search_tag7"
                     android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
         </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
@@ -224,7 +224,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             <TextView
                     android:id="@+id/tv_search_tag9"
                     android:layout_width="wrap_content"
@@ -237,7 +237,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
             <TextView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/tv_search_tag0"
@@ -251,7 +251,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:gravity="center"
-                    android:background="@drawable/style_search_tags_bg"/>
+                    android:background="@drawable/ripple_effect"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

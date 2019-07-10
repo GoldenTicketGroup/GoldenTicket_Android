@@ -159,7 +159,6 @@ class LotterySecondTimerFragment : Fragment() {
                             tv_second_timer_title.text = response.body()!!.data.get(1).name
                             start_time = response.body()!!.data.get(1).start_time + "m"
 
-
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
 
                             mStartTimeInMillis = confirm_time_sdf - now_time

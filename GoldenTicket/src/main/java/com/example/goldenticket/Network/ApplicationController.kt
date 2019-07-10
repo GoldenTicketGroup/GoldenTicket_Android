@@ -42,41 +42,4 @@ class ApplicationController : Application(){
         //Retrofit 객체 활성화
         networkService = retrofit.create(NetworkService::class.java)
     }
-   /* fun progressON(activity: Activity?, message: String) {
-        if (activity == null || activity.isFinishing) {
-            return
-        }
-        if (progressDialog != null && progressDialog!!.isShowing) {
-            progressSET(message)
-        } else {
-            progressDialog = AppCompatDialog(activity)
-            progressDialog!!.setCancelable(false)
-            progressDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            progressDialog!!.setContentView(R.layout.progress_loading)
-            progressDialog!!.show()
-        }
-        val img_loading_frame = progressDialog!!.findViewById<View>(R.id.iv_frame_loading) as ImageView?
-        val frameAnimation = img_loading_frame!!.background as AnimationDrawable
-        img_loading_frame.post { frameAnimation.start() }
-        val tv_progress_message = progressDialog!!.findViewById<View>(R.id.tv_progress_message) as TextView?
-        if (!TextUtils.isEmpty(message)) {
-            tv_progress_message!!.text = message
-        }
-    }
-
-    fun progressSET(message: String) {
-        if (progressDialog == null || !progressDialog!!.isShowing) {
-            return
-        }
-        val tv_progress_message = progressDialog!!.findViewById<View>(R.id.tv_progress_message) as TextView?
-        if (!TextUtils.isEmpty(message)) {
-            tv_progress_message!!.text = message
-        }
-    }
-
-    fun progressOFF() {
-        if (progressDialog != null && progressDialog!!.isShowing) {
-            progressDialog!!.dismiss()
-        }
-    }*/
 }

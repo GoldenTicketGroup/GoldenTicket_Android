@@ -8,6 +8,8 @@ data class StageInfoData (
     val duration: String,
     val original_price: String,
     val discount_price: String,
+    val background_image : String,
+    val is_liked : Int,
     val schedule: ArrayList<StageInfoSchedulesData>,
     val artist: ArrayList<StageInfoActorsData>,
     val poster: ArrayList<StageInfoImgsData>

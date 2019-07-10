@@ -31,7 +31,6 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 
 import kotlinx.android.synthetic.main.activity_stage_info.*
-import kotlinx.android.synthetic.main.fragment_stage_info_entry_dialog.*
 import kotlinx.android.synthetic.main.toolbar_stage_info.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -85,6 +84,18 @@ class StageInfoActivity : AppCompatActivity(){
         setOnClickListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+        val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
+        if(behavior.peekHeight==500){
+            btn_stageinfo_activate_dl.visibility = View.GONE
+            btn_stageinfo_inactivate_dl.visibility = View.VISIBLE
+            rl_stageinfo_select_time_spinner.visibility = View.VISIBLE
+            btn_stageinfo_entry.visibility = View.GONE
+            btn_stageinfo_submit.visibility = View.VISIBLE
+        }
+    }
+
     private fun setOnClickListener() {
         ibtn_stageinfo_pre.setOnClickListener {
             finish()
@@ -96,9 +107,9 @@ class StageInfoActivity : AppCompatActivity(){
                     var jsonObject = JSONObject()
                     jsonObject.put("show_idx",show_idx)
                     val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-
+                    var token = SharedPreferenceController.getUserToken(this)
                     // TODO: user token 쉐어드에서 가져와야함
-                    val deleteShowLike = networkService.deleteShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
+                    val deleteShowLike = networkService.deleteShowLike("application/json",token, gsonObject)
                     deleteShowLike.enqueue(object: Callback<DeleteShowLikeResponse> {
                         override fun onFailure(call: Call<DeleteShowLikeResponse>, t: Throwable) {
                             Log.e("Delete ShowLike Failed:",t.toString())
@@ -122,9 +133,9 @@ class StageInfoActivity : AppCompatActivity(){
                     var jsonObject = JSONObject()
                     jsonObject.put("show_idx",show_idx)
                     val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-
+                    var token = SharedPreferenceController.getUserToken(this)
                     // TODO: user token 쉐어드에서 가져와야함
-                    val postShowLike = networkService.postShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
+                    val postShowLike = networkService.postShowLike("application/json",token, gsonObject)
                     postShowLike.enqueue(object: Callback<PostShowLikeResponse> {
                         override fun onFailure(call: Call<PostShowLikeResponse>, t: Throwable) {
                             Log.e("Post ShowLike Failed:",t.toString())
@@ -148,10 +159,11 @@ class StageInfoActivity : AppCompatActivity(){
             }
         }
 
+        //위로 화살표를 눌렀을 때
         btn_stageinfo_activate_dl.setOnClickListener {
 
-            val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
-            behavior.setPeekHeight(1000) //정확한 height단위 전혀모르겠음, dp와 float라
+           val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
+            behavior.setPeekHeight(300) //정확한 height단위 전혀모르겠음, dp와 float라
 
             btn_stageinfo_activate_dl.visibility = View.GONE
             btn_stageinfo_inactivate_dl.visibility = View.VISIBLE
@@ -159,14 +171,21 @@ class StageInfoActivity : AppCompatActivity(){
             btn_stageinfo_entry.visibility = View.GONE
             btn_stageinfo_submit.visibility = View.VISIBLE
         }
+        //아래로 화살표를 눌렀을 때
         btn_stageinfo_inactivate_dl.setOnClickListener {
+            val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
+            behavior.setPeekHeight(250)
+
             btn_stageinfo_activate_dl.visibility = View.VISIBLE
             btn_stageinfo_inactivate_dl.visibility = View.GONE
             rl_stageinfo_select_time_spinner.visibility = View.GONE
             btn_stageinfo_entry.visibility = View.VISIBLE
             btn_stageinfo_submit.visibility = View.GONE
         }
+        //응모하기 버튼을 눌렀을 때
         btn_stageinfo_entry.setOnClickListener {
+            val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
+            behavior.setPeekHeight(300)
             btn_stageinfo_activate_dl.visibility = View.GONE
             btn_stageinfo_inactivate_dl.visibility = View.VISIBLE
             rl_stageinfo_select_time_spinner.visibility = View.VISIBLE
@@ -174,7 +193,9 @@ class StageInfoActivity : AppCompatActivity(){
             btn_stageinfo_submit.visibility = View.VISIBLE
 
         }
+        //선택완료 버튼을 눌렀을 때
         btn_stageinfo_submit.setOnClickListener {
+
             btn_stageinfo_activate_dl.visibility = View.VISIBLE
             btn_stageinfo_inactivate_dl.visibility = View.GONE
             rl_stageinfo_select_time_spinner.visibility = View.GONE
@@ -214,12 +235,14 @@ class StageInfoActivity : AppCompatActivity(){
 
     private fun setBottomSheet() {
 
-        val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
-        behavior.setPeekHeight(800)
+        /*val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
+        behavior.setPeekHeight(800)*/
     }
 
     private fun getStageInfoResponse() {
-        val getStageInfoResponse = networkService.getStageInfoResponse("application/json", show_idx)
+        var token = SharedPreferenceController.getUserToken(this)
+        val getStageInfoResponse =
+            networkService.getStageInfoResponse("application/json", token, show_idx)
         getStageInfoResponse.enqueue(object: Callback<GetStageInfoResponse> {
 
             override fun onFailure(call: Call<GetStageInfoResponse>, t: Throwable) {
