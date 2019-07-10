@@ -22,8 +22,10 @@
 
         </activity>
         <activity android:name=".Activity.MyLotteryNothingActivity">
+
         </activity>
         <activity android:name=".Activity.LotteryNoticeActivity">
+
         </activity>
 
         <activity android:name=".Activity.SearchResultActivity">

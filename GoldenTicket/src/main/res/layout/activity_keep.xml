@@ -18,7 +18,9 @@
             android:id="@+id/rvKeepStage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
 
     </androidx.recyclerview.widget.RecyclerView>
