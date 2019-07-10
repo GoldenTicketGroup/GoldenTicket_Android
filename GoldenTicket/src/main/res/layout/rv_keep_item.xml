@@ -5,13 +5,13 @@
         android:id="@+id/cvKeepStage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="12dp"
-        cardview:cardCornerRadius="19dp"
+        android:layout_marginBottom="12dp"
+        cardview:cardCornerRadius="10dp"
 >
 
     <ImageView
             android:id="@+id/ivKeepStage"
-            android:layout_width="165dp"
+            android:layout_width="170dp"
             android:layout_height="213dp"
             android:src="@drawable/test"
             android:scaleType="fitXY"
