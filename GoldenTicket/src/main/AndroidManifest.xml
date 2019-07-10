@@ -26,8 +26,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MyLotteryNothingActivity">
+
         </activity>
         <activity android:name=".Activity.LotteryNoticeActivity">
+
         </activity>
 
         <activity android:name=".Activity.SearchResultActivity">
@@ -35,6 +37,7 @@
         </activity>
 
         <activity android:name=".Activity.LotteryCompleteActivity">
+
         </activity>
         <activity android:name=".Activity.MyLotteryActivity">
 
@@ -43,6 +46,11 @@
 
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
 
         </activity>
         <activity android:name=".Activity.UserUpdateActivity"/>
@@ -78,11 +86,7 @@
         </activity>
 
         <activity android:name=".Activity.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".Activity.MainActivity"
                   android:theme="@style/StatusYellowTheme">

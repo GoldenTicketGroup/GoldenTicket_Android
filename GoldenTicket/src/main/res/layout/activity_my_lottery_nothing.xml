@@ -60,7 +60,7 @@
             android:layout_centerHorizontal="true"
             android:text="매일매일 새로운 행운의 기회가\n쏟아지고 있어요!"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textColor="@color/font_detail"
             android:lineSpacingExtra="5dp"
             android:fontFamily="@font/notosans_light"/>
@@ -71,9 +71,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true">
         <TextView
-                android:layout_width="200dp"
-                android:layout_height="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="300dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="-10dp"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorYellow" />
@@ -84,7 +84,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="어떤 공연이 있는지 둘러보러 가볼까요?"
                 android:textAlignment="center"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textColor="@color/font_detail"
                 android:fontFamily="@font/notosans_light"
                 android:background="@android:color/transparent"/>
