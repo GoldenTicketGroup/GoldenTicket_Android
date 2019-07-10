@@ -52,6 +52,13 @@ class SearchResultActivity : AppCompatActivity() {
         ibtn_searchresult_pre.setOnClickListener {
             finish()
         }
+        ibtn_searchresult_submit.setOnClickListener {
+            jsonObject.put("text", et_searchresult_searchbar.text)
+            postSearchResponse()
+        }
+        tv_searchresult_cancel.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setRecyclerView() {
@@ -100,6 +107,7 @@ class SearchResultActivity : AppCompatActivity() {
                     if (tempData != null) {
                         Log.e("SearchResultActivity::", "postSearchTagResponse::onResponse::Success::" + response.body()!!.message)
                         results = response.body()!!.data
+
                         setRecyclerView()
                     }
                 }
