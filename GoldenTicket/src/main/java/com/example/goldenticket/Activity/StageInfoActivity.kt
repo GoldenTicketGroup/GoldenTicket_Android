@@ -20,9 +20,12 @@ import com.example.goldenticket.Data.StageInfoData
 import com.example.goldenticket.Data.StageInfoImgsData
 import com.example.goldenticket.Data.StageInfoSchedulesData
 import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
 import com.example.goldenticket.Network.Get.GetStageInfoResponse
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.PostLotteryResponse
+import com.example.goldenticket.Network.Post.PostShowLikeResponse
+import com.example.goldenticket.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -53,6 +56,8 @@ class StageInfoActivity : AppCompatActivity(){
     var schedules: ArrayList<StageInfoSchedulesData> = ArrayList()
     var times: MutableMap<String, Int> = mutableMapOf()
 
+    var show_idx: Int = 20
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -68,11 +73,14 @@ class StageInfoActivity : AppCompatActivity(){
             window.statusBarColor = Color.TRANSPARENT
         }*/
 
+
         // Action Bar Custom
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
         getStageInfoResponse()
+
+        ibtn_stageinfo_like.isSelected=false // TODO: 서버에게 받아와서 수정하기
 
         setOnClickListener()
     }
@@ -82,15 +90,59 @@ class StageInfoActivity : AppCompatActivity(){
             finish()
         }
         ibtn_stageinfo_like.setOnClickListener {
-
             when(ibtn_stageinfo_like.isSelected) {
                 true -> {
-                    ibtn_stageinfo_like.isSelected = false
                     //취소통신
+                    var jsonObject = JSONObject()
+                    jsonObject.put("show_idx",show_idx)
+                    val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+                    // TODO: user token 쉐어드에서 가져와야함
+                    val deleteShowLike = networkService.deleteShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
+                    deleteShowLike.enqueue(object: Callback<DeleteShowLikeResponse> {
+                        override fun onFailure(call: Call<DeleteShowLikeResponse>, t: Throwable) {
+                            Log.e("Delete ShowLike Failed:",t.toString())
+                        }
+
+                        override fun onResponse(
+                            call: Call<DeleteShowLikeResponse>,
+                            response: Response<DeleteShowLikeResponse>
+                        ) {
+                            if(response.isSuccessful){
+                                if(response.body()!!.status == 200){
+                                    ibtn_stageinfo_like.isSelected = false
+                                }
+                            }
+                        }
+
+                    })
                 }
                 false -> {
-                    ibtn_stageinfo_like.isSelected = true
                     //조하효통신
+                    var jsonObject = JSONObject()
+                    jsonObject.put("show_idx",show_idx)
+                    val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+                    // TODO: user token 쉐어드에서 가져와야함
+                    val postShowLike = networkService.postShowLike("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8", gsonObject)
+                    postShowLike.enqueue(object: Callback<PostShowLikeResponse> {
+                        override fun onFailure(call: Call<PostShowLikeResponse>, t: Throwable) {
+                            Log.e("Post ShowLike Failed:",t.toString())
+                        }
+
+                        override fun onResponse(
+                            call: Call<PostShowLikeResponse>,
+                            response: Response<PostShowLikeResponse>
+                        ) {
+                            if(response.isSuccessful){
+                                if(response.body()!!.status == 200){
+                                    ibtn_stageinfo_like.isSelected = true
+
+                                }
+                            }
+                        }
+
+                    })
 
                 }
             }
@@ -167,7 +219,6 @@ class StageInfoActivity : AppCompatActivity(){
     }
 
     private fun getStageInfoResponse() {
-        val show_idx: Int = 20
         val getStageInfoResponse = networkService.getStageInfoResponse("application/json", show_idx)
         getStageInfoResponse.enqueue(object: Callback<GetStageInfoResponse> {
 
@@ -182,6 +233,9 @@ class StageInfoActivity : AppCompatActivity(){
                     var tempData: StageInfoData = response.body()!!.data
                     if (tempData != null) {
                         Log.e("StageInfoActivity::", "getStageInfoResponse::poster:: " + response.body()!!.data.image_url)
+
+                        show_idx = response.body()!!.data.show_idx
+
                         Glide.with(this@StageInfoActivity)
                             .load(response.body()!!.data.image_url)
                             .into(iv_stageinfo_bg)
