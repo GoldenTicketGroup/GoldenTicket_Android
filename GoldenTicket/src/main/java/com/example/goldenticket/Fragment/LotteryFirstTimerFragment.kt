@@ -13,6 +13,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Data.LotteryListData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
@@ -52,6 +53,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.
         getMainLotteryListResponse()
     }

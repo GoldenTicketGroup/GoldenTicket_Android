@@ -39,7 +39,6 @@
 
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
-
         </activity>
         <activity android:name=".Activity.UserUpdateActivity"/>
 
@@ -79,7 +78,6 @@
                   android:theme="@style/StatusYellowTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>

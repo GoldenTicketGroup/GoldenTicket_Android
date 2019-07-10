@@ -214,8 +214,6 @@ class MainActivity : BaseActivity() {
         var lotteryConfirmDataList: ArrayList<LotteryListData> = ArrayList()
         var lotteryConfirmAdapter: LotteryConfirmAdapter
 
-        btnVisibilityCheck(vpLotteryConfirm.currentItem)
-
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
             "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
         getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
@@ -228,8 +226,9 @@ class MainActivity : BaseActivity() {
                 Log.e("Lottery List Fail", response.body()!!.message)
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
-                        //temp_num_fragment = 2
+                        //temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
+                        temp_num_fragment = 1
+
                         if(temp_num_fragment == 0){
                             vpLotteryConfirm.visibility = INVISIBLE
                             tvLotteryNothing.visibility = VISIBLE
@@ -253,6 +252,8 @@ class MainActivity : BaseActivity() {
             vpLotteryConfirm.setCurrentItem(position + 1, true)
             btnVisibilityCheck(vpLotteryConfirm.currentItem)
         }
+
+        btnVisibilityCheck(vpLotteryConfirm.currentItem)
     }
 
     private fun configureMainContentsRV() {
