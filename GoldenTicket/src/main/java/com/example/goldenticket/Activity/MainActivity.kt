@@ -250,9 +250,6 @@ class MainActivity : BaseActivity() {
             }
         })
 
-//        var lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
-//        vpLotteryConfirm.adapter = lotteryConfirmAdapter
-
         ibtnNextLeft.onClick {
             var position = vpLotteryConfirm.currentItem
             vpLotteryConfirm.setCurrentItem(position - 1, true)

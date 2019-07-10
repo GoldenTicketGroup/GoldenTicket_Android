@@ -20,6 +20,7 @@ import com.example.goldenticket.Network.NetworkService
 
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Call
 import retrofit2.Response
 import java.text.DateFormat
@@ -166,6 +167,10 @@ class LotteryFirstTimerFragment : Fragment() {
 
                             editor.putLong("endTime", mEndTime)
                             editor.apply()
+
+                            view!!.onClick {
+                                Log.d("CLICKTEST: ", response.body()!!.data.get(0).lottery_idx.toString())
+                            }
 
                         }
                     }
