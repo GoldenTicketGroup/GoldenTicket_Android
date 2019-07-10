@@ -25,6 +25,7 @@
                 android:paddingRight="10dp"
                 android:textSize="20sp"
                 android:textColor="#262626"
+                android:fontFamily="@font/notosans_light"
                 android:layout_above="@+id/tv_second_timer_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -32,7 +33,8 @@
     <TextView
             android:id="@+id/tv_second_timer_text"
             android:text="당첨 확인까지"
-            android:textSize="10sp"
+            android:textSize="12sp"
+            android:fontFamily="@font/notosans_light"
             android:textColor="#707070"
             android:layout_above="@+id/tv_second_timer"
             android:layout_marginTop="6dp"
@@ -44,6 +46,7 @@
             android:gravity="center"
             android:textSize="30sp"
             android:textColor="#fda47a"
+            android:fontFamily="@font/notosans_light"
             android:lineSpacingExtra="11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

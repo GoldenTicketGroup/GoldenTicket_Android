@@ -39,7 +39,7 @@ class LotterySecondTimerFragment : Fragment() {
 
 
     var diff : String = ""
-    val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss a")
+    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a")
     val now_time = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
 
@@ -103,6 +103,7 @@ class LotterySecondTimerFragment : Fragment() {
 
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
+                tv_first_timer_text.visibility = View.GONE
                 tv_first_timer?.let{tv_first_timer.text = "당첨 확인"}
             }
 
@@ -147,8 +148,7 @@ class LotterySecondTimerFragment : Fragment() {
                     if (response.body()!!.status == 200) {
                         if (response.body()!!.data.size != 0) {
                             tv_first_timer_title.text = response.body()!!.data.get(1).name
-                            start_time = response.body()!!.data.get(1).start_time
-
+                            start_time = response.body()!!.data.get(1).start_time + "m"
 
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
 
