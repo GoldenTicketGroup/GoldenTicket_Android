@@ -92,28 +92,28 @@ class SignUpActivity : AppCompatActivity() {
         u_pw2: String
     ): Boolean {
         if (u_name == "") {
-            toast("이름을 입력하세요 .")
+            toast("이름을 입력하세요")
             et_signupactivity_name.requestFocus()
         } else if (u_email == "") {
-            toast("이메일을 입력하세요 .")
+            toast("이메일을 입력하세요")
             et_signupactivity_email.requestFocus()
         } else if (u_phone == "") {
-            toast("핸드폰을 입력하세요.")
+            toast("핸드폰을 입력하세요")
             et_signupactivity_phone.requestFocus()
         } else if (u_pw == "") {
-            toast("비밀번호를 입력하세요.")
+            toast("비밀번호를 입력하세요")
             et_signupactivity_pw.requestFocus()
         } else if (u_pw2 == "") {
-            toast("비밀번호 확인을 입력하세요.")
+            toast("비밀번호 확인을 입력하세요")
             et_signupactivity_pw2.requestFocus()
         } else if (!validateEmail(u_email)) {
-            toast("이메일 형식이 아닙니다.")
+            toast("이메일 형식이 아닙니다")
             et_signupactivity_email.requestFocus()
         } else if (!validatePassword(u_pw)) {
-            toast("패스워드 형식이 아닙니다.")
+            toast("패스워드 형식이 아닙니다")
             et_signupactivity_pw.requestFocus()
         } else if (u_pw != u_pw2) {
-            toast("두 패스워드가 다릅니다.")
+            toast("두 패스워드가 다릅니다")
             et_signupactivity_pw2.requestFocus()
         } else
             return true

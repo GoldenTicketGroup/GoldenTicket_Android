@@ -10,8 +10,8 @@
         app:cardPreventCornerOverlap="false"
         android:layout_marginBottom="6dp"
         android:id="@+id/cv_main_poster"
-        android:scaleX="0.7"
-        android:scaleY="0.7">
+        android:scaleX="0.85"
+        android:scaleY="0.85">
 
         <ImageView
             android:id="@+id/iv_main_poster"
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/notosans_light"
                 android:text="혜화 소극장"
                 android:textColor="#ffffff"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:fontFamily="@font/notosans_light"
                 android:text="17:00 ~ 19:00"
                 android:textColor="#ffffff"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 

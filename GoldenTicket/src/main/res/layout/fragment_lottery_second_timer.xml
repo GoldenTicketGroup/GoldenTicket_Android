@@ -23,17 +23,21 @@
                 android:text="sdgsdg"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:fontFamily="@font/notosans_bold"
                 android:textSize="20sp"
                 android:textColor="#262626"
+                android:gravity="center"
                 android:layout_above="@+id/tv_second_timer_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
     </FrameLayout>
     <TextView
+            android:visibility="visible"
             android:id="@+id/tv_second_timer_text"
             android:text="당첨 확인까지"
-            android:textSize="10sp"
-            android:textColor="#707070"
+            android:textSize="11sp"
+            android:textColor="#717171"
+            android:fontFamily="@font/notosans_light"
             android:layout_above="@+id/tv_second_timer"
             android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
@@ -42,6 +46,7 @@
     <TextView
             android:id="@+id/tv_second_timer"
             android:gravity="center"
+            android:fontFamily="@font/notosans_bold"
             android:textSize="30sp"
             android:textColor="#fda47a"
             android:lineSpacingExtra="11sp"

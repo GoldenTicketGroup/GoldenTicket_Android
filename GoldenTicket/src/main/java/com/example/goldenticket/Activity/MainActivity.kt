@@ -25,9 +25,6 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.os.postDelayed
-import androidx.core.view.ViewCompat.animate
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
@@ -43,10 +40,12 @@ import kotlinx.android.synthetic.main.toolbar_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -59,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //progressON("Loading...")
 
         /** 상단 티켓 아이콘 **/
         iv_main_ticket.onClick {
@@ -83,6 +83,8 @@ class MainActivity : AppCompatActivity() {
         val u_name = getUserName(this)
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
+
+        showProgressDialog()
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
         configureShowRV()
@@ -142,6 +144,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureShowRV() {
 
+        showProgressDialog()
+
         var ShowDataList: ArrayList<ShowData> = ArrayList()
         showMainRecyclerViewAdapter = ShowMainRecyclerViewAdapter(this, ShowDataList)
 
@@ -152,19 +156,23 @@ class MainActivity : AppCompatActivity() {
         rv_product.adapter = showMainRecyclerViewAdapter
         rv_product.setHasFixedSize(true)
         rv_product.layoutManager = linearLayoutManager
-        rv_product.addItemDecoration(MarginItemDecoration(50, 50))
+        rv_product.addItemDecoration(MarginItemDecoration(40, 0))
 
         getMainPosterResponse()
 
+
+
+
+
         //recyclerView의 초기 상태를 설정한다.
-        //jetpack KTX
         val handler = Handler()
+
         rv_product.findViewHolderForAdapterPosition(0)?.let {
             handler.postDelayed({
-                val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
 
+                val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
                 val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
-                eventparentDefault.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(AccelerateInterpolator())
+                eventparentDefault.animate().scaleX(0.95f).scaleY(0.95f).setInterpolator(AccelerateInterpolator())
                     .start()
             }, 1000)
         }
@@ -186,7 +194,7 @@ class MainActivity : AppCompatActivity() {
                         val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
 
                         val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
-                        eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
+                        eventparent.animate().scaleY(0.95f).scaleX(0.95f).setDuration(350)
                             .setInterpolator(AccelerateInterpolator() as TimeInterpolator?)
                             .start()
 
@@ -199,7 +207,7 @@ class MainActivity : AppCompatActivity() {
                         val viewHolder = rv_product.findViewHolderForAdapterPosition(pos)
 
                         val eventparent = viewHolder!!.itemView.findViewById(R.id.cv_main_poster) as CardView
-                        eventparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350)
+                        eventparent.animate().scaleY(0.85f).scaleX(0.85f).setDuration(350)
                             .setInterpolator(AccelerateInterpolator()).start()
 
                     }
@@ -258,7 +266,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureMainContentsRV() {
-
+        //progressON("Loading...")
         lateinit var cardListAdapter: CardListAdapter
 
 
@@ -269,6 +277,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<GetCardListResponse>, response: Response<GetCardListResponse>) {
+                //progressOFF()
+
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
                         var cardListDataList: ArrayList<CardListData> = response.body()!!.data
@@ -282,6 +292,7 @@ class MainActivity : AppCompatActivity() {
 
                         Log.d("TEST", cardListDataList.toString())
                         Log.d("TEST", cardListDataList.get(0).category)
+
                     }
                 }
             }
@@ -359,6 +370,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<GetMainPosterResponse>, response: Response<GetMainPosterResponse>) {
+                hideProgressDialog()
+
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
                         val tmp: ArrayList<ShowData> = response.body()!!.data!!
@@ -372,10 +385,24 @@ class MainActivity : AppCompatActivity() {
                             rv_product.visibility = View.VISIBLE
                             empty_view.visibility = View.GONE
                         }
+
                     }
                 }
             }
         })
     }
+
+    /*fun progressON() {
+        ApplicationController.instance.progressON(this,"")
+    }
+
+    fun progressON(message:String) {
+        ApplicationController.instance.progressON(this, message)
+    }
+
+    fun progressOFF() {
+        ApplicationController.instance.progressOFF()
+    }*/
+
 }
 

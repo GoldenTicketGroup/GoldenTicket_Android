@@ -89,16 +89,16 @@ class UserUpdateActivity : AppCompatActivity() {
 
     fun isValid(u_name: String, u_email: String, u_phone: String): Boolean {
         if (u_name == "") {
-            toast("이름을 입력하세요 .")
+            toast("이름을 입력하세요")
             et_userupdate_name.requestFocus()
         } else if (u_email == "") {
-            toast("이메일을 입력하세요 .")
+            toast("이메일을 입력하세요")
             et_userupdate_email.requestFocus()
         } else if (u_phone == "") {
-            toast("핸드폰을 입력하세요.")
+            toast("핸드폰을 입력하세요")
             et_userupdate_phone.requestFocus()
         } else if (!validateEmail(u_email)) {
-            toast("이메일 형식이 아닙니다.")
+            toast("이메일 형식이 아닙니다")
             et_userupdate_email.requestFocus()
         } else return true
         return false
@@ -132,7 +132,7 @@ class UserUpdateActivity : AppCompatActivity() {
                     if (response.body()!!.status == 200) {
                         //Request UserUpdate
                         SharedPreferenceController.setUserInfo(applicationContext, response.body()!!.data!!)
-                        toast("수정이 되었습니다.")
+                        toast("수정이 되었습니다")
                     }
                 }
             }

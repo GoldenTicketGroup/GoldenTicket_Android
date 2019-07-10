@@ -39,7 +39,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
 
     var diff : String = ""
-    val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss a")
+    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH)
     val now_time = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
 
@@ -53,8 +53,9 @@ class LotteryFirstTimerFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.
         getMainLotteryListResponse()
-
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +63,6 @@ class LotteryFirstTimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(com.example.goldenticket.R.layout.fragment_lottery_first_timer, container, false)
-
     }
 
     //화면이 다시 돌아왔을 때 남은 시간와 타이머 상태를 가져온다.
@@ -83,6 +83,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
+
         var prefs: SharedPreferences = context!!.getSharedPreferences("GoldenTicket", MODE_PRIVATE)
         var editor = prefs.edit()
 
@@ -93,7 +94,6 @@ class LotteryFirstTimerFragment : Fragment() {
         editor.apply()
 
         mCountDownTimer?.cancel()
-
     }
 
     //첫 번째 파라미터 남은 시간, 두 번째 파라미터 카운트 다운이 되는 시간간격
@@ -104,6 +104,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onFinish() {
+                tv_first_timer_text.visibility = GONE
                 tv_first_timer?.let{tv_first_timer.text = "당첨 확인"}
             }
 
@@ -117,7 +118,6 @@ class LotteryFirstTimerFragment : Fragment() {
     //남은 시간을 화면에 출력한다.
     private fun updateCountDownText() {
 
-
         var hours = (mTimeLeftInMillis / 1000) / 3600
         var minutes = ((mTimeLeftInMillis / 1000) % 3600) / 60
         var seconds = (mTimeLeftInMillis / 1000) % 60
@@ -126,15 +126,16 @@ class LotteryFirstTimerFragment : Fragment() {
 
         //60분이 넘으면 시간 까지 아니면 분, 초만 나온다.
         if (hours > 0) {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds)
+            timeLeftFormatted = String.format(Locale.getDefault(), "%d : %02d : %02d", hours, minutes, seconds)
         } else {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d : %02d", minutes, seconds)
         }
 
         tv_first_timer?.let{tv_first_timer.text = timeLeftFormatted}
     }
 
     private fun getMainLotteryListResponse(){
+
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
             "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
         getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
@@ -148,10 +149,9 @@ class LotteryFirstTimerFragment : Fragment() {
                     if (response.body()!!.status == 200) {
                         if (response.body()!!.data.size != 0) {
                             tv_first_timer_title.text = response.body()!!.data.get(0).name
-                            start_time = response.body()!!.data.get(0).start_time
+                            start_time = response.body()!!.data.get(0).start_time + "m"
 
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
-                            Log.d("TIME 0", sdf.parse(start_time).toString())
 
                             mStartTimeInMillis = confirm_time_sdf - now_time
                             mTimeLeftInMillis = mStartTimeInMillis
@@ -167,7 +167,6 @@ class LotteryFirstTimerFragment : Fragment() {
                             editor.putLong("endTime", mEndTime)
                             editor.apply()
 
-                            startTimer()
                         }
                     }
                 }

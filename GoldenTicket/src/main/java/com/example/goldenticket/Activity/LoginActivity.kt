@@ -50,8 +50,14 @@ class LoginActivity : AppCompatActivity() {
 
     //아이디와 패스워드가 모두 채워져 있는지 확인 없으면 포커스
     fun isValid(u_id: String, u_pw: String): Boolean {
-        if (u_id == "") et_loginactivity_id.requestFocus()
-        else if (u_pw == "") et_loginactivity_pw.requestFocus()
+        if (u_id == "") {
+            et_loginactivity_id.requestFocus()
+            toast("이메일 주소를 입력하세요")
+        }
+        else if (u_pw == "") {
+            et_loginactivity_pw.requestFocus()
+            toast("비밀번호를 입력하세요")
+        }
         else return true
         return false
     }

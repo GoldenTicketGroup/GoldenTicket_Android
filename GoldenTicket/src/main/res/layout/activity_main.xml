@@ -50,11 +50,11 @@
                                     android:layout_gravity="center"
                                     android:layout_marginLeft="27dp">
 
-                                <TextView
+                                <ImageView
                                         android:layout_width="match_parent"
-                                        android:layout_height="10dp"
+                                        android:layout_height="15dp"
                                         android:layout_gravity="bottom|center"
-                                        android:background="#ffffff" />
+                                        android:background="#ffffff"/>
 
                                 <TextView
                                         android:id="@+id/tv_main_name"
@@ -65,7 +65,7 @@
                                         android:layout_marginRight="5dp"
                                         android:text="민정"
                                         android:textColor="#2e2e2e"
-                                        android:textSize="22sp"/>
+                                        android:textSize="25sp"/>
                             </FrameLayout>
 
                             <TextView
@@ -75,7 +75,7 @@
                                     android:fontFamily="@font/notosans_medium"
                                     android:text="님"
                                     android:textColor="#262626"
-                                    android:textSize="20sp" />
+                                    android:textSize="20sp"/>
                         </LinearLayout>
 
                         <TextView
@@ -86,7 +86,7 @@
                                 android:fontFamily="@font/notosans_medium"
                                 android:text="오늘 저녁, 이런 공연 어때요?"
                                 android:textColor="#262626"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"/>
                     </FrameLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -98,13 +98,13 @@
                             android:layout_height="wrap_content"
                     >
                     </androidx.recyclerview.widget.RecyclerView>
-                            android:layout_marginTop="123dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                    android:layout_marginTop="123dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <FrameLayout
                             android:id="@+id/empty_view"
-                            android:layout_marginTop="123dp"
+                            android:layout_marginTop="117dp"
                             android:layout_marginLeft="48dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                                 android:layout_marginTop="105dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/catching"/>
+                                android:src="@drawable/character_catching_main"/>
                         <TextView
                                 android:id="@+id/empty_text"
                                 android:layout_marginLeft="101dp"
@@ -178,17 +178,12 @@
                                 android:layout_marginTop="35dp"
                         />
                     </RelativeLayout>
-                    <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            cardview:cardElevation="3dp"
-                            cardview:cardCornerRadius="22dp">
-
-                        <LinearLayout
-                                android:layout_width="331dp"
+                    <LinearLayout
+                                android:id="@+id/tvSearch"
+                                android:layout_width="300dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
+                                android:background="@drawable/bg_white_round"
                         >
                             <ImageView
                                     android:layout_width="wrap_content"
@@ -198,15 +193,14 @@
                                     android:layout_marginBottom="12dp"
                                     android:src="@drawable/icon_search_main"/>
                             <TextView
-                                    android:id="@+id/tvSearch"
                                     android:layout_width="match_parent"
                                     android:layout_height="19dp"
                                     android:layout_marginLeft="12dp"
                                     android:layout_gravity="center_vertical"
                                     android:hint="공연 검색"
+                                    android:fontFamily="@font/notosans_light"
                                     android:textSize="14sp"/>
                         </LinearLayout>
-                    </androidx.cardview.widget.CardView>
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
