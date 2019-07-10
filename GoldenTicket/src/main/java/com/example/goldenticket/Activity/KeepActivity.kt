@@ -4,6 +4,7 @@ package com.example.goldenticket.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,6 +70,14 @@ class KeepActivity : AppCompatActivity() {
                         rvKeepStage.layoutManager = GridLayoutManager(applicationContext,2)
                         rvKeepStage.addItemDecoration(RecyclerViewDecoration())
                         rvKeepStage.setHasFixedSize(true)
+
+                        if(keepShowDataList.isEmpty()) {
+                            keep_empty_image.visibility = View.VISIBLE
+                            rvKeepStage.visibility = View.GONE
+                        } else {
+                            keep_empty_image.visibility = View.GONE
+                            rvKeepStage.visibility = View.VISIBLE
+                        }
                     }
                 }
             }

@@ -385,10 +385,8 @@ class MainActivity : BaseActivity() {
         })
     }
     private fun getMyLotteryResponse() {
-        val token =
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
 
-        val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", token)
+        val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", getUserToken(this))
         getMyLotteryResponse.enqueue(object : Callback<GetMyLotteryResponse> {
             override fun onFailure(call: Call<GetMyLotteryResponse>, t: Throwable) {
                 Log.e("My Lottery Fail", t.toString())

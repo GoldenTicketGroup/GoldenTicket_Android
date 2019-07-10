@@ -78,6 +78,7 @@ class StageInfoActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
+        show_idx = intent.getIntExtra("idx",1) // TODO: 이거 인덱스 디폴트 값 뭘로 해 ...?
         getStageInfoResponse()
 
         ibtn_stageinfo_like.isSelected = false // TODO: 서버에게 받아와서 수정하기
@@ -240,19 +241,16 @@ class StageInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetStageInfoResponse>, response: Response<GetStageInfoResponse>) {
                 if (response.isSuccessful) {
-                    Log.e(
+                    /*Log.e(
                         "StageInfoActivity:: ",
                         "getStageInfoResponse:: Success:: " + response.body()!!.data.toString()
-                    )
+                    )*/
                     var tempData: StageInfoData = response.body()!!.data
                     if (tempData != null) {
                         Log.e(
                             "StageInfoActivity::",
                             "getStageInfoResponse::poster:: " + response.body()!!.data.image_url
                         )
-
-                        show_idx = intent.getIntExtra("idx",1) // TODO: 이거 인덱스 디폴트 값 뭘로 해 ...?
-
                         Glide.with(this@StageInfoActivity)
                             .load(response.body()!!.data.image_url)
                             .into(iv_stageinfo_bg)
