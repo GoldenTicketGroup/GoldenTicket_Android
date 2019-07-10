@@ -170,7 +170,7 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp">
+                android:layout_marginTop="28dp">
             <LinearLayout
                     android:id="@+id/ll_mylottery_payment_bold"
                     android:layout_width="wrap_content"
@@ -180,21 +180,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="골든티켓의 결제는 "
-                        android:textSize="11sp"
+                        android:textSize="12.5sp"
                         android:textColor="@color/font_detail"
                         android:fontFamily="@font/notosans_light"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="무통장 입금"
-                        android:textSize="11sp"
+                        android:textSize="12.5sp"
                         android:textColor="@color/font_detail"
                         android:fontFamily="@font/notosans_medium"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="으로만 가능합니다."
-                        android:textSize="11sp"
+                        android:textSize="12.5sp"
                         android:textColor="@color/font_detail"
                         android:fontFamily="@font/notosans_light"/>
             </LinearLayout>
@@ -207,7 +207,7 @@
                     android:lineSpacingExtra="8dp"
                     android:gravity="center"
                     android:text="30분 내 미입금시 자동 취소됩니다.\n결제 시 취소와 환불이 불가합니다.\n입금 확인 후 안내 문자가 발송됩니다."
-                    android:textSize="11sp"
+                    android:textSize="12.5sp"
                     android:textColor="@color/font_detail"
                     android:fontFamily="@font/notosans_light"/>
         </RelativeLayout>
