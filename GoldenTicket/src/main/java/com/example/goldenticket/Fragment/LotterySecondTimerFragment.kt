@@ -10,8 +10,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.goldenticket.Activity.LotteryConfirmActivity
+import com.example.goldenticket.DB.SharedPreferenceController.getUserToken
 import com.example.goldenticket.Data.LotteryListData
 import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.Get.GetLotteryConfirmDetailResponse
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.NetworkService
 
@@ -19,7 +22,10 @@ import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
 import kotlinx.android.synthetic.main.fragment_lottery_second_timer.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.ctx
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
@@ -106,11 +112,13 @@ class LotterySecondTimerFragment : Fragment() {
             override fun onFinish() {
                 tv_second_timer_text.visibility = View.GONE
                 tv_second_timer?.let{tv_second_timer.text = "당첨 확인"}
+                view!!.isClickable = true // 타이머 시간이 다 되어서 클릭이 가능하도록 함
             }
 
             override fun onTick(p0: Long) {
                 mTimeLeftInMillis = p0
                 updateCountDownText()
+                view!!.isClickable = false // 타이머 시간이 남았으면 클릭이 되지 않게 끔 함
             }
         }.start()
     }
@@ -137,7 +145,7 @@ class LotterySecondTimerFragment : Fragment() {
 
     private fun getMainLotteryListResponse(){
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
-            "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
+            "application/json", getUserToken(context!!))
         getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
             override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
                 Log.e("Lottery List Fail", t.toString())
@@ -169,8 +177,40 @@ class LotterySecondTimerFragment : Fragment() {
                             editor.putLong("endTime", mEndTime)
                             editor.apply()
 
-                            view!!.onClick {
-                                Log.d("CLICKTEST: ", response.body()!!.data.get(1).lottery_idx.toString())
+                            // 타이머 시간이 다 되었을 경우 클릭이 가능함
+                            if (view!!.isClickable) {
+                                view!!.onClick {
+                                    Log.d("CLICKTEST: ", response.body()!!.data.get(1).lottery_idx.toString())
+                                    val getLotteryConfirmDetailResponse = networkService.getLotteryConfirmDetail(
+                                        "application/json",
+                                        getUserToken(context!!),
+                                        response.body()!!.data.get(1).lottery_idx
+                                    )
+                                    getLotteryConfirmDetailResponse.enqueue(object :
+                                        Callback<GetLotteryConfirmDetailResponse> {
+                                        override fun onFailure(
+                                            call: Call<GetLotteryConfirmDetailResponse>,
+                                            t: Throwable
+                                        ) {
+                                            Log.e("Lottery Detail Fail", t.toString())
+                                        }
+
+                                        override fun onResponse(
+                                            call: Call<GetLotteryConfirmDetailResponse>,
+                                            response: Response<GetLotteryConfirmDetailResponse>
+                                        ) {
+                                            if (response.isSuccessful) {
+                                                if (response.body()!!.status == 200) {
+                                                    when (response.body()!!.data.size) {
+                                                        0 -> ctx.startActivity<LotteryConfirmActivity>("status" to 2)
+                                                        1 -> ctx.startActivity<LotteryConfirmActivity>("status" to 1)
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    })
+                                }
                             }
                         }
                     }
