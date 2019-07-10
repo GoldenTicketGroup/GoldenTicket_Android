@@ -257,7 +257,7 @@ class StageInfoActivity : AppCompatActivity(){
                     if (tempData != null) {
                         Log.e("StageInfoActivity::", "getStageInfoResponse::poster:: " + response.body()!!.data.image_url)
 
-                        show_idx = response.body()!!.data.show_idx
+                        show_idx = intent.getIntExtra("idx",1) // TODO: 이거 인덱스 디폴트 값 뭘로 해 ...?
 
                         Glide.with(this@StageInfoActivity)
                             .load(response.body()!!.data.image_url)
