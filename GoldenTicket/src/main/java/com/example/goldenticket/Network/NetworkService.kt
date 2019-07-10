@@ -66,7 +66,7 @@ interface NetworkService {
     fun postShowLike(
         @Header("Content-Type") content_type: String,
         @Header("token") user_token: String,
-        @Body() body:JsonObject
+        @Body body:JsonObject
     ): Call<PostShowLikeResponse>
 
 
@@ -83,6 +83,7 @@ interface NetworkService {
     @GET("/show/detail/{id}")
     fun getStageInfoResponse(
         @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
         @Path("id") show_idx: Int
     ): Call<GetStageInfoResponse>
 
