@@ -228,8 +228,8 @@ class MainActivity : BaseActivity() {
                 Log.e("Lottery List Fail", response.body()!!.message)
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-//                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
-                        temp_num_fragment = 2
+                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
+                        //temp_num_fragment = 2
                         if(temp_num_fragment == 0){
                             vpLotteryConfirm.visibility = INVISIBLE
                             tvLotteryNothing.visibility = VISIBLE

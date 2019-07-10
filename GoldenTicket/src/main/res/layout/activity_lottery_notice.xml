@@ -48,7 +48,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvWait"
             android:layout_marginTop="8dp"
-            android:textSize="18sp"
+            android:textSize="13sp"
             android:textColor="#262626"
             android:lineSpacingExtra="9sp"
             android:gravity="center_horizontal"
@@ -62,7 +62,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNoticeTitleFirst"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="13sp"
             android:textColor="#262626"
             android:lineSpacingExtra="9sp"
             android:gravity="center_horizontal"
@@ -91,7 +91,7 @@
             android:layout_gravity="center">
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="11dp"
+                android:layout_height="10dp"
                 android:layout_gravity="bottom|center"
                 android:src="@color/colorYellow"
         />
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="#262626"
                 android:lineSpacingExtra="9sp"
                 android:text="당첨 후 결제가 이루어지지 않으면"
@@ -113,13 +113,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/flNotice"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="11dp"
+                android:layout_height="10dp"
                 android:layout_gravity="bottom|center"
                 android:src="@color/colorYellow"
         />
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="#262626"
                 android:lineSpacingExtra="9sp"
                 android:text="노쇼로 간주되어 패널티가 적용되오니"
@@ -143,9 +143,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/flNoticeSecond"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             android:text="신중하게 응모해주세요!"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="#262626"
             android:lineSpacingExtra="9sp"/>
 

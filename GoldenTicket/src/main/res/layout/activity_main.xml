@@ -181,7 +181,7 @@
                     </RelativeLayout>
                     <LinearLayout
                                 android:id="@+id/tvSearch"
-                                android:layout_width="300dp"
+                                android:layout_width="325dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
                                 android:background="@drawable/bg_white_round"
