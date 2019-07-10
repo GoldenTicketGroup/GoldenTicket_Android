@@ -19,7 +19,11 @@
 
         </activity>
         <activity android:name=".Activity.MyLotteryPaymentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".Activity.MyLotteryNothingActivity">
         </activity>
@@ -50,11 +54,7 @@
         <activity android:name=".Activity.QuestionActivity"/>
 
         <activity android:name=".Activity.StageInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".Activity.KeepActivity">
 
@@ -81,7 +81,6 @@
         </activity>
         <activity android:name=".Activity.MainActivity"
                   android:theme="@style/StatusYellowTheme">
-
 
         </activity>
     </application>

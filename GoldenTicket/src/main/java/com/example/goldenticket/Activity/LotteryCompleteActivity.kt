@@ -1,11 +1,8 @@
 package com.example.goldenticket.Activity
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
 import com.bumptech.glide.Glide
 import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Network.ApplicationController
@@ -15,7 +12,6 @@ import com.example.goldenticket.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_lottery_complete.*
-import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
@@ -35,6 +31,9 @@ class LotteryCompleteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lottery_complete)
 
+
+        Log.e("LottCompleteActi::", "onCreate::schedule_idx::" + intent.getIntExtra("idx", -1))
+
         Glide.with(this)
             .load(R.drawable.complete)
             .into(ivComplete)
@@ -42,7 +41,7 @@ class LotteryCompleteActivity : AppCompatActivity() {
         tvCommentLuck.text = SharedPreferenceController.getUserName(this@LotteryCompleteActivity) + "님 행운을 빌어요!"
         btnOkay.setOnClickListener {
 
-            jsonObject.put("schedule_idx", intent.getIntExtra("schedule_idx", -1))
+            jsonObject.put("schedule_idx", intent.getIntExtra("idx", -1))
             postLotteryResponse()
             startActivity<MainActivity>()
         }

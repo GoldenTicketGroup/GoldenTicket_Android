@@ -160,19 +160,10 @@ class StageInfoActivity : AppCompatActivity(){
         }
     }
 
-    private fun setBottomSheet(status: Int) {
+    private fun setBottomSheet() {
 
-        // status: 1 = 응모 가능한 공연, 2 = 응모 불가능한 공연
-        when (status) {
-            1 -> {
-                val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
-                behavior.setPeekHeight(800)
-            }
-            2 -> {
-                val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
-                behavior.setPeekHeight(0)
-            }
-        }
+        val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
+        behavior.setPeekHeight(800)
     }
 
     private fun getStageInfoResponse() {
@@ -218,7 +209,7 @@ class StageInfoActivity : AppCompatActivity(){
                             }
                         }
                         if (times.size > 0) {
-                            setBottomSheet(1)
+                            setBottomSheet()
                             setSpinner(times)
                         }
                     }
