@@ -20,7 +20,9 @@ class LotteryConfirmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView (R.layout.activity_lottery_confirm)
 
-        val status = 2
+//        val status = 1
+        // LotteryFirstTimerFragment와 LotterySecondTimerFragment에서 status값을 intent로 넘겨준걸 받음
+        var status = intent.getIntExtra("status",2)
         setLayoutByStatusCode(status)
         setOnClickListener(status)
     }

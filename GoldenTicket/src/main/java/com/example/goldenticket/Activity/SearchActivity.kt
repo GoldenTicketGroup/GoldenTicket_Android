@@ -14,14 +14,8 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        val status = 2  //서버에서 받아옴
-
         ibtn_search_pre.setOnClickListener {
-            if (status == 2) {
-                finish()
-            }
-            else
-                finish()
+            finish()
         }
 
         /*var tagList: ArrayList<String> = ArrayList()

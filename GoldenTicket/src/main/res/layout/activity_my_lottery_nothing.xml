@@ -103,7 +103,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/style_search_tags_bg"
+                android:background="@drawable/ripple_effect"
                 android:text="공연 보러 가기"
                 android:textSize="15sp"
                 android:textColor="@color/font_detail"
