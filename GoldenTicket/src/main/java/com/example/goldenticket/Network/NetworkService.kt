@@ -83,6 +83,7 @@ interface NetworkService {
     @GET("/show/detail/{id}")
     fun getStageInfoResponse(
         @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
         @Path("id") show_idx: Int
     ): Call<GetStageInfoResponse>
 

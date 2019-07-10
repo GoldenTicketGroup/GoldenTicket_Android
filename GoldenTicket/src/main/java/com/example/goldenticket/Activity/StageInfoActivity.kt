@@ -150,7 +150,7 @@ class StageInfoActivity : AppCompatActivity(){
 
         btn_stageinfo_activate_dl.setOnClickListener {
 
-            val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
+            val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
             behavior.setPeekHeight(1000) //정확한 height단위 전혀모르겠음, dp와 float라
 
             btn_stageinfo_activate_dl.visibility = View.GONE
@@ -212,14 +212,38 @@ class StageInfoActivity : AppCompatActivity(){
         }
     }
 
-    private fun setBottomSheet() {
+    private fun setBottomSheet(status: Int) {
 
-        val behavior = BottomSheetBehavior.from(ll_stageinfo_bottom_sheet)
-        behavior.setPeekHeight(800)
+        when (status) {
+            200 -> {
+                val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
+                ll_stageinfo_bottom_sheet_activate.visibility = View.VISIBLE
+                rl_stageinfo_bottom_sheet_inactive.visibility = View.INVISIBLE
+                behavior.setPeekHeight(800)
+            }
+            204 -> {
+                Log.e("StageInfoActi", "setBottomSheet::status" + status)
+                val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
+                ll_stageinfo_bottom_sheet_activate.visibility = View.INVISIBLE
+                rl_stageinfo_bottom_sheet_inactive.visibility = View.VISIBLE
+                tv_stageinfo_bottom_sheet_inactive.text = "이미 응모한 공연입니다."
+                behavior.setPeekHeight(800)
+            }
+            205 -> {
+                val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
+                ll_stageinfo_bottom_sheet_activate.visibility = View.INVISIBLE
+                rl_stageinfo_bottom_sheet_inactive.visibility = View.VISIBLE
+                tv_stageinfo_bottom_sheet_inactive.text = "응모는 하루에 두 번까지 가능합니다."
+                behavior.setPeekHeight(800)
+            }
+        }
+
     }
 
     private fun getStageInfoResponse() {
-        val getStageInfoResponse = networkService.getStageInfoResponse("application/json", show_idx)
+        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
+        //val token = SharedPreferenceController.getUserToken(this@StageInfoActivity)
+        val getStageInfoResponse = networkService.getStageInfoResponse("application/json", token, show_idx)
         getStageInfoResponse.enqueue(object: Callback<GetStageInfoResponse> {
 
             override fun onFailure(call: Call<GetStageInfoResponse>, t: Throwable) {
@@ -253,7 +277,6 @@ class StageInfoActivity : AppCompatActivity(){
                         imgs = response.body()!!.data.poster
                         Log.e("StageInfoActivity::", "getStageInfoResponse::imgs:: " + imgs.toString())
 
-                        setRecyclerView()
 
                         //0: 응모 불가, 1: 응모 가능
                         schedules = response.body()!!.data.schedule
@@ -262,10 +285,19 @@ class StageInfoActivity : AppCompatActivity(){
                                 times.put(schedule.time, schedule.schedule_idx)
                             }
                         }
-                        if (times.size > 0) {
-                            setBottomSheet()
+
+                        setRecyclerView()
+
+                        if (times.size == 0) {
+                            val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
+                            behavior.setPeekHeight(0)
+                        } else {
+                            //setBottomSheet(response.body()!!.status)
+                            setBottomSheet(204)
+
                             setSpinner(times)
                         }
+                        /*setBottomSheet(205)*/
                     }
                     else {
                         Glide.with(this@StageInfoActivity)
