@@ -24,6 +24,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
+import com.example.goldenticket.DB.SharedPreferenceController.getUserToken
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
@@ -36,6 +37,7 @@ import org.jetbrains.anko.find
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Types.NULL
 import kotlin.collections.ArrayList
 
 
@@ -53,6 +55,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Log.d("TOKENTEST: ", getUserToken(this))
 
         //progressON("Loading...")
 
@@ -105,26 +109,26 @@ class MainActivity : BaseActivity() {
         /** 드로워 부분 **/
         drawerSelected()
 
-        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
-        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                if (position == 1) {
-                    ibtnNextRight.visibility = View.INVISIBLE
-                    ibtnNextLeft.visibility = View.VISIBLE
-                } else {
-                    ibtnNextRight.visibility = View.VISIBLE
-                    ibtnNextLeft.visibility = View.INVISIBLE
-                }
-            }
-
-            override fun onPageSelected(position: Int) {
-            }
-
-        })
+//        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
+//        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+//
+//            override fun onPageScrollStateChanged(state: Int) {
+//            }
+//
+//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//                if (position == 1) {
+//                    ibtnNextRight.visibility = View.INVISIBLE
+//                    ibtnNextLeft.visibility = View.VISIBLE
+//                } else {
+//                    ibtnNextRight.visibility = View.VISIBLE
+//                    ibtnNextLeft.visibility = View.INVISIBLE
+//                }
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//            }
+//
+//        })
 
         getMyLotteryResponse()
     }
@@ -210,15 +214,10 @@ class MainActivity : BaseActivity() {
 
     private fun configureLotteryConfirmVP() {
 
-        var lotteryConfirmDataList: ArrayList<LotteryListData> = ArrayList()
         var lotteryConfirmAdapter: LotteryConfirmAdapter
 
-        btnVisibilityCheck(vpLotteryConfirm.currentItem)
-
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
-            "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8"
-        )
+            "application/json", getUserToken(this))
         getMainLotteryListResponse.enqueue(object : retrofit2.Callback<GetLotteryListResponse> {
             override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
                 Log.e("Lottery List Fail", t.toString())
@@ -229,15 +228,16 @@ class MainActivity : BaseActivity() {
                 Log.e("Lottery List Fail", response.body()!!.message)
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
-                        //temp_num_fragment = 2
-                        if(temp_num_fragment == 0){
+                        temp_num_fragment = response.body()!!.data.size
+
+                        if(temp_num_fragment == 0) {
                             vpLotteryConfirm.visibility = INVISIBLE
                             tvLotteryNothing.visibility = VISIBLE
                         }
-
+                        btnVisibilityCheck(vpLotteryConfirm.currentItem)
                         lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
                         vpLotteryConfirm.adapter = lotteryConfirmAdapter
+                        lotteryConfirmAdapter.notifyDataSetChanged()
                     }
                 }
 
