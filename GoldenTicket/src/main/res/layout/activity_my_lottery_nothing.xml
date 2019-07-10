@@ -69,11 +69,12 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:layout_centerHorizontal="true">
         <TextView
-                android:layout_width="200dp"
-                android:layout_height="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="240dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginLeft="-10dp"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorYellow" />

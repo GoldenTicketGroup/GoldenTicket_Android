@@ -39,7 +39,7 @@
                             android:orientation="vertical">
 
                         <LinearLayout
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
@@ -49,7 +49,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="33dp"
                                     android:layout_gravity="center"
-                                    android:layout_marginLeft="27dp">
+                                    android:layout_marginLeft="30dp">
 
                                 <ImageView
                                         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/notosans_bold"
-                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginLeft="5dp"
                                         android:layout_marginRight="5dp"
                                         android:text="민정"
                                         android:textColor="#2e2e2e"
@@ -72,7 +72,8 @@
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginLeft="5dp"
                                     android:fontFamily="@font/notosans_medium"
                                     android:text="님"
                                     android:textColor="#262626"
@@ -182,7 +183,7 @@
                     </RelativeLayout>
                     <LinearLayout
                                 android:id="@+id/tvSearch"
-                                android:layout_width="300dp"
+                                android:layout_width="325dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
                                 android:background="@drawable/bg_white_round"

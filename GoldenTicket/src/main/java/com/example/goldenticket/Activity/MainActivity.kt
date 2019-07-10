@@ -1,9 +1,6 @@
 package com.example.goldenticket.Activity
 
 import android.animation.TimeInterpolator
-import android.content.Context
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,23 +23,19 @@ import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.Get.GetMainPosterResponse
+import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.NetworkService
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
-import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
-import kotlinx.android.synthetic.main.activity_my_lottery_nothing.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.find
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -86,7 +79,6 @@ class MainActivity : BaseActivity() {
         val u_name = getUserName(this)
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
-
 
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
@@ -133,6 +125,8 @@ class MainActivity : BaseActivity() {
             }
 
         })
+
+        getMyLotteryResponse()
     }
 
     override fun onStart() {
@@ -140,7 +134,6 @@ class MainActivity : BaseActivity() {
         val u_name = getUserName(this)
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
-
 
     }
 
@@ -236,9 +229,9 @@ class MainActivity : BaseActivity() {
                 Log.e("Lottery List Fail", response.body()!!.message)
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-//                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
-                        temp_num_fragment = 2
-                        if (temp_num_fragment == 0) {
+                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
+                        //temp_num_fragment = 2
+                        if(temp_num_fragment == 0){
                             vpLotteryConfirm.visibility = INVISIBLE
                             tvLotteryNothing.visibility = VISIBLE
                         }
@@ -250,9 +243,6 @@ class MainActivity : BaseActivity() {
 
             }
         })
-
-//        var lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
-//        vpLotteryConfirm.adapter = lotteryConfirmAdapter
 
         ibtnNextLeft.onClick {
             var position = vpLotteryConfirm.currentItem
@@ -394,5 +384,24 @@ class MainActivity : BaseActivity() {
             }
         })
     }
+    private fun getMyLotteryResponse() {
+        val token =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
+
+        val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", token)
+        getMyLotteryResponse.enqueue(object : Callback<GetMyLotteryResponse> {
+            override fun onFailure(call: Call<GetMyLotteryResponse>, t: Throwable) {
+                Log.e("My Lottery Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetMyLotteryResponse>, response: Response<GetMyLotteryResponse>) {
+                if (response.isSuccessful) {
+                    var size = response.body()!!.data.size
+                    tv_win_num.text = size.toString()
+                }
+            }
+        })
+    }
+
 }
 

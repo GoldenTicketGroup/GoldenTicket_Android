@@ -16,9 +16,9 @@ class RecyclerViewDecoration : RecyclerView.ItemDecoration() {
         val position = parent.getChildAdapterPosition(view)
 
         if(position%2!=0){
-            outRect.left=40
+            outRect.left=0
         }else{
-            outRect.right=40
+            outRect.right=30
         }
     }
 }

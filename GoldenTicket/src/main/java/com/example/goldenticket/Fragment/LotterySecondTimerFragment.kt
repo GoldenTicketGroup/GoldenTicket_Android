@@ -18,6 +18,7 @@ import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.fragment_lottery_first_timer.*
 import kotlinx.android.synthetic.main.fragment_lottery_second_timer.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Call
 import retrofit2.Response
 import java.text.SimpleDateFormat
@@ -167,7 +168,9 @@ class LotterySecondTimerFragment : Fragment() {
                             editor.putLong("endTime", mEndTime)
                             editor.apply()
 
-                            startTimer()
+                            view!!.onClick {
+                                Log.d("CLICKTEST: ", response.body()!!.data.get(1).lottery_idx.toString())
+                            }
                         }
                     }
                 }

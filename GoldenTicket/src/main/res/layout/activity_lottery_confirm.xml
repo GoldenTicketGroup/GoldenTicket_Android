@@ -62,7 +62,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="축하합니다!"
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="23sp"
                 android:textColor="@color/colorCoral"
                 android:lineSpacingExtra="5dp"
                 android:fontFamily="@font/notosans_light"/>
@@ -75,9 +75,9 @@
                 android:layout_marginTop="9dp"
                 android:layout_below="@+id/tv_lotteryconfirm_congrate">
             <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="205dp"
+                    android:layout_height="11dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginLeft="-10dp"
                     android:layout_centerHorizontal="true"
                     android:background="@color/colorYellow" />
@@ -88,7 +88,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="결제는 30분 안에 진행해주세요"
                     android:textAlignment="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/font_detail"
                     android:fontFamily="@font/notosans_light"
                     android:background="@android:color/transparent"/>
@@ -96,11 +96,12 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/rl_lotteryconfirm_pay"
                 android:text="30분이 지나면 자동 취소됩니다"
                 android:textAlignment="center"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/font_detail"
                 android:fontFamily="@font/notosans_light"
                 android:background="@android:color/transparent"/>
@@ -119,7 +120,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="걱정하지 마세요. 매일매일 새로운\n골든티켓에 응모할 수 있습니다."
                 android:textAlignment="center"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/font_detail"
                 android:lineSpacingExtra="5dp"
                 android:fontFamily="@font/notosans_light"/>
@@ -129,9 +130,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/tv_lotteryconfirm_content">
             <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="235dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="-10dp"
                     android:layout_centerHorizontal="true"
                     android:background="@color/colorYellow" />
@@ -143,7 +144,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="보고싶은 공연의 알림을 설정해두세요."
                     android:textAlignment="center"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="@color/font_detail"
                     android:fontFamily="@font/notosans_light"
                     android:background="@android:color/transparent"/>

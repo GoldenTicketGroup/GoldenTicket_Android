@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.bumptech.glide.Glide
+import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Data.MyLotteryDetailData
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetMyLotteryDetailResponse
@@ -41,8 +42,9 @@ class MyLotteryDetailActivity : AppCompatActivity() {
 
     private fun getMyLotteryResponse() {
         val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
+        //val token = SharedPreferenceController.getUserToken(this@MyLotteryDetailActivity)
 
-        val getMyLotteryDetailResponse = networkService.getMyLotteryDetailResponse("application/json", token, intent.getIntExtra("idx", -1))
+        val getMyLotteryDetailResponse = networkService.getMyLotteryDetailResponse("application/json", token, intent.getIntExtra("idx", -1)) //메인에서 idx로 보내준 ticket_idx
         getMyLotteryDetailResponse.enqueue(object: Callback<GetMyLotteryDetailResponse> {
             override fun onFailure(call: Call<GetMyLotteryDetailResponse>, t: Throwable) {
                 Log.e("MyLottDetailActivity::", "GET_My_Lottery_Data_Failed")
