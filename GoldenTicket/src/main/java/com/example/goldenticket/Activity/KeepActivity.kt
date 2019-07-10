@@ -57,11 +57,14 @@ class KeepActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     if(response.body()!!.status == 200){
 
+                        Log.d("밍구",response.body()!!.data.toString())
+
+
                         keepShowDataList = response.body()!!.data
 
                         var keepStageRVAdapter: KeepStageRVAdapter = KeepStageRVAdapter(applicationContext,keepShowDataList)
                         rvKeepStage.adapter = keepStageRVAdapter
-                        rvKeepStage.layoutManager = GridLayoutManager(applicationContext, 2)
+                        rvKeepStage.layoutManager = GridLayoutManager(applicationContext,2)
                         rvKeepStage.addItemDecoration(RecyclerViewDecoration())
                         rvKeepStage.setHasFixedSize(true)
                     }

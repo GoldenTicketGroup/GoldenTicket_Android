@@ -53,8 +53,9 @@ class LotteryFirstTimerFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.
         getMainLotteryListResponse()
-
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +63,6 @@ class LotteryFirstTimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(com.example.goldenticket.R.layout.fragment_lottery_first_timer, container, false)
-
     }
 
     //화면이 다시 돌아왔을 때 남은 시간와 타이머 상태를 가져온다.
@@ -83,6 +83,7 @@ class LotteryFirstTimerFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
+
         var prefs: SharedPreferences = context!!.getSharedPreferences("GoldenTicket", MODE_PRIVATE)
         var editor = prefs.edit()
 
@@ -93,7 +94,6 @@ class LotteryFirstTimerFragment : Fragment() {
         editor.apply()
 
         mCountDownTimer?.cancel()
-
     }
 
     //첫 번째 파라미터 남은 시간, 두 번째 파라미터 카운트 다운이 되는 시간간격
@@ -118,7 +118,6 @@ class LotteryFirstTimerFragment : Fragment() {
     //남은 시간을 화면에 출력한다.
     private fun updateCountDownText() {
 
-
         var hours = (mTimeLeftInMillis / 1000) / 3600
         var minutes = ((mTimeLeftInMillis / 1000) % 3600) / 60
         var seconds = (mTimeLeftInMillis / 1000) % 60
@@ -136,6 +135,7 @@ class LotteryFirstTimerFragment : Fragment() {
     }
 
     private fun getMainLotteryListResponse(){
+
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
             "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
         getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
@@ -167,7 +167,6 @@ class LotteryFirstTimerFragment : Fragment() {
                             editor.putLong("endTime", mEndTime)
                             editor.apply()
 
-                            startTimer()
                         }
                     }
                 }
