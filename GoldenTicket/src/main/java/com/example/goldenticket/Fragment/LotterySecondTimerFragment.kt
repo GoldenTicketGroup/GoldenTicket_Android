@@ -168,7 +168,6 @@ class LotterySecondTimerFragment : Fragment() {
                             editor.putLong("endTime", mEndTime)
                             editor.apply()
 
-                            startTimer()
                         }
                     }
                 }
