@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/rl_tb_back"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="30sp"
+            android:textSize="23sp"
             android:textStyle="bold"
             android:textColor="#fda47a"
             android:lineSpacingExtra="9sp"
@@ -61,7 +61,7 @@
             android:layout_gravity="center">
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="11dp"
+                android:layout_height="10dp"
                 android:layout_gravity="bottom|center"
                 android:src="@color/colorYellow"
         />
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="#262626"
                 android:lineSpacingExtra="9sp"
                 android:text="당첨 결과는 공연 시작 2시간 전, 발표됩니다."
@@ -79,6 +79,7 @@
     </FrameLayout>
 
     <TextView
+            android:layout_marginTop="5dp"
             android:id="@+id/tvCommentSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +87,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/flComment"
             android:text="푸시알림이 설정되어 있는지 확인해주세요."
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="#262626"
             android:lineSpacingExtra="9sp"/>
 
@@ -99,7 +100,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCommentSecond"
             android:text="민정님 행운을 빌어요!"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="#262626"
             android:lineSpacingExtra="9sp"/>
 
