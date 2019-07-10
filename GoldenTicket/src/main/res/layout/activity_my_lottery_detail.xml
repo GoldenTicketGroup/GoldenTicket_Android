@@ -165,7 +165,7 @@
             android:layout_marginBottom="21dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/style_search_tags_bg"
+            android:background="@drawable/ripple_effect"
             android:text="확인"
             android:textSize="15sp"
             android:textColor="@color/font_detail"

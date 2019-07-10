@@ -47,7 +47,7 @@
 
     <Button
             android:id="@+id/btn_tutorial_next"
-            android:background="@drawable/button_yellow"
+            android:background="@drawable/ripple_effect"
             android:text="다음"
             android:layout_width="120dp" android:layout_height="35dp" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
