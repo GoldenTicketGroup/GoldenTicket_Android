@@ -16,8 +16,6 @@ import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.activity_my_lottery.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
-import org.jetbrains.anko.startActivity
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,8 +62,7 @@ class MyLotteryActivity : AppCompatActivity() {
     }
 
     private fun getMyLotteryResponse() {
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
-
+        val token = SharedPreferenceController.getUserToken(this@MyLotteryActivity)
         val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", token)
         getMyLotteryResponse.enqueue(object: Callback<GetMyLotteryResponse> {
             override fun onFailure(call: Call<GetMyLotteryResponse>, t: Throwable) {

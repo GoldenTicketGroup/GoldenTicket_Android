@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#ffffff"
         tools:context=".Activity.MyLotteryActivity">
 
     <include layout="@layout/toolbar_drawer"
@@ -16,19 +17,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tb_mylottery_payment">
-        <ImageView
+        <!--<ImageView
                 android:id="@+id/iv_mylottery_payment_poster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/img_ticket_body" />
+                android:background="@drawable/img_ticket_body" />-->
+        <RelativeLayout
+                android:id="@+id/rl_mylottery_payment_poster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:layout_centerHorizontal="true"
+                android:foreground="@drawable/style_mylottery_detail_ticket">
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_mylottery_payment_poster"
+                    android:layout_width="277dp"
+                    android:layout_height="350dp"
+                    android:layout_marginVertical="6dp"
+                    android:layout_centerInParent="true"
+                    app:cardCornerRadius="10dp"
+                    android:background="#fff"
+                    android:foreground="#ddffffff">
+                <ImageView
+                        android:id="@+id/iv_mylottery_payment_poster"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/poster_benhur_info"
+                        android:layout_alignStart="@+id/cv_mylottery_detail_poster"/>
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
         <TextView
                 android:id="@+id/tv_mylottery_payment_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:text="뮤지컬 벤허"
                 android:textSize="21sp"
                 android:textColor="@android:color/black"
@@ -40,12 +68,12 @@
                 android:layout_marginLeft="35.3dp"
                 android:layout_marginRight="34.5dp"
                 android:layout_below="@+id/tv_mylottery_payment_title"
-                android:layout_alignStart="@+id/iv_mylottery_payment_poster"
-                android:layout_alignEnd="@+id/iv_mylottery_payment_poster">
+                android:layout_alignStart="@+id/rl_mylottery_payment_poster"
+                android:layout_alignEnd="@+id/rl_mylottery_payment_poster">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="20dp"
                     android:text="결제 방법"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"
@@ -53,7 +81,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6.3dp"
+                    android:layout_marginTop="5dp"
                     android:text="무통장입금"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"
@@ -67,7 +95,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:text="결제 금액"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"
@@ -76,7 +104,7 @@
                     android:id="@+id/tv_mylottery_payment_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6.3dp"
+                    android:layout_marginTop="5dp"
                     android:text="20,000원"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"
@@ -90,7 +118,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:text="받는 이"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"
@@ -98,7 +126,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6.3dp"
+                    android:layout_marginTop="5dp"
                     android:text="골든티켓 국민은행"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"
@@ -112,7 +140,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:text="계좌번호"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"
@@ -120,7 +148,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6.3dp"
+                    android:layout_marginTop="5dp"
                     android:text="000000-00-00000"
                     android:textSize="15sp"
                     android:textColor="@color/font_detail"

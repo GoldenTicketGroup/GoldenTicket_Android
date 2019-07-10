@@ -13,11 +13,12 @@ import org.jetbrains.anko.*
 class LotteryConfirmActivity : AppCompatActivity() {
 
     // 메인에서 타이머 onclick시, 당첨/미당첨 캐릭터화면
-    // status:: 1=당첨, 2=미당첨
+
+    // NETWORK:: status받아오기, 1=당첨, 2=미당첨
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lottery_confirm)
+        setContentView (R.layout.activity_lottery_confirm)
 
         val status = 1
         setLayoutByStatusCode(status)
