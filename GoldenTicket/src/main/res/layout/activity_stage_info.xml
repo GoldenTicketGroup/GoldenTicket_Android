@@ -35,8 +35,8 @@
                         android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                            android:layout_width="252dp"
-                            android:layout_height="327dp"
+                            android:layout_width="222dp"
+                            android:layout_height="297dp"
                             android:layout_marginTop="64dp"
                             android:layout_gravity="center"
                             app:cardCornerRadius="10dp">
@@ -67,7 +67,7 @@
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
+                    android:layout_marginTop="4dp">
                 <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16.3dp">
+                    android:layout_marginTop="8dp">
                 <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -143,7 +143,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp">
+                    android:layout_marginTop="5dp">
                 <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -183,7 +183,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginTop="14dp"
                     android:layout_marginLeft="29dp">
                 <TextView
                         android:layout_width="wrap_content"
@@ -207,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:scrollbars="horizontal"
-                    android:scrollbarSize="0dp">
+                    android:overScrollMode="never">
             </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.recyclerview.widget.RecyclerView
