@@ -39,15 +39,15 @@
 
             <TextView
                     android:id="@+id/tvTitle"
-                    android:layout_width="87dp"
-                    android:layout_height="62dp"
+                    android:lines="3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="11dp"
                     android:layout_marginRight="14dp"
                     android:fontFamily="@font/notosans_light"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textColor="#262626"
-                    android:lineSpacingExtra="4sp"
-                    android:text="7월 연휴,\n공연장 나들이\n어때요?"/>
+                    android:text="7월 연휴,공연장 나들이어때요?"/>
         </LinearLayout>
 
         <LinearLayout
