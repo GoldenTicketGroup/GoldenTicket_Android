@@ -20,6 +20,8 @@ import com.example.goldenticket.etc.RecyclerViewDecoration
 import kotlinx.android.synthetic.main.activity_keep.*
 import kotlinx.android.synthetic.main.activity_month_contents.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
+import kotlinx.android.synthetic.main.toolbar_drawer.view.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,6 +44,9 @@ class KeepActivity : AppCompatActivity() {
 
         /** 툴바 타이틀 설정 **/
         tb_title.text = "관심있는 공연"
+        tb_keep.iv_back.onClick {
+            finish()
+        }
 
         /** 관심있는 공연 조회 **/
         var keepShowDataList: ArrayList<KeepShowData>
@@ -61,7 +66,7 @@ class KeepActivity : AppCompatActivity() {
 
                         var keepStageRVAdapter: KeepStageRVAdapter = KeepStageRVAdapter(applicationContext,keepShowDataList)
                         rvKeepStage.adapter = keepStageRVAdapter
-                        rvKeepStage.layoutManager = GridLayoutManager(applicationContext, 2)
+                        rvKeepStage.layoutManager = GridLayoutManager(applicationContext,2)
                         rvKeepStage.addItemDecoration(RecyclerViewDecoration())
                         rvKeepStage.setHasFixedSize(true)
                     }
