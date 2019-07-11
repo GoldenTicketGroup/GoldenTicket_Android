@@ -39,7 +39,6 @@
 
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
-
         </activity>
         <activity android:name=".Activity.UserUpdateActivity">
 

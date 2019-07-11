@@ -109,26 +109,27 @@ class MainActivity : BaseActivity() {
         /** 드로워 부분 **/
         drawerSelected()
 
-//        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
-//        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//            }
-//
-//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-//                if (position == 1) {
-//                    ibtnNextRight.visibility = View.INVISIBLE
-//                    ibtnNextLeft.visibility = View.VISIBLE
-//                } else {
-//                    ibtnNextRight.visibility = View.VISIBLE
-//                    ibtnNextLeft.visibility = View.INVISIBLE
-//                }
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-//            }
-//
-//        })
+        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
+        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                btnVisibilityCheck(vpLotteryConfirm.currentItem)
+                /*if (position == 1) {
+                    ibtnNextRight.visibility = View.INVISIBLE
+                    ibtnNextLeft.visibility = View.VISIBLE
+                } else {
+                    ibtnNextRight.visibility = View.VISIBLE
+                    ibtnNextLeft.visibility = View.INVISIBLE
+                }*/
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+
+        })
 
         getMyLotteryResponse()
     }
@@ -139,6 +140,7 @@ class MainActivity : BaseActivity() {
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
 
+        configureLotteryConfirmVP()
     }
 
     private fun configureShowRV() {
@@ -229,6 +231,7 @@ class MainActivity : BaseActivity() {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
                         temp_num_fragment = response.body()!!.data.size
+                        //temp_num_fragment = 1
 
                         if(temp_num_fragment == 0) {
                             vpLotteryConfirm.visibility = INVISIBLE
@@ -385,10 +388,8 @@ class MainActivity : BaseActivity() {
         })
     }
     private fun getMyLotteryResponse() {
-        val token =
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
 
-        val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", token)
+        val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", getUserToken(this))
         getMyLotteryResponse.enqueue(object : Callback<GetMyLotteryResponse> {
             override fun onFailure(call: Call<GetMyLotteryResponse>, t: Throwable) {
                 Log.e("My Lottery Fail", t.toString())

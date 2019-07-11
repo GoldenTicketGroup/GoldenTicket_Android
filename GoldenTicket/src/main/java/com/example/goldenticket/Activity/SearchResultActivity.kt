@@ -56,9 +56,6 @@ class SearchResultActivity : AppCompatActivity() {
             jsonObject.put("text", et_searchresult_searchbar.text)
             postSearchResponse()
         }
-        tv_searchresult_cancel.setOnClickListener {
-            finish()
-        }
     }
 
     private fun setRecyclerView() {
