@@ -43,7 +43,7 @@ class MyLotteryRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotteryData
             .into(holder.stageinfo_poster_url)
         holder.stageinfo_date.text = dataList[position].date
         holder.stageinfo_title.text = dataList[position].name
-        holder.stageinfo_detail.text = dataList[position].seatName
+        holder.stageinfo_detail.text = dataList[position].seat_name
         holder.stageinfo_location.text = dataList[position].location
         holder.stageinfo_time.text = dataList[position].running_time
 

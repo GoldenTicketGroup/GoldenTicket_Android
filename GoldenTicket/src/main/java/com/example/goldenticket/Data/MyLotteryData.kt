@@ -16,7 +16,7 @@ data class MyLotteryData (
     var image_url: String,
     var date: String,
     var name: String,
-    var seatName: String,
+    var seat_name: String,
     var price: String,
     var location: String,
     var running_time: String

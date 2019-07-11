@@ -396,6 +396,7 @@ class MainActivity : BaseActivity() {
 
             override fun onResponse(call: Call<GetMyLotteryResponse>, response: Response<GetMyLotteryResponse>) {
                 if (response.isSuccessful) {
+                    Log.e("MainActivity::", "getMyLotteryResponse::onResponse::" + response.body()!!.message)
                     var size = response.body()!!.data.size
                     tv_win_num.text = size.toString()
                 }

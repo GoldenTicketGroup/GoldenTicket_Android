@@ -45,7 +45,7 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         Glide.with(ctx)
-            .load(R.drawable.test)
+            .load(dataList[position].image_url)
             .into(holder.search_result_img_url)
         holder.search_result_like.isSelected = true
 
