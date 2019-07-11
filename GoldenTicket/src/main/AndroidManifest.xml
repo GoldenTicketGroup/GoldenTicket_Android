@@ -40,8 +40,9 @@
         </activity>
         <activity android:name=".Activity.LotteryConfirmActivity">
         </activity>
-        <activity android:name=".Activity.UserUpdateActivity"/>
+        <activity android:name=".Activity.UserUpdateActivity">
 
+        </activity>
         <activity android:name=".Activity.ContentActivity"
                   android:theme="@style/ContentsActivityTheme">
         </activity>
@@ -70,6 +71,7 @@
         <activity
                 android:name=".Activity.LoginActivity"
                 android:windowSoftInputMode="adjustResize">
+
         </activity>
 
         <activity android:name=".Activity.SplashActivity">

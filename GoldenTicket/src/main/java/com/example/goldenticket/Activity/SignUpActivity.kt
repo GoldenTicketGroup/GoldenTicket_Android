@@ -1,14 +1,11 @@
 package com.example.goldenticket.Activity
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
-import androidx.core.content.ContextCompat.startActivity
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.PostSignupResponse
@@ -16,15 +13,12 @@ import com.example.goldenticket.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.toolbar_drawer.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -81,6 +75,24 @@ class SignUpActivity : AppCompatActivity() {
             startActivity<LoginActivity>()
             finish()
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        val signup_u_email: String = et_signupactivity_email.text.toString()
+        val signup_u_pw: String = et_signupactivity_pw.text.toString()
+        val signup_u_pw2: String = et_signupactivity_pw2.text.toString()
+        val signup_u_name: String = et_signupactivity_name.text.toString()
+        val signup_phone: String = et_signupactivity_phone.text.toString()
+        setContentView(com.example.goldenticket.R.layout.activity_sign_up)
+
+        et_signupactivity_email.text = signup_u_email as Editable
+        et_signupactivity_pw.text = signup_u_pw as Editable
+        et_signupactivity_pw2.text = signup_u_pw2 as Editable
+        et_signupactivity_name.text = signup_u_name as Editable
+        et_signupactivity_phone.text = signup_phone as Editable
+
+
     }
 
     //빈 문자열인지 확인 -> 형식이 맞는지 확인

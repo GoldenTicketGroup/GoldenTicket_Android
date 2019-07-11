@@ -262,10 +262,14 @@ class StageInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetStageInfoResponse>, response: Response<GetStageInfoResponse>) {
                 if (response.isSuccessful) {
+<<<<<<< HEAD
+
+=======
                     /*Log.e(
                         "StageInfoActivity:: ",
                         "getStageInfoResponse:: Success:: " + response.body()!!.data.toString()
                     )*/
+>>>>>>> ganghee
                     var tempData: StageInfoData = response.body()!!.data
                     if (tempData != null) {
                         Log.e(
@@ -306,8 +310,8 @@ class StageInfoActivity : AppCompatActivity() {
                             val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
                             behavior.setPeekHeight(0)
                         } else {
-                            //setBottomSheet(response.body()!!.status)
-                            setBottomSheet(204)
+                            setBottomSheet(response.body()!!.status)
+//                            setBottomSheet(204)
 
                             setSpinner(times)
                         }

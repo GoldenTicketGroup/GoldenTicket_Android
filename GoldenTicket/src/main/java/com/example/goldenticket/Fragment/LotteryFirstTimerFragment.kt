@@ -179,7 +179,7 @@ class LotteryFirstTimerFragment : Fragment() {
                             editor.apply()
 
 
-                            // 타이머 시간이 다 되었을 경우 클릭이 가능함
+                            // 타이머 시간이 다 되었을 경우만 클릭이 가능함
                             if (view!!.isClickable){
                                 view!!.onClick {
                                     Log.d("CLICKTEST: ", response.body()!!.data.get(0).lottery_idx.toString())
