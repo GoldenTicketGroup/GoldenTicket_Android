@@ -21,7 +21,7 @@
                 android:src="@drawable/bt_back"/>
 
         <RelativeLayout
-                android:layout_width="670dp"
+                android:layout_width="630dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style_search_searchbar_bg"
                 android:layout_marginTop="10dp"
