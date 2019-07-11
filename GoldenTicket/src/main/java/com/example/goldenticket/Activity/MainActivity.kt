@@ -21,6 +21,7 @@ import android.view.Gravity
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
@@ -32,6 +33,9 @@ import com.example.goldenticket.Network.Get.GetMainPosterResponse
 import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.NetworkService
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.find
 import retrofit2.Call
@@ -55,6 +59,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         Log.d("TOKENTEST: ", getUserToken(this))
 

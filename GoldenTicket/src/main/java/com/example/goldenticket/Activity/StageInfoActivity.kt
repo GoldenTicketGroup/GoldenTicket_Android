@@ -262,20 +262,8 @@ class StageInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetStageInfoResponse>, response: Response<GetStageInfoResponse>) {
                 if (response.isSuccessful) {
-<<<<<<< HEAD
-
-=======
-                    /*Log.e(
-                        "StageInfoActivity:: ",
-                        "getStageInfoResponse:: Success:: " + response.body()!!.data.toString()
-                    )*/
->>>>>>> ganghee
                     var tempData: StageInfoData = response.body()!!.data
                     if (tempData != null) {
-                        Log.e(
-                            "StageInfoActivity::",
-                            "getStageInfoResponse::poster:: " + response.body()!!.data.image_url
-                        )
                         Glide.with(this@StageInfoActivity)
                             .load(response.body()!!.data.image_url)
                             .into(iv_stageinfo_bg)
