@@ -109,26 +109,27 @@ class MainActivity : BaseActivity() {
         /** 드로워 부분 **/
         drawerSelected()
 
-//        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
-//        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//            }
-//
-//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-//                if (position == 1) {
-//                    ibtnNextRight.visibility = View.INVISIBLE
-//                    ibtnNextLeft.visibility = View.VISIBLE
-//                } else {
-//                    ibtnNextRight.visibility = View.VISIBLE
-//                    ibtnNextLeft.visibility = View.INVISIBLE
-//                }
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-//            }
-//
-//        })
+        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
+        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                btnVisibilityCheck(vpLotteryConfirm.currentItem)
+                /*if (position == 1) {
+                    ibtnNextRight.visibility = View.INVISIBLE
+                    ibtnNextLeft.visibility = View.VISIBLE
+                } else {
+                    ibtnNextRight.visibility = View.VISIBLE
+                    ibtnNextLeft.visibility = View.INVISIBLE
+                }*/
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+
+        })
 
         getMyLotteryResponse()
     }
@@ -229,6 +230,7 @@ class MainActivity : BaseActivity() {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
                         temp_num_fragment = response.body()!!.data.size
+                        //temp_num_fragment = 1
 
                         if(temp_num_fragment == 0) {
                             vpLotteryConfirm.visibility = INVISIBLE
