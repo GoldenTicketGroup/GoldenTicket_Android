@@ -253,6 +253,7 @@ class StageInfoActivity : AppCompatActivity() {
         val getStageInfoResponse = networkService.getStageInfoResponse("application/json", token, show_idx)
         getStageInfoResponse.enqueue(object: Callback<GetStageInfoResponse> {
 
+
             override fun onFailure(call: Call<GetStageInfoResponse>, t: Throwable) {
                 Log.e("StageInfoActivity:: ", "getStageInfoResponse:: Get_StageInfo_Failed")
                 Log.e("StageInfoActivity:: ", t.toString())

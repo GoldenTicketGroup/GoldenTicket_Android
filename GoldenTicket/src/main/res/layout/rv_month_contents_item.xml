@@ -73,7 +73,7 @@
     />
 
     <Button
-            android:id="@+id/ibtnGoShowInfo"
+            android:id="@+id/btnGoShowInfo"
             android:layout_width="277dp"
             android:layout_height="35dp"
             android:layout_marginTop="24dp"

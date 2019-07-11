@@ -141,6 +141,7 @@ class MainActivity : BaseActivity() {
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
 
+        configureLotteryConfirmVP()
     }
 
     private fun configureShowRV() {
