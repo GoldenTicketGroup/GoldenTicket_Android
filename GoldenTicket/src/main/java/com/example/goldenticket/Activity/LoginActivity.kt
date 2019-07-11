@@ -20,6 +20,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.text.Editable
 import android.widget.EditText
+import android.widget.Toast
+import com.example.goldenticket.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 
 
 class LoginActivity : AppCompatActivity() {
@@ -116,6 +120,22 @@ class LoginActivity : AppCompatActivity() {
                         toast("로그인이 되었습니다.")
                         Log.d("login","로그인이 되었습니다."+ response.body()!!.data!!)
                         SharedPreferenceController.setUserInfo(applicationContext, response.body()!!.data!!)
+                        FirebaseInstanceId.getInstance().instanceId
+                            .addOnCompleteListener(OnCompleteListener { task ->
+                                if (!task.isSuccessful) {
+                                    Log.w("TAG", "getInstanceId failed", task.exception)
+                                    return@OnCompleteListener
+                                }
+
+                                // Get new Instance ID token
+                                val token = task.result?.token
+
+                                // Log and toast
+                                val msg = getString(R.string.msg_token_fmt, token)
+                                Log.d("TAG", msg)
+                                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                            })
+
                         startActivity<MainActivity>()
                         finish()
                     }

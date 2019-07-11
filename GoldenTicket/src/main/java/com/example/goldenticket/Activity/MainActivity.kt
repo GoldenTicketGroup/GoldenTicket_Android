@@ -21,6 +21,7 @@ import android.view.Gravity
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
@@ -32,6 +33,9 @@ import com.example.goldenticket.Network.Get.GetMainPosterResponse
 import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.NetworkService
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.find
 import retrofit2.Call
@@ -56,6 +60,21 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w("TAG", "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+
+                // Get new Instance ID token
+                val token = task.result?.token
+
+                // Log and toast
+                val msg = getString(R.string.msg_token_fmt, token)
+                Log.d("TAG", msg)
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            })
         Log.d("TOKENTEST: ", getUserToken(this))
 
         //progressON("Loading...")
