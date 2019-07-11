@@ -5,7 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activity.MyLotteryDetailActivity">
+        tools:context=".Activity.MyLotteryDetailActivity"
+        android:background="#ffffff">
     <!--nothing-->
     <LinearLayout
             android:id="@+id/ll_mylottery_nothing"
@@ -124,7 +125,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#ffffff"
-            android:visibility="visible">
+            android:visibility="invisible">
 
         <include layout="@layout/toolbar_drawer"
                  android:id="@+id/tb_mylottery_payment"/>
@@ -376,7 +377,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/poster_benhur_info"
                         android:layout_alignStart="@+id/cv_mylottery_detail_poster"/>
 
             </androidx.cardview.widget.CardView>

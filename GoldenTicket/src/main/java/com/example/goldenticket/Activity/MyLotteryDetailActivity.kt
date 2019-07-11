@@ -29,9 +29,7 @@ class MyLotteryDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_lottery_detail)
 
-        //getMyLotteryResponse()
-
-        setView(205)
+        getMyLotteryDetailAvailableResponse()
     }
 
     private fun setView(status: Int) {
@@ -82,25 +80,27 @@ class MyLotteryDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getMyLotteryResponse() {
+    private fun getMyLotteryDetailAvailableResponse() {
         //val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
         val token = SharedPreferenceController.getUserToken(this@MyLotteryDetailActivity)
 
-        val getMyLotteryDetailResponse = networkService.getMyLotteryDetailAvailableResponse("application/json", token)
-        getMyLotteryDetailResponse.enqueue(object: Callback<GetMyLotteryDetailResponse> {
+        val getMyLotteryDetailAvailableResponse = networkService.getMyLotteryDetailAvailableResponse("application/json", token)
+        getMyLotteryDetailAvailableResponse.enqueue(object: Callback<GetMyLotteryDetailResponse> {
             override fun onFailure(call: Call<GetMyLotteryDetailResponse>, t: Throwable) {
-                Log.e("MyLottDetailActivity::", "GET_My_Lottery_Data_Failed")
+                Log.e("MyLotteryDetailActi::", "GET_My_Lottery_Data_Failed")
             }
 
             override fun onResponse(call: Call<GetMyLotteryDetailResponse>, response: Response<GetMyLotteryDetailResponse>) {
                 if (response.isSuccessful) {
 
+                    if (response.body()!!.status == 204) {
+                        setView(204) // 당첨된 거 없을 때
+                    }
+
                     var tempData: MyLotteryDetailData = response.body()!!.data
                     if (tempData != null) {
 
-                        if (response.body()!!.status == 204) { // 당첨된 거 없을 때
-                            setView(204)
-                        } else if (response.body()!!.data.is_paid == 0) { // 당첨 됐는데 결제 전일 때
+                        if (response.body()!!.data.is_paid == 0) { // 당첨 됐는데 결제 전일 때
                             setView(205)
 
                             Glide.with(this@MyLotteryDetailActivity)
@@ -109,8 +109,8 @@ class MyLotteryDetailActivity : AppCompatActivity() {
 
                             tv_mylottery_payment_title.text = response.body()!!.data.name
                             tv_mylottery_payment_price.text = response.body()!!.data.price
-                        }
-                        else if (response.body()!!.data.is_paid == 1) { // 당첨 됐고 결제 완료일 때
+
+                        } else if (response.body()!!.data.is_paid == 1) { // 당첨 됐고 결제 완료일 때
                             setView(200)
 
                             Glide.with(this@MyLotteryDetailActivity)
