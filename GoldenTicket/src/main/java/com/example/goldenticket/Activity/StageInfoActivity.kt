@@ -81,7 +81,6 @@ class StageInfoActivity : AppCompatActivity() {
         show_idx = intent.getIntExtra("idx",1) // TODO: 이거 인덱스 디폴트 값 뭘로 해 ...?
         getStageInfoResponse()
 
-        ibtn_stageinfo_like.isSelected = false // TODO: 서버에게 받아와서 수정하기
 
         setOnClickListener()
     }
@@ -247,10 +246,11 @@ class StageInfoActivity : AppCompatActivity() {
                 behavior.setPeekHeight(800)
             }
         }
+    }
 
     private fun getStageInfoResponse() {
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
-        //val token = SharedPreferenceController.getUserToken(this@StageInfoActivity)
+//        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
+        val token = SharedPreferenceController.getUserToken(this@StageInfoActivity)
         val getStageInfoResponse = networkService.getStageInfoResponse("application/json", token, show_idx)
         getStageInfoResponse.enqueue(object: Callback<GetStageInfoResponse> {
 
