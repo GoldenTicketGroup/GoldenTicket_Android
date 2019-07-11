@@ -2,6 +2,7 @@ package com.example.goldenticket.Data
 
 data class MyLotteryDetailData (
     val ticket_idx: Int,
+    val is_paid: Int,
     val qr_code: String,
     val image_url: String,
     val date: String,
