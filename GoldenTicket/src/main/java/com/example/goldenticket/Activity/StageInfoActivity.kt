@@ -306,8 +306,8 @@ class StageInfoActivity : AppCompatActivity() {
                             val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
                             behavior.setPeekHeight(0)
                         } else {
-                            //setBottomSheet(response.body()!!.status)
-                            setBottomSheet(204)
+                            setBottomSheet(response.body()!!.status)
+//                            setBottomSheet(204)
 
                             setSpinner(times)
                         }

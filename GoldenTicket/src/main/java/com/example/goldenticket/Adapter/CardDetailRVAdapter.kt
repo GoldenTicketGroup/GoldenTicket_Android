@@ -4,13 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.goldenticket.Activity.StageInfoActivity
 import com.example.goldenticket.Data.CardDetailData
 import com.example.goldenticket.Data.ContentDetailData
 import com.example.goldenticket.R
+import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.startActivity
 
 class CardDetailRVAdapter(val ctx: Context, val dataList: ArrayList<ContentDetailData>): RecyclerView.Adapter<CardDetailRVAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
@@ -30,6 +35,9 @@ class CardDetailRVAdapter(val ctx: Context, val dataList: ArrayList<ContentDetai
             .load(dataList[position].image_url)
             .into(holder.contentImage)
         holder.contentContent.text = dataList[position].content
+        holder.contentGoShow.onClick {
+            ctx.startActivity<StageInfoActivity>("idx" to dataList[position].show_idx)
+        }
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -37,6 +45,7 @@ class CardDetailRVAdapter(val ctx: Context, val dataList: ArrayList<ContentDetai
         var contentTitle  = itemView.findViewById(R.id.tvContentItemTitle) as TextView
         var contentImage = itemView.findViewById(R.id.ivContentItemImage) as ImageView
         var contentContent  = itemView.findViewById(R.id.tvContentItemContent) as TextView
+        var contentGoShow = itemView.findViewById(R.id.btnGoShowInfo) as Button
 
     }
 }
