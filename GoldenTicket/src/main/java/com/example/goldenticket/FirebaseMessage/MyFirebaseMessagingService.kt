@@ -13,32 +13,23 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.goldenticket.Activity.MainActivity
+import com.example.goldenticket.R
+import com.example.goldenticket.R.drawable.*
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService  : FirebaseMessagingService(){
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        // ...
-
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(ContentValues.TAG, "From: " + remoteMessage!!.from!!)
 
         // Check if message contains a data payload.
-        if (remoteMessage.data.size > 0) {
+        if (remoteMessage.data.isNotEmpty()) {
             Log.d(ContentValues.TAG, "Message data payload: " + remoteMessage.data)
 
             sendNotification(remoteMessage)
-
-//            if (/* Check if data needs to be processed by long running job */ true) {
-//                // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
-//                scheduleJob()
-//            } else {
-//                // Handle message within 10 seconds
-//                handleNow()
-//            }
-
         }
 
         // Check if message contains a notification payload.
@@ -46,8 +37,6 @@ class MyFirebaseMessagingService  : FirebaseMessagingService(){
             Log.d(ContentValues.TAG, "Message Notification Body: " + remoteMessage.notification!!.body!!)
         }
 
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
     }
 
     @SuppressLint("WrongConstant")
@@ -57,18 +46,16 @@ class MyFirebaseMessagingService  : FirebaseMessagingService(){
         val content = remoteMessage.data["content"]
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val NOTIFICATION_CHANNEL_ID = "EDMTKotlin"
+        val NOTIFICATION_CHANNEL_ID = "Golden Ticket"
 
         val intent = PendingIntent.getActivity(this, 0, Intent(applicationContext, MainActivity::class.java),
             PendingIntent.FLAG_UPDATE_CURRENT)
 
-
-
         //채널 생성
-        val notificationChannel = NotificationChannel(NOTIFICATION_CHANNEL_ID,"EDMT Notification",
+        val notificationChannel = NotificationChannel(NOTIFICATION_CHANNEL_ID,"GoldenTicket Notification",
             NotificationManager.IMPORTANCE_MAX)
 
-        notificationChannel.description="EDMTDev Notification channel"
+        notificationChannel.description="GoldenTicket Notification channel"
         notificationChannel.enableLights(true)
         notificationChannel.lightColor = (Color.RED)
         notificationChannel.vibrationPattern = longArrayOf(0,1000,500,500)
@@ -81,7 +68,7 @@ class MyFirebaseMessagingService  : FirebaseMessagingService(){
         val notificationBuilder = NotificationCompat.Builder(this,NOTIFICATION_CHANNEL_ID)
             .setAutoCancel(true)
             .setWhen(System.currentTimeMillis())
-            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setSmallIcon(bt_ticktet_main)
             .setContentTitle(title)
             .setContentText(content)
             .setContentIntent(intent)
