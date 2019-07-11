@@ -4,12 +4,14 @@ package com.example.goldenticket.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.goldenticket.Adapter.CardDetailRVAdapter
 import com.example.goldenticket.Adapter.KeepStageRVAdapter
+import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Data.ContentDetailData
 import com.example.goldenticket.Data.KeepShowData
 import com.example.goldenticket.Network.ApplicationController
@@ -51,8 +53,7 @@ class KeepActivity : AppCompatActivity() {
         /** 관심있는 공연 조회 **/
         var keepShowDataList: ArrayList<KeepShowData>
 
-        // TODO: 토큰 쉐어드에서 가져와야 함
-        val getKeepShowData = networkService.getKeepShow("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
+        val getKeepShowData = networkService.getKeepShow("application/json",SharedPreferenceController.getUserToken(this))
         getKeepShowData.enqueue(object: Callback<GetKeepShowResponse> {
             override fun onFailure(call: Call<GetKeepShowResponse>, t: Throwable) {
                 Log.e("Get CardDetail Failed: ",t.toString())
@@ -69,6 +70,14 @@ class KeepActivity : AppCompatActivity() {
                         rvKeepStage.layoutManager = GridLayoutManager(applicationContext,2)
                         rvKeepStage.addItemDecoration(RecyclerViewDecoration())
                         rvKeepStage.setHasFixedSize(true)
+
+                        if(keepShowDataList.isEmpty()) {
+                            keep_empty_image.visibility = View.VISIBLE
+                            rvKeepStage.visibility = View.GONE
+                        } else {
+                            keep_empty_image.visibility = View.GONE
+                            rvKeepStage.visibility = View.VISIBLE
+                        }
                     }
                 }
             }

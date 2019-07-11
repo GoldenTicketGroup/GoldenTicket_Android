@@ -40,35 +40,34 @@ class LotteryCompleteActivity : AppCompatActivity() {
 
         tvCommentLuck.text = SharedPreferenceController.getUserName(this@LotteryCompleteActivity) + "님 행운을 빌어요!"
         btnOkay.setOnClickListener {
-
-            jsonObject.put("schedule_idx", intent.getIntExtra("idx", -1))
-            postLotteryResponse()
+//            jsonObject.put("schedule_idx", intent.getIntExtra("idx", -1))
+//            postLotteryResponse()
             startActivity<MainActivity>()
         }
     }
 
-    private fun postLotteryResponse() {
-        //val token = SharedPreferenceController.getUserToken(this@LotteryCompleteActivity)
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
-
-        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-        val postLotteryResponse: Call<PostLotteryResponse> = networkService.postLotteryResponse("application/json", token, gsonObject)
-        postLotteryResponse.enqueue(object: Callback<PostLotteryResponse> {
-            override fun onFailure(call: Call<PostLotteryResponse>, t: Throwable) {
-                Log.e("LotteryCompleteActi::", "postLotteryResponse::Post_Lottery_Register_Fail")
-            }
-
-            override fun onResponse(call: Call<PostLotteryResponse>, response: Response<PostLotteryResponse>) {
-                if (response.isSuccessful) {
-                    Log.e("LotteryCompleteActi::", "postLotteryResponse::onResponse::Success::" + response.body()!!.message)
-                    toast(response.body()!!.message)
-                }
-                else {
-                    Log.e("LotteryCompleteActi::", "postLotteryResponse::onResponse::Fail::" + response.body()!!.message)
-                    toast(response.body()!!.message)
-                }
-            }
-        })
-    }
+//    private fun postLotteryResponse() {
+//        //val token = SharedPreferenceController.getUserToken(this@LotteryCompleteActivity)
+//        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
+//
+//        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+//        val postLotteryResponse: Call<PostLotteryResponse> = networkService.postLotteryResponse("application/json", token, gsonObject)
+//        postLotteryResponse.enqueue(object: Callback<PostLotteryResponse> {
+//            override fun onFailure(call: Call<PostLotteryResponse>, t: Throwable) {
+//                Log.e("LotteryCompleteActi::", "postLotteryResponse::Post_Lottery_Register_Fail")
+//            }
+//
+//            override fun onResponse(call: Call<PostLotteryResponse>, response: Response<PostLotteryResponse>) {
+//                if (response.isSuccessful) {
+//                    Log.e("LotteryCompleteActi::", "postLotteryResponse::onResponse::Success::" + response.body()!!.message)
+//                    toast(response.body()!!.message)
+//                }
+//                else {
+//                    Log.e("LotteryCompleteActi::", "postLotteryResponse::onResponse::Fail::" + response.body()!!.message)
+//                    toast(response.body()!!.message)
+//                }
+//            }
+//        })
+//    }
 
 }

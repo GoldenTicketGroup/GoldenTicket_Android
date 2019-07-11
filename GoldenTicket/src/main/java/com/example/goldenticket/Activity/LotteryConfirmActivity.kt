@@ -20,7 +20,9 @@ class LotteryConfirmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView (R.layout.activity_lottery_confirm)
 
-        val status = 1
+//        val status = 1
+        // LotteryFirstTimerFragment와 LotterySecondTimerFragment에서 status값을 intent로 넘겨준걸 받음
+        var status = intent.getIntExtra("status",2)
         setLayoutByStatusCode(status)
         setOnClickListener(status)
     }
@@ -43,7 +45,10 @@ class LotteryConfirmActivity : AppCompatActivity() {
         btn_lotteryconfirm_stagelist.setOnClickListener {
             when (status) {
                 1 -> startActivity<LotteryNoticeActivity>()
-                2 -> startActivity<SearchActivity>()
+                2 -> {
+                    finish()
+                    startActivity<SearchActivity>()
+                }
             }
         }
     }
@@ -72,7 +77,7 @@ class LotteryConfirmActivity : AppCompatActivity() {
                 rl_lotteryconfirm_suggested.visibility = View.GONE
                 rl_lotteryconfirm_unsuggested.visibility = View.VISIBLE
                 btn_lotteryconfirm_stagelike.visibility = View.VISIBLE
-                btn_lotteryconfirm_stagelist.text = "다른 공연 보기"
+                btn_lotteryconfirm_stagelist.text = "다른 공연 찾아보기"
             }
         }
     }

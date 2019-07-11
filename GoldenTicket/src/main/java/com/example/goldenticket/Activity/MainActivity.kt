@@ -24,6 +24,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
+import com.example.goldenticket.DB.SharedPreferenceController.getUserToken
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetCardListResponse
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
@@ -32,9 +33,11 @@ import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.NetworkService
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import kotlinx.android.synthetic.main.toolbar_main.*
+import org.jetbrains.anko.find
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Types.NULL
 import kotlin.collections.ArrayList
 
 
@@ -46,10 +49,14 @@ class MainActivity : BaseActivity() {
 
     lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
     var temp_num_fragment: Int = 0
+    val handler = Handler()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Log.d("TOKENTEST: ", getUserToken(this))
 
         //progressON("Loading...")
 
@@ -77,7 +84,6 @@ class MainActivity : BaseActivity() {
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
 
-        showProgressDialog()
 
         /** 상단 공연 포스터 리사이클러뷰 부분 **/
         configureShowRV()
@@ -103,26 +109,26 @@ class MainActivity : BaseActivity() {
         /** 드로워 부분 **/
         drawerSelected()
 
-        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
-        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                if (position == 1) {
-                    ibtnNextRight.visibility = View.INVISIBLE
-                    ibtnNextLeft.visibility = View.VISIBLE
-                } else {
-                    ibtnNextRight.visibility = View.VISIBLE
-                    ibtnNextLeft.visibility = View.INVISIBLE
-                }
-            }
-
-            override fun onPageSelected(position: Int) {
-            }
-
-        })
+//        //첫 번째 타이머와 두 번째 타이머가 되었을 때 화살표 가시성 설정
+//        vpLotteryConfirm.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+//
+//            override fun onPageScrollStateChanged(state: Int) {
+//            }
+//
+//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//                if (position == 1) {
+//                    ibtnNextRight.visibility = View.INVISIBLE
+//                    ibtnNextLeft.visibility = View.VISIBLE
+//                } else {
+//                    ibtnNextRight.visibility = View.VISIBLE
+//                    ibtnNextLeft.visibility = View.INVISIBLE
+//                }
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//            }
+//
+//        })
 
         getMyLotteryResponse()
     }
@@ -151,27 +157,25 @@ class MainActivity : BaseActivity() {
         rv_product.layoutManager = linearLayoutManager
         rv_product.addItemDecoration(MarginItemDecoration(40, 0))
 
+
+        //서버에서 상단 포스터 가져오기
         getMainPosterResponse()
 
-
-
-
-
-        //recyclerView의 초기 상태를 설정한다.
-        val handler = Handler()
-
-        rv_product.findViewHolderForAdapterPosition(0)?.let {
-            handler.postDelayed({
-
-                val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)!!
-                val eventparentDefault = viewHolderDefault.itemView.findViewById(R.id.cv_main_poster) as CardView
-                eventparentDefault.animate().scaleX(0.95f).scaleY(0.95f).setInterpolator(AccelerateInterpolator())
-                    .start()
-            }, 1000)
-        }
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_product)
 
+        //recyclerView의 초기 상태를 설정한다.
+        //rv_product: 리사이클러뷰 id
+        //item은 최상단태그로 cardView로 되어있다.
+        /*rv_product.findViewHolderForAdapterPosition(0)?.let {
+            handler.postDelayed({
+
+                val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)
+                val eventparentDefault = viewHolderDefault?.itemView?.findViewById(R.id.cv_main_poster) as CardView
+                eventparentDefault.animate().scaleX(0.95f).scaleY(0.95f).setDuration(200).start()
+
+            }, 1000)
+        }*/
 
         //스크롤이 되었을 때 아이템의 크기가 변화된다.
         rv_product.addOnScrollListener(
@@ -206,19 +210,15 @@ class MainActivity : BaseActivity() {
                     }
                 }
             })
-
     }
 
     private fun configureLotteryConfirmVP() {
 
-        var lotteryConfirmDataList: ArrayList<LotteryListData> = ArrayList()
         var lotteryConfirmAdapter: LotteryConfirmAdapter
 
-        btnVisibilityCheck(vpLotteryConfirm.currentItem)
-
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
-            "application/json", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxMiwiZW1haWwiOiJlbWFpbDExMjRAbmF2ZXIuY29tIiwiaWF0IjoxNTYyNDg0MzUwfQ.6X8aYIp1rfeh9T43KBQSyz3hRIRRoo3M-W7CYQm4Pg8")
-        getMainLotteryListResponse.enqueue(object: retrofit2.Callback<GetLotteryListResponse> {
+            "application/json", getUserToken(this))
+        getMainLotteryListResponse.enqueue(object : retrofit2.Callback<GetLotteryListResponse> {
             override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
                 Log.e("Lottery List Fail", t.toString())
                 temp_num_fragment = 0
@@ -228,15 +228,16 @@ class MainActivity : BaseActivity() {
                 Log.e("Lottery List Fail", response.body()!!.message)
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-//                        temp_num_fragment = response.body()!!.data.size // TODO: 서버에게 리스트 받아서 사이즈 계산
-                        temp_num_fragment = 2
-                        if(temp_num_fragment == 0){
+                        temp_num_fragment = response.body()!!.data.size
+
+                        if(temp_num_fragment == 0) {
                             vpLotteryConfirm.visibility = INVISIBLE
                             tvLotteryNothing.visibility = VISIBLE
                         }
-
+                        btnVisibilityCheck(vpLotteryConfirm.currentItem)
                         lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
                         vpLotteryConfirm.adapter = lotteryConfirmAdapter
+                        lotteryConfirmAdapter.notifyDataSetChanged()
                     }
                 }
 
@@ -294,11 +295,11 @@ class MainActivity : BaseActivity() {
 
     private fun btnVisibilityCheck(position: Int) { // TODO: 당첨확인 버튼 유무 체크
         if (position == 0) {
-            if(temp_num_fragment == 1 || temp_num_fragment == 0){
+            if (temp_num_fragment == 1 || temp_num_fragment == 0) {
                 //position이 0이고 데이터가 하나일때, 데이터가 하나도 없을 때 화살표 버튼이 둘다 뜨면 안됨
                 ibtnNextRight.visibility = View.INVISIBLE
                 ibtnNextLeft.visibility = View.INVISIBLE
-            }else{
+            } else {
                 ibtnNextRight.visibility = View.VISIBLE
                 ibtnNextLeft.visibility = View.INVISIBLE
             }
@@ -376,41 +377,29 @@ class MainActivity : BaseActivity() {
                             empty_view.visibility = View.GONE
                         }
 
+
                     }
+
                 }
             }
         })
     }
-
     private fun getMyLotteryResponse() {
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo0LCJlbWFpbCI6ImVtYWlsMzMyNEBuYXZlci5jb20iLCJpYXQiOjE1NjIzMjE4ODZ9.JUsSqUu8OWnBAb3Hjt8uB09vHQV-eZ3VEiq8q8CHTk0"
 
-        val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", token)
-        getMyLotteryResponse.enqueue(object: Callback<GetMyLotteryResponse> {
+        val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", getUserToken(this))
+        getMyLotteryResponse.enqueue(object : Callback<GetMyLotteryResponse> {
             override fun onFailure(call: Call<GetMyLotteryResponse>, t: Throwable) {
                 Log.e("My Lottery Fail", t.toString())
             }
+
             override fun onResponse(call: Call<GetMyLotteryResponse>, response: Response<GetMyLotteryResponse>) {
                 if (response.isSuccessful) {
                     var size = response.body()!!.data.size
                     tv_win_num.text = size.toString()
-                    }
                 }
+            }
         })
     }
-
-
-    /*fun progressON() {
-        ApplicationController.instance.progressON(this,"")
-    }
-
-    fun progressON(message:String) {
-        ApplicationController.instance.progressON(this, message)
-    }
-
-    fun progressOFF() {
-        ApplicationController.instance.progressOFF()
-    }*/
 
 }
 

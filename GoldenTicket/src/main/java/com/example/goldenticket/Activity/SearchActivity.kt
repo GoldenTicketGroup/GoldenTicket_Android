@@ -6,12 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.activity_search.*
+import org.jetbrains.anko.startActivity
 
 class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        ibtn_search_pre.setOnClickListener {
+            finish()
+        }
 
         /*var tagList: ArrayList<String> = ArrayList()
         tagList.add("공포"); tagList.add("블루스퀘어"); tagList.add("세종문화회관");
@@ -25,17 +30,12 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListener() {
-        ibtn_search_pre.setOnClickListener {
-            finish()
-        }
+
         ibtn_search_submit.setOnClickListener() {
             val intent = Intent(this, SearchResultActivity::class.java)
             Log.e("SearchActivity::", "onClickListener::ibtn_search_submit::" + et_search_searchbar.text.toString())
             intent.putExtra("search_text", et_search_searchbar.text.toString())
             startActivity(intent)
-        }
-        tv_search_cancel.setOnClickListener {
-            finish()
         }
 
         //clean-code,,,,,please,,

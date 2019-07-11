@@ -45,6 +45,7 @@
                 android:id="@+id/iv_mylottery_nothing_character"
                 android:layout_width="280dp"
                 android:layout_height="182dp"
+                android:layout_marginTop="50dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/catching"/>
     </RelativeLayout>
@@ -56,11 +57,11 @@
             android:id="@+id/tv_mylottery_nothing_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="34dp"
             android:layout_centerHorizontal="true"
             android:text="매일매일 새로운 행운의 기회가\n쏟아지고 있어요!"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="@color/font_detail"
             android:lineSpacingExtra="5dp"
             android:fontFamily="@font/notosans_light"/>
@@ -69,11 +70,12 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:layout_centerHorizontal="true">
         <TextView
-                android:layout_width="300dp"
+                android:layout_width="240dp"
                 android:layout_height="12dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginLeft="-10dp"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorYellow" />
@@ -84,7 +86,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="어떤 공연이 있는지 둘러보러 가볼까요?"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/font_detail"
                 android:fontFamily="@font/notosans_light"
                 android:background="@android:color/transparent"/>
@@ -101,7 +103,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/style_search_tags_bg"
+                android:background="@drawable/ripple_effect"
                 android:text="공연 보러 가기"
                 android:textSize="15sp"
                 android:textColor="@color/font_detail"

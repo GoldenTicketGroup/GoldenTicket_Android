@@ -66,7 +66,7 @@ interface NetworkService {
     fun postShowLike(
         @Header("Content-Type") content_type: String,
         @Header("token") user_token: String,
-        @Body() body:JsonObject
+        @Body body:JsonObject
     ): Call<PostShowLikeResponse>
 
 
@@ -94,11 +94,23 @@ interface NetworkService {
         @Header("token") token: String,
         @Body body: JsonObject
     ): Call<PutUserResponse>
+
+    // 당첨 확인 리스트 조회
     @GET("/lottery")
     fun getLotteryListResponse(
         @Header("Content-Type") content_type: String,
         @Header("token") user_token: String
     ): Call<GetLotteryListResponse>
+
+
+    // 당첨 확인 상세 조회
+    @GET("/lottery/{id}")
+    fun getLotteryConfirmDetail(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String,
+        @Path("id") lottery_id: Int
+    ): Call<GetLotteryConfirmDetailResponse>
+
 
     //공연내역 리스트 조회
     @GET("/ticket")

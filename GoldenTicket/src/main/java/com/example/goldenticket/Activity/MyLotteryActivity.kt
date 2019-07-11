@@ -14,6 +14,7 @@ import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.R
+import kotlinx.android.synthetic.main.activity_keep.*
 import kotlinx.android.synthetic.main.activity_my_lottery.*
 import kotlinx.android.synthetic.main.toolbar_drawer.*
 import retrofit2.Call
@@ -75,9 +76,14 @@ class MyLotteryActivity : AppCompatActivity() {
                     if (tempData != null) {
                         dataList = response.body()!!.data
                     }
+                    if (tempData.isEmpty()){
+                        mylottery_empty_image.visibility = View.VISIBLE
+                        rv_mylottery.visibility = View.GONE
+                    }
                     Log.e("*****MyLottActivity:: ", "getMyLotteryResponse::Success" + dataList.toString())
 
                     setRecyclerView()
+
                 }
                 else {
                     Log.e("*****MyLottActivity:: ", "getMyLotteryResponse::Fail" + dataList.toString())
