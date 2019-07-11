@@ -102,7 +102,7 @@ class SearchResultActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     var tempData: ArrayList<SearchData> = response.body()!!.data
                     if (tempData != null) {
-                        Log.e("SearchResultActivity::", "postSearchTagResponse::onResponse::Success::" + response.body()!!.message)
+                        Log.e("SearchResultActivity::", "postSearchTagResponse::onResponse::Success::" + response.body()!!.message+ "::" + response.body()!!.data)
                         results = response.body()!!.data
 
                         setRecyclerView()

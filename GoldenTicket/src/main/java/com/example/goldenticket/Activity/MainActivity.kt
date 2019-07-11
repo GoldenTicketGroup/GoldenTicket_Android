@@ -81,7 +81,7 @@ class MainActivity : BaseActivity() {
 
         /** 상단 티켓 아이콘 **/
         iv_main_ticket.onClick {
-            // status: 1 = 응모 전, 2 = 결제 전, 3 = 결제 완료
+            /*// status: 1 = 응모 전, 2 = 결제 전, 3 = 결제 완료
             var status = 1
             when (status) {
                 1 -> {
@@ -93,7 +93,8 @@ class MainActivity : BaseActivity() {
                 3 -> {
                     startActivity<MyLotteryDetailActivity>()
                 }
-            }
+            }*/
+            startActivity<MyLotteryDetailActivity>()
         }
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(rv_product)
@@ -416,6 +417,7 @@ class MainActivity : BaseActivity() {
 
             override fun onResponse(call: Call<GetMyLotteryResponse>, response: Response<GetMyLotteryResponse>) {
                 if (response.isSuccessful) {
+                    Log.e("MainActivity::", "getMyLotteryResponse::onResponse::" + response.body()!!.message)
                     var size = response.body()!!.data.size
                     tv_win_num.text = size.toString()
                 }
