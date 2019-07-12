@@ -39,17 +39,13 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.internal.operators.flowable.FlowableReplay.observeOn
-import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.Subject
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.find
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.sql.Types.NULL
+import javax.security.auth.Subject
 import kotlin.collections.ArrayList
 
 
@@ -59,9 +55,9 @@ class MainActivity : BaseActivity() {
         ApplicationController.instance.networkService
     }
 
-    private val backButtonSubject: Subject<Long> =
-        BehaviorSubject.createDefault(0L)
-    lateinit var backPressedDisposable: Disposable
+//    private val backButtonSubject: Subject<Long> =
+//        BehaviorSubject.createDefault(0L)
+//    lateinit var backPressedDisposable: Disposable
 
     lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
     var temp_num_fragment: Int = 0
@@ -93,15 +89,15 @@ class MainActivity : BaseActivity() {
         }
 
 
-        //뒤로가기 버튼을 한 번 누른 뒤 1.5초 이내에 한 번 더 누르면 종료가 된다.
-        backPressedDisposable = backButtonSubject
-            .buffer(2, 1)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { t ->
-                if (t[1] - t[0] <= 1500) {
-                    finish()
-                } else Toast.makeText(this, "뒤로가기 버튼을 한 번 더 누르면 종료", Toast.LENGTH_SHORT).show()
-            }
+//        //뒤로가기 버튼을 한 번 누른 뒤 1.5초 이내에 한 번 더 누르면 종료가 된다.
+//        backPressedDisposable = backButtonSubject
+//            .buffer(2, 1)
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe { t ->
+//                if (t[1] - t[0] <= 1500) {
+//                    finish()
+//                } else Toast.makeText(this, "뒤로가기 버튼을 한 번 더 누르면 종료", Toast.LENGTH_SHORT).show()
+//            }
 
         FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
@@ -464,6 +460,10 @@ class MainActivity : BaseActivity() {
         })
     }
 
+//    public fun refresh(){
+//        lotteryConfirmAdapter.notifyDataSetChanged()
+//    }
+
 
     /*private fun backEvent(){
         backButtonSubject.buffer(2,1)
@@ -475,8 +475,8 @@ class MainActivity : BaseActivity() {
             }
     }*/
 
-    override fun onBackPressed() {
-        backButtonSubject.onNext(System.currentTimeMillis())
-    }
+//    override fun onBackPressed() {
+//        backButtonSubject.onNext(System.currentTimeMillis())
+//    }
 
 }

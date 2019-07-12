@@ -14,6 +14,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.example.goldenticket.Activity.LotteryConfirmActivity
+import com.example.goldenticket.Activity.*
 import com.example.goldenticket.Activity.StageInfoActivity
 import com.example.goldenticket.Data.LotteryListData
 import com.example.goldenticket.Network.ApplicationController
@@ -34,6 +35,9 @@ import retrofit2.Response
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.goldenticket.Activity.MainActivity
+
+
 
 
 
@@ -47,17 +51,16 @@ class LotteryFirstTimerFragment : Fragment() {
     lateinit var start_time: String
 
 
-    var diff : String = ""
     val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH)
     val now_time = System.currentTimeMillis()
     var confirm_time_sdf: Long = 0
 
     var mStartTimeInMillis: Long = 0 //10분으로 설정
     var mCountDownTimer: CountDownTimer? = null
-    //var mTimerRunning: Boolean = false
     var mTimeLeftInMillis = mStartTimeInMillis
     var mEndTime: Long = 0
 
+    var show_name = ""
     var show_idx = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +91,9 @@ class LotteryFirstTimerFragment : Fragment() {
 
         mEndTime = prefs.getLong("endTime", 0)
         mTimeLeftInMillis = mEndTime - System.currentTimeMillis()
+
+        tv_first_timer_title.text = prefs.getString("showName","밍구")
+
         updateCountDownText()
         startTimer()
     }
@@ -102,6 +108,7 @@ class LotteryFirstTimerFragment : Fragment() {
         editor.putLong("millisLeft", mTimeLeftInMillis)
 
         editor.putLong("endTime", mEndTime)
+
         editor.apply()
 
         mCountDownTimer?.cancel()
@@ -164,6 +171,8 @@ class LotteryFirstTimerFragment : Fragment() {
                             show_idx = response.body()!!.data.get(0).show_idx
 
                             tv_first_timer_title.text = response.body()!!.data.get(0).name
+                            show_name = response.body()!!.data.get(0).name
+
                             start_time = response.body()!!.data.get(0).start_time + "m"
 
                             confirm_time_sdf = sdf.parse(start_time).time // getTime -> millis타입
@@ -180,6 +189,9 @@ class LotteryFirstTimerFragment : Fragment() {
                             editor.putLong("millisLeft", mTimeLeftInMillis)
 
                             editor.putLong("endTime", mEndTime)
+
+                            editor.putString("showName", show_name)
+
                             editor.apply()
 
 
