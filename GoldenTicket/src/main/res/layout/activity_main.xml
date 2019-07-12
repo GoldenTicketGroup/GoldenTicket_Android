@@ -166,6 +166,7 @@
                                 android:layout_gravity="center"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:paddingBottom="20dp"
                                 android:textSize="15sp"
                                 android:textColor="#969696"
                                 android:textAlignment="center"
@@ -216,6 +217,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:nestedScrollingEnabled="false"
+                                android:layout_marginBottom="15dp"
                         >
                         </androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>

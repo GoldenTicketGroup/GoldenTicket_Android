@@ -261,16 +261,9 @@ class StageInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetStageInfoResponse>, response: Response<GetStageInfoResponse>) {
                 if (response.isSuccessful) {
-                    /*Log.e(
-                        "StageInfoActivity:: ",
-                        "getStageInfoResponse:: Success:: " + response.body()!!.data.toString()
-                    )*/
+
                     var tempData: StageInfoData = response.body()!!.data
                     if (tempData != null) {
-                        Log.e(
-                            "StageInfoActivity::",
-                            "getStageInfoResponse::poster:: " + response.body()!!.data.image_url
-                        )
                         Glide.with(this@StageInfoActivity)
                             .load(response.body()!!.data.image_url)
                             .into(iv_stageinfo_bg)
@@ -330,14 +323,12 @@ class StageInfoActivity : AppCompatActivity() {
 
     /*private fun postLotteryResponse() {
         val token = SharedPreferenceController.getUserToken(this)
-
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val postLotteryResponse: Call<PostLotteryResponse> = networkService.postLotteryResponse("application/json", token, gsonObject)
         postLotteryResponse.enqueue(object: Callback<PostLotteryResponse> {
             override fun onFailure(call: Call<PostLotteryResponse>, t: Throwable) {
                 Log.e("StageInfoActivity::", "postLotteryResponse::Post_Lottery_Register_Fail")
             }
-
             override fun onResponse(call: Call<PostLotteryResponse>, response: Response<PostLotteryResponse>) {
                 if (response.isSuccessful) {
                     Log.e("StageInfoActivity::", "postLotteryResponse::onResponse::Success::" + response.body()!!.message)

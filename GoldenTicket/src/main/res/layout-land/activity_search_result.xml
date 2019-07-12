@@ -21,7 +21,7 @@
                 android:src="@drawable/bt_back"/>
 
         <RelativeLayout
-                android:layout_width="300dp"
+                android:layout_width="630dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style_search_searchbar_bg"
                 android:layout_marginTop="10dp"
@@ -29,7 +29,7 @@
                 android:layout_marginBottom="10dp">
             <EditText
                     android:id="@+id/et_searchresult_searchbar"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@android:color/transparent"
                     android:hint="어떤 공연을 찾고 계신가요?"

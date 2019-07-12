@@ -3,12 +3,13 @@
                 android:gravity="center_vertical"
                 android:background="#00FFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
     <ImageButton
             android:id="@+id/btnClose"
             android:layout_alignParentRight="true"
             android:layout_marginRight="24dp"
+            android:layout_marginVertical="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bt_close"/>
