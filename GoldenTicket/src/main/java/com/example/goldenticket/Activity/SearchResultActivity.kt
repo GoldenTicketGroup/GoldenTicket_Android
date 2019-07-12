@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.goldenticket.Adapter.SearchResultRVAdapter
+import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.PostSearchResponse
@@ -66,9 +67,11 @@ class SearchResultActivity : AppCompatActivity() {
     }
 
     private fun postSearchResponse() {
+        val token = SharedPreferenceController.getUserToken(this@SearchResultActivity)
+
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val postSearchResponse: Call<PostSearchResponse>
-                = networkService.postSearchResponse("application/json", gsonObject)
+                = networkService.postSearchResponse("application/json", token, gsonObject)
         postSearchResponse.enqueue(object: Callback<PostSearchResponse> {
             override fun onFailure(call: Call<PostSearchResponse>, t: Throwable) {
                 Log.e("SearchResultActivity:: ", "postSearchResponse::List_Search_Result_Data_Fail")
@@ -91,8 +94,10 @@ class SearchResultActivity : AppCompatActivity() {
     }
 
     private fun postSearchTagResponse() {
+        val token = SharedPreferenceController.getUserToken(this@SearchResultActivity)
+
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-        val postSearchTagResponse: Call<PostSearchResponse> = networkService.postSearchTagResponse("application/json", gsonObject)
+        val postSearchTagResponse: Call<PostSearchResponse> = networkService.postSearchTagResponse("application/json", token, gsonObject)
         postSearchTagResponse.enqueue(object: Callback<PostSearchResponse> {
             override fun onFailure(call: Call<PostSearchResponse>, t: Throwable) {
                 Log.e("SearchResultActivity:: ", "postSearchTagResponse::List_Search_Tag_Result_Data_Fail")

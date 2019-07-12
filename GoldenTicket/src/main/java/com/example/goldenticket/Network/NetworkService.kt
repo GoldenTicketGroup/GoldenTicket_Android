@@ -138,6 +138,7 @@ interface NetworkService {
     @POST("/search/text")
     fun postSearchResponse(
         @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
         @Body body: JsonObject
     ): Call<PostSearchResponse>
 
@@ -145,6 +146,7 @@ interface NetworkService {
     @POST("/search")
     fun postSearchTagResponse(
         @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
         @Body body: JsonObject
     ): Call<PostSearchResponse>
 
