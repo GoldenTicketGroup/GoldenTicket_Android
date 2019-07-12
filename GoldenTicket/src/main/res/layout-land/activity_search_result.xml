@@ -33,6 +33,7 @@
                     android:layout_height="30dp"
                     android:background="@android:color/transparent"
                     android:hint="어떤 공연을 찾고 계신가요?"
+                    android:focusableInTouchMode="false"
                     android:textSize="14sp"
                     android:textColorHint="#fda47a"
                     android:paddingStart="14dp"

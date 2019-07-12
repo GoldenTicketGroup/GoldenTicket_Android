@@ -32,7 +32,7 @@
 
         <LinearLayout
                 android:layout_width="300dp"
-                android:layout_height="400dp"
+                android:layout_height="560dp"
                 android:background="@drawable/rectangle_email_login"
                 android:layout_marginTop="50dp"
                 android:orientation="vertical"
@@ -120,6 +120,28 @@
                     app:layout_constraintTop_toBottomOf="@+id/iv_loginactivity_img"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintVertical_bias="0.242"/>
+
+            <CheckBox
+                    android:id="@+id/cb_event"
+                    android:text="이벤트 알림(10시 마다)"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+            />
+            <CheckBox
+                    android:id="@+id/cb_like"
+                    android:text="관심있는 공연알람"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+            />
+            <CheckBox
+                    android:id="@+id/cb_confirm"
+                    android:text="당첨확인 알람"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+            />
         </LinearLayout>
 
         <Button

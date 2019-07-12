@@ -42,21 +42,21 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="300dp"
                 android:background="@drawable/rectangle_email_login"
                 android:layout_marginTop="40dp"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" android:id="@+id/linearLayout"
-                >
+        >
 
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginEnd="50dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="50dp"
             >
                 <EditText
                         android:id="@+id/et_signupactivity_name"
@@ -100,6 +100,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/iv_loginactivity_img"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintVertical_bias="0.242"/>
+
+
             </LinearLayout>
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -134,6 +136,27 @@
                         app:layout_constraintTop_toBottomOf="@+id/iv_loginactivity_img"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintVertical_bias="0.242"/>
+                <CheckBox
+                        android:id="@+id/cb_event"
+                        android:text="이벤트 알림(10시 마다)"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                />
+                <CheckBox
+                        android:id="@+id/cb_like"
+                        android:text="관심있는 공연알람"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                />
+                <CheckBox
+                        android:id="@+id/cb_confirm"
+                        android:text="당첨확인 알람"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                />
             </LinearLayout>
         </LinearLayout>
         <Button

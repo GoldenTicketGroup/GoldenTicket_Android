@@ -35,6 +35,7 @@
                     android:hint="어떤 공연을 찾고 계신가요?"
                     android:textSize="14sp"
                     android:textColorHint="#fda47a"
+                    android:focusableInTouchMode="false"
                     android:paddingStart="14dp"
                     android:textColor="#676767"
                     android:fontFamily="@font/notosans_medium"

@@ -1,6 +1,7 @@
 package com.example.goldenticket.Activity
 
 import android.animation.TimeInterpolator
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,7 @@ import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.Transformations.map
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
@@ -43,6 +45,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.sql.Types.NULL
+import javax.security.auth.Subject
 import kotlin.collections.ArrayList
 
 
@@ -51,6 +54,10 @@ class MainActivity : BaseActivity() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
+
+//    private val backButtonSubject: Subject<Long> =
+//        BehaviorSubject.createDefault(0L)
+//    lateinit var backPressedDisposable: Disposable
 
     lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
     var temp_num_fragment: Int = 0
@@ -62,6 +69,35 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        srl_main.setColorSchemeResources(R.color.refresh, R.color.refresh1, R.color.refresh2)
+        srl_main.setOnRefreshListener {
+            srl_main.isRefreshing = true
+            handler.postDelayed({
+                val snapHelper = GravitySnapHelper(Gravity.START)
+                snapHelper.attachToRecyclerView(rv_product)
+
+                /** 당첨확인 뷰페이저 부분 **/
+                configureLotteryConfirmVP()
+
+                /** 하단 월별 콘텐츠 리사이클러뷰 부분 **/
+                configureMainContentsRV()
+                getMyLotteryResponse()
+
+                srl_main.isRefreshing = false
+            }, 3000)
+        }
+
+
+//        //뒤로가기 버튼을 한 번 누른 뒤 1.5초 이내에 한 번 더 누르면 종료가 된다.
+//        backPressedDisposable = backButtonSubject
+//            .buffer(2, 1)
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe { t ->
+//                if (t[1] - t[0] <= 1500) {
+//                    finish()
+//                } else Toast.makeText(this, "뒤로가기 버튼을 한 번 더 누르면 종료", Toast.LENGTH_SHORT).show()
+//            }
 
         FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
@@ -76,11 +112,9 @@ class MainActivity : BaseActivity() {
                 // Log and toast
                 val msg = getString(R.string.msg_token_fmt, token)
                 Log.d("TAG", msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             })
         Log.d("TOKENTEST: ", getUserToken(this))
 
-        //progressON("Loading...")
 
         /** 상단 티켓 아이콘 **/
         iv_main_ticket.onClick {
@@ -241,7 +275,8 @@ class MainActivity : BaseActivity() {
     private fun configureLotteryConfirmVP() {
 
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
-            "application/json", getUserToken(this))
+            "application/json", getUserToken(this)
+        )
         getMainLotteryListResponse.enqueue(object : retrofit2.Callback<GetLotteryListResponse> {
             override fun onFailure(call: Call<GetLotteryListResponse>, t: Throwable) {
                 Log.e("Lottery List Fail", t.toString())
@@ -255,7 +290,7 @@ class MainActivity : BaseActivity() {
                         temp_num_fragment = response.body()!!.data.size
                         //temp_num_fragment = 1
 
-                        if(temp_num_fragment == 0) {
+                        if (temp_num_fragment == 0) {
                             vpLotteryConfirm.visibility = INVISIBLE
                             tvLotteryNothing.visibility = VISIBLE
                         }
@@ -400,14 +435,12 @@ class MainActivity : BaseActivity() {
                             rv_product.visibility = View.VISIBLE
                             empty_view.visibility = View.GONE
                         }
-
-
                     }
-
                 }
             }
         })
     }
+
     private fun getMyLotteryResponse() {
 
         val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", getUserToken(this))
@@ -421,6 +454,7 @@ class MainActivity : BaseActivity() {
                     Log.e("MainActivity::", "getMyLotteryResponse::onResponse::" + response.body()!!.message)
                     var size = response.body()!!.data.size
                     tv_win_num.text = size.toString()
+                    srl_main.isRefreshing = false
                 }
             }
         })
@@ -428,6 +462,21 @@ class MainActivity : BaseActivity() {
 
 //    public fun refresh(){
 //        lotteryConfirmAdapter.notifyDataSetChanged()
+//    }
+
+
+    /*private fun backEvent(){
+        backButtonSubject.buffer(2,1)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { t ->
+                if (t[1] - t[0] <= 1500) {
+                    finish()
+                }else Toast.makeText(this,"뒤로가기 버튼을 한 번 더 누르시면 종료!",Toast.LENGTH_SHORT).show()
+            }
+    }*/
+
+//    override fun onBackPressed() {
+//        backButtonSubject.onNext(System.currentTimeMillis())
 //    }
 
 }
