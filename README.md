@@ -5,6 +5,9 @@
 ## 소개 동영상
 [![Video Label](https://user-images.githubusercontent.com/35513039/61105442-e71cbe80-a4b4-11e9-9fc6-8d7cd84dc718.png)](https://www.youtube.com/watch?v=cbEkAdDO59U)
 
+## 소개 웹 페이지
+[골든 티켓](https://proactivekarl.wixsite.com/goldenticket)
+
 ## 서비스 work flow
 ---------------
 ![플로우](https://sopt24server.s3.ap-northeast-2.amazonaws.com/flow.png)
