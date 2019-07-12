@@ -4,7 +4,7 @@
 
 ## 소개 동영상
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=cbEkAdDO59U&feature=youtu.be" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
 
 ##서비스 work flow
 ---------------
@@ -91,10 +91,10 @@ dependencies {
 
 ## 개발자
 
-- **김강희** - [강희](https://github.com/ganghee) 
-- **김민경** - [민경](https://github.com/minkyoe) 
-- **한선민** - [선민](https://github.com/HanSeonmin)
-- **전성은** - [성은](https://github.com/cse0616)
+- **김강희** - [강희 깃주소](https://github.com/ganghee) 
+- **김민경** - [민경 깃주소](https://github.com/minkyoe) 
+- **한선민** - [선민 깃주소](https://github.com/HanSeonmin)
+- **전성은** - [성은 ](https://github.com/cse0616)
 
 ## Google Play Store
 
