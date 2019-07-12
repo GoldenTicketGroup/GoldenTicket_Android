@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.goldenticket">
+          package="com.dazzi.goldenticket">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-            android:name=".Network.ApplicationController"
+            android:name="com.dazzi.goldenticket.Network.ApplicationController"
             android:allowBackup="true"
             android:icon="@drawable/group"
             android:label="@string/app_name"
@@ -15,7 +15,7 @@
             android:usesCleartextTraffic="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <service android:name=".FirebaseMessage.MyFirebaseMessagingService"
+        <service android:name="com.dazzi.goldenticket.FirebaseMessage.MyFirebaseMessagingService"
                  android:exported="false"
         >
             <intent-filter>
@@ -24,74 +24,74 @@
         </service>
 
 
-        <activity android:name=".Activity.MyLotteryDetailActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.MyLotteryDetailActivity">
 
         </activity>
-        <activity android:name=".Activity.MyLotteryPaymentActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.MyLotteryPaymentActivity">
 
         </activity>
-        <activity android:name=".Activity.MyLotteryNothingActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.MyLotteryNothingActivity">
         </activity>
-        <activity android:name=".Activity.LotteryNoticeActivity">
-        </activity>
-
-        <activity android:name=".Activity.SearchResultActivity">
-
+        <activity android:name="com.dazzi.goldenticket.Activity.LotteryNoticeActivity">
         </activity>
 
-        <activity android:name=".Activity.LotteryCompleteActivity">
-        </activity>
-        <activity android:name=".Activity.MyLotteryActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.SearchResultActivity">
 
         </activity>
-        <activity android:name=".Activity.SearchActivity">
+
+        <activity android:name="com.dazzi.goldenticket.Activity.LotteryCompleteActivity">
+        </activity>
+        <activity android:name="com.dazzi.goldenticket.Activity.MyLotteryActivity">
 
         </activity>
-        <activity android:name=".Activity.LotteryConfirmActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.SearchActivity">
 
         </activity>
-        <activity android:name=".Activity.UserUpdateActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.LotteryConfirmActivity">
 
         </activity>
-        <activity android:name=".Activity.ContentActivity"
+        <activity android:name="com.dazzi.goldenticket.Activity.UserUpdateActivity">
+
+        </activity>
+        <activity android:name="com.dazzi.goldenticket.Activity.ContentActivity"
                   android:theme="@style/ContentsActivityTheme">
         </activity>
-        <activity android:name=".Activity.NoticeActivity"/>
-        <activity android:name=".Activity.QuestionActivity"/>
+        <activity android:name="com.dazzi.goldenticket.Activity.NoticeActivity"/>
+        <activity android:name="com.dazzi.goldenticket.Activity.QuestionActivity"/>
 
-        <activity android:name=".Activity.StageInfoActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.StageInfoActivity">
 
         </activity>
-        <activity android:name=".Activity.KeepActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.KeepActivity">
 
         </activity>
         <activity
-                android:name=".Activity.SettingsActivity"
+                android:name="com.dazzi.goldenticket.Activity.SettingsActivity"
                 android:label="@string/title_activity_settings">
         </activity>
-        <activity android:name=".Activity.TutorialActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.TutorialActivity">
 
         </activity>
         <activity
-                android:name=".Activity.SignUpActivity"
+                android:name="com.dazzi.goldenticket.Activity.SignUpActivity"
                 android:theme="@style/StatusYellowTheme"
                 android:windowSoftInputMode="adjustResize">
 
         </activity>
         <activity
-                android:name=".Activity.LoginActivity"
+                android:name="com.dazzi.goldenticket.Activity.LoginActivity"
                 android:windowSoftInputMode="adjustResize">
 
         </activity>
 
-        <activity android:name=".Activity.SplashActivity">
+        <activity android:name="com.dazzi.goldenticket.Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity"
+        <activity android:name="com.dazzi.goldenticket.Activity.MainActivity"
                   android:theme="@style/StatusYellowTheme">
 
         </activity>
