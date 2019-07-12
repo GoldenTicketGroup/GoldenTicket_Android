@@ -32,12 +32,7 @@ class CardListAdapter(val ctx: Context, val dataList: ArrayList<CardListData>): 
             .load(dataList[position].imageUrl)
             .into(holder.img)
 
-//        holder.title.text = dataList[position].title
-
-        Log.d("밍구",dataList[position].title)
-//        holder.title.text = "밍구\n밍구"
-
-        dataList[position].title = dataList[position].title.replace("\r","\n")
+        dataList[position].title = dataList[position].title.replace("/r","\n")
         holder.title.text = dataList[position].title
         holder.category.text = dataList[position].category
 
