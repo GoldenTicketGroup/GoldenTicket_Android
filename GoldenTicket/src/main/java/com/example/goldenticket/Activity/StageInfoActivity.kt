@@ -79,7 +79,7 @@ class StageInfoActivity : BaseActivity() {
         setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
         show_idx = intent.getIntExtra("idx",-1)
-        //show_idx = 2
+
         getStageInfoResponse()
 
 
