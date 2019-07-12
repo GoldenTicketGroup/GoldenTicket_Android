@@ -17,8 +17,10 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_lottery_confirm.*
 import kotlinx.android.synthetic.main.activity_lottery_notice.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
@@ -71,7 +73,7 @@ class LotteryNoticeActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<PostLotteryResponse>, response: Response<PostLotteryResponse>) {
                 if (response.isSuccessful) {
-                    if(response.body()!!.status == 200) startActivity<LotteryCompleteActivity>()
+                    if(response.body()!!.status == 200) startActivityForResult(Intent(ctx,LotteryCompleteActivity::class.java),0)
                     else if(response.body()!!.status == 205) {
                         toast(response.body()!!.message)
                         finish()
