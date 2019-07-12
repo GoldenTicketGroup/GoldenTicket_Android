@@ -54,6 +54,8 @@ class MainActivity : BaseActivity() {
     lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
     var temp_num_fragment: Int = 0
     val handler = Handler()
+    lateinit var lotteryConfirmAdapter: LotteryConfirmAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -159,10 +161,12 @@ class MainActivity : BaseActivity() {
         val u_name = getUserName(this)
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
-
-        configureLotteryConfirmVP()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        lotteryConfirmAdapter.notifyDataSetChanged()
+    }
     private fun configureShowRV() {
 
         showProgressDialog()
@@ -234,8 +238,6 @@ class MainActivity : BaseActivity() {
 
     private fun configureLotteryConfirmVP() {
 
-        var lotteryConfirmAdapter: LotteryConfirmAdapter
-
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
             "application/json", getUserToken(this))
         getMainLotteryListResponse.enqueue(object : retrofit2.Callback<GetLotteryListResponse> {
@@ -258,7 +260,6 @@ class MainActivity : BaseActivity() {
                         btnVisibilityCheck(vpLotteryConfirm.currentItem)
                         lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
                         vpLotteryConfirm.adapter = lotteryConfirmAdapter
-                        lotteryConfirmAdapter.notifyDataSetChanged()
                     }
                 }
 
