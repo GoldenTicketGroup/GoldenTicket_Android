@@ -3,22 +3,15 @@
 당일 공연 추첨식 예매 서비스 **골든 티켓**입니다.
 
 ## 소개 동영상
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+[![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://youtu.be/uLR1RNqJ1Mw?t=0s)
 
 ## 서비스 work flow
 ---------------
-<div>
-<img width="1438" alt="goldenTicketFlow" src="https://user-images.githubusercontent.com/49272528/60763857-a63d3800-a0b7-11e9-95af-f381fe8e57c4.png">
-</div>
-<br />
+![플로우](https://sopt24server.s3.ap-northeast-2.amazonaws.com/flow.png)
 
 ## 앱 아이콘
 ------------
 ![GoldenTicketIcon](https://user-images.githubusercontent.com/49272528/61025745-8f1a8500-a3ec-11e9-8e5a-ae246f2a9bbc.png)
-
-## 워크 플로우
-
-<img src="https://user-images.githubusercontent.com/35513039/61103258-3a3e4380-a4ac-11e9-93ce-9bc70ee52f7d.png" width="30%" height="30%"><img src="https://user-images.githubusercontent.com/35513039/61103694-fa785b80-a4ad-11e9-8c4d-adc502467f42.png" width="30%" height=500> <img src="https://user-images.githubusercontent.com/35513039/61103646-c309af00-a4ad-11e9-83df-9c98f9131f43.png" width="30%" height=500> <img src="https://user-images.githubusercontent.com/35513039/61103591-96559780-a4ad-11e9-9c60-112569cfd9ee.png" width="30%" height=500>
 
 어플 기능
 ------------
