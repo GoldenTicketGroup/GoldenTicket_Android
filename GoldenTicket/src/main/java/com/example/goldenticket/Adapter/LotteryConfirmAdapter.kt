@@ -1,9 +1,11 @@
 package com.example.goldenticket.Adapter
 
 import android.util.Log
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import com.example.goldenticket.Fragment.LotteryFirstTimerFragment
 import com.example.goldenticket.Fragment.LotterySecondTimerFragment
 
