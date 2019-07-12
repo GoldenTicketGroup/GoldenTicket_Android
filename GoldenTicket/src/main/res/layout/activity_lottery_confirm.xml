@@ -24,7 +24,7 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="36dp">
         <TextView
                 android:id="@+id/tv_lotteryconfirm_title"
                 android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
                 android:layout_centerInParent="true"
                 android:text="아쉽지만 당첨되지\n않았어요"
                 android:textAlignment="center"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textColor="@color/colorCoral"
                 android:fontFamily="@font/notosans_bold"/>
     </RelativeLayout>
@@ -43,8 +43,8 @@
             android:layout_marginTop="34dp">
         <ImageView
                 android:id="@+id/iv_lotteryconfirm_character"
-                android:layout_width="310dp"
-                android:layout_height="211dp"
+                android:layout_width="290dp"
+                android:layout_height="191dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/fail"/>
     </RelativeLayout>
@@ -120,7 +120,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="걱정하지 마세요. 매일매일 새로운\n골든티켓에 응모할 수 있습니다."
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textColor="@color/font_detail"
                 android:lineSpacingExtra="5dp"
                 android:fontFamily="@font/notosans_light"/>
@@ -132,7 +132,7 @@
             <TextView
                     android:layout_width="235dp"
                     android:layout_height="12dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="-10dp"
                     android:layout_centerHorizontal="true"
                     android:background="@color/colorYellow" />
@@ -144,7 +144,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="보고싶은 공연의 알림을 설정해두세요."
                     android:textAlignment="center"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:textColor="@color/font_detail"
                     android:fontFamily="@font/notosans_light"
                     android:background="@android:color/transparent"/>
@@ -154,12 +154,11 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:layout_marginTop="60dp">
+            android:layout_marginBottom="40dp">
         <Button
                 android:id="@+id/btn_lotteryconfirm_stagelike"
                 android:layout_width="277.5dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_marginBottom="10dp"
                 android:layout_above="@+id/btn_lotteryconfirm_stagelist"
                 android:layout_centerHorizontal="true"
@@ -173,7 +172,7 @@
         <Button
                 android:id="@+id/btn_lotteryconfirm_stagelist"
                 android:layout_width="277.5dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/ripple_effect"

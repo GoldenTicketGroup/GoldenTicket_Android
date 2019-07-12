@@ -42,6 +42,7 @@ class CardDetailRVAdapter(val ctx: Context, val dataList: ArrayList<ContentDetai
             .into(holder.contentImage)
 
         dataList[position].content = dataList[position].content.replace("/r","\n")
+        dataList[position].content = dataList[position].content.replace(" ","\u00A0")
         holder.contentContent.text = dataList[position].content
 
         holder.contentGoShow.onClick {
