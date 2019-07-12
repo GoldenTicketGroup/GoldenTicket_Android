@@ -5,3 +5,4 @@
 ## 워크 플로우
 ![로그인-내용입력X](https://user-images.githubusercontent.com/35513039/61103258-3a3e4380-a4ac-11e9-93ce-9bc70ee52f7d.png){: width="10%" height="10%"}
 
+<img src="https://user-images.githubusercontent.com/35513039/61103258-3a3e4380-a4ac-11e9-93ce-9bc70ee52f7d.png" width="300" height="300">
