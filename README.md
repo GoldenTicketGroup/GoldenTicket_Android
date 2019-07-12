@@ -3,17 +3,16 @@
 당일 공연 추첨식 예매 서비스 **골든 티켓**입니다.
 
 ## 소개 동영상
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
 
-##서비스 work flow
+## 서비스 work flow
 ---------------
 <div>
 <img width="1438" alt="goldenTicketFlow" src="https://user-images.githubusercontent.com/49272528/60763857-a63d3800-a0b7-11e9-95af-f381fe8e57c4.png">
 </div>
 <br />
 
-##앱 아이콘
+## 앱 아이콘
 ------------
 ![GoldenTicketIcon](https://user-images.githubusercontent.com/49272528/61025745-8f1a8500-a3ec-11e9-8e5a-ae246f2a9bbc.png)
 
@@ -35,7 +34,7 @@
 > * 관심있는 공연 알람
 
 
-##라이브러리
+## 라이브러리
 ```
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
