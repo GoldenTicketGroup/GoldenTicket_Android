@@ -426,4 +426,8 @@ class MainActivity : BaseActivity() {
         })
     }
 
+//    public fun refresh(){
+//        lotteryConfirmAdapter.notifyDataSetChanged()
+//    }
+
 }
