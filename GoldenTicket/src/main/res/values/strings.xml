@@ -6,7 +6,7 @@
     <string name="settings">설정</string>
     <string name="FAQ">자주묻는 질문</string>
     <string name="user_update">회원정보 수정</string>
-
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

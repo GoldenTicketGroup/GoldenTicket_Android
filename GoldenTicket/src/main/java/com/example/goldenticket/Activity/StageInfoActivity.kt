@@ -2,12 +2,13 @@ package com.example.goldenticket.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import android.view.ViewGroup
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -33,8 +34,6 @@ import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_stage_info.*
 import kotlinx.android.synthetic.main.fragment_stage_info_entry_dialog.*
 import kotlinx.android.synthetic.main.toolbar_stage_info.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,7 +55,7 @@ class StageInfoActivity : AppCompatActivity() {
     var schedules: ArrayList<StageInfoSchedulesData> = ArrayList()
     var times: MutableMap<String, Int> = mutableMapOf()
 
-    var show_idx: Int = 20
+    var show_idx: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +77,8 @@ class StageInfoActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
-        show_idx = intent.getIntExtra("idx",1) // TODO: 이거 인덱스 디폴트 값 뭘로 해 ...?
+        show_idx = intent.getIntExtra("idx",-1)
+        //show_idx = 6
         getStageInfoResponse()
 
 
@@ -207,9 +207,8 @@ class StageInfoActivity : AppCompatActivity() {
     }
 
     private fun setSpinner(times: MutableMap<String, Int>) {
-        spn_stageinfo_select_time.adapter = ArrayAdapter(
-            this,
-            com.example.goldenticket.R.layout.spn_item_stageinfo_starttimes,
+        spn_stageinfo_select_time.adapter = ArrayAdapter(this,
+            R.layout.spn_item_stageinfo_starttimes,
             times.keys.toTypedArray()
         )
         spn_stageinfo_select_time.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -262,16 +261,9 @@ class StageInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetStageInfoResponse>, response: Response<GetStageInfoResponse>) {
                 if (response.isSuccessful) {
-                    /*Log.e(
-                        "StageInfoActivity:: ",
-                        "getStageInfoResponse:: Success:: " + response.body()!!.data.toString()
-                    )*/
+
                     var tempData: StageInfoData = response.body()!!.data
                     if (tempData != null) {
-                        Log.e(
-                            "StageInfoActivity::",
-                            "getStageInfoResponse::poster:: " + response.body()!!.data.image_url
-                        )
                         Glide.with(this@StageInfoActivity)
                             .load(response.body()!!.data.image_url)
                             .into(iv_stageinfo_bg)
@@ -291,27 +283,29 @@ class StageInfoActivity : AppCompatActivity() {
                         imgs = response.body()!!.data.poster
                         Log.e("StageInfoActivity::", "getStageInfoResponse::imgs:: " + imgs.toString())
 
-
-                        //0: 응모 불가, 1: 응모 가능
-                        schedules = response.body()!!.data.schedule
-                        for (schedule in schedules) {
-                            if (schedule.draw_available == 1) {
-                                times.put(schedule.time, schedule.schedule_idx)
-                            }
-                        }
-
                         setRecyclerView()
 
-                        if (times.size == 0) {
+                        schedules = response.body()!!.data.schedule
+                        if (schedules.size == 0) {
                             val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
                             behavior.setPeekHeight(0)
-                        } else {
-                            setBottomSheet(response.body()!!.status)
-//                            setBottomSheet(204)
 
-                            setSpinner(times)
+                            val layoutParams = ll_stageinfo.layoutParams as FrameLayout.LayoutParams
+                            layoutParams.setMargins(0, 0, 0, 0)
+
+                        } else { // lottery available
+                            for (schedule in schedules) { // 공연 스케줄을 모두 가져옴
+                                if (schedule.draw_available == 1) { // 응모가능한(공연시작보다 3시간 이하 남은) 공연 시간을 가져옴
+                                    times.put(schedule.time, schedule.schedule_idx)
+                                }
+                            }
+                            if (times.size == 0) {
+                                // 가능 한 일이 아님
+                            } else {
+                                setBottomSheet(response.body()!!.status) // STATUS로 유저가 중복 응모를 했는지(204), 응모가능 횟수를 넘었는지(205) 확인함
+                                setSpinner(times)
+                            }
                         }
-
                     }
                     else {
                         Glide.with(this@StageInfoActivity)

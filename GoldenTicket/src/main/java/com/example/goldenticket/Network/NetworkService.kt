@@ -119,12 +119,19 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<GetMyLotteryResponse>
 
-    //공연내역 상세 조회
+    //공연내역 상세 조회,
     @GET("/ticket/{id}")
     fun getMyLotteryDetailResponse(
         @Header("Content-Type") content_type: String,
         @Header("token") token: String,
         @Path("id") ticket_idx: Int
+    ): Call<GetMyLotteryDetailResponse>
+
+    //공연내역 상세 조회 (현재 접근 가능)
+    @GET("/ticket/detail")
+    fun getMyLotteryDetailAvailableResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
     ): Call<GetMyLotteryDetailResponse>
 
     //검색(텍스트)

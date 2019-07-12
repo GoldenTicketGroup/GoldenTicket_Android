@@ -1,5 +1,6 @@
 package com.example.goldenticket.Activity
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,6 @@ import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Post.PostLoginResponse
-import com.example.goldenticket.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -18,6 +18,13 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.text.Editable
+import android.widget.EditText
+import android.widget.Toast
+import com.example.goldenticket.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(com.example.goldenticket.R.layout.activity_login)
 
         //data 밑줄 활성화
         isDataVaild()
@@ -62,17 +69,26 @@ class LoginActivity : AppCompatActivity() {
         return false
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        var id_text = et_loginactivity_id.text.toString()
+        var pw_text = et_loginactivity_pw.text.toString()
+        setContentView(com.example.goldenticket.R.layout.activity_login)
+        et_loginactivity_id.text = id_text as Editable
+        et_loginactivity_pw.text = pw_text as Editable
+    }
 
     //아이디와 패스워드가 포커스가 되면 밑줄
     //아이디와 패스워드에 문자가 있으면 밑줄
     private fun isDataVaild() {
         et_loginactivity_id.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus || et_loginactivity_id.text.toString() != "") v.setBackgroundResource(R.drawable.underline_yellow)
-            else v.setBackgroundResource(R.drawable.underline_white)
+            if (hasFocus || et_loginactivity_id.text.toString() != "") v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_yellow)
+            else v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_white)
         }
         et_loginactivity_pw.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus || et_loginactivity_pw.text.toString() != "") v.setBackgroundResource(R.drawable.underline_yellow)
-            else v.setBackgroundResource(R.drawable.underline_white)
+            if (hasFocus || et_loginactivity_pw.text.toString() != "") v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_yellow)
+            else v.setBackgroundResource(com.example.goldenticket.R.drawable.underline_white)
         }
     }
 
@@ -104,6 +120,22 @@ class LoginActivity : AppCompatActivity() {
                         toast("로그인이 되었습니다.")
                         Log.d("login","로그인이 되었습니다."+ response.body()!!.data!!)
                         SharedPreferenceController.setUserInfo(applicationContext, response.body()!!.data!!)
+                        FirebaseInstanceId.getInstance().instanceId
+                            .addOnCompleteListener(OnCompleteListener { task ->
+                                if (!task.isSuccessful) {
+                                    Log.w("TAG", "getInstanceId failed", task.exception)
+                                    return@OnCompleteListener
+                                }
+
+                                // Get new Instance ID token
+                                val token = task.result?.token
+
+                                // Log and toast
+                                val msg = getString(R.string.msg_token_fmt, token)
+                                Log.d("TAG", msg)
+                                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                            })
+
                         startActivity<MainActivity>()
                         finish()
                     }

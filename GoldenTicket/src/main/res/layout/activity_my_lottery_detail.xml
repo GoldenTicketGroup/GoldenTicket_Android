@@ -5,170 +5,513 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#ffffff"
-        tools:context=".Activity.MyLotteryDetailActivity">
+        tools:context=".Activity.MyLotteryDetailActivity"
+        android:background="#ffffff">
+    <!--nothing-->
+    <LinearLayout
+            android:id="@+id/ll_mylottery_nothing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="invisible">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageButton
+                    android:id="@+id/ibtn_mylottery_nothing_close"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/bt_close"
+                    android:background="@android:color/transparent"/>
+        </RelativeLayout>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp">
+            <TextView
+                    android:id="@+id/tv_mylottery_nothing_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="아직 당첨된\n 티켓이 없어요"
+                    android:textAlignment="center"
+                    android:textSize="23sp"
+                    android:textColor="#969696"
+                    android:fontFamily="@font/notosans_bold"/>
+        </RelativeLayout>
 
-    <include layout="@layout/toolbar_drawer"
-             android:id="@+id/tb_mylottery_detail"/>
-
-    <RelativeLayout
-            android:id="@+id/rl_mylottery_detail_poster"
-            android:layout_width="277dp"
-            android:layout_height="365dp"
-            android:layout_below="@+id/tb_mylottery_detail"
-            android:layout_centerHorizontal="true"
-            android:foreground="@drawable/style_mylottery_detail_ticket">
-
-        <androidx.cardview.widget.CardView
-                android:id="@+id/cv_mylottery_detail_poster"
-                android:layout_width="277dp"
-                android:layout_height="350dp"
-                android:layout_marginVertical="6dp"
-                android:layout_centerInParent="true"
-                app:cardCornerRadius="10dp"
-                android:background="#fff"
-                android:foreground="#ddffffff">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp">
             <ImageView
-                    android:id="@+id/iv_mylottery_detail_poster"
+                    android:id="@+id/iv_mylottery_nothing_character"
+                    android:layout_width="280dp"
+                    android:layout_height="182dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/catching"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/tv_mylottery_nothing_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="34dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="매일매일 새로운 행운의 기회가\n쏟아지고 있어요!"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/font_detail"
+                    android:lineSpacingExtra="5dp"
+                    android:fontFamily="@font/notosans_light"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_centerHorizontal="true">
+            <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/colorYellow" />
+            <TextView
+                    android:id="@+id/tv_mylottery_nothing_highlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="어떤 공연이 있는지 둘러보러 가볼까요?"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/font_detail"
+                    android:fontFamily="@font/notosans_light"
+                    android:background="@android:color/transparent"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="65dp">
+            <Button
+                    android:id="@+id/btn_mylottery_nothing_stagelist"
+                    android:layout_width="263.5dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ripple_effect"
+                    android:text="공연 보러 가기"
+                    android:textSize="15sp"
+                    android:textColor="@color/font_detail"
+                    android:fontFamily="@font/notosans_medium"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless" />
+        </RelativeLayout>
+    </LinearLayout>
+
+<!--before pay-->
+    <RelativeLayout
+            android:id="@+id/rl_mylottery_payment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#ffffff"
+            android:visibility="invisible">
+
+        <include layout="@layout/toolbar_drawer"
+                 android:id="@+id/tb_mylottery_payment"/>
+
+        <RelativeLayout
+                android:id="@+id/rl_mylottery_payment_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tb_mylottery_payment">
+            <!--<ImageView
+                    android:id="@+id/iv_mylottery_payment_poster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-4dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/img_ticket_body" />-->
+            <RelativeLayout
+                    android:id="@+id/rl_mylottery_payment_poster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-4dp"
+                    android:layout_centerHorizontal="true"
+                    android:foreground="@drawable/style_mylottery_detail_ticket">
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_mylottery_payment_poster"
+                        android:layout_width="277dp"
+                        android:layout_height="350dp"
+                        android:layout_marginVertical="6dp"
+                        android:layout_centerInParent="true"
+                        app:cardCornerRadius="10dp"
+                        android:background="#fff"
+                        android:foreground="#ddffffff">
+                    <ImageView
+                            android:id="@+id/iv_mylottery_payment_poster"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/poster_benhur_info"
+                            android:layout_alignStart="@+id/cv_mylottery_detail_poster"/>
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+            <TextView
+                    android:id="@+id/tv_mylottery_payment_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="뮤지컬 벤허"
+                    android:textSize="21sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/notosans_semibold"/>
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/poster_benhur_info"
-                    android:layout_alignStart="@+id/cv_mylottery_detail_poster"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="35.3dp"
+                    android:layout_marginRight="34.5dp"
+                    android:layout_below="@+id/tv_mylottery_payment_title"
+                    android:layout_alignStart="@+id/rl_mylottery_payment_poster"
+                    android:layout_alignEnd="@+id/rl_mylottery_payment_poster">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="결제 방법"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_medium"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="무통장입금"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_light"/>
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#29000000"/>
 
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="결제 금액"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_medium"/>
+                <TextView
+                        android:id="@+id/tv_mylottery_payment_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="20,000원"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_light"/>
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#29000000"/>
 
-    <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/rl_mylottery_detail_poster">
-        <ImageView
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="받는 이"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_medium"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="골든티켓 국민은행"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_light"/>
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#29000000"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="계좌번호"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_medium"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="000000-00-00000"
+                        android:textSize="15sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_light"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_ticket_bottom"/>
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="31dp"
-                    android:layout_marginTop="26dp"
-                    android:layout_centerVertical="true">
-                <TextView
-                        android:id="@+id/tv_mylottery_detail_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2019년 6월 15일"
-                        android:textSize="11sp"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="@font/notosans_light"/>
-                <TextView
-                        android:id="@+id/tv_mylottery_detail_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="뮤지컬 벤허"
-                        android:textSize="13sp"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="@font/notosans_medium"/>
-                <TextView
-                        android:id="@+id/tv_mylottery_detail_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="11dp"
-                        android:text="일반 R 20,000원"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="@font/notosans_light"/>
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/rl_mylottery_payment_top">
+            <ImageView
+                    android:id="@+id/iv_mylottery_payment_ticket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-16dp"
+                    android:src="@drawable/img_ticket_bottom"/>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp">
                 <LinearLayout
+                        android:id="@+id/ll_mylottery_payment_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp">
-                    <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
-                        <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="13.8dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/icon_location_coral"/>
-                    </RelativeLayout>
+                        android:layout_centerHorizontal="true">
                     <TextView
-                            android:id="@+id/tv_mylottery_detail_location"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:text="블루스퀘어"
-                            android:textSize="12sp"
-                            android:textColor="@android:color/black"
-                            android:fontFamily="@font/notosans_light"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-                    <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
-                        <ImageView
-                                android:layout_width="11.1dp"
-                                android:layout_height="11.1dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/icon_time_coral"/>
-                    </RelativeLayout>
-                    <TextView
-                            android:id="@+id/tv_mylottery_detail_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="17:00~19:00"
+                            android:text="골든티켓의 결제는 "
+                            android:textSize="12.5sp"
+                            android:textColor="@color/font_detail"
+                            android:fontFamily="@font/notosans_light"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="무통장 입금"
+                            android:textSize="12.5sp"
+                            android:textColor="@color/font_detail"
+                            android:fontFamily="@font/notosans_medium"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="으로만 가능합니다."
+                            android:textSize="12.5sp"
+                            android:textColor="@color/font_detail"
+                            android:fontFamily="@font/notosans_light"/>
+                </LinearLayout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_mylottery_payment_bold"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="8dp"
+                        android:gravity="center"
+                        android:text="30분 내 미입금시 자동 취소됩니다.\n결제 시 취소와 환불이 불가합니다.\n입금 확인 후 안내 문자가 발송됩니다."
+                        android:textSize="12.5sp"
+                        android:textColor="@color/font_detail"
+                        android:fontFamily="@font/notosans_light"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <Button
+                android:id="@+id/btn_mylottery_payment_submit"
+                android:layout_width="277.5dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="21dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ripple_effect"
+                android:text="확인"
+                android:textSize="15sp"
+                android:textColor="@color/font_detail"
+                android:fontFamily="@font/notosans_medium"
+                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+    </RelativeLayout>
+
+<!--after pay-->
+    <RelativeLayout
+            android:id="@+id/rl_mylottery_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+        <include layout="@layout/toolbar_drawer"
+                 android:id="@+id/tb_mylottery_detail"/>
+
+        <RelativeLayout
+                android:id="@+id/rl_mylottery_detail_poster"
+                android:layout_width="277dp"
+                android:layout_height="365dp"
+                android:layout_below="@+id/tb_mylottery_detail"
+                android:layout_centerHorizontal="true"
+                android:foreground="@drawable/style_mylottery_detail_ticket">
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_mylottery_detail_poster"
+                    android:layout_width="277dp"
+                    android:layout_height="350dp"
+                    android:layout_marginVertical="6dp"
+                    android:layout_centerInParent="true"
+                    app:cardCornerRadius="10dp"
+                    android:background="#fff">
+                <ImageView
+                        android:id="@+id/iv_mylottery_detail_poster"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_alignStart="@+id/cv_mylottery_detail_poster"/>
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/rl_mylottery_detail_poster">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_ticket_bottom"/>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="31dp"
+                        android:layout_marginTop="26dp"
+                        android:layout_centerVertical="true">
+                    <TextView
+                            android:id="@+id/tv_mylottery_detail_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2019년 6월 15일"
+                            android:textSize="11sp"
+                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/notosans_light"/>
+                    <TextView
+                            android:id="@+id/tv_mylottery_detail_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="뮤지컬 벤허"
+                            android:textSize="13sp"
+                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/notosans_medium"/>
+                    <TextView
+                            android:id="@+id/tv_mylottery_detail_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            android:text="일반 R 20,000원"
                             android:textSize="12sp"
                             android:textColor="@android:color/black"
                             android:fontFamily="@font/notosans_light"/>
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp">
+                        <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+                            <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="13.8dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/icon_location_coral"/>
+                        </RelativeLayout>
+                        <TextView
+                                android:id="@+id/tv_mylottery_detail_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:text="블루스퀘어"
+                                android:textSize="12sp"
+                                android:textColor="@android:color/black"
+                                android:fontFamily="@font/notosans_light"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp">
+                        <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+                            <ImageView
+                                    android:layout_width="11.1dp"
+                                    android:layout_height="11.1dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/icon_time_coral"/>
+                        </RelativeLayout>
+                        <TextView
+                                android:id="@+id/tv_mylottery_detail_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:text="17:00~19:00"
+                                android:textSize="12sp"
+                                android:textColor="@android:color/black"
+                                android:fontFamily="@font/notosans_light"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="31dp"
+                        android:layout_marginTop="26dp">
+                    <TextView
+                            android:id="@+id/tv_mylottery_detail_seat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="객석 1층 15열 6번"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/notosans_medium"/>
+                    <ImageView
+                            android:id="@+id/iv_mylottery_detail_qrcode"
+                            android:layout_width="92.8dp"
+                            android:layout_height="91.5dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/img_qr_code"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="31dp"
-                    android:layout_marginTop="26dp">
-                <TextView
-                        android:id="@+id/tv_mylottery_detail_seat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="객석 1층 15열 6번"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="@font/notosans_medium"/>
-                <ImageView
-                        android:id="@+id/iv_mylottery_detail_qrcode"
-                        android:layout_width="92.8dp"
-                        android:layout_height="91.5dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/img_qr_code"/>
-            </LinearLayout>
-        </LinearLayout>
-    </FrameLayout>
+        </FrameLayout>
 
-    <Button
-            android:id="@+id/btn_mylottery_detail_submit"
-            android:layout_width="277.5dp"
-            android:layout_height="35dp"
-            android:layout_marginBottom="21dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/ripple_effect"
-            android:text="확인"
-            android:textSize="15sp"
-            android:textColor="@color/font_detail"
-            android:fontFamily="@font/notosans_medium"
-            style="@style/Base.Widget.AppCompat.Button.Borderless" />
+        <Button
+                android:id="@+id/btn_mylottery_detail_submit"
+                android:layout_width="277.5dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="21dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ripple_effect"
+                android:text="확인"
+                android:textSize="15sp"
+                android:textColor="@color/font_detail"
+                android:fontFamily="@font/notosans_medium"
+                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+    </RelativeLayout>
 </RelativeLayout>
