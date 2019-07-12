@@ -13,4 +13,9 @@
     <color name="actionbar_transparent_dark">#aa000000</color>
     <color name="colorYellow">#FBF695</color>
     <color name="colorCoral">#fda47a</color>
+
+    <color name="refresh">#008000</color>
+    <color name="refresh1">#008080</color>
+    <color name="refresh2">#800080</color>
+
 </resources>

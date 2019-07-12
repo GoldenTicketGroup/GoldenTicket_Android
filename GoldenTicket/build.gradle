@@ -42,30 +42,38 @@ dependencies {
     implementation 'com.android.support:design:29.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
+    //서버와 통신을 위한 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
+    //material design을 위한 라이브러리
     implementation 'androidx.drawerlayout:drawerlayout:1.1.0-alpha01'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
-
-    implementation 'com.github.rubensousa:gravitysnaphelper:2.0'
     implementation 'com.google.android.material:material:1.1.0-alpha07'
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
 
+    //recyclerView 자동 정렬 라이브러리
+    implementation 'com.github.rubensousa:gravitysnaphelper:2.0'
+
+    //이미지 넣기 라이브러리
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-
-
+    //버튼효과를 위한 라이브러리
     implementation 'com.github.traex.rippleeffect:library:1.3'
     implementation 'com.vipulasri:ticketview:1.0.7'
 
+    //FCM을 위한 라이브러리
     implementation 'com.google.firebase:firebase-core:17.0.0'
     implementation 'com.google.firebase:firebase-messaging:19.0.1'
+
+    //RxJava를 위한 라이브러리
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex:rxjava:1.1.6'
+
+    //refresh를 위한 라이브러리
+    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
 }
