@@ -39,7 +39,8 @@ class LotteryConfirmActivity : AppCompatActivity() {
 
 //        val status = 1
         // LotteryFirstTimerFragment와 LotterySecondTimerFragment에서 status값을 intent로 넘겨준걸 받음
-        var status = intent.getIntExtra("status",1)
+//        var status = intent.getIntExtra("status",1)
+        var status = 2
         show_idx = intent.getIntExtra("idx",1)
 
         Log.d("LotteryConfirm: ",show_idx.toString())

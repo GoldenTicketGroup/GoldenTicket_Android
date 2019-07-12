@@ -70,6 +70,7 @@ class ContentActivity : AppCompatActivity() {
                         }
                         tvCardTitle.text=tempString
 
+                        response.body()!!.data.card_content = response.body()!!.data.card_content.replace(" ","\u00A0")
                         tvCardContent.text=response.body()!!.data.card_content
 
                         contentDetailDataList = response.body()!!.data.content

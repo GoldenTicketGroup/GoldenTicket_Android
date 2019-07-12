@@ -5,6 +5,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="41dp"
         android:layout_gravity="center_horizontal">
 
@@ -39,6 +40,7 @@
                 android:paddingRight="10dp"
                 android:textSize="20sp"
                 android:textColor="#262626"
+                android:fontFamily="@font/notosans_semibold"
                 android:text="안나 카레니나"
         />
     </FrameLayout>
@@ -65,10 +67,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
-            android:textSize="14sp"
+            android:textSize="14.5sp"
             android:textColor="#000000"
             android:lineHeight="27sp"
-            android:lineSpacingExtra="13sp"
+            android:lineSpacingExtra="11.5sp"
+            android:fontFamily="@font/notosans_light"
             android:text="지난 2018년 국내 첫선을 보였던 뮤지컬 &lt;안나 카레니나&gt;가 돌아왔습니다. 톨스토이의 동명 소설을 원작으로 한 러시아 뮤지컬인데요. 사랑 없는 결혼생활을 이어나던 귀부인 안나가 젊고 매력적인 장교 브론스키와 사랑에 빠지면서 일어나는 일을 그렸습니다. LED 스크린을 활용한 연출과 화려한 조명, 스케이트 장면을 비롯한 격정적인 안무 등, 기존 브로드웨이 뮤지컬과는 다른 러시아 뮤지컬만의 독특한 매력을 느껴보고 싶은분께 추천합니다."
     />
 
