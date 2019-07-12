@@ -23,6 +23,7 @@ import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
 import com.example.goldenticket.DB.SharedPreferenceController.getUserToken
@@ -167,6 +168,7 @@ class MainActivity : BaseActivity() {
         super.onRestart()
         lotteryConfirmAdapter.notifyDataSetChanged()
     }
+
     private fun configureShowRV() {
 
         showProgressDialog()

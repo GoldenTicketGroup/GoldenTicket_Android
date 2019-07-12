@@ -17,6 +17,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_lottery_confirm.*
 import kotlinx.android.synthetic.main.activity_lottery_notice.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
@@ -50,8 +51,11 @@ class LotteryNoticeActivity : AppCompatActivity() {
             postLotteryResponse()
 //            val intent = Intent(this, LotteryCompleteActivity::class.java)
 //            intent.putExtra("idx", show_idx)
-            startActivity<LotteryCompleteActivity>()
+//            startActivity<LotteryCompleteActivity>()
         }
+
+        ibtn_lottery_notice_close.onClick { finish() }
+        
     }
 
     private fun postLotteryResponse() {
@@ -67,8 +71,15 @@ class LotteryNoticeActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<PostLotteryResponse>, response: Response<PostLotteryResponse>) {
                 if (response.isSuccessful) {
-                    Log.e("LotteryCompleteActi::", "postLotteryResponse::onResponse::Success::" + response.body()!!.message)
-                    toast(response.body()!!.message)
+                    if(response.body()!!.status == 200) startActivity<LotteryCompleteActivity>()
+                    else if(response.body()!!.status == 205) {
+                        toast(response.body()!!.message)
+                        finish()
+                    }
+                    else if(response.body()!!.status == 204) {
+                        toast(response.body()!!.message)
+                        finish()
+                    }
                 }
                 else {
                     Log.e("LotteryCompleteActi::", "postLotteryResponse::onResponse::Fail::" + response.body()!!.message)

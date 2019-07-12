@@ -59,10 +59,16 @@ class ContentActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     if(response.body()!!.status == 200){
                         Glide.with(applicationContext)
-                            .load(response.body()!!.data.imageUrl)
+                            .load(response.body()!!.data.image_url)
                             .into(ivCardImage)
 
-                        tvCardTitle.text=response.body()!!.data.title
+                        var tempContentArray: List<String> = response.body()!!.data.title.split("/r")
+                        var tempString: String = ""
+                        for(i in 0..tempContentArray.size-1){
+                            tempString += tempContentArray[i]+" "
+                        }
+                        tvCardTitle.text=tempString
+
                         tvCardContent.text=response.body()!!.data.card_content
 
                         contentDetailDataList = response.body()!!.data.content

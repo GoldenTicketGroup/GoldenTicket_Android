@@ -12,6 +12,7 @@ import com.example.goldenticket.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_lottery_complete.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
@@ -44,6 +45,7 @@ class LotteryCompleteActivity : AppCompatActivity() {
 //            postLotteryResponse()
             startActivity<MainActivity>()
         }
+        ibtn_lottery_complete_close.onClick {finish()}
     }
 
 //    private fun postLotteryResponse() {
