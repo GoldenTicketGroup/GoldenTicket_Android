@@ -25,6 +25,7 @@ import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Transformations.map
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
 import com.example.goldenticket.DB.SharedPreferenceController.getUserToken
@@ -65,6 +66,8 @@ class MainActivity : BaseActivity() {
     lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
     var temp_num_fragment: Int = 0
     val handler = Handler()
+    lateinit var lotteryConfirmAdapter: LotteryConfirmAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -197,8 +200,11 @@ class MainActivity : BaseActivity() {
         val u_name = getUserName(this)
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
+    }
 
-        configureLotteryConfirmVP()
+    override fun onRestart() {
+        super.onRestart()
+        lotteryConfirmAdapter.notifyDataSetChanged()
     }
 
     private fun configureShowRV() {
@@ -229,11 +235,9 @@ class MainActivity : BaseActivity() {
         //item은 최상단태그로 cardView로 되어있다.
         /*rv_product.findViewHolderForAdapterPosition(0)?.let {
             handler.postDelayed({
-
                 val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)
                 val eventparentDefault = viewHolderDefault?.itemView?.findViewById(R.id.cv_main_poster) as CardView
                 eventparentDefault.animate().scaleX(0.95f).scaleY(0.95f).setDuration(200).start()
-
             }, 1000)
         }*/
 
@@ -274,8 +278,6 @@ class MainActivity : BaseActivity() {
 
     private fun configureLotteryConfirmVP() {
 
-        var lotteryConfirmAdapter: LotteryConfirmAdapter
-
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
             "application/json", getUserToken(this)
         )
@@ -299,7 +301,6 @@ class MainActivity : BaseActivity() {
                         btnVisibilityCheck(vpLotteryConfirm.currentItem)
                         lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
                         vpLotteryConfirm.adapter = lotteryConfirmAdapter
-                        lotteryConfirmAdapter.notifyDataSetChanged()
                     }
                 }
 
@@ -479,4 +480,3 @@ class MainActivity : BaseActivity() {
     }
 
 }
-

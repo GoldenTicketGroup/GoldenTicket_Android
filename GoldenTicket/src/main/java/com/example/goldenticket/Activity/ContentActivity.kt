@@ -16,6 +16,7 @@ import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Get.GetCardDetailResponse
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.activity_month_contents.*
+import kotlinx.android.synthetic.main.close_custom_actionbar.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Call
@@ -41,7 +42,7 @@ class ContentActivity : AppCompatActivity() {
         }
 
         /** 카드 취소 버튼  **/
-        ibtnCardFinish.onClick {
+        btnClose.onClick {
             finish()
         }
 
@@ -59,10 +60,16 @@ class ContentActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     if(response.body()!!.status == 200){
                         Glide.with(applicationContext)
-                            .load(response.body()!!.data.imageUrl)
+                            .load(response.body()!!.data.image_url)
                             .into(ivCardImage)
 
-                        tvCardTitle.text=response.body()!!.data.title
+                        var tempContentArray: List<String> = response.body()!!.data.title.split("/r")
+                        var tempString: String = ""
+                        for(i in 0..tempContentArray.size-1){
+                            tempString += tempContentArray[i]+" "
+                        }
+                        tvCardTitle.text=tempString
+
                         tvCardContent.text=response.body()!!.data.card_content
 
                         contentDetailDataList = response.body()!!.data.content

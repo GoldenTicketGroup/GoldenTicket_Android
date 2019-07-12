@@ -119,7 +119,7 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<GetMyLotteryResponse>
 
-    //공연내역 상세 조회,
+    //공연내역 상세 조회, 티켓인덱스
     @GET("/ticket/{id}")
     fun getMyLotteryDetailResponse(
         @Header("Content-Type") content_type: String,
@@ -127,7 +127,7 @@ interface NetworkService {
         @Path("id") ticket_idx: Int
     ): Call<GetMyLotteryDetailResponse>
 
-    //공연내역 상세 조회 (현재 접근 가능)
+    //공연내역 상세 조회, 토큰
     @GET("/ticket/detail")
     fun getMyLotteryDetailAvailableResponse(
         @Header("Content-Type") content_type: String,
@@ -138,6 +138,7 @@ interface NetworkService {
     @POST("/search/text")
     fun postSearchResponse(
         @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
         @Body body: JsonObject
     ): Call<PostSearchResponse>
 
@@ -145,6 +146,7 @@ interface NetworkService {
     @POST("/search")
     fun postSearchTagResponse(
         @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
         @Body body: JsonObject
     ): Call<PostSearchResponse>
 

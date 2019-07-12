@@ -1,9 +1,11 @@
 package com.example.goldenticket.Adapter
 
 import android.util.Log
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import com.example.goldenticket.Fragment.LotteryFirstTimerFragment
 import com.example.goldenticket.Fragment.LotterySecondTimerFragment
 
@@ -47,25 +49,21 @@ class LotteryConfirmAdapter(fm : FragmentManager, private val num_fragment:Int) 
 
 
 
-    /*override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        var view: View? = null
-        view = inflater.inflate(R.layout.vp_lottery_confirm, null)
-        view!!.tvShowName.text = dataList[position].title // TODO: 서버에서 받은 텍스트로 바꾸기
-        view!!.tvCheckText.visibility= View.VISIBLE
-        view!!.tvTime.text = dataList[position].time
-        container.addView(view)
-
-        return view
-    }
-
-    override fun isViewFromObject(p0: View, p1: Any): Boolean {
-        return p0==p1
-    }
-
-    override fun getCount(): Int {
-        return dataList.size; // TODO: 서버에서 전달받는 데이터 개수로 바꾸기
-    }
-
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as View)
-    }*/
+/*override fun instantiateItem(container: ViewGroup, position: Int): Any {
+    var view: View? = null
+    view = inflater.inflate(R.layout.vp_lottery_confirm, null)
+    view!!.tvShowName.text = dataList[position].title // TODO: 서버에서 받은 텍스트로 바꾸기
+    view!!.tvCheckText.visibility= View.VISIBLE
+    view!!.tvTime.text = dataList[position].time
+    container.addView(view)
+    return view
+}
+override fun isViewFromObject(p0: View, p1: Any): Boolean {
+    return p0==p1
+}
+override fun getCount(): Int {
+    return dataList.size; // TODO: 서버에서 전달받는 데이터 개수로 바꾸기
+}
+override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+    container.removeView(`object` as View)
+}*/

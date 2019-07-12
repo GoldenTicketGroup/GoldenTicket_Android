@@ -78,8 +78,8 @@ class StageInfoActivity : BaseActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
-        show_idx = intent.getIntExtra("idx", -1)
-        //show_idx = 6
+        show_idx = intent.getIntExtra("idx",-1)
+        //show_idx = 2
         getStageInfoResponse()
 
 
@@ -223,7 +223,6 @@ class StageInfoActivity : BaseActivity() {
     }
 
     private fun setBottomSheet(status: Int) {
-
         when (status) {
             200 -> {
                 val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
@@ -244,6 +243,13 @@ class StageInfoActivity : BaseActivity() {
                 ll_stageinfo_bottom_sheet_activate.visibility = View.INVISIBLE
                 rl_stageinfo_bottom_sheet_inactive.visibility = View.VISIBLE
                 tv_stageinfo_bottom_sheet_inactive.text = "응모는 하루에 두 번까지 가능합니다."
+                behavior.setPeekHeight(800)
+            }
+            206 -> {
+                val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
+                ll_stageinfo_bottom_sheet_activate.visibility = View.INVISIBLE
+                rl_stageinfo_bottom_sheet_inactive.visibility = View.VISIBLE
+                tv_stageinfo_bottom_sheet_inactive.text = "응모 가능한 시간이 아닙니다."
                 behavior.setPeekHeight(800)
             }
         }
@@ -304,7 +310,7 @@ class StageInfoActivity : BaseActivity() {
                                 }
                             }
                             if (times.size == 0) {
-                                // 가능 한 일이 아님
+                                setBottomSheet(206)
                             } else {
                                 setBottomSheet(response.body()!!.status) // STATUS로 유저가 중복 응모를 했는지(204), 응모가능 횟수를 넘었는지(205) 확인함
                                 setSpinner(times)
@@ -328,14 +334,12 @@ class StageInfoActivity : BaseActivity() {
 
     /*private fun postLotteryResponse() {
         val token = SharedPreferenceController.getUserToken(this)
-
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
         val postLotteryResponse: Call<PostLotteryResponse> = networkService.postLotteryResponse("application/json", token, gsonObject)
         postLotteryResponse.enqueue(object: Callback<PostLotteryResponse> {
             override fun onFailure(call: Call<PostLotteryResponse>, t: Throwable) {
                 Log.e("StageInfoActivity::", "postLotteryResponse::Post_Lottery_Register_Fail")
             }
-
             override fun onResponse(call: Call<PostLotteryResponse>, response: Response<PostLotteryResponse>) {
                 if (response.isSuccessful) {
                     Log.e("StageInfoActivity::", "postLotteryResponse::onResponse::Success::" + response.body()!!.message)

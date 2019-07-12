@@ -118,14 +118,14 @@
         </RelativeLayout>
     </LinearLayout>
 
-<!--before pay-->
+    <!--before pay-->
     <RelativeLayout
             android:id="@+id/rl_mylottery_payment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#ffffff"
-            android:visibility="invisible">
+            android:visibility="visible">
 
         <include layout="@layout/toolbar_drawer"
                  android:id="@+id/tb_mylottery_payment"/>
@@ -346,7 +346,7 @@
                 style="@style/Base.Widget.AppCompat.Button.Borderless" />
     </RelativeLayout>
 
-<!--after pay-->
+    <!--after pay-->
     <RelativeLayout
             android:id="@+id/rl_mylottery_detail"
             android:layout_width="match_parent"

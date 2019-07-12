@@ -10,5 +10,6 @@ data class PostSearchResponse(
 data class SearchData(
     val show_idx: Int,
     val image_url: String,
-    val name: String
+    val name: String,
+    val is_liked: Int
 )
