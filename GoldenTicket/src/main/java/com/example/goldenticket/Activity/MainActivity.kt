@@ -195,11 +195,9 @@ class MainActivity : BaseActivity() {
         //item은 최상단태그로 cardView로 되어있다.
         /*rv_product.findViewHolderForAdapterPosition(0)?.let {
             handler.postDelayed({
-
                 val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)
                 val eventparentDefault = viewHolderDefault?.itemView?.findViewById(R.id.cv_main_poster) as CardView
                 eventparentDefault.animate().scaleX(0.95f).scaleY(0.95f).setDuration(200).start()
-
             }, 1000)
         }*/
 
@@ -427,4 +425,3 @@ class MainActivity : BaseActivity() {
     }
 
 }
-

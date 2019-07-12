@@ -159,7 +159,7 @@
         <Button
                 android:id="@+id/btn_lotteryconfirm_stagelike"
                 android:layout_width="277.5dp"
-                android:layout_height="35dp"
+                android:layout_height="45dp"
                 android:layout_marginBottom="10dp"
                 android:layout_above="@+id/btn_lotteryconfirm_stagelist"
                 android:layout_centerHorizontal="true"
@@ -173,7 +173,7 @@
         <Button
                 android:id="@+id/btn_lotteryconfirm_stagelist"
                 android:layout_width="277.5dp"
-                android:layout_height="35dp"
+                android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/ripple_effect"
