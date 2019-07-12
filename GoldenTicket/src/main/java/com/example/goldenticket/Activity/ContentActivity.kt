@@ -16,6 +16,7 @@ import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Get.GetCardDetailResponse
 import com.example.goldenticket.R
 import kotlinx.android.synthetic.main.activity_month_contents.*
+import kotlinx.android.synthetic.main.close_custom_actionbar.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Call
@@ -41,7 +42,7 @@ class ContentActivity : AppCompatActivity() {
         }
 
         /** 카드 취소 버튼  **/
-        ibtnCardFinish.onClick {
+        btnClose.onClick {
             finish()
         }
 

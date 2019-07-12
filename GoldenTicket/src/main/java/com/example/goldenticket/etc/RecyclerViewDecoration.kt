@@ -10,10 +10,10 @@ class RecyclerViewDecoration : RecyclerView.ItemDecoration() {
         super.getItemOffsets(outRect, view, parent, state)
         val position = parent.getChildAdapterPosition(view)
 
-        if(position%2!=0){
-            outRect.left=0
+        if(position%2 !=0){
+            outRect.left=20
         }else{
-            outRect.right=30
+            outRect.right=10
         }
     }
 }
