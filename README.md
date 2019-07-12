@@ -3,7 +3,7 @@
 당일 공연 추첨식 예매 서비스 **골든 티켓**입니다.
 
 ## 소개 동영상
-[![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://youtu.be/uLR1RNqJ1Mw?t=0s)
+[![Video Label](https://user-images.githubusercontent.com/35513039/61105442-e71cbe80-a4b4-11e9-9fc6-8d7cd84dc718.png)](https://www.youtube.com/watch?v=cbEkAdDO59U)
 
 ## 서비스 work flow
 ---------------
@@ -86,7 +86,7 @@ dependencies {
 - **김강희** - [강희 깃주소](https://github.com/ganghee) 
 - **김민경** - [민경 깃주소](https://github.com/minkyoe) 
 - **한선민** - [선민 깃주소](https://github.com/HanSeonmin)
-- **전성은** - [성은 ](https://github.com/cse0616)
+- **전성은** - [성은 깃주소](https://github.com/cse0616)
 
 ## Google Play Store
 
