@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="visible">
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -30,7 +30,7 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp">
+                android:layout_marginTop="36dp">
             <TextView
                     android:id="@+id/tv_mylottery_nothing_title"
                     android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
                     android:layout_centerInParent="true"
                     android:text="아직 당첨된\n 티켓이 없어요"
                     android:textAlignment="center"
-                    android:textSize="23sp"
+                    android:textSize="20sp"
                     android:textColor="#969696"
                     android:fontFamily="@font/notosans_bold"/>
         </RelativeLayout>
@@ -49,8 +49,8 @@
                 android:layout_marginTop="34dp">
             <ImageView
                     android:id="@+id/iv_mylottery_nothing_character"
-                    android:layout_width="280dp"
-                    android:layout_height="182dp"
+                    android:layout_width="260dp"
+                    android:layout_height="162dp"
                     android:layout_marginTop="50dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/catching"/>
@@ -125,7 +125,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#ffffff"
-            android:visibility="visible">
+            android:visibility="gone">
 
         <include layout="@layout/toolbar_drawer"
                  android:id="@+id/tb_mylottery_payment"/>
@@ -267,7 +267,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="000000-00-00000"
+                        android:text="국민 053602-04-359818"
                         android:textSize="15sp"
                         android:textColor="@color/font_detail"
                         android:fontFamily="@font/notosans_light"/>
@@ -351,7 +351,7 @@
             android:id="@+id/rl_mylottery_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="gone">
 
         <include layout="@layout/toolbar_drawer"
                  android:id="@+id/tb_mylottery_detail"/>

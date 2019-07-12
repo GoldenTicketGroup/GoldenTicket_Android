@@ -100,7 +100,7 @@
         <Button
                 android:id="@+id/btn_mylottery_nothing_stagelist"
                 android:layout_width="263.5dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/ripple_effect"

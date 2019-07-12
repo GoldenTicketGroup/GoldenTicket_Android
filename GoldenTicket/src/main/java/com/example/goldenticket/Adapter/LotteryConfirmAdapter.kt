@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 import com.example.goldenticket.Fragment.LotteryFirstTimerFragment
@@ -19,14 +20,14 @@ class LotteryConfirmAdapter(fm : FragmentManager, private val num_fragment:Int) 
 
     @Synchronized
     fun getLotteryFirstTimerFragment(): LotteryFirstTimerFragment {
-        if (lotteryFirstTimerFragment == null) lotteryFirstTimerFragment = LotteryFirstTimerFragment()
-        return lotteryFirstTimerFragment!!
+//        if (lotteryFirstTimerFragment == null) lotteryFirstTimerFragment = LotteryFirstTimerFragment()
+        return LotteryFirstTimerFragment()
     }
 
     @Synchronized
     fun getLotterySecondTimerFragment(): LotterySecondTimerFragment {
-        if (lotterySecondTimerFragment == null) lotterySecondTimerFragment = LotterySecondTimerFragment()
-        return lotterySecondTimerFragment!!
+//        if (lotterySecondTimerFragment == null) lotterySecondTimerFragment = LotterySecondTimerFragment()
+        return LotterySecondTimerFragment()
     }
 
 
@@ -41,6 +42,10 @@ class LotteryConfirmAdapter(fm : FragmentManager, private val num_fragment:Int) 
 
     override fun getCount(): Int {
         return num_fragment
+    }
+
+    override fun getItemPosition(`object`: Any): Int {
+        return PagerAdapter.POSITION_NONE
     }
 }
 

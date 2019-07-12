@@ -138,9 +138,9 @@ class LotterySecondTimerFragment : Fragment() {
 
         //60분이 넘으면 시간 까지 아니면 분, 초만 나온다.
         if (hours > 0) {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds)
+            timeLeftFormatted = String.format(Locale.getDefault(), "%d : %02d : %02d", hours, minutes, seconds)
         } else {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d : %02d", minutes, seconds)
         }
 
         tv_second_timer?.let{tv_second_timer.text = timeLeftFormatted}

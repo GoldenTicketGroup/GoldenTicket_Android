@@ -29,31 +29,44 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/tvCardTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="19dp"
+                    android:textSize="24sp"
+                    android:textColor="#262626"
+                    android:lineSpacingExtra="9sp"
+                    android:fontFamily="@font/notosans_semibold"
+                    tools:text="6월 연휴 뭐 할지 못 정했다면,\n공연장 나들이 어때요?"
+            />
 
-        <TextView
-                android:id="@+id/tvCardTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="19dp"
-                android:textSize="25sp"
-                android:textColor="#262626"
-                android:lineSpacingExtra="9sp"
-                tools:text="6월 연휴 뭐 할지 못 정했다면,\n공연장 나들이 어때요?"
-        />
+            <TextView
+                    android:id="@+id/tvCardContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="23dp"
+                    android:layout_below="@+id/tvCardTitle"
+                    android:layout_alignStart="@+id/tvCardTitle"
+                    android:layout_alignEnd="@+id/tvCardTitle"
+                    android:textSize="14.5sp"
+                    android:textColor="#262626"
+                    android:lineSpacingExtra="10sp"
+                    android:fontFamily="@font/notosans_light"
+                    tools:text="공휴일 많았던 가정의 달, 5월이 끝나간다고 아쉬워하지 마세요. 6월에도 현충일을 끼고 ‘징검다리 연휴’가 있으니까요. 짧은 연휴지만 알차게 보내고 싶다면 공연장 나들이는 어떨까요? 6월에 보기 좋은 6편의 공연을 소개합니다."
+            />
 
-        <TextView
-                android:id="@+id/tvCardContent"
-                android:layout_width="314dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="23dp"
-                android:textSize="15sp"
-                android:textColor="#262626"
-                android:lineSpacingExtra="10sp"
-                tools:text="공휴일 많았던 가정의 달, 5월이 끝나간다고 아쉬워하지 마세요. 6월에도 현충일을 끼고 ‘징검다리 연휴’가 있으니까요. 짧은 연휴지만 알차게 보내고 싶다면 공연장 나들이는 어떨까요? 6월에 보기 좋은 6편의 공연을 소개합니다."
-        />
+        </RelativeLayout>
+
+
+
+
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvContent"

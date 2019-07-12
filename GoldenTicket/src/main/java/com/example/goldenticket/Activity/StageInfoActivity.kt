@@ -79,7 +79,7 @@ class StageInfoActivity : BaseActivity() {
         setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
         show_idx = intent.getIntExtra("idx",-1)
-        //show_idx = 2
+
         getStageInfoResponse()
 
 
@@ -312,6 +312,7 @@ class StageInfoActivity : BaseActivity() {
                             if (times.size == 0) {
                                 setBottomSheet(206)
                             } else {
+                                Log.e("StageInfoActi::", "getStageInfoRes::onResponse::status::" + response.body()!!.status)
                                 setBottomSheet(response.body()!!.status) // STATUS로 유저가 중복 응모를 했는지(204), 응모가능 횟수를 넘었는지(205) 확인함
                                 setSpinner(times)
                             }
