@@ -54,10 +54,14 @@ class SignUpActivity : AppCompatActivity() {
             val signup_u_name: String = et_signupactivity_name.text.toString()
             val signup_phone: String = et_signupactivity_phone.text.toString()
 
+            val signup_alarm_event : Boolean = cb_event.isChecked
+            val signup_alarm_like : Boolean = cb_like.isChecked
+            val signup_alarm_confirm : Boolean = cb_confirm.isChecked
+
             //true인 경우 서버에 회원정보를 저장한다.
             if (isUserInfoValid(signup_u_name, signup_phone, signup_u_email, signup_u_pw, signup_u_pw2)) {
                 //서버와의 연결
-                postSignupResponse(signup_u_email, signup_u_pw, signup_u_name, signup_phone)
+                postSignupResponse(signup_u_email, signup_u_pw, signup_u_name, signup_phone,signup_alarm_event,signup_alarm_like,signup_alarm_confirm)
             }
 
 
@@ -172,7 +176,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
     //서버에 회원 가입 정보를 저장한다.
-    private fun postSignupResponse(u_id: String, u_pw: String, u_name: String, u_phone: String) {
+    private fun postSignupResponse(u_id: String, u_pw: String, u_name: String, u_phone: String, alarm_event:Boolean, alarm_like:Boolean,alarm_confirm:Boolean) {
 
         //id,password,name 데이터를 받아서 JSON 객체로 만든다.
         var jsonObject = JSONObject()
@@ -180,6 +184,9 @@ class SignUpActivity : AppCompatActivity() {
         jsonObject.put("password", u_pw)
         jsonObject.put("name", u_name)
         jsonObject.put("phone", u_phone)
+        jsonObject.put("alarm_event", alarm_event)
+        jsonObject.put("alarm_like", alarm_like)
+        jsonObject.put("alarm_confirm", alarm_confirm)
 
         //gsonObject는 body로 들어간다.
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
