@@ -41,7 +41,7 @@ class LotteryCompleteActivity : AppCompatActivity() {
 
         tvCommentLuck.text = SharedPreferenceController.getUserName(this@LotteryCompleteActivity) + "님 행운을 빌어요!"
         btnOkay.setOnClickListener {
-//            jsonObject.put("schedule_idx", intent.getIntExtra("idx", -1))
+            //            jsonObject.put("schedule_idx", intent.getIntExtra("idx", -1))
 //            postLotteryResponse()
             startActivity<MainActivity>()
         }

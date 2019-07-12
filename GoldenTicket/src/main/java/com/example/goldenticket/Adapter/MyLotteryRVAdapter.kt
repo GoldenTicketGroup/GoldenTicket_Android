@@ -15,6 +15,7 @@ import com.example.goldenticket.Activity.MyLotteryDetailActivity
 import com.example.goldenticket.Data.MyLotteryData
 import com.example.goldenticket.R
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.startActivity
 
 class MyLotteryRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotteryData>): RecyclerView.Adapter<MyLotteryRVAdapter.Holder>() {
 
@@ -26,12 +27,8 @@ class MyLotteryRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotteryData
     }
     var itemClick: ItemClick? = null
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_mylottery, viewGroup, false)
-        view.setOnClickListener {
-            Log.e("*****MyLottRVAdapter::", "onCreateViewHolder::setOnClickListener::idx" + idx.toString())
-            view.context.startActivity(view.context.intentFor<MyLotteryDetailActivity>("idx" to idx)) //ticket_idx
-        }
         return Holder(view)
     }
 
@@ -47,8 +44,10 @@ class MyLotteryRVAdapter(val ctx: Context, val dataList: ArrayList<MyLotteryData
         holder.stageinfo_location.text = dataList[position].location
         holder.stageinfo_time.text = dataList[position].running_time
 
-        Log.e("*****MyLottRVAdapter::", "onBindViewHolder::idx" + idx.toString())
-        idx = dataList[position].ticket_idx
+        holder.itemView.setOnClickListener {
+            Log.e("*****MyLottRVAdapter::", "onCreateViewHolder::setOnClickListener::idx" + dataList[position].ticket_idx)
+            ctx.startActivity<MyLotteryDetailActivity>("idx" to dataList[position].ticket_idx) //ticket_idx
+        }
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView)  {
