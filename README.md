@@ -92,5 +92,8 @@ dependencies {
 - **전성은** - [성은 깃주소](https://github.com/cse0616)
 
 ## Google Play Store
+[https://play.google.com/store/apps/details?id=com.dazzi.goldenticket&hl=ko&ah=lzbcgna2RUaqXxGnN7l72vkhz9U
+](https://play.google.com/store/apps/details?id=com.dazzi.goldenticket&hl=ko&ah=lzbcgna2RUaqXxGnN7l72vkhz9U
+)
 
 
