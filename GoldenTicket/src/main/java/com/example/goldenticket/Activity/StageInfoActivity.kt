@@ -77,8 +77,8 @@ class StageInfoActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setContentView(com.example.goldenticket.R.layout.activity_stage_info)
 
-        //show_idx = intent.getIntExtra("idx",-1)
-        show_idx = 2
+        show_idx = intent.getIntExtra("idx",-1)
+        //show_idx = 2
         getStageInfoResponse()
 
 
@@ -221,7 +221,6 @@ class StageInfoActivity : AppCompatActivity() {
     }
 
     private fun setBottomSheet(status: Int) {
-
         when (status) {
             200 -> {
                 val behavior = BottomSheetBehavior.from(rl_stageinfo_bottom_sheet)
