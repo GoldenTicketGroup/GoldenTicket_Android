@@ -32,10 +32,6 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_keep_item,viewGroup,false)
-        view.setOnClickListener {
-            //해당 포지션의 show_idx를 stageinfo의 path variable로 전달
-            view.context.startActivity<StageInfoActivity>("idx" to 20) //TODO: idx 서버에서 받아서 수정
-        }
         return Holder(view)
     }
 
@@ -49,6 +45,11 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
             .into(holder.search_result_img_url)
         holder.search_result_like.isSelected = true
 
+        holder.itemView.setOnClickListener {
+            //해당 포지션의 show_idx를 stageinfo의 path variable로 전달
+            Log.e("SearchResultRVAdtr::", "onCreateViewHolder::setOnClickListener::" + dataList[position].show_idx)
+            ctx.startActivity<StageInfoActivity>("idx" to dataList[position].show_idx)
+        }
 
         holder.search_result_like.setOnClickListener {
 

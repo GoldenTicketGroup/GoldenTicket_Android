@@ -64,10 +64,11 @@ class MyLotteryActivity : AppCompatActivity() {
 
     private fun getMyLotteryResponse() {
         val token = SharedPreferenceController.getUserToken(this@MyLotteryActivity)
+
         val getMyLotteryResponse = networkService.getMyLotteryResponse("application/json", token)
         getMyLotteryResponse.enqueue(object: Callback<GetMyLotteryResponse> {
             override fun onFailure(call: Call<GetMyLotteryResponse>, t: Throwable) {
-                Log.e("*****MyLottActivity:: ", "List_MyLotteryData_Failed")
+                Log.e("*****MyLottActivity:: ", "List_MyLotteryData_Failed::" + t.toString())
             }
 
             override fun onResponse(call: Call<GetMyLotteryResponse>, response: Response<GetMyLotteryResponse>) {
