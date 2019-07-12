@@ -20,14 +20,14 @@ class LotteryConfirmAdapter(fm : FragmentManager, private val num_fragment:Int) 
 
     @Synchronized
     fun getLotteryFirstTimerFragment(): LotteryFirstTimerFragment {
-        if (lotteryFirstTimerFragment == null) lotteryFirstTimerFragment = LotteryFirstTimerFragment()
-        return lotteryFirstTimerFragment!!
+//        if (lotteryFirstTimerFragment == null) lotteryFirstTimerFragment = LotteryFirstTimerFragment()
+        return LotteryFirstTimerFragment()
     }
 
     @Synchronized
     fun getLotterySecondTimerFragment(): LotterySecondTimerFragment {
-        if (lotterySecondTimerFragment == null) lotterySecondTimerFragment = LotterySecondTimerFragment()
-        return lotterySecondTimerFragment!!
+//        if (lotterySecondTimerFragment == null) lotterySecondTimerFragment = LotterySecondTimerFragment()
+        return LotterySecondTimerFragment()
     }
 
 
