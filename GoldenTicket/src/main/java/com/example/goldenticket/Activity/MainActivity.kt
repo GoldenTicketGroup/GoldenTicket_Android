@@ -21,6 +21,7 @@ import android.view.Gravity
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.animation.AccelerateInterpolator
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.example.goldenticket.DB.SharedPreferenceController.getUserName
@@ -32,6 +33,9 @@ import com.example.goldenticket.Network.Get.GetMainPosterResponse
 import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.NetworkService
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.toolbar_main.*
 import org.jetbrains.anko.find
 import retrofit2.Call
@@ -50,12 +54,29 @@ class MainActivity : BaseActivity() {
     lateinit var showMainRecyclerViewAdapter: ShowMainRecyclerViewAdapter
     var temp_num_fragment: Int = 0
     val handler = Handler()
+    lateinit var lotteryConfirmAdapter: LotteryConfirmAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w("TAG", "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+
+                // Get new Instance ID token
+                val token = task.result?.token
+
+                // Log and toast
+                val msg = getString(R.string.msg_token_fmt, token)
+                Log.d("TAG", msg)
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            })
         Log.d("TOKENTEST: ", getUserToken(this))
 
         //progressON("Loading...")
@@ -140,10 +161,12 @@ class MainActivity : BaseActivity() {
         val u_name = getUserName(this)
         tv_main_name.text = u_name
         tv_profile_name.text = u_name
-
-        configureLotteryConfirmVP()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        lotteryConfirmAdapter.notifyDataSetChanged()
+    }
     private fun configureShowRV() {
 
         showProgressDialog()
@@ -172,11 +195,9 @@ class MainActivity : BaseActivity() {
         //item은 최상단태그로 cardView로 되어있다.
         /*rv_product.findViewHolderForAdapterPosition(0)?.let {
             handler.postDelayed({
-
                 val viewHolderDefault = rv_product.findViewHolderForAdapterPosition(0)
                 val eventparentDefault = viewHolderDefault?.itemView?.findViewById(R.id.cv_main_poster) as CardView
                 eventparentDefault.animate().scaleX(0.95f).scaleY(0.95f).setDuration(200).start()
-
             }, 1000)
         }*/
 
@@ -217,8 +238,6 @@ class MainActivity : BaseActivity() {
 
     private fun configureLotteryConfirmVP() {
 
-        var lotteryConfirmAdapter: LotteryConfirmAdapter
-
         val getMainLotteryListResponse = networkService.getLotteryListResponse(
             "application/json", getUserToken(this))
         getMainLotteryListResponse.enqueue(object : retrofit2.Callback<GetLotteryListResponse> {
@@ -241,7 +260,6 @@ class MainActivity : BaseActivity() {
                         btnVisibilityCheck(vpLotteryConfirm.currentItem)
                         lotteryConfirmAdapter = LotteryConfirmAdapter(supportFragmentManager, temp_num_fragment)
                         vpLotteryConfirm.adapter = lotteryConfirmAdapter
-                        lotteryConfirmAdapter.notifyDataSetChanged()
                     }
                 }
 
@@ -407,4 +425,3 @@ class MainActivity : BaseActivity() {
     }
 
 }
-

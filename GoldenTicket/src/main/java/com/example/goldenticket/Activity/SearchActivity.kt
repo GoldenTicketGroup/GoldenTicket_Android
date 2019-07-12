@@ -22,7 +22,6 @@ class SearchActivity : AppCompatActivity() {
         tagList.add("공포"); tagList.add("블루스퀘어"); tagList.add("세종문화회관");
         tagList.add("판타지"); tagList.add("스릴러"); tagList.add("예술의전당"); tagList.add("충무아트센터");
         tagList.add("로맨스");
-
         rv_search_tags.adapter = SearchTagsRVAdapter(this, tagList)
         rv_search_tags.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)*/
 

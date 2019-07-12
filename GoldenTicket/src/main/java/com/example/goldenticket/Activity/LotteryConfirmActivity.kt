@@ -2,19 +2,36 @@ package com.example.goldenticket.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
+import com.example.goldenticket.DB.SharedPreferenceController
+import com.example.goldenticket.Network.ApplicationController
+import com.example.goldenticket.Network.NetworkService
+import com.example.goldenticket.Network.Post.PostShowLikeResponse
 import com.example.goldenticket.R
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_lottery_confirm.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.activity_user_update.view.*
 import org.jetbrains.anko.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LotteryConfirmActivity : AppCompatActivity() {
 
     // 메인에서 타이머 onclick시, 당첨/미당첨 캐릭터화면
 
     // NETWORK:: status받아오기, 1=당첨, 2=미당첨
+
+    var show_idx = 0
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +40,10 @@ class LotteryConfirmActivity : AppCompatActivity() {
 //        val status = 1
         // LotteryFirstTimerFragment와 LotterySecondTimerFragment에서 status값을 intent로 넘겨준걸 받음
         var status = intent.getIntExtra("status",1)
+        show_idx = intent.getIntExtra("idx",1)
+
+        Log.d("LotteryConfirm: ",show_idx.toString())
+
         setLayoutByStatusCode(status)
         setOnClickListener(status)
     }
@@ -34,7 +55,32 @@ class LotteryConfirmActivity : AppCompatActivity() {
         btn_lotteryconfirm_stagelike.setOnClickListener {
             alert(title="관심있는 공연 추가", message="추가하시겠습니까?") {
                 positiveButton("Yes"){
-                    toast("관심있는 공연에 추가하였습니다.")
+
+                    var jsonObject = JSONObject()
+                    jsonObject.put("show_idx",show_idx)
+                    val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+                    val postShowLike = networkService.postShowLike("application/json",
+                        SharedPreferenceController.getUserToken(ctx), gsonObject)
+                    postShowLike.enqueue(object: Callback<PostShowLikeResponse> {
+                        override fun onFailure(call: Call<PostShowLikeResponse>, t: Throwable) {
+                            Log.e("Delete ShowLike Failed:",t.toString())
+                        }
+
+                        override fun onResponse(
+                            call: Call<PostShowLikeResponse>,
+                            response: Response<PostShowLikeResponse>
+                        ) {
+                            if(response.isSuccessful){
+                                if(response.body()!!.status == 200){
+                                    toast("관심있는 공연에 추가하였습니다.")
+                                }else if(response.body()!!.status == 304){
+                                    toast("이미 추가되어있습니다.")
+                                }
+                            }
+                        }
+
+                    })
                 }
                 negativeButton("No"){
                     toast("취소하였습니다.")

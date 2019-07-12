@@ -56,6 +56,9 @@ class LotterySecondTimerFragment : Fragment() {
     var mTimeLeftInMillis = mStartTimeInMillis
     var mEndTime: Long = 0
 
+    var show_idx = 0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //응모한 티켓이 있을 때 타이머가 돌아가고 없으면 다른 View가 나온다.
@@ -156,6 +159,8 @@ class LotterySecondTimerFragment : Fragment() {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
                         if (response.body()!!.data.size != 0) {
+                            show_idx = response.body()!!.data.get(1).show_idx
+
                             tv_second_timer_title.text = response.body()!!.data.get(1).name
                             start_time = response.body()!!.data.get(1).start_time + "m"
 
@@ -201,7 +206,7 @@ class LotterySecondTimerFragment : Fragment() {
                                             if (response.isSuccessful) {
                                                 if (response.body()!!.status == 200) {
                                                     when (response.body()!!.data.size) {
-                                                        0 -> ctx.startActivity<LotteryConfirmActivity>("status" to 2)
+                                                        0 -> ctx.startActivity<LotteryConfirmActivity>("status" to 2,"idx" to show_idx)
                                                         1 -> ctx.startActivity<LotteryConfirmActivity>("status" to 1)
                                                     }
                                                 }

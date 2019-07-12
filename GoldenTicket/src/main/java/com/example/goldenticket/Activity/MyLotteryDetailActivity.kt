@@ -44,6 +44,7 @@ class MyLotteryDetailActivity : AppCompatActivity() {
                     .into(iv_mylottery_nothing_character)
 
                 btn_mylottery_nothing_stagelist.setOnClickListener {
+                    finish()
                     startActivity<SearchActivity>()
                 }
                 ibtn_mylottery_nothing_close.setOnClickListener {
