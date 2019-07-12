@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.goldenticket.Activity.StageInfoActivity
+import com.example.goldenticket.DB.SharedPreferenceController
 import com.example.goldenticket.Network.ApplicationController
 import com.example.goldenticket.Network.NetworkService
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
@@ -43,7 +44,19 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
         Glide.with(ctx)
             .load(dataList[position].image_url)
             .into(holder.search_result_img_url)
-        holder.search_result_like.isSelected = true
+
+        Log.e("SearchResultRVAdtr::", "onBindViewHolder::is_liked" + dataList[position].is_liked)
+
+        when (dataList[position].is_liked) {
+            0 -> {
+                holder.search_result_like.isSelected = false
+                holder.search_result_like.setBackgroundResource(R.drawable.icon_like_nofill)
+            }
+            1 -> {
+                holder.search_result_like.isSelected = true
+                holder.search_result_like.setBackgroundResource(R.drawable.icon_like_fill)
+            }
+        }
 
         holder.itemView.setOnClickListener {
             //해당 포지션의 show_idx를 stageinfo의 path variable로 전달
@@ -55,17 +68,13 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
 
             /** 좋아요 취소 **/
             if(holder.search_result_like.isSelected){
-
-                // TODO: 통신완료 후에 바꾸는걸로 수정해야함
-                holder.search_result_like.setBackgroundResource(R.drawable.icon_like_nofill)
-                holder.search_result_like.isSelected = false
+                val token = SharedPreferenceController.getUserToken(ctx)
 
                 var jsonObject = JSONObject()
-                jsonObject.put("showIdx","1") // TODO: 인덱스 값 수정해야함
+                jsonObject.put("show_idx", dataList[position].show_idx)
                 val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-                // TODO: user token 쉐어드에서 가져와야함
-                val deleteShowLike = networkService.deleteShowLike("application/json","adjlafkjad", gsonObject)
+                val deleteShowLike = networkService.deleteShowLike("application/json", token, gsonObject)
                 deleteShowLike.enqueue(object: Callback<DeleteShowLikeResponse> {
                     override fun onFailure(call: Call<DeleteShowLikeResponse>, t: Throwable) {
                         Log.e("Delete ShowLike Failed:",t.toString())
@@ -76,9 +85,11 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
                         response: Response<DeleteShowLikeResponse>
                     ) {
                         if(response.isSuccessful){
+                            Log.e("SearcyResultRVAdtr::", "like_click_listener::취소::onResponse" + response.body()!!.message)
                             if(response.body()!!.status == 200){
                                 // 통신 완료된 후 no fill like로 변경
-//                                holder.btn_like.isSelected = !holder.btn_like.isSelected
+                                holder.search_result_like.isSelected = !holder.search_result_like.isSelected
+                                holder.search_result_like.setBackgroundResource(R.drawable.icon_like_nofill)
                             }
                         }
                     }
@@ -87,19 +98,16 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
             }
             /** 좋아요 **/
             else{
-                // TODO: 통신완료 후에 바꾸는걸로 수정해야함
-                holder.search_result_like.setBackgroundResource(R.drawable.icon_like_fill)
-                holder.search_result_like.isSelected = true
+                val token = SharedPreferenceController.getUserToken(ctx)
 
                 var jsonObject = JSONObject()
-                jsonObject.put("showIdx","1") // TODO: 인덱스 값 수정해야함
+                jsonObject.put("show_idx", dataList[position].show_idx) // TODO: 인덱스 값 수정해야함
                 val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-                // TODO: user token 쉐어드에서 가져와야함
-                val postShowLike = networkService.postShowLike("application/json","adjlafkjad", gsonObject)
+                val postShowLike = networkService.postShowLike("application/json", token, gsonObject)
                 postShowLike.enqueue(object: Callback<PostShowLikeResponse> {
                     override fun onFailure(call: Call<PostShowLikeResponse>, t: Throwable) {
-                        Log.e("Delete ShowLike Failed:",t.toString())
+                        Log.e("INSERT ShowLike Failed:",t.toString())
                     }
 
                     override fun onResponse(
@@ -107,9 +115,11 @@ class SearchResultRVAdapter(val ctx: Context, val dataList: ArrayList<SearchData
                         response: Response<PostShowLikeResponse>
                     ) {
                         if(response.isSuccessful){
+                            Log.e("SearcyResultRVAdtr::", "like_click_listener::조하::onResponse" + response.body()!!.message)
                             if(response.body()!!.status == 200){
                                 // 통신 완료된 후 fill like로 변경
-//                                holder.btn_like.isSelected = !holder.btn_like.isSelected
+                                holder.search_result_like.isSelected = !holder.search_result_like.isSelected
+                                holder.search_result_like.setBackgroundResource(R.drawable.icon_like_fill)
                             }
                         }
                     }
