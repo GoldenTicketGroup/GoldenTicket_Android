@@ -40,6 +40,7 @@
                             android:layout_height="297dp"
                             android:layout_marginTop="64dp"
                             android:layout_gravity="center"
+                            android:elevation="30dp"
                             app:cardCornerRadius="10dp">
                         <ImageView
                                 android:id="@+id/iv_stageinfo_poster"

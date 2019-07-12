@@ -125,7 +125,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#ffffff"
-            android:visibility="invisible">
+            android:visibility="visible">
 
         <include layout="@layout/toolbar_drawer"
                  android:id="@+id/tb_mylottery_payment"/>
