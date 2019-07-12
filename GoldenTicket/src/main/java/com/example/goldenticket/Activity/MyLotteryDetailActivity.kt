@@ -157,7 +157,7 @@ class MyLotteryDetailActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
 
                     if (response.body()!!.status == 204) {
-                        Log.e("MyLotteryDetailActi::", response.body()!!.data.toString())
+                        //Log.e("MyLotteryDetailActi::", response.body()!!.data.toString())
                         setView(204) // 당첨된 거 없을 때
                     }
 
