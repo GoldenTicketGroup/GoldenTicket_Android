@@ -50,7 +50,6 @@
         <Preference
                 app:key="pref_account"
                 app:title="연결된 계정"
-                app:summary="카카오"
                 app:iconSpaceReserved="false"
         />
 

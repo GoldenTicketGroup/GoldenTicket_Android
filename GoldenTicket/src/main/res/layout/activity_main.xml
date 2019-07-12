@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_main"
+        tools:context=".Activity.MainActivity"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<androidx.drawerlayout.widget.DrawerLayout
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:cardview="http://schemas.android.com/apk/res-auto"
@@ -8,180 +14,179 @@
         android:layout_height="match_parent"
         tools:context=".Activity.MainActivity"
         android:id="@+id/dl">
-
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
-                android:id="@+id/sv_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
+                    android:id="@+id/sv_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <LinearLayout
 
-                    android:focusableInTouchMode="true"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent" android:layout_height="match_parent">
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="360dp"
-                            android:background="@drawable/back_img_main"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"></LinearLayout>
-
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent" android:layout_height="match_parent">
                     <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="32dp"
-                            android:orientation="vertical">
-
+                            android:layout_height="wrap_content">
                         <LinearLayout
-                                android:layout_marginTop="5dp"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="360dp"
+                                android:background="@drawable/back_img_main"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+
+                        <FrameLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_marginTop="32dp"
+                                android:orientation="vertical">
 
-                            <FrameLayout
-                                    android:id="@+id/fl_user_name"
+                            <LinearLayout
+                                    android:layout_marginTop="5dp"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="33dp"
-                                    android:layout_gravity="center"
-                                    android:layout_marginLeft="30dp">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
-                                <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="15dp"
-                                        android:layout_gravity="bottom|center"
-                                        android:background="#ffffff"/>
+                                <FrameLayout
+                                        android:id="@+id/fl_user_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="33dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="30dp">
+
+                                    <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="15dp"
+                                            android:layout_gravity="bottom|center"
+                                            android:background="#ffffff"/>
+
+                                    <TextView
+                                            android:id="@+id/tv_main_name"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/notosans_bold"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginRight="5dp"
+                                            android:text="민정"
+                                            android:textColor="#2e2e2e"
+                                            android:textSize="25sp"/>
+                                </FrameLayout>
 
                                 <TextView
-                                        android:id="@+id/tv_main_name"
-                                        android:layout_width="match_parent"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/notosans_bold"
+                                        android:layout_marginTop="10dp"
                                         android:layout_marginLeft="5dp"
-                                        android:layout_marginRight="5dp"
-                                        android:text="민정"
-                                        android:textColor="#2e2e2e"
-                                        android:textSize="25sp"/>
-                            </FrameLayout>
+                                        android:fontFamily="@font/notosans_medium"
+                                        android:text="님"
+                                        android:textColor="#262626"
+                                        android:textSize="20sp"/>
+                            </LinearLayout>
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginLeft="31dp"
+                                    android:layout_marginTop="40dp"
                                     android:fontFamily="@font/notosans_medium"
-                                    android:text="님"
+                                    android:text="오늘 저녁, 이런 공연 어때요?"
                                     android:textColor="#262626"
                                     android:textSize="20sp"/>
-                        </LinearLayout>
+                        </FrameLayout>
 
-                        <TextView
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_product"
+                                android:layout_marginTop="95dp"
+                                android:paddingRight="350dp"
+                                android:clipToPadding="false"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="31dp"
-                                android:layout_marginTop="40dp"
-                                android:fontFamily="@font/notosans_medium"
-                                android:text="오늘 저녁, 이런 공연 어때요?"
-                                android:textColor="#262626"
-                                android:textSize="20sp"/>
-                    </FrameLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_product"
-                            android:layout_marginTop="95dp"
-                            android:paddingRight="350dp"
-                            android:clipToPadding="false"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                    >
-                    </androidx.recyclerview.widget.RecyclerView>
-                    android:layout_marginTop="123dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <FrameLayout
-                            android:id="@+id/empty_view"
-                            android:layout_marginTop="117dp"
-                            android:layout_marginLeft="48dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone">
-                        <ImageView
-                                android:id="@+id/empty_image"
-                                android:layout_marginLeft="55dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/sppechbubble_main"/>
-                        <ImageView
-                                android:id="@+id/empty_image_2"
-                                android:layout_marginTop="105dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/character_catching_main"/>
-                        <TextView
-                                android:id="@+id/empty_text"
-                                android:layout_marginLeft="101dp"
-                                android:layout_marginTop="42dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="오늘 올라온 공연이 없어요"
-                                android:textColor="@color/white"/>
-                    </FrameLayout>
-                </FrameLayout>
-
-                <LinearLayout
+                        >
+                        </androidx.recyclerview.widget.RecyclerView>
+                        android:layout_marginTop="123dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                    <RelativeLayout
+                        android:layout_height="wrap_content">
+
+                        <FrameLayout
+                                android:id="@+id/empty_view"
+                                android:layout_marginTop="117dp"
+                                android:layout_marginLeft="48dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+                            <ImageView
+                                    android:id="@+id/empty_image"
+                                    android:layout_marginLeft="55dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/sppechbubble_main"/>
+                            <ImageView
+                                    android:id="@+id/empty_image_2"
+                                    android:layout_marginTop="105dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/character_catching_main"/>
+                            <TextView
+                                    android:id="@+id/empty_text"
+                                    android:layout_marginLeft="101dp"
+                                    android:layout_marginTop="42dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="오늘 올라온 공연이 없어요"
+                                    android:textColor="@color/white"/>
+                        </FrameLayout>
+                    </FrameLayout>
+
+                    <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:gravity="center"
-                    >
-                        <ImageButton
-                                android:id="@+id/ibtnNextLeft"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/icon_next_left"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginTop="35dp"
-                        />
-                        <androidx.viewpager.widget.ViewPager
-                                android:id="@+id/vpLotteryConfirm"
-                                android:layout_width="300dp"
-                                android:layout_height="100dp"
-                                android:layout_gravity="center"
-                                android:layout_toRightOf="@+id/ibtnNextLeft"
-                        />
-                        <TextView
-                                android:id="@+id/tvLotteryNothing"
-                                android:visibility="gone"
-                                android:layout_gravity="center"
+                            android:orientation="vertical">
+                        <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="#969696"
-                                android:textAlignment="center"
-                                android:layout_centerInParent="true"
-                                android:text="응모한 내역이 없습니다"/>
-                        <ImageButton
-                                android:id="@+id/ibtnNextRight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/icon_next_main"
-                                android:layout_gravity="center_vertical"
-                                android:layout_toRightOf="@+id/vpLotteryConfirm"
-                                android:layout_marginTop="35dp"
-                        />
-                    </RelativeLayout>
-                    <LinearLayout
+                                android:paddingBottom="5dp"
+                                android:gravity="center"
+                        >
+                            <ImageButton
+                                    android:id="@+id/ibtnNextLeft"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/icon_next_left"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="35dp"
+                            />
+                            <androidx.viewpager.widget.ViewPager
+                                    android:id="@+id/vpLotteryConfirm"
+                                    android:layout_width="300dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:layout_toRightOf="@+id/ibtnNextLeft"
+                            />
+                            <TextView
+                                    android:id="@+id/tvLotteryNothing"
+                                    android:visibility="gone"
+                                    android:layout_gravity="center"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="15sp"
+                                    android:textColor="#969696"
+                                    android:textAlignment="center"
+                                    android:layout_centerInParent="true"
+                                    android:text="응모한 내역이 없습니다"/>
+                            <ImageButton
+                                    android:id="@+id/ibtnNextRight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/icon_next_main"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_toRightOf="@+id/vpLotteryConfirm"
+                                    android:layout_marginTop="35dp"
+                            />
+                        </RelativeLayout>
+                        <LinearLayout
                                 android:id="@+id/tvSearch"
                                 android:layout_width="325dp"
                                 android:layout_height="40dp"
@@ -204,28 +209,29 @@
                                     android:fontFamily="@font/notosans_light"
                                     android:textSize="14sp"/>
                         </LinearLayout>
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#f8f8f8"
-                            android:layout_marginTop="10dp"
-                    >
-
-                        <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rvContents"
+                        <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:nestedScrollingEnabled="false"
+                                android:background="#f8f8f8"
+                                android:layout_marginTop="10dp"
                         >
-                        </androidx.recyclerview.widget.RecyclerView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rvContents"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:nestedScrollingEnabled="false"
+                            >
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
 
-        <include layout="@layout/toolbar_main"/>
+            <include layout="@layout/toolbar_main"/>
+
     </FrameLayout>
-
     <include layout="@layout/activity_drawer"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
