@@ -4,14 +4,11 @@
 
 ## 워크 플로우
 
-###로그인
 <img src="https://user-images.githubusercontent.com/35513039/61103258-3a3e4380-a4ac-11e9-93ce-9bc70ee52f7d.png" width="30%" height="30%">
 
-###홈 화면
+
 <img src="https://user-images.githubusercontent.com/35513039/61103694-fa785b80-a4ad-11e9-8c4d-adc502467f42.png" width="30%" height="30%">
 
-###콘텐츠
 <img src="https://user-images.githubusercontent.com/35513039/61103646-c309af00-a4ad-11e9-83df-9c98f9131f43.png" width="30%" height="30%">
 
-###응모완료
 <img src="https://user-images.githubusercontent.com/35513039/61103591-96559780-a4ad-11e9-9c60-112569cfd9ee.png" width="30%" height="30%">
