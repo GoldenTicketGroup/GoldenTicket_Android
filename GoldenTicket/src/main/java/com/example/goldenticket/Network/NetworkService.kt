@@ -1,6 +1,7 @@
 package com.example.goldenticket.Network
 
 import com.example.goldenticket.Network.Delete.DeleteShowLikeResponse
+import com.example.goldenticket.Network.Delete.DeleteUserResponse
 import com.example.goldenticket.Network.Get.GetLotteryListResponse
 import com.example.goldenticket.Network.Get.*
 import com.example.goldenticket.Network.Post.*
@@ -9,7 +10,6 @@ import com.example.goldenticket.Network.Get.GetMyLotteryResponse
 import com.example.goldenticket.Network.Get.GetStageInfoResponse
 import com.example.goldenticket.Network.Get.GetCardDetailResponse
 import com.example.goldenticket.Network.Get.GetCardListResponse
-import com.example.goldenticket.Network.Post.PostLoginResponse
 import com.example.goldenticket.Network.Post.PostSignupResponse
 import com.example.goldenticket.Network.Put.PutUserResponse
 import com.google.gson.JsonObject
@@ -155,4 +155,11 @@ interface NetworkService {
         @Header("token") token: String,
         @Body body: JsonObject
     ): Call<PostLotteryResponse>
+
+    // 회원탈퇴
+    @HTTP(method = "DELETE", path = "/auth/user", hasBody = false)
+    fun deleteUserResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") user_token: String
+    ): Call<DeleteUserResponse>
 }

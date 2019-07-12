@@ -68,7 +68,7 @@ class MyFirebaseMessagingService  : FirebaseMessagingService(){
         val notificationBuilder = NotificationCompat.Builder(this,NOTIFICATION_CHANNEL_ID)
             .setAutoCancel(true)
             .setWhen(System.currentTimeMillis())
-            .setSmallIcon(bt_ticktet_main)
+            .setSmallIcon(push_alarm_icon)
             .setContentTitle(title)
             .setContentText(content)
             .setContentIntent(intent)
