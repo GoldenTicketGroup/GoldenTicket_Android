@@ -66,11 +66,6 @@ class SettingsActivity : AppCompatActivity() {
                 if (newValue as Boolean) {
                     //toast("true")
                 } else {
-<<<<<<< HEAD
-                    //toast("false")
-=======
-                   // toast("false")
->>>>>>> ganghee
                 }
                 true
             }
@@ -90,11 +85,6 @@ class SettingsActivity : AppCompatActivity() {
                 if (newValue as Boolean) {
                     //toast("true")
                 } else {
-<<<<<<< HEAD
-                    ///toast("false")
-=======
-                    //toast("false")
->>>>>>> ganghee
                 }
                 true
             }
