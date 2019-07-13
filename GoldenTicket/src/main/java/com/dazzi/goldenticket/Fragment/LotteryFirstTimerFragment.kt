@@ -207,7 +207,7 @@ class LotteryFirstTimerFragment : Fragment() {
                                                 if(response.body()!!.status == 200){
                                                     when(response.body()!!.data.size){
                                                         0 -> ctx.startActivity<LotteryConfirmActivity>("status" to 2,"idx" to show_idx)
-                                                        1 -> ctx.startActivity<LotteryConfirmActivity>("status" to 1)
+                                                        1 -> ctx.startActivity<LotteryConfirmActivity>("status" to 1,"ticket_idx" to response.body()!!.data.get(0).ticketIdx)
                                                     }
                                                 }
                                             }
