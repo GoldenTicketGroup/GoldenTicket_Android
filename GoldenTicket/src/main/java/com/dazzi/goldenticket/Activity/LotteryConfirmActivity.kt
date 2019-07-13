@@ -14,6 +14,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_lottery_confirm.*
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +27,7 @@ class LotteryConfirmActivity : AppCompatActivity() {
     // NETWORK:: status받아오기, 1=당첨, 2=미당첨
 
     var show_idx = 0
+    var ticket_idx = 0
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -37,9 +39,10 @@ class LotteryConfirmActivity : AppCompatActivity() {
 
 //        val status = 1
         // LotteryFirstTimerFragment와 LotterySecondTimerFragment에서 status값을 intent로 넘겨준걸 받음
-//        var status = intent.getIntExtra("status",1)
-        var status = 2
+        var status = intent.getIntExtra("status",1)
+//        var status = 2
         show_idx = intent.getIntExtra("idx",1)
+        ticket_idx = intent.getIntExtra("ticket_idx",1)
 
         Log.d("LotteryConfirm: ",show_idx.toString())
 
@@ -87,15 +90,21 @@ class LotteryConfirmActivity : AppCompatActivity() {
             }.show()
             true
         }
-        btn_lotteryconfirm_stagelist.setOnClickListener {
-            when (status) {
-                1 -> startActivity<LotteryNoticeActivity>()
-                2 -> {
-                    finish()
-                    startActivity<SearchActivity>()
+            btn_lotteryconfirm_stagelist.setOnClickListener {
+                when (status) {
+                    1 -> {
+                        finish()
+                        startActivity<MyLotteryDetailActivity>("idx" to ticket_idx)
+                        Log.d("앱잼",ticket_idx.toString())
+                    }
+                    2 -> {
+                        finish()
+                        startActivity<SearchActivity>()
+                    }
                 }
             }
-        }
+
+
     }
 
     private fun setLayoutByStatusCode(status: Int) {
