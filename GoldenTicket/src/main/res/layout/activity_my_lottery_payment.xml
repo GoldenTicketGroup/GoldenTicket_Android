@@ -26,9 +26,9 @@
                 android:background="@drawable/img_ticket_body" />-->
         <RelativeLayout
                 android:id="@+id/rl_mylottery_payment_poster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-4dp"
+                android:layout_width="260dp"
+                android:layout_height="350dp"
+                android:layout_marginTop="-8dp"
                 android:layout_centerHorizontal="true"
                 android:foreground="@drawable/style_mylottery_detail_ticket">
 
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="뮤지컬 벤허"
                 android:textSize="21sp"
                 android:textColor="@android:color/black"
@@ -157,13 +157,13 @@
     </RelativeLayout>
     <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/rl_mylottery_payment_top">
         <ImageView
                 android:id="@+id/iv_mylottery_payment_ticket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="260dp"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-16dp"
                 android:src="@drawable/img_ticket_bottom"/>

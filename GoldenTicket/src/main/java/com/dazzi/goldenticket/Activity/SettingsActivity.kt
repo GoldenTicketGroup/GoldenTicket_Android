@@ -66,7 +66,11 @@ class SettingsActivity : AppCompatActivity() {
                 if (newValue as Boolean) {
                     //toast("true")
                 } else {
+<<<<<<< HEAD
                     //toast("false")
+=======
+                   // toast("false")
+>>>>>>> ganghee
                 }
                 true
             }
@@ -86,7 +90,11 @@ class SettingsActivity : AppCompatActivity() {
                 if (newValue as Boolean) {
                     //toast("true")
                 } else {
+<<<<<<< HEAD
                     ///toast("false")
+=======
+                    //toast("false")
+>>>>>>> ganghee
                 }
                 true
             }
@@ -100,6 +108,7 @@ class SettingsActivity : AppCompatActivity() {
                         clearUserToken(ctx)
                         toast("로그아웃을 하였습니다.")
                         startActivity<LoginActivity>()
+
                     }
                     negativeButton("No"){
                         toast("로그아웃을 취소하였습니다.")

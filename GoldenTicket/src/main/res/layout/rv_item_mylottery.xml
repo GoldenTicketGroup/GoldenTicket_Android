@@ -40,7 +40,7 @@
                 android:orientation="vertical"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/cv_mylottery_poster"
-                android:layout_marginLeft="26dp">
+                android:layout_marginLeft="16dp">
             <TextView
                     android:id="@+id/tv_mylottery_date"
                     android:layout_width="wrap_content"
