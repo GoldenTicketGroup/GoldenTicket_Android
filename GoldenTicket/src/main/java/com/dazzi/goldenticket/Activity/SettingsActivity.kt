@@ -64,9 +64,9 @@ class SettingsActivity : AppCompatActivity() {
             //관심있는 공연 스위치 이벤트
             switchKeepPreferences!!.setOnPreferenceChangeListener { preference, newValue ->
                 if (newValue as Boolean) {
-                    toast("true")
+                    //toast("true")
                 } else {
-                    toast("false")
+                    //toast("false")
                 }
                 true
             }
@@ -74,9 +74,9 @@ class SettingsActivity : AppCompatActivity() {
             //당첨 결과 알림 스위치 이벤트
             switchLotteryPreferences!!.setOnPreferenceChangeListener { preference, newValue ->
                 if (newValue as Boolean) {
-                    toast("true")
+                    //toast("true")
                 } else {
-                    toast("false")
+                    //toast("false")
                 }
                 true
             }
@@ -84,9 +84,9 @@ class SettingsActivity : AppCompatActivity() {
             //이벤트 및 마케팅 활용 동의 이벤트
             switchMarketingPreferences!!.setOnPreferenceChangeListener { preference, newValue ->
                 if (newValue as Boolean) {
-                    toast("true")
+                    //toast("true")
                 } else {
-                    toast("false")
+                    ///toast("false")
                 }
                 true
             }
