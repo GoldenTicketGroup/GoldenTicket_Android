@@ -13,4 +13,4 @@
 .externalNativeBuild
 
 .idea/
-gradlew
+.gradlew
