@@ -11,4 +11,16 @@
 /build
 /captures
 .externalNativeBuild
+<<<<<<< HEAD
 .idea/
+=======
+
+.idea/
+.gradlew
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+settings.gradle
+gradle/wrapper
+>>>>>>> 6f0b20826ffeacb5ef38408396b1dfd56a19d455
