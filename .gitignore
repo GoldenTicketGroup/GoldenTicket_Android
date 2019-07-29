@@ -12,11 +12,3 @@
 /captures
 .externalNativeBuild
 
-.idea/
-.gradlew
-build.gradle
-gradle.properties
-gradlew
-gradlew.bat
-settings.gradle
-gradle/wrapper
