@@ -19,3 +19,7 @@ build
 gradlew
 local.properties
 settings
+settings.gradle
+build.gradle
+.gitignore
+gradlew.bat
