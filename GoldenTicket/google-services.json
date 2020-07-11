@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:252557812745:android:12a320e74c12ae54",
         "android_client_info": {
-          "package_name": "com.example.goldenticket"
+          "package_name": "com.dazzi.goldenticket"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "252557812745-p2v4kl965agpkbfn7j80082ktns9q52f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.goldenticket",
+            "package_name": "com.dazzi.goldenticket",
             "certificate_hash": "767c330a12b3a62a7a51e7e6ac43b2edef699f18"
           }
         },

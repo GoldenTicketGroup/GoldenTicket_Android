@@ -91,6 +91,4 @@ dependencies {
 - **한선민** - [선민 깃주소](https://github.com/HanSeonmin)
 - **전성은** - [성은 깃주소](https://github.com/cse0616)
 
-## Google Play Store
-
 

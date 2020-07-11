@@ -124,6 +124,8 @@
             <CheckBox
                     android:id="@+id/cb_event"
                     android:text="이벤트 알림(10시 마다)"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/notosans_light"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -131,6 +133,8 @@
             <CheckBox
                     android:id="@+id/cb_like"
                     android:text="관심있는 공연알람"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/notosans_light"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -138,6 +142,8 @@
             <CheckBox
                     android:id="@+id/cb_confirm"
                     android:text="당첨확인 알람"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/notosans_light"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"

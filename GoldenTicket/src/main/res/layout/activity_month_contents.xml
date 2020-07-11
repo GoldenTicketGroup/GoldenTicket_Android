@@ -31,7 +31,8 @@
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp">
             <TextView
                     android:id="@+id/tvCardTitle"
                     android:layout_width="wrap_content"
@@ -40,7 +41,7 @@
                     android:layout_marginTop="19dp"
                     android:textSize="24sp"
                     android:textColor="#262626"
-                    android:lineSpacingExtra="9sp"
+                    android:lineSpacingExtra="8sp"
                     android:fontFamily="@font/notosans_semibold"
                     tools:text="6월 연휴 뭐 할지 못 정했다면,\n공연장 나들이 어때요?"
             />

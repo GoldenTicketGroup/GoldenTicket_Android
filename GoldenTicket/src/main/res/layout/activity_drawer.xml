@@ -36,7 +36,7 @@
 
                 <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="7dp"
+                        android:layout_height="10dp"
                         android:layout_gravity="bottom|center"
                         android:background="#fbf695"/>
 
